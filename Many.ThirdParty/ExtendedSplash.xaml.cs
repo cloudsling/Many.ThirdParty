@@ -3,9 +3,12 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
+using Windows.ApplicationModel;
 using Windows.ApplicationModel.Activation;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
+using Windows.Graphics.Display;
+using Windows.UI.Core;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Controls.Primitives;
@@ -21,25 +24,59 @@ namespace Many.ThirdParty
     /// </summary>
     public sealed partial class ExtendedSplash
     {
-        internal Rect splashImageRect;
-        internal bool dismissed = false;
         internal Frame rootFrame;
-        SplashScreen splash;
-        double ScaleFactor;
     }
 
+    /// <summary>
+    /// entry and method
+    /// </summary>
     public sealed partial class ExtendedSplash
     {
-        public ExtendedSplash(SplashScreen splashscreen, bool loadState)
+        public ExtendedSplash(bool loadState)
         {
+            //TODO: load status before app suspend
+            //if (loadState)
+            //{
+
+            //}
             InitializeComponent();
 
-            Window.Current.SizeChanged += Current_SizeChanged;
+            // ScaleFactor = (double)DisplayInformation.GetForCurrentView().ResolutionScale;
+
+            rootFrame = new Frame();
+            rootFrame.NavigationFailed += OnNavigationFailed;
+            rootFrame.Navigated += RootFrame_Navigated;
+
+            Window.Current.Content = rootFrame;
+            //TODO: something needed to do as app launch
+            Do();
+
+            if (rootFrame.Content == null)
+            {
+                rootFrame.Navigate(typeof(PreLoadPage));
+            }
         }
 
-        private void Current_SizeChanged(object sender, Windows.UI.Core.WindowSizeChangedEventArgs e)
+        void Do()
         {
-            throw new NotImplementedException();
+
+        }
+
+        private void RootFrame_Navigated(object sender, NavigationEventArgs e)
+        {
+            SystemNavigationManager.GetForCurrentView().AppViewBackButtonVisibility =
+                (Window.Current.Content as Frame).BackStack.Any() ?
+                 AppViewBackButtonVisibility.Visible : AppViewBackButtonVisibility.Collapsed;
+        }
+
+        /// <summary>
+        /// Invoked when Navigation to a certain page fails
+        /// </summary>
+        /// <param name="sender">The Frame which failed navigation</param>
+        /// <param name="e">Details about the navigation failure</param>
+        void OnNavigationFailed(object sender, NavigationFailedEventArgs e)
+        {
+            throw new Exception("Failed to load Page " + e.SourcePageType.FullName);
         }
     }
 }
