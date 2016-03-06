@@ -1,16 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Runtime.InteropServices.WindowsRuntime;
-using Windows.Foundation;
-using Windows.Foundation.Collections;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
-using Windows.UI.Xaml.Controls.Primitives;
-using Windows.UI.Xaml.Data;
 using Windows.UI.Xaml.Input;
-using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
 
 namespace Many.ThirdParty
@@ -22,12 +13,16 @@ namespace Many.ThirdParty
     {
         void Grid_ManipulationDelta(object sender, ManipulationDeltaRoutedEventArgs e)
         {
-
+            //Get cumulate length
+            var cumulatedLength = e.Cumulative.Translation.Y;
+            var frmElmt = sender as FrameworkElement;
+            //Set new margin top
+            frmElmt.SetValue(MarginProperty, new Thickness(0, frmElmt.Margin.Top + cumulatedLength / 2, 0, 0));
         }
 
         void Grid_ManipulationCompleted(object sender, ManipulationCompletedRoutedEventArgs e)
         {
-
+            this.Frame.Navigate(typeof(OneMainPage));
         }
     }
 
@@ -43,10 +38,12 @@ namespace Many.ThirdParty
 
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
-            base.OnNavigatedTo(e);
+            dynamicImageAnimation.Begin();
 
-            //this.Frame.Navigate(typeof(OneMainPage));
+            if (e.Parameter != null)
+            {
+                //TODO: Binding to interface
+            }
         }
-
     }
 }

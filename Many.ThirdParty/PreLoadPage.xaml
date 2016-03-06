@@ -7,7 +7,7 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d">
     <Page.Resources>
-        <Storyboard x:Name="BigBig">
+        <Storyboard x:Name="dynamicImageAnimation">
             <DoubleAnimationUsingKeyFrames Storyboard.TargetName="border"
                                            Storyboard.TargetProperty="Height"
                                            BeginTime="0:0:0" 
@@ -30,6 +30,7 @@
         </Storyboard>
     </Page.Resources>
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+
         <Grid Margin="0 -50" Height="Auto">
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto"/>
@@ -40,27 +41,19 @@
                     Grid.Row="0" 
                     Height="50"
                     VerticalAlignment="Top"/>
-            <Grid Grid.Row="1"
-                  ManipulationMode="TranslateY"
-                  ManipulationDelta="Grid_ManipulationDelta"
-                  ManipulationCompleted="Grid_ManipulationCompleted">
-                <Grid.Transitions>
-                    <TransitionCollection>
-                        <NavigationThemeTransition />
-                    </TransitionCollection>
-                </Grid.Transitions>
-                <Image Source="{Binding DayImagePath}"
-                       Stretch="UniformToFill" />
-                <Grid Margin="6">
-                        <Grid.RowDefinitions>
-                            <RowDefinition Height="*"/>
-                            <RowDefinition Height="Auto"/>
-                            <RowDefinition Height="Auto"/>
-                            <RowDefinition Height="Auto"/>
-                            <RowDefinition Height="Auto"/>
-                            <RowDefinition Height="100"/>
-                        </Grid.RowDefinitions>
-                        <TextBlock x:Name="OneName"
+            <Grid Grid.Row="1" Background="Red">
+                <Image Source="{}"
+                       Stretch="UniformToFill"/>
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="100"/>
+                    </Grid.RowDefinitions>
+                    <TextBlock x:Name="OneName"
                                Margin="6 6 6 0"  
                                Grid.Row="1" 
                                TextWrapping="Wrap" 
@@ -68,37 +61,37 @@
                                Text="%ONEDAY%"
                                FontFamily="Consolas"
                                FontSize="80"/>
-                        <Border Grid.Row="2"
+                    <Border Grid.Row="2"
                             Height="{Binding ElementName=border, Path=Height}" 
                             VerticalAlignment="Bottom"/>
-                        <StackPanel Margin="5" 
+                    <StackPanel Margin="5" 
                                 Grid.Row="2"
                                 Orientation="Horizontal">
-                            <TextBlock x:Name="Vol" Margin="8"
+                        <TextBlock x:Name="Vol" Margin="8"
                                    FontFamily="Consolas"
                                    Foreground="White" 
                                    TextWrapping="Wrap" 
                                    Text="%ONEVOL%"/>
-                            <TextBlock Margin="8"
+                        <TextBlock Margin="8"
                                    FontFamily="Consolas"
                                    TextWrapping="Wrap" 
                                    Foreground="White" 
                                    Text="|" />
-                            <TextBlock x:Name="MonthAndYear" 
+                        <TextBlock x:Name="MonthAndYear" 
                                    Margin="8"
                                    FontFamily="Consolas" 
                                    TextWrapping="Wrap" 
                                    Foreground="White" 
                                    Text="%2016-3%"/>
-                        </StackPanel>
-                        <TextBlock x:Name="DayContent" 
+                    </StackPanel>
+                    <TextBlock x:Name="DayContent" 
                                Margin="8" Grid.Row="3" 
                                TextWrapping="Wrap" 
                                Foreground="White" 
                                FontSize="18" 
                                Text="%BALABALABALABALBABLABLAB%" 
                                RelativePanel.Above="MonthAndYear"/>
-                    </Grid>
+                </Grid>
             </Grid>
             <Border Grid.Row="2"
                     Height="{Binding ElementName=border, Path=Height}"
@@ -119,15 +112,22 @@
                 <Paragraph FontSize="16">一</Paragraph>
                 <Paragraph FontSize="16">个</Paragraph>
             </RichTextBlock>
-            <StackPanel x:Name="myPanel"
-                        VerticalAlignment="Bottom" >
-                <Button Content="向上滑动进入ONE"
-                        Foreground="White" 
-                        FontFamily="Consolas"
-                        VerticalAlignment="Bottom" 
-                        Margin="0 10" 
-                        HorizontalAlignment="Center"/>
-            </StackPanel>
+            <Grid VerticalAlignment="Bottom" Height="100">
+                <TextBlock Height="50"
+                           Text="向上滑动进入ONE"
+                           Foreground="#FF01AEF0"
+                           FontFamily="Consolas" 
+                           HorizontalAlignment="Center"
+                           ManipulationMode="TranslateY"
+                           ManipulationDelta="Grid_ManipulationDelta"
+                           ManipulationCompleted="Grid_ManipulationCompleted">
+                    <TextBlock.Transitions>
+                        <TransitionCollection>
+                            <NavigationThemeTransition/>
+                        </TransitionCollection>
+                    </TextBlock.Transitions>
+                </TextBlock>
+            </Grid>
         </Grid>
     </Grid>
 </Page>

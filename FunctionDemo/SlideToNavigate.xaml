@@ -1,0 +1,50 @@
+﻿<Page
+    x:Class="FunctionDemo.SlideToNavigate"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:FunctionDemo"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d">
+
+    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+        <Grid.RowDefinitions>
+            <RowDefinition />
+            <RowDefinition />
+            <RowDefinition />
+        </Grid.RowDefinitions>
+        <!--<Grid Grid.Row="1">
+            <Image />
+            <Grid x:Name="asd" Background="Red" 
+              Width="50"
+              Height="50"
+              ManipulationMode="TranslateY"
+              ManipulationDelta="Grid_ManipulationDelta"
+              ManipulationCompleted="Grid_ManipulationCompleted">
+                <Grid.Transitions>
+                    <TransitionCollection>
+                        <NavigationThemeTransition />
+                    </TransitionCollection>
+                </Grid.Transitions>
+                <Button  Content="asdfasdfads"/>
+            </Grid>
+        </Grid>-->
+        <Grid  Grid.Row="1" Background="LightGray" VerticalAlignment="Bottom">
+            <Grid.RowDefinitions>
+                <RowDefinition/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+            <TextBlock Foreground="Red" Height="50"
+                       Text="aaaaaaaaaaaaaaaaaaaaaaa"
+                       ManipulationMode="TranslateY"
+                       ManipulationDelta="Grid_ManipulationDelta"
+                       ManipulationCompleted="Grid_ManipulationCompleted">
+                <TextBlock.Transitions>
+                    <TransitionCollection>
+                        <NavigationThemeTransition/>
+                    </TransitionCollection>
+                </TextBlock.Transitions>
+            </TextBlock>
+        </Grid>
+    </Grid>
+</Page>

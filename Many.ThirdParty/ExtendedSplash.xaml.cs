@@ -25,8 +25,11 @@ namespace Many.ThirdParty
 
         protected override async void OnNavigatedTo(NavigationEventArgs e)
         {
-            //TODO: load resource from internet
+            //TODO: Delay 2s in debug mode
+#if DEBUG
             await Task.Delay(2000);
+#endif
+            //TODO: load resource from internet
             Frame.Navigate(typeof(PreLoadPage));
         }
     }
