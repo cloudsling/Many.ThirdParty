@@ -1,9 +1,10 @@
-﻿namespace Many.ThirdParty.Core.Tools
-{
-    using System.ComponentModel;
-    using System.Runtime.CompilerServices;
-    using System.Threading;
+﻿using System;
+using System.ComponentModel;
+using System.Runtime.CompilerServices;
+using System.Threading;
 
+namespace Many.ThirdParty.Core.Tools
+{
     public abstract class BindableBase : INotifyPropertyChanged
     {
         public event PropertyChangedEventHandler PropertyChanged;
@@ -18,7 +19,7 @@
             OnPropertyChanged(propName);
             return true;
         }
-
+        
         protected void OnPropertyChanged([CallerMemberName] string propName = null)
         {
             var temp = Volatile.Read(ref PropertyChanged);

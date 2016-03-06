@@ -1,0 +1,60 @@
+﻿<Page
+    x:Class="FunctionDemo.FuckVisualStateManager"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:FunctionDemo"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d">
+
+    <!--<Grid Background="Gray">
+        <Grid x:Name="grid" Background="Red">
+
+        </Grid>
+        <VisualStateManager.VisualStateGroups>
+            <VisualStateGroup>
+                <VisualState x:Name="damnitit">
+                    <VisualState.StateTriggers>
+                        <AdaptiveTrigger MinWindowWidth="500"/>
+                    </VisualState.StateTriggers>
+                    <VisualState.Setters>
+                        <Setter Target="grid.Width" Value="100"/>
+                        <Setter Target="grid.Height" Value="100"/>
+                    </VisualState.Setters>
+                </VisualState>
+                <VisualState x:Name="damnit">
+                    <VisualState.StateTriggers>
+                        <AdaptiveTrigger MinWindowWidth="0"/>
+                    </VisualState.StateTriggers>
+                    <VisualState.Setters>
+                        <Setter Target="grid.Width" Value="50"/>
+                        <Setter Target="grid.Height" Value="50"/>
+                    </VisualState.Setters>
+                </VisualState>
+
+            </VisualStateGroup>
+        </VisualStateManager.VisualStateGroups>
+    </Grid>-->
+
+    <RelativePanel>
+        <GridView x:Name="gv" Width="500">
+            <Grid Height="50" Width="50" Background="Yellow"/>
+            <Grid Height="50" Width="50" Background="Yellow"/>
+            <Grid Height="50" Width="50" Background="Yellow"/>
+            <Grid Height="50" Width="50" Background="Yellow"/>
+        </GridView>
+        <VisualStateManager.VisualStateGroups>
+            <VisualStateGroup>
+                <VisualState>
+                    <VisualState.StateTriggers>
+                        <AdaptiveTrigger MinWindowWidth="0"/>
+                    </VisualState.StateTriggers>
+                    <VisualState.Setters>
+                        <Setter Target="gv.(RelativePanel.AlignBottomWithPanel)" 
+                                Value="True"/>
+                    </VisualState.Setters>
+                </VisualState>
+            </VisualStateGroup>
+        </VisualStateManager.VisualStateGroups>
+    </RelativePanel>
+</Page>

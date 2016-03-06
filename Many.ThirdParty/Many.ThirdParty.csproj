@@ -124,6 +124,9 @@
       <DependentUpon>PreLoadPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Resources\CustomControls\BlankButton.xaml.cs">
+      <DependentUpon>BlankButton.xaml</DependentUpon>
+    </Compile>
     <Compile Include="SubPages\HomePage.xaml.cs">
       <DependentUpon>HomePage.xaml</DependentUpon>
     </Compile>
@@ -145,10 +148,10 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Assets\SplashScreen.scale-100.png" />
-    <Content Include="Resources\CommonsImages\return_image.png" />
-    <Content Include="Resources\CommonsImages\return_image_pressed.png" />
-    <Content Include="Resources\CommonsImages\search.png" />
-    <Content Include="Resources\CommonsImages\search_pressed.png" />
+    <Content Include="Resources\CommonImages\return_image.png" />
+    <Content Include="Resources\CommonImages\return_image_pressed.png" />
+    <Content Include="Resources\CommonImages\search.png" />
+    <Content Include="Resources\CommonImages\search_pressed.png" />
     <Content Include="Resources\Images\StartImage.png" />
     <Content Include="Properties\Default.rd.xml" />
     <Content Include="Assets\LockScreenLogo.scale-200.png" />
@@ -202,10 +205,14 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="MainFrameContainer.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="PreLoadPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="PreLoadPage.xaml">
+    <Page Include="Resources\CustomControls\BlankButton.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -228,6 +235,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="HtmlTemples\" />
+    <Folder Include="Resources\Styles\" />
   </ItemGroup>
   <ItemGroup>
     <SDKReference Include="Microsoft.UniversalCRT.Debug, Version=10.0.10586.0">
