@@ -13,18 +13,40 @@ using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
 
-// The Blank Page item template is documented at http://go.microsoft.com/fwlink/?LinkId=234238
-
 namespace Many.ThirdParty
 {
     /// <summary>
-    /// An empty page that can be used on its own or navigated to within a Frame.
+    /// auto enevt
+    /// </summary>
+    public sealed partial class PreLoadPage : Page
+    {
+        void Grid_ManipulationDelta(object sender, ManipulationDeltaRoutedEventArgs e)
+        {
+
+        }
+
+        void Grid_ManipulationCompleted(object sender, ManipulationCompletedRoutedEventArgs e)
+        {
+
+        }
+    }
+
+    /// <summary>
+    /// entry and method
     /// </summary>
     public sealed partial class PreLoadPage : Page
     {
         public PreLoadPage()
         {
-            this.InitializeComponent();
+            InitializeComponent();
         }
+
+        protected override void OnNavigatedTo(NavigationEventArgs e)
+        {
+            base.OnNavigatedTo(e);
+
+            //this.Frame.Navigate(typeof(OneMainPage));
+        }
+
     }
 }
