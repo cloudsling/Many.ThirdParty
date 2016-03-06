@@ -22,7 +22,7 @@ namespace Many.ThirdParty
 
         void Grid_ManipulationCompleted(object sender, ManipulationCompletedRoutedEventArgs e)
         {
-            this.Frame.Navigate(typeof(OneMainPage));
+            this.Frame.Navigate(typeof(MainFrameContainer));
         }
     }
 
@@ -43,6 +43,7 @@ namespace Many.ThirdParty
             if (e.Parameter != null)
             {
                 //TODO: Binding to interface
+
             }
         }
     }

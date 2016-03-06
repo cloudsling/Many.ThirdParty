@@ -27,7 +27,7 @@ namespace Many.ThirdParty
         {
             //TODO: Delay 2s in debug mode
 #if DEBUG
-            await Task.Delay(2000);
+            await Task.Delay(1000);
 #endif
             //TODO: load resource from internet
             Frame.Navigate(typeof(PreLoadPage));
