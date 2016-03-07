@@ -7,7 +7,6 @@
     xmlns:ctm="using:Many.ThirdParty.CustomControls"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    xmlns:imgs="using:Windows.UI.Xaml.Media;"
     mc:Ignorable="d"
     DataContext="{Binding MainFrameContainerViewModel,
                           RelativeSource={RelativeSource Mode=Self}}"
@@ -21,22 +20,11 @@
     </Page.Resources>
     <RelativePanel Background="LightGray">
 
-        </Grid>
-        <Grid Grid.Row="1">
-            <Frame />
-        </Grid>
-        <StackPanel x:Name="NavBtn"
-                    Grid.Row="2"
-                    Background="Red"
-                    MinHeight="40">
-        </StackPanel>
+        <!--<Grid x:Name="topGrid" 
+              Height="50"
+              Background="White"
+              Width="{Binding CurrentWindowWidth}">
         </Grid>-->
-    <RelativePanel Background="LightGray">
-        <Grid x:Name="topGrid" Grid.Row="0"
-              Background="Red"
-              Width="500"
-              MinHeight="40"
-              RelativePanel.AlignTopWithPanel="True">
 
 
         <Grid x:Name="navBtnBottom"
@@ -61,17 +49,45 @@
                 <Image Source="ms-appx:///Resources/MFCImages/movie.png"/>
             </Button>
         </Grid>
-        <StackPanel x:Name="NavBtn"
-                    Grid.Row="2"
-                    Background="Red"
-                    MinHeight="40"
-                    RelativePanel.AlignBottomWithPanel="True">
+        <StackPanel x:Name="navBtnLeft"
+                    Width="80"
+                    Height="{Binding CurrentWindowHeight}"
+                    Background="White"
+                    >
+            <Button>
+                <Image Source="ms-appx:///Resources/MFCImages/home.png"/>
+            </Button>
+            <Button>
+                <Image Source="ms-appx:///Resources/MFCImages/reading.png"/>
+            </Button>
+            <Button>
+                <Image Source="ms-appx:///Resources/MFCImages/music.png"/>
+            </Button>
+            <Button>
+                <Image Source="ms-appx:///Resources/MFCImages/movie.png"/>
+            </Button>
         </StackPanel>
-    </RelativePanel>
-    <!--<VisualStateManager.VisualStateGroups x:Name="SizeC">
+        <VisualStateManager.VisualStateGroups>
             <VisualStateGroup>
                 <VisualState>
+                    <VisualState.StateTriggers>
+                        <AdaptiveTrigger MinWindowWidth="0"/>
+                    </VisualState.StateTriggers>
+                    <VisualState.Setters>
+                        <Setter Target="navBtnLeft.Visibility" Value="Collapsed"/>
+                        <Setter Target="navBtnBottom.(RelativePanel.AlignBottomWithPanel)" Value="True"/>
+                    </VisualState.Setters>
+                </VisualState>
+                <VisualState>
+                    <VisualState.StateTriggers>
+                        <AdaptiveTrigger MinWindowWidth="720"/>
+                    </VisualState.StateTriggers>
+                    <VisualState.Setters>
+                        <Setter Target="navBtnBottom.Visibility" Value="Collapsed"/>
+                        <Setter Target="navBtnLeft.(RelativePanel.AlignLeftWithPanel)" Value="True"/>
+                    </VisualState.Setters>
                 </VisualState>
             </VisualStateGroup>
-    </VisualStateManager.VisualStateGroups>-->
+        </VisualStateManager.VisualStateGroups>
+    </RelativePanel>
 </Page>

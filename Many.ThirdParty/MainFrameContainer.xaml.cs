@@ -24,7 +24,9 @@ namespace Many.ThirdParty
     {
         void Current_SizeChanged(object sender, Windows.UI.Core.WindowSizeChangedEventArgs e)
         {
-            var width = e.Size.Width;
+            var size = e.Size;
+            MainFrameContainerViewModel.CurrentWindowHeight = size.Height;
+            MainFrameContainerViewModel.CurrentWindowWidth = size.Width;
         }
     }
 
@@ -45,6 +47,7 @@ namespace Many.ThirdParty
         public MainFrameContainer()
         {
             MainFrameContainerViewModel = new MainFrameContainerViewModel();
+            InitializeViewModel();
 
             InitializeComponent();
             CurrentMainFrameContainer = this;
@@ -55,7 +58,13 @@ namespace Many.ThirdParty
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
             base.OnNavigatedTo(e);
-            mainFrame.Navigate(typeof(HomePage));
+           // mainFrame.Navigate(typeof(HomePage));
+        }
+
+        void InitializeViewModel()
+        {
+            MainFrameContainerViewModel.CurrentWindowHeight = Window.Current.Bounds.Height;
+            MainFrameContainerViewModel.CurrentWindowWidth = Window.Current.Bounds.Width;
         }
     }
 }

@@ -18,5 +18,16 @@ namespace Many.ThirdParty.Core.ViewModels
                 SetProperty(ref _currentWindowWidth, value);
             }
         }
+
+
+        double _currentWindowHeight;
+        public double CurrentWindowHeight
+        {
+            get { return _currentWindowHeight; }
+            set
+            {
+                SetProperty(ref _currentWindowHeight, value);
+            }
+        }
     }
 }
