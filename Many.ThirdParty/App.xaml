@@ -5,12 +5,4 @@
     xmlns:local="using:Many.ThirdParty"
     RequestedTheme="Light">
 
-    <Application.Resources>
-        <ResourceDictionary>
-            <ResourceDictionary.MergedDictionaries>
-                
-            </ResourceDictionary.MergedDictionaries>
-        </ResourceDictionary>
-    </Application.Resources>
-
 </Application>
