@@ -4,9 +4,10 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:local="using:Many.ThirdParty"
     xmlns:dvm="using:Many.ThirdParty.Core.ViewModels"
-    xmlns:ctmbtn="using:Many.ThirdParty.Resources.CustomControls"
+    xmlns:ctm="using:Many.ThirdParty.CustomControls"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:imgs="using:Windows.UI.Xaml.Media;"
     mc:Ignorable="d"
     DataContext="{Binding MainFrameContainerViewModel,
                           RelativeSource={RelativeSource Mode=Self}}"
@@ -14,7 +15,9 @@
                                      IsDesignTimeCreatable=True}">
 
     <Page.Resources>
-        
+        <ResourceDictionary>
+            <!--<x:String x:Key="HomeSource">ms-appx:///Resources/MFCImages/Home.png</x:String>-->
+        </ResourceDictionary>
     </Page.Resources>
     <RelativePanel Background="LightGray">
 
@@ -36,9 +39,8 @@
                 <ColumnDefinition/>
                 <ColumnDefinition/>
             </Grid.ColumnDefinitions>
-            <Button Grid.Column="0" Click="Button_Click">
-                <Image Source="ms-appx:///Resources/MFCImages/home.png"/>
-            </Button>
+            <ctm:HomeButton Grid.Column="0">
+            </ctm:HomeButton>
             <Button Grid.Column="1">
                 <Image Source="ms-appx:///Resources/MFCImages/reading.png"/>
             </Button>
