@@ -7,21 +7,24 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d">
     <Page.Resources>
-        <Storyboard x:Name="dynamicImageAnimation">
+        <Storyboard x:Name="DynamicImageAnimation">
             <DoubleAnimationUsingKeyFrames Storyboard.TargetName="border"
                                            Storyboard.TargetProperty="Height"
                                            BeginTime="0:0:0" 
                                            Duration="0:0:9.5" 
                                            EnableDependentAnimation="True" 
-                                           SpeedRatio="1.3" 
-                                           RepeatBehavior="Forever">
-                <EasingDoubleKeyFrame KeyTime="0:0:4.5" Value="0">
+                                           RepeatBehavior="Forever"
+                                           SpeedRatio="1.3" >
+                <EasingDoubleKeyFrame KeyTime="0:0:4.5" 
+                                      Value="0">
                     <EasingDoubleKeyFrame.EasingFunction>
                         <CircleEase EasingMode="EaseOut" />
                     </EasingDoubleKeyFrame.EasingFunction>
                 </EasingDoubleKeyFrame>
-                <EasingDoubleKeyFrame KeyTime="0:0:5" Value="0" />
-                <EasingDoubleKeyFrame KeyTime="0:0:9.5" Value="50">
+                <EasingDoubleKeyFrame KeyTime="0:0:5" 
+                                      Value="0" />
+                <EasingDoubleKeyFrame KeyTime="0:0:9.5" 
+                                      Value="50">
                     <EasingDoubleKeyFrame.EasingFunction>
                         <CircleEase EasingMode="EaseIn" />
                     </EasingDoubleKeyFrame.EasingFunction>
@@ -117,6 +120,7 @@
                            Text="向上滑动进入ONE"
                            Foreground="#FF01AEF0"
                            FontFamily="Consolas" 
+                           FontSize="19"
                            HorizontalAlignment="Center"
                            ManipulationMode="TranslateY"
                            ManipulationDelta="Grid_ManipulationDelta"

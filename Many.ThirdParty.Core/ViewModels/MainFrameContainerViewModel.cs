@@ -9,6 +9,10 @@ namespace Many.ThirdParty.Core.ViewModels
 {
     public class MainFrameContainerViewModel : BindableBase
     {
+        public MainFrameContainerViewModel()
+        {
+        }
+        
         double _currentWindowWidth;
         public double CurrentWindowWidth
         {
@@ -18,8 +22,7 @@ namespace Many.ThirdParty.Core.ViewModels
                 SetProperty(ref _currentWindowWidth, value);
             }
         }
-
-
+        
         double _currentWindowHeight;
         public double CurrentWindowHeight
         {

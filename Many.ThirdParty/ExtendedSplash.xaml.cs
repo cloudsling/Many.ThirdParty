@@ -22,7 +22,7 @@ namespace Many.ThirdParty
         {
             InitializeComponent();
         }
-
+        
         protected override async void OnNavigatedTo(NavigationEventArgs e)
         {
             //TODO: Delay 2s in debug mode
@@ -30,7 +30,7 @@ namespace Many.ThirdParty
             await Task.Delay(1000);
 #endif
             //TODO: load resource from internet
-            Frame.Navigate(typeof(PreLoadPage));
+            Frame.Navigate(typeof(PreLoadPage), new { });
         }
     }
 

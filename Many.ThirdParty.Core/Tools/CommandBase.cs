@@ -8,6 +8,7 @@ namespace Many.ThirdParty.Core.Tools
     {
         public Action<object> _excute;
         public Func<object, bool> _canexcute;
+
         public event EventHandler CanExecuteChanged;
 
         public CommandBase(Action<object> excute, Func<object, bool> canexcute)
@@ -17,7 +18,8 @@ namespace Many.ThirdParty.Core.Tools
         }
 
         public CommandBase(Action<object> excute) : this(excute, b => true) { }
-        
+
+      
         public void OnCanExecuteChange()
         {
             var temp = Volatile.Read(ref CanExecuteChanged);

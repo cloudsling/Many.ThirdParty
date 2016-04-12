@@ -14,10 +14,12 @@ namespace Many.ThirdParty
         void Grid_ManipulationDelta(object sender, ManipulationDeltaRoutedEventArgs e)
         {
             //Get cumulate length
-            var cumulatedLength = e.Cumulative.Translation.Y;
-            var frmElmt = sender as FrameworkElement;
+            //var cumulatedLength = e.Cumulative.Translation.Y;
+            // var frmElmt = sender as FrameworkElement;
             //Set new margin top
-            frmElmt.SetValue(MarginProperty, new Thickness(0, frmElmt.Margin.Top + cumulatedLength / 2, 0, 0));
+            (sender as FrameworkElement).SetValue(
+                MarginProperty,
+                new Thickness(0, (sender as FrameworkElement).Margin.Top + e.Cumulative.Translation.Y / 2, 0, 0));
         }
 
         void Grid_ManipulationCompleted(object sender, ManipulationCompletedRoutedEventArgs e)
@@ -38,7 +40,7 @@ namespace Many.ThirdParty
 
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
-            dynamicImageAnimation.Begin();
+            DynamicImageAnimation.Begin();
 
             if (e.Parameter != null)
             {

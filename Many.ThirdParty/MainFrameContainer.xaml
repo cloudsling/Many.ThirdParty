@@ -13,22 +13,19 @@
     d:DataContext="{d:DesignInstance Type=dvm:MainFrameContainerViewModel,
                                      IsDesignTimeCreatable=True}">
 
-    <Page.Resources>
-        <ResourceDictionary>
-            <!--<x:String x:Key="HomeSource">ms-appx:///Resources/MFCImages/Home.png</x:String>-->
-        </ResourceDictionary>
-    </Page.Resources>
-    <RelativePanel Background="LightGray">
-
-        <!--<Grid x:Name="topGrid" 
-              Height="50"
-              Background="White"
-              Width="{Binding CurrentWindowWidth}">
-        </Grid>-->
-
-
+    <Grid Background="LightGray">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+        <Frame x:Name="mainFrameContainer"/>
+        <Rectangle Grid.Row="1" 
+                   Fill="#CBCCCE"
+                   Height="1"/>
         <Grid x:Name="navBtnBottom"
-              Height="50"
+              Grid.Row="2"
+              Height="60"
               Width="{Binding CurrentWindowWidth}"
               Background="White">
             <Grid.ColumnDefinitions>
@@ -37,57 +34,30 @@
                 <ColumnDefinition/>
                 <ColumnDefinition/>
             </Grid.ColumnDefinitions>
-            <ctm:HomeButton Grid.Column="0">
+            <ctm:HomeButton x:Name="homeButton" 
+                            Grid.Column="0"
+                            Tag="0"
+                            Click="ChangeBackgroundAndNavigate">
+                <Image x:Name="homeButtonBkImg" Source="ms-appx:///Resources/MFCImages/home.png"/>
             </ctm:HomeButton>
-            <Button Grid.Column="1">
-                <Image Source="ms-appx:///Resources/MFCImages/reading.png"/>
-            </Button>
-            <Button Grid.Column="2">
-                <Image Source="ms-appx:///Resources/MFCImages/music.png"/>
-            </Button>
-            <Button Grid.Column="3">
-                <Image Source="ms-appx:///Resources/MFCImages/movie.png"/>
-            </Button>
+            <ctm:HomeButton x:Name="readButton"  
+                            Grid.Column="1"
+                            Tag="1"
+                            Click="ChangeBackgroundAndNavigate">
+                <Image x:Name="readButtonBkImg" Source="ms-appx:///Resources/MFCImages/Movie.png"/>
+            </ctm:HomeButton>
+            <ctm:HomeButton x:Name="musicButton" 
+                            Grid.Column="2"
+                            Tag="2"
+                            Click="ChangeBackgroundAndNavigate">
+                <Image x:Name="musicButtonBkImg" Source="ms-appx:///Resources/MFCImages/Movie.png"/>
+            </ctm:HomeButton>
+            <ctm:HomeButton x:Name="movieButton" 
+                            Grid.Column="3"
+                            Tag="3"
+                            Click="ChangeBackgroundAndNavigate">
+                <Image x:Name="movieButtonBkImg" Source="ms-appx:///Resources/MFCImages/Movie.png"/>
+            </ctm:HomeButton>
         </Grid>
-        <StackPanel x:Name="navBtnLeft"
-                    Width="80"
-                    Height="{Binding CurrentWindowHeight}"
-                    Background="White"
-                    >
-            <Button>
-                <Image Source="ms-appx:///Resources/MFCImages/home.png"/>
-            </Button>
-            <Button>
-                <Image Source="ms-appx:///Resources/MFCImages/reading.png"/>
-            </Button>
-            <Button>
-                <Image Source="ms-appx:///Resources/MFCImages/music.png"/>
-            </Button>
-            <Button>
-                <Image Source="ms-appx:///Resources/MFCImages/movie.png"/>
-            </Button>
-        </StackPanel>
-        <VisualStateManager.VisualStateGroups>
-            <VisualStateGroup>
-                <VisualState>
-                    <VisualState.StateTriggers>
-                        <AdaptiveTrigger MinWindowWidth="0"/>
-                    </VisualState.StateTriggers>
-                    <VisualState.Setters>
-                        <Setter Target="navBtnLeft.Visibility" Value="Collapsed"/>
-                        <Setter Target="navBtnBottom.(RelativePanel.AlignBottomWithPanel)" Value="True"/>
-                    </VisualState.Setters>
-                </VisualState>
-                <VisualState>
-                    <VisualState.StateTriggers>
-                        <AdaptiveTrigger MinWindowWidth="720"/>
-                    </VisualState.StateTriggers>
-                    <VisualState.Setters>
-                        <Setter Target="navBtnBottom.Visibility" Value="Collapsed"/>
-                        <Setter Target="navBtnLeft.(RelativePanel.AlignLeftWithPanel)" Value="True"/>
-                    </VisualState.Setters>
-                </VisualState>
-            </VisualStateGroup>
-        </VisualStateManager.VisualStateGroups>
-    </RelativePanel>
+    </Grid>
 </Page>

@@ -5,9 +5,159 @@
     xmlns:local="using:Many.ThirdParty.SubPages"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:ctm="using:Many.ThirdParty.CustomControls"
     mc:Ignorable="d">
-
-    <Grid Background="Blue">
-
+    
+    <Page.Resources>
+        <Style x:Key="SmallText" TargetType="TextBlock">
+            <Setter Property="FontSize" Value="11"/>
+            <Setter Property="FontFamily" Value="Consolas"/>
+            <Setter Property="Foreground" Value="#9C9C9C"/>
+        </Style>
+        <Style x:Key="SmallDeepText" TargetType="TextBlock">
+            <Setter Property="FontSize" Value="12"/>
+            <Setter Property="FontFamily" Value="Consolas"/>
+            <Setter Property="Foreground" Value="#9D9D9D"/>
+        </Style>
+        <Style x:Key="NormalText" TargetType="TextBlock">
+            <Setter Property="LineHeight" Value="19"/>
+            <Setter Property="FontSize" Value="14"/>
+            <Setter Property="FontFamily" Value="Consolas"/>
+            <Setter Property="Foreground" Value="#353535"/>
+        </Style>
+    </Page.Resources>
+    
+    <Grid Background="White">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <Grid Grid.Row="0" 
+              Height="40">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="2*"/>
+                <ColumnDefinition Width="13*"/>
+                <ColumnDefinition Width="2*"/>
+            </Grid.ColumnDefinitions>
+            <Grid HorizontalAlignment="Left">
+                <ctm:BlankButton>
+                    <!--<FontIcon x:Name="search" Foreground="Gray"  FontFamily="Segoe MDL2 Assets" Glyph="&#xE721;"/>-->
+                    <Image Source="ms-appx:///Resources/CommonsImages/search.png"/>
+                </ctm:BlankButton>
+            </Grid>
+            <Grid Grid.Column="1"
+                  HorizontalAlignment="Center">
+                <TextBlock Text="ONE" 
+                           VerticalAlignment="Center"
+                           Foreground="#4E5C6C"
+                           FontSize="19"
+                           FontWeight="Medium"/>
+            </Grid>
+            <Grid Grid.Column="2"
+                  HorizontalAlignment="Right">
+                <ctm:BlankButton HorizontalAlignment="Right"
+                                 Margin="6 5">
+                    <ctm:BlankButton.Content>
+                        <FontIcon Foreground="#AAAAAA"
+                                  FontFamily="Segoe MDL2 Assets"
+                                  Glyph="&#xE77B;"/>
+                    </ctm:BlankButton.Content>
+                </ctm:BlankButton>
+            </Grid>
+        </Grid>
+        <Rectangle Grid.Row="1" 
+                   Fill="#CBCCCE"
+                   Height="1"/>
+        <Grid Grid.Row="2">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <Grid Padding="8 8 8 0"
+                  Margin="8 8 8 4">
+                <Grid.Background>
+                    <ImageBrush ImageSource="ms-appx:///Resources/BgImages/reading_board.png"/>
+                </Grid.Background>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+                <ctm:BlankButton>
+                    <Image Stretch="UniformToFill" 
+                           Source="ms-appx:///Resources/test.jpg"/>
+                </ctm:BlankButton>
+                <Grid Grid.Row="1"
+                      Margin="0 5 0 13">
+                    <TextBlock HorizontalAlignment="Left"
+                               Text="VOL.1283"
+                               Style="{StaticResource SmallText}"/>
+                    <TextBlock HorizontalAlignment="Right"
+                               Text="Coldplay赛高"
+                               Style="{StaticResource SmallText}"/>
+                </Grid>
+                <Grid Grid.Row="2"
+                      Margin="0 12 0 30">
+                    <TextBlock TextWrapping="Wrap" 
+                               Text="很多人觉得'爱'是比'喜欢'严重的事，不能轻易说出口。但我就是要说，我爱你。如果不能让你动心，起码吓吓你，让你无法忘记。 by 乌冬"
+                               Style="{StaticResource NormalText}"/>
+                </Grid>
+                <Grid Grid.Row="3"
+                      Margin="0 5">
+                    <TextBlock HorizontalAlignment="Right"
+                               Style="{StaticResource SmallDeepText}"
+                               Text="Sun 10 Apr.2016"/>
+                </Grid>
+            </Grid>
+            <Grid Grid.Row="1">
+                <Grid Height="50"
+                      Margin="12 0"
+                      Padding="5" 
+                      VerticalAlignment="Top">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="8*"/>
+                        <ColumnDefinition Width="3*"/>
+                        <ColumnDefinition Width="2*"/>
+                    </Grid.ColumnDefinitions>
+                    <ctm:BlankButton Width="80"
+                                     HorizontalAlignment="Left">
+                        <ctm:BlankButton.Content>
+                            <Border>
+                                <StackPanel Orientation="Horizontal">
+                                    <Image Source="ms-appx:///Resources/BgImages/diary.png"/>
+                                    <TextBlock Text="小计"
+                                               VerticalAlignment="Center"
+                                               Style="{StaticResource SmallText}"/>
+                                </StackPanel>
+                            </Border>
+                        </ctm:BlankButton.Content>
+                    </ctm:BlankButton>
+                    <ctm:BlankButton Width="80"
+                                     Grid.Column="1"
+                                     HorizontalAlignment="Left">
+                        <ctm:BlankButton.Content>
+                            <Border>
+                                <StackPanel Orientation="Horizontal">
+                                    <Image Source="ms-appx:///Resources/BgImages/laud.png"/>
+                                    <TextBlock Text="23333"
+                                               VerticalAlignment="Center"
+                                               Style="{StaticResource SmallDeepText}"/>
+                                </StackPanel>
+                            </Border>
+                        </ctm:BlankButton.Content>
+                    </ctm:BlankButton>
+                    <ctm:BlankButton Width="80"
+                                     Grid.Column="2"
+                                     HorizontalAlignment="Left">
+                        <ctm:BlankButton.Content>
+                            <Image Source="ms-appx:///Resources/BgImages/share_image.png"/> 
+                        </ctm:BlankButton.Content>
+                    </ctm:BlankButton>
+                </Grid>
+            </Grid>
+        </Grid>
     </Grid>
+    
 </Page>
