@@ -3,11 +3,123 @@
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:local="using:Many.ThirdParty.SubPages"
+    xmlns:dvm="using:Many.ThirdParty.Core.ViewModels"
+    xmlns:ctm="using:Many.ThirdParty.CustomControls"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    mc:Ignorable="d">
+    mc:Ignorable="d"
+    DataContext="{Binding ReadingPageViewModel,
+                          RelativeSource={RelativeSource Mode=Self}}"
+    d:DataContext="{d:DesignInstance Type=dvm:ReadingPageViewModel,
+                                     IsDesignTimeCreatable=True}">
 
+    <Page.Resources>
+        <CollectionViewSource x:Name="ReadingPageListViewCollection"
+                              IsSourceGrouped="True"
+                              ItemsPath="ContentModelCollection"
+                              Source="{Binding ReadingModel}">
+        </CollectionViewSource>
+    </Page.Resources>
+    <!--<SemanticZoom Height="500">
+        <SemanticZoom.ZoomedInView>
+            <ListView x:Name="items_listview"
+                  ItemsSource="{Binding Source={StaticResource ReadingPageListViewCollection}}"
+                  ScrollViewer.IsHorizontalScrollChainingEnabled="False" 
+                  SelectionMode="None" 
+                      HorizontalAlignment="Stretch">
+                <ListView.GroupStyle>
+                    <GroupStyle>
+                        <GroupStyle.HeaderTemplate>
+                            <DataTemplate>
+                                <Grid Background="BlueViolet">
+                                    <TextBlock Text="{Binding ContentType}" FontSize="20"></TextBlock>
+                                </Grid>
+                            </DataTemplate>
+                        </GroupStyle.HeaderTemplate>
+                    </GroupStyle>
+                </ListView.GroupStyle>
+                <ListView.ItemTemplate>
+                    --><!--一个简单的ListView项目模板，绑定到Item.Title/Content-->
+                    <!--<DataTemplate>
+                        <StackPanel>
+                            <TextBlock Text="{Binding Title}"/>
+                            <TextBlock Text="{Binding Author}"/>
+                            <TextBlock Text="{Binding ContentSummary}"/>
+                        </StackPanel>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+        </SemanticZoom.ZoomedInView>
+    </SemanticZoom>-->
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
-
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="1*"/>
+                <RowDefinition Height="5*"/>
+            </Grid.RowDefinitions>
+            <Grid>
+                <FlipView x:Name="fv"
+                          Height="170"
+                          ItemsSource="{Binding ReadingPageFlipViewImageSource}"
+                          SelectionChanged="fv_SelectionChanged">
+                    <FlipView.ItemTemplate>
+                        <DataTemplate>
+                            <Border>
+                                <ctm:BlankButton>
+                                    <Image x:Name="bkimg" 
+                                           Stretch="UniformToFill" 
+                                           Source="{Binding}"/>
+                                </ctm:BlankButton>
+                            </Border>
+                        </DataTemplate>
+                    </FlipView.ItemTemplate>
+                </FlipView>
+                <StackPanel x:Name="ManyEllipse"
+                            Height="6" 
+                            Width="100"
+                            Margin="0 5"
+                            VerticalAlignment="Bottom"
+                            Orientation="Horizontal" >
+                    <Ellipse Margin="3 0 3 0" Width="5" Height="5"/>
+                    <Ellipse Margin="3 0 3 0" Width="5" Height="5" />
+                    <Ellipse Margin="3 0 3 0" Width="5" Height="5" />
+                    <Ellipse Margin="3 0 3 0" Width="5" Height="5" />
+                    <Ellipse Margin="3 0 3 0" Width="5" Height="5" />
+                    <Ellipse Margin="3 0 3 0" Width="5" Height="5" />
+                    <Ellipse Margin="3 0 3 0" Width="5" Height="5" />
+                    <Ellipse Margin="3 0 3 0" Width="5" Height="5" />
+                    <Ellipse Margin="3 0 3 0" Width="5" Height="5" />
+                </StackPanel>
+            </Grid>
+            <Grid Grid.Row="1" Background="Yellow">
+                <ListView x:Name="items_listview"
+                          Height="550"
+                          VerticalAlignment="Top"
+                          VerticalContentAlignment="Top"
+                          ItemsSource="{Binding Source={StaticResource ReadingPageListViewCollection}}">
+                    <ListView.GroupStyle>
+                        <GroupStyle>
+                            <GroupStyle.HeaderTemplate>
+                                <DataTemplate>
+                                    <Grid Background="BlueViolet">
+                                        <TextBlock Text="{Binding ContentType}" FontSize="20"></TextBlock>
+                                    </Grid>
+                                </DataTemplate>
+                            </GroupStyle.HeaderTemplate>
+                        </GroupStyle>
+                    </ListView.GroupStyle>
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <StackPanel>
+                                <TextBlock Text="{Binding Title}"/>
+                                <TextBlock Text="{Binding Author}"/>
+                                <TextBlock Text="{Binding ContentSummary}"/>
+                            </StackPanel>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+              
+            </Grid>
+        </Grid>
     </Grid>
 </Page>

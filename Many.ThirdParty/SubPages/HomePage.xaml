@@ -30,46 +30,10 @@
     <Grid Background="White">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
-            <RowDefinition Height="Auto"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
-        <Grid Grid.Row="0" 
-              Height="40">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="2*"/>
-                <ColumnDefinition Width="13*"/>
-                <ColumnDefinition Width="2*"/>
-            </Grid.ColumnDefinitions>
-            <Grid HorizontalAlignment="Left">
-                <ctm:BlankButton>
-                    <!--<FontIcon x:Name="search" Foreground="Gray"  FontFamily="Segoe MDL2 Assets" Glyph="&#xE721;"/>-->
-                    <Image Source="ms-appx:///Resources/CommonsImages/search.png"/>
-                </ctm:BlankButton>
-            </Grid>
-            <Grid Grid.Column="1"
-                  HorizontalAlignment="Center">
-                <TextBlock Text="ONE" 
-                           VerticalAlignment="Center"
-                           Foreground="#4E5C6C"
-                           FontSize="19"
-                           FontWeight="Medium"/>
-            </Grid>
-            <Grid Grid.Column="2"
-                  HorizontalAlignment="Right">
-                <ctm:BlankButton HorizontalAlignment="Right"
-                                 Margin="6 5">
-                    <ctm:BlankButton.Content>
-                        <FontIcon Foreground="#AAAAAA"
-                                  FontFamily="Segoe MDL2 Assets"
-                                  Glyph="&#xE77B;"/>
-                    </ctm:BlankButton.Content>
-                </ctm:BlankButton>
-            </Grid>
-        </Grid>
-        <Rectangle Grid.Row="1" 
-                   Fill="#CBCCCE"
-                   Height="1"/>
-        <Grid Grid.Row="2">
+      
+        <Grid Grid.Row="1">
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto"/>
                 <RowDefinition Height="*"/>

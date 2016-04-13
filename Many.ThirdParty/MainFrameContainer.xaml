@@ -13,13 +13,57 @@
     d:DataContext="{d:DesignInstance Type=dvm:MainFrameContainerViewModel,
                                      IsDesignTimeCreatable=True}">
 
-    <Grid Background="LightGray">
+    <Grid Background="White">
         <Grid.RowDefinitions>
             <RowDefinition Height="*"/>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
-        <Frame x:Name="mainFrameContainer"/>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <Grid Height="40"
+                  VerticalAlignment="Top">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="2*"/>
+                    <ColumnDefinition Width="13*"/>
+                    <ColumnDefinition Width="2*"/>
+                </Grid.ColumnDefinitions>
+                <Grid HorizontalAlignment="Left">
+                    <ctm:BlankButton>
+                        <Image Source="ms-appx:///Resources/CommonsImages/search.png"/>
+                    </ctm:BlankButton>
+                </Grid>
+                <Grid Grid.Column="1"
+                  HorizontalAlignment="Center">
+                    <TextBlock Text="ONE" 
+                           VerticalAlignment="Center"
+                           Foreground="#4E5C6C"
+                           FontSize="19"
+                           FontWeight="Medium"/>
+                </Grid>
+                <Grid Grid.Column="2"
+                  HorizontalAlignment="Right">
+                    <ctm:BlankButton HorizontalAlignment="Right"
+                                 Margin="8 6">
+                        <ctm:BlankButton.Content>
+                            <FontIcon Foreground="#AAAAAA"
+                                  FontFamily="Segoe MDL2 Assets"
+                                  Glyph="&#xE77B;"/>
+                        </ctm:BlankButton.Content>
+                    </ctm:BlankButton>
+                </Grid>
+            </Grid>
+            <Rectangle Grid.Row="1" 
+                   Fill="#CBCCCE"
+                   Height="1"/>
+            <ScrollViewer Grid.Row="2">
+                <Frame x:Name="mainFrameContainer"/>
+            </ScrollViewer>
+        </Grid>
         <Rectangle Grid.Row="1" 
                    Fill="#CBCCCE"
                    Height="1"/>
@@ -38,25 +82,29 @@
                             Grid.Column="0"
                             Tag="0"
                             Click="ChangeBackgroundAndNavigate">
-                <Image x:Name="homeButtonBkImg" Source="ms-appx:///Resources/MFCImages/home.png"/>
+                <Image x:Name="homeButtonBkImg" 
+                       Source="ms-appx:///Resources/MFCImages/home.png"/>
             </ctm:HomeButton>
             <ctm:HomeButton x:Name="readButton"  
                             Grid.Column="1"
                             Tag="1"
                             Click="ChangeBackgroundAndNavigate">
-                <Image x:Name="readButtonBkImg" Source="ms-appx:///Resources/MFCImages/Movie.png"/>
+                <Image x:Name="readButtonBkImg" 
+                       Source="ms-appx:///Resources/MFCImages/Movie.png"/>
             </ctm:HomeButton>
             <ctm:HomeButton x:Name="musicButton" 
                             Grid.Column="2"
                             Tag="2"
                             Click="ChangeBackgroundAndNavigate">
-                <Image x:Name="musicButtonBkImg" Source="ms-appx:///Resources/MFCImages/Movie.png"/>
+                <Image x:Name="musicButtonBkImg" 
+                       Source="ms-appx:///Resources/MFCImages/Movie.png"/>
             </ctm:HomeButton>
             <ctm:HomeButton x:Name="movieButton" 
                             Grid.Column="3"
                             Tag="3"
                             Click="ChangeBackgroundAndNavigate">
-                <Image x:Name="movieButtonBkImg" Source="ms-appx:///Resources/MFCImages/Movie.png"/>
+                <Image x:Name="movieButtonBkImg" 
+                       Source="ms-appx:///Resources/MFCImages/Movie.png"/>
             </ctm:HomeButton>
         </Grid>
     </Grid>

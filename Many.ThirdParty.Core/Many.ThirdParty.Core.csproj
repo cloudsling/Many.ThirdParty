@@ -107,15 +107,16 @@
     <None Include="project.json" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Models\ReadingModels\ReadingContentModel.cs" />
+    <Compile Include="Models\ReadingModels\ReadingModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Tools\BindableBase.cs" />
     <Compile Include="Tools\CommandBase.cs" />
     <Compile Include="ViewModels\MainFrameContainerViewModel.cs" />
+    <Compile Include="ViewModels\ReadingPageViewModel.cs" />
     <EmbeddedResource Include="Properties\Many.ThirdParty.Core.rd.xml" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Models\" />
-  </ItemGroup>
+  <ItemGroup />
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '14.0' ">
     <VisualStudioVersion>14.0</VisualStudioVersion>
   </PropertyGroup>

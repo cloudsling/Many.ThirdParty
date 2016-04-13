@@ -180,6 +180,8 @@
     <Content Include="Resources\MFCImages\reading_active.png" />
     <Content Include="Resources\MFCImages\search.png" />
     <Content Include="Resources\test.jpg" />
+    <Content Include="Resources\Test\cover.jpg" />
+    <Content Include="Resources\Test\test.jpg" />
   </ItemGroup>
   <ItemGroup>
     <ApplicationDefinition Include="App.xaml">
