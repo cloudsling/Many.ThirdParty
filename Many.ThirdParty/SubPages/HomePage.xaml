@@ -7,32 +7,21 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:ctm="using:Many.ThirdParty.CustomControls"
     mc:Ignorable="d">
-    
+
     <Page.Resources>
-        <Style x:Key="SmallText" TargetType="TextBlock">
-            <Setter Property="FontSize" Value="11"/>
-            <Setter Property="FontFamily" Value="Consolas"/>
-            <Setter Property="Foreground" Value="#9C9C9C"/>
-        </Style>
-        <Style x:Key="SmallDeepText" TargetType="TextBlock">
-            <Setter Property="FontSize" Value="12"/>
-            <Setter Property="FontFamily" Value="Consolas"/>
-            <Setter Property="Foreground" Value="#9D9D9D"/>
-        </Style>
-        <Style x:Key="NormalText" TargetType="TextBlock">
-            <Setter Property="LineHeight" Value="19"/>
-            <Setter Property="FontSize" Value="14"/>
-            <Setter Property="FontFamily" Value="Consolas"/>
-            <Setter Property="Foreground" Value="#353535"/>
-        </Style>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="ms-appx:///Themes/TextBlockResourceDictionary.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
     </Page.Resources>
-    
+
     <Grid Background="White">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
-      
+
         <Grid Grid.Row="1">
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto"/>
@@ -54,7 +43,7 @@
                            Source="ms-appx:///Resources/test.jpg"/>
                 </ctm:BlankButton>
                 <Grid Grid.Row="1"
-                      Margin="0 5 0 13">
+                      Margin="0 7 0 15">
                     <TextBlock HorizontalAlignment="Left"
                                Text="VOL.1283"
                                Style="{StaticResource SmallText}"/>
@@ -69,7 +58,7 @@
                                Style="{StaticResource NormalText}"/>
                 </Grid>
                 <Grid Grid.Row="3"
-                      Margin="0 5">
+                      Margin="0 7">
                     <TextBlock HorizontalAlignment="Right"
                                Style="{StaticResource SmallDeepText}"
                                Text="Sun 10 Apr.2016"/>
@@ -116,12 +105,12 @@
                                      Grid.Column="2"
                                      HorizontalAlignment="Left">
                         <ctm:BlankButton.Content>
-                            <Image Source="ms-appx:///Resources/BgImages/share_image.png"/> 
+                            <Image Source="ms-appx:///Resources/BgImages/share_image.png"/>
                         </ctm:BlankButton.Content>
                     </ctm:BlankButton>
                 </Grid>
             </Grid>
         </Grid>
     </Grid>
-    
+
 </Page>

@@ -14,43 +14,21 @@
                                      IsDesignTimeCreatable=True}">
 
     <Page.Resources>
-        <CollectionViewSource x:Name="ReadingPageListViewCollection"
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="ms-appx:///Themes/TextBlockResourceDictionary.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+            <CollectionViewSource x:Name="ReadingPageListViewCollection"
                               IsSourceGrouped="True"
                               ItemsPath="ContentModelCollection"
                               Source="{Binding ReadingModel}">
-        </CollectionViewSource>
+            </CollectionViewSource>
+            <Style TargetType="ListViewItem">
+                <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
+            </Style>
+        </ResourceDictionary>
     </Page.Resources>
-    <!--<SemanticZoom Height="500">
-        <SemanticZoom.ZoomedInView>
-            <ListView x:Name="items_listview"
-                  ItemsSource="{Binding Source={StaticResource ReadingPageListViewCollection}}"
-                  ScrollViewer.IsHorizontalScrollChainingEnabled="False" 
-                  SelectionMode="None" 
-                      HorizontalAlignment="Stretch">
-                <ListView.GroupStyle>
-                    <GroupStyle>
-                        <GroupStyle.HeaderTemplate>
-                            <DataTemplate>
-                                <Grid Background="BlueViolet">
-                                    <TextBlock Text="{Binding ContentType}" FontSize="20"></TextBlock>
-                                </Grid>
-                            </DataTemplate>
-                        </GroupStyle.HeaderTemplate>
-                    </GroupStyle>
-                </ListView.GroupStyle>
-                <ListView.ItemTemplate>
-                    --><!--一个简单的ListView项目模板，绑定到Item.Title/Content-->
-                    <!--<DataTemplate>
-                        <StackPanel>
-                            <TextBlock Text="{Binding Title}"/>
-                            <TextBlock Text="{Binding Author}"/>
-                            <TextBlock Text="{Binding ContentSummary}"/>
-                        </StackPanel>
-                    </DataTemplate>
-                </ListView.ItemTemplate>
-            </ListView>
-        </SemanticZoom.ZoomedInView>
-    </SemanticZoom>-->
+
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
         <Grid>
             <Grid.RowDefinitions>
@@ -92,33 +70,63 @@
                 </StackPanel>
             </Grid>
             <Grid Grid.Row="1" Background="Yellow">
-                <ListView x:Name="items_listview"
+                <SemanticZoom>
+                    <SemanticZoom.ZoomedInView>
+                        <ListView x:Name="items_listview"
                           Height="550"
                           VerticalAlignment="Top"
                           VerticalContentAlignment="Top"
                           ItemsSource="{Binding Source={StaticResource ReadingPageListViewCollection}}">
-                    <ListView.GroupStyle>
-                        <GroupStyle>
-                            <GroupStyle.HeaderTemplate>
+                            <ListView.GroupStyle>
+                                <GroupStyle>
+                                    <GroupStyle.HeaderTemplate>
+                                        <DataTemplate>
+                                            <Border Background="LightGray">
+                                                <TextBlock Text="{Binding ContentType}"
+                                                   Margin="5"
+                                                   FontSize="12"/>
+                                            </Border>
+                                        </DataTemplate>
+                                    </GroupStyle.HeaderTemplate>
+                                </GroupStyle>
+                            </ListView.GroupStyle>
+                            <ListView.ItemTemplate>
                                 <DataTemplate>
-                                    <Grid Background="BlueViolet">
-                                        <TextBlock Text="{Binding ContentType}" FontSize="20"></TextBlock>
-                                    </Grid>
+                                    <StackPanel>
+                                        <StackPanel.Resources>
+                                            <Style x:Key="Demo" TargetType="TextBlock">
+                                                <Setter Property="FontFamily" Value="Consolas"/>
+                                                <Setter Property="LineHeight" Value="19"/>
+                                                <Setter Property="Margin" Value="4" />
+                                            </Style>
+                                        </StackPanel.Resources>
+                                        <TextBlock Style="{StaticResource Demo}"
+                                           Text="{Binding Title}"/>
+                                        <TextBlock Style="{StaticResource Demo}"
+                                           Text="{Binding Author}"
+                                           FontFamily="Consolas"/>
+                                        <TextBlock Style="{StaticResource Demo}"
+                                           Text="{Binding ContentSummary}"
+                                           TextWrapping="Wrap"/>
+                                    </StackPanel>
                                 </DataTemplate>
-                            </GroupStyle.HeaderTemplate>
-                        </GroupStyle>
-                    </ListView.GroupStyle>
-                    <ListView.ItemTemplate>
-                        <DataTemplate>
-                            <StackPanel>
-                                <TextBlock Text="{Binding Title}"/>
-                                <TextBlock Text="{Binding Author}"/>
-                                <TextBlock Text="{Binding ContentSummary}"/>
-                            </StackPanel>
-                        </DataTemplate>
-                    </ListView.ItemTemplate>
-                </ListView>
-              
+                            </ListView.ItemTemplate>
+                        </ListView>
+                    </SemanticZoom.ZoomedInView>
+                    <SemanticZoom.ZoomedOutView>
+                        <ListView ItemsSource="{Binding ReadingModel}">
+                            <ListView.ItemTemplate>
+                                <DataTemplate>
+                                    <Border Background="LightGray">
+                                        <TextBlock Text="{Binding ContentType}"
+                                                   Margin="5"
+                                                   FontSize="12"/>
+                                    </Border>
+                                </DataTemplate>
+                            </ListView.ItemTemplate>
+                        </ListView>
+                    </SemanticZoom.ZoomedOutView>
+                </SemanticZoom>
             </Grid>
         </Grid>
     </Grid>

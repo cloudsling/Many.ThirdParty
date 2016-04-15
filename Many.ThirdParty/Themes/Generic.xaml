@@ -3,7 +3,6 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:local="using:Many.ThirdParty.CustomControls" >
 
-
     <Style TargetType="local:HomeButton">
         <Setter Property="Template">
             <Setter.Value>
@@ -100,4 +99,5 @@
             </Setter.Value>
         </Setter>
     </Style>
+
 </ResourceDictionary>

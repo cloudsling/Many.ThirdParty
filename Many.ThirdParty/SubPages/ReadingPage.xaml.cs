@@ -29,7 +29,7 @@ namespace Many.ThirdParty.SubPages
 
             if (index >= 0 && index <= 8)
             {
-               // ChangeAllEllipseColor(ManyEllipse.Children, index);
+                ChangeAllEllipseColor(ManyEllipse.Children, index);
             }
         }
     }
