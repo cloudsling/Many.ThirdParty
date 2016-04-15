@@ -35,7 +35,7 @@
         <SemanticZoom>
             <SemanticZoom.ZoomedInView>
                 <ListView x:Name="MainListView"
-                          Height="650"
+                          Height="600"
                           SelectionMode="None"
                           VerticalAlignment="Top"
                           VerticalContentAlignment="Top"

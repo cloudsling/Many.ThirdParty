@@ -10,7 +10,7 @@ using Windows.ApplicationModel;
 
 namespace Many.ThirdParty.Core.ViewModels
 {
-    public partial class ReadingPageViewModel : BindableBase
+    public partial class ReadingPageViewModel
     {
         public ReadingPageViewModel()
         {
@@ -39,11 +39,6 @@ namespace Many.ThirdParty.Core.ViewModels
                 ReadingPageFlipViewImageSource.Add("ms-appx:///Resources/Test/cover.jpg");
                 ReadingPageFlipViewImageSource.Add("ms-appx:///Resources/Test/cover.jpg");
                 ReadingPageFlipViewImageSource.Add("ms-appx:///Resources/Test/cover.jpg");
-                ReadingPageFlipViewImageSource.Add("ms-appx:///Resources/Test/cover.jpg");
-                ReadingPageFlipViewImageSource.Add("ms-appx:///Resources/Test/cover.jpg");
-                ReadingPageFlipViewImageSource.Add("ms-appx:///Resources/Test/cover.jpg");
-                ReadingPageFlipViewImageSource.Add("ms-appx:///Resources/Test/cover.jpg");
-                ReadingPageFlipViewImageSource.Add("ms-appx:///Resources/Test/cover.jpg");
             }
 #endif
 
@@ -53,15 +48,6 @@ namespace Many.ThirdParty.Core.ViewModels
     public partial class ReadingPageViewModel
     {
         public ObservableCollection<string> ReadingPageFlipViewImageSource { get; set; }
-
-        //ObservableCollection<ReadingModel> _readingModel;
-        //public ObservableCollection<ReadingModel> ReadingModel
-        //{
-        //    get { return _readingModel; }
-        //    set
-        //    {
-        //        SetProperty(ref _readingModel, value);
-        //    }
-        //}
+        
     }
 }

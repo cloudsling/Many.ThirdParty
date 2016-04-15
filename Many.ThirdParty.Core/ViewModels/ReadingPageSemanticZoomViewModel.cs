@@ -1,4 +1,5 @@
 ﻿using Many.ThirdParty.Core.Models.ReadingModels;
+using Many.ThirdParty.Core.Tools;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -8,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace Many.ThirdParty.Core.ViewModels
 {
-    public class ReadingPageSemanticZoomViewModel
+    public class ReadingPageSemanticZoomViewModel : BindableBase
     {
         public ReadingPageSemanticZoomViewModel()
         {
@@ -25,7 +26,10 @@ namespace Many.ThirdParty.Core.ViewModels
         public ObservableCollection<ReadingModel> ReadingModel
         {
             get { return _readingModel; }
-            set { _readingModel = value; }
+            set
+            {
+                SetProperty(ref _readingModel, value);
+            }
         }
     }
 }

@@ -13,18 +13,22 @@ using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
 
-// The Blank Page item template is documented at http://go.microsoft.com/fwlink/?LinkId=234238
-
-namespace Many.ThirdParty.AddlPages
+namespace Many.ThirdParty.SubPages
 {
-    /// <summary>
-    /// An empty page that can be used on its own or navigated to within a Frame.
-    /// </summary>
-    public sealed partial class ShareAndFavoPage : Page
+    public sealed partial class MovieDetail : Page
     {
-        public ShareAndFavoPage()
+        public MovieDetail()
         {
             this.InitializeComponent();
+        }
+
+        protected override void OnNavigatedTo(NavigationEventArgs e)
+        {
+            string temp = e.Parameter as string;
+            if (temp != null)
+            {
+                webview.Navigate(new Uri(temp));
+            }
         }
     }
 }

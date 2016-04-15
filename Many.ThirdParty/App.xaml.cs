@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Many.ThirdParty.Config;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -56,7 +57,7 @@ namespace Many.ThirdParty
 
             Window.Current.Activate();
         }
-
+        
         private void OnSuspending(object sender, SuspendingEventArgs e)
         {
             var deferral = e.SuspendingOperation.GetDeferral();

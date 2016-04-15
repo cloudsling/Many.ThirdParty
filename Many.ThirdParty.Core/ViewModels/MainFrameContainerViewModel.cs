@@ -4,33 +4,36 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Windows.UI.Xaml;
 
 namespace Many.ThirdParty.Core.ViewModels
 {
     public class MainFrameContainerViewModel : BindableBase
     {
-        public MainFrameContainerViewModel()
+        string _pageTitle;
+        public string PageTitle
         {
-        }
-        
-        double _currentWindowWidth;
-        public double CurrentWindowWidth
-        {
-            get { return _currentWindowWidth; }
+            get { return _pageTitle; }
             set
             {
-                SetProperty(ref _currentWindowWidth, value);
+                SetProperty(ref _pageTitle, value);
             }
         }
-        
-        double _currentWindowHeight;
-        public double CurrentWindowHeight
+
+        Visibility _bottomNavBtnAndProfileVisibility;
+        public Visibility BottomNavBtnAndProfileVisibility
         {
-            get { return _currentWindowHeight; }
+            get
+            {
+                return _bottomNavBtnAndProfileVisibility;
+            }
             set
             {
-                SetProperty(ref _currentWindowHeight, value);
+                SetProperty(ref _bottomNavBtnAndProfileVisibility, value);
             }
         }
+
+        public void SetBottomNavBtnAndProfileVisibe() => BottomNavBtnAndProfileVisibility = Visibility.Visible;
+        public void SetBottomNavBtnAndProfileCollapsed() => BottomNavBtnAndProfileVisibility = Visibility.Collapsed;
     }
 }

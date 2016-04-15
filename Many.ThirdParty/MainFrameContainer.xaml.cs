@@ -1,4 +1,5 @@
-﻿using Many.ThirdParty.Core.ViewModels;
+﻿using Many.ThirdParty.Config;
+using Many.ThirdParty.Core.ViewModels;
 using Many.ThirdParty.SubPages;
 using System;
 using System.Collections.Generic;
@@ -7,6 +8,7 @@ using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
+using Windows.UI.Core;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Controls.Primitives;
@@ -19,22 +21,29 @@ using Windows.UI.Xaml.Navigation;
 namespace Many.ThirdParty
 {
     /// <summary>
-    /// Auto event
+    /// auto event
     /// </summary>
     public sealed partial class MainFrameContainer : Page
     {
-        private void Current_SizeChanged(object sender, Windows.UI.Core.WindowSizeChangedEventArgs e)
+        private void MainFrameContainer_Navigated(object sender, NavigationEventArgs e)
         {
-            MainFrameContainerViewModel.CurrentWindowHeight = e.Size.Height;
-            MainFrameContainerViewModel.CurrentWindowWidth = e.Size.Width;
+            CurrentScenario = NavigationCommonConfig.GetScenarioByName[mainFrameContainer.CurrentSourcePageType.Name];
+
+            UpdateContent(CurrentScenario.PageTitle);
+
+            UpdateGenericUI(CurrentScenario.Index);
+        }
+
+        private void MainFrameContainer_BackRequested(object sender, BackRequestedEventArgs e)
+        {
+            if (mainFrameContainer.CanGoBack)
+                mainFrameContainer.GoBack();
+            e.Handled = true;
         }
 
         private void ChangeBackgroundAndNavigate(object sender, RoutedEventArgs e)
         {
-            currentIndex = Convert.ToInt32((sender as Button).Tag);
-            ResettinBackground();
-            ChangeSpecificBtnBackground(currentIndex);
-            mainFrameContainer.Navigate(CurrentNavigationType[currentIndex]);
+            mainFrameContainer.Navigate(NavigationCommonConfig.MainScenarios[Convert.ToInt32((sender as Button).Tag)].PageType);
         }
     }
 
@@ -44,15 +53,12 @@ namespace Many.ThirdParty
     public sealed partial class MainFrameContainer : Page
     {
         public static MainFrameContainer CurrentMainFrameContainer;
-        public static int currentIndex = 0;
+
         public MainFrameContainerViewModel MainFrameContainerViewModel { get; set; }
 
-        private static readonly List<Type> CurrentNavigationType = new List<Type> {
-            typeof(HomePage),
-            typeof(ReadingPage),
-            typeof(MusicPage),
-            typeof(MoviePage)
-        };
+        private static List<Image> FootButtonBackgroundImage;
+
+        internal Scenario CurrentScenario { get; set; }
 
         private static readonly List<BitmapImage> FootButtonSource = new List<BitmapImage> {
           new BitmapImage (new Uri ("ms-appx:///Resources/MFCImages/home.png")),
@@ -77,56 +83,59 @@ namespace Many.ThirdParty
         public MainFrameContainer()
         {
             MainFrameContainerViewModel = new MainFrameContainerViewModel();
-            InitializeViewModel();
 
             InitializeComponent();
             CurrentMainFrameContainer = this;
 
-            ResettinBackground();
-            ChangeBackgroundAndNavigate(homeButton, new RoutedEventArgs());
-
-            Window.Current.SizeChanged += Current_SizeChanged;
+            InitializeField();
         }
 
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
-            base.OnNavigatedTo(e);
+            mainFrameContainer.Navigated += MainFrameContainer_Navigated;
+
+            ChangeBackgroundAndNavigate(homeButton, new RoutedEventArgs());
+
+            SystemNavigationManager.GetForCurrentView().BackRequested += MainFrameContainer_BackRequested;
         }
 
-        private void InitializeViewModel()
+        private static void InitializeField()
         {
-            MainFrameContainerViewModel.CurrentWindowHeight = Window.Current.Bounds.Height;
-            MainFrameContainerViewModel.CurrentWindowWidth = Window.Current.Bounds.Width;
-        }
-
-        private Image GetFootButtonBackgroundImage(int index)
-        {
-            switch (index)
+            FootButtonBackgroundImage = new List<Image>
             {
-                case 0:
-                    return CurrentMainFrameContainer.homeButtonBkImg;
-                case 1:
-                    return CurrentMainFrameContainer.readButtonBkImg;
-                case 2:
-                    return CurrentMainFrameContainer.musicButtonBkImg;
-                case 3:
-                    return CurrentMainFrameContainer.movieButtonBkImg;
-                default:
-                    return null;
+                CurrentMainFrameContainer.homeButtonBkImg,
+                CurrentMainFrameContainer.readButtonBkImg,
+                CurrentMainFrameContainer.musicButtonBkImg,
+                CurrentMainFrameContainer.movieButtonBkImg
+            };
+        }
+
+        private void UpdateContent(string title)
+        {
+            MainFrameContainerViewModel.PageTitle = title;
+        }
+
+        private void UpdateGenericUI(int index)
+        {
+            if (index < 4)
+            {
+                MainFrameContainerViewModel.SetBottomNavBtnAndProfileVisibe();
+                UpdateBottomButtonUI(index);
+            }
+            else
+            {
+                MainFrameContainerViewModel.SetBottomNavBtnAndProfileCollapsed();
             }
         }
 
-        private void ResettinBackground()
+        private void UpdateBottomButtonUI(int index)
         {
             for (int i = 0; i < 4; i++)
             {
-                GetFootButtonBackgroundImage(i).Source = FootButtonSource[i];
+                FootButtonBackgroundImage[i].Source = FootButtonSource[i];
             }
-        }
 
-        private void ChangeSpecificBtnBackground(int index)
-        {
-            GetFootButtonBackgroundImage(index).Source = FootButtonActivedSource[index];
+            FootButtonBackgroundImage[index].Source = FootButtonActivedSource[index];
         }
     }
 }

@@ -39,16 +39,17 @@
                 </Grid>
                 <Grid Grid.Column="1"
                   HorizontalAlignment="Center">
-                    <TextBlock Text="ONE" 
+                    <TextBlock Text="{Binding Path=PageTitle}" 
                            VerticalAlignment="Center"
                            Foreground="#4E5C6C"
                            FontSize="19"
                            FontWeight="Medium"/>
                 </Grid>
                 <Grid Grid.Column="2"
-                  HorizontalAlignment="Right">
+                      HorizontalAlignment="Right"
+                      Visibility="{Binding BottomNavBtnAndProfileVisibility}">
                     <ctm:BlankButton HorizontalAlignment="Right"
-                                 Margin="8 6">
+                                    Margin="8 6">
                         <ctm:BlankButton.Content>
                             <FontIcon Foreground="#AAAAAA"
                                   FontFamily="Segoe MDL2 Assets"
@@ -70,7 +71,7 @@
         <Grid x:Name="navBtnBottom"
               Grid.Row="2"
               Height="60"
-              Width="{Binding CurrentWindowWidth}"
+              Visibility="{Binding Path=BottomNavBtnAndProfileVisibility}"
               Background="White">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition/>
