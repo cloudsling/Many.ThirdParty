@@ -31,12 +31,12 @@ namespace Many.ThirdParty.Core.Models.ReadingModels
                     Title = "jaoahaohaohao"
                 });
             }
-#endif
-            ContentType = "2016-04-14";
+            ContentType = "2016-04-12";
             ContentModelCollection.Add(new ReadingContentModel
             {
                 Author = "王若虚",
                 ContentSummary = "重要的眼角和项链一样闪着微光，空中飘着小于版的彩带，吃剩的火锅冒着仅存的那白色热气，整个房间里都弥漫着火锅香料和白酒的想起",
+                ImageTypeSource = "ms-appx:///Resources/BgImages/essay_image.png",
                 Title = "《火锅杀》第八话：重要的生日"
             });
             ContentModelCollection.Add(new ReadingContentModel
@@ -51,6 +51,7 @@ namespace Many.ThirdParty.Core.Models.ReadingModels
                 ContentSummary = "dsfaadsfffffffffffffffffffffffffffffff",
                 Title = "jaoahaohaohao"
             });
+#endif
         }
 
         string _contentTpe;

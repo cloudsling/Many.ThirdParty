@@ -139,6 +139,9 @@
     <Compile Include="SubPages\ReadingPage.xaml.cs">
       <DependentUpon>ReadingPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="UserControls\ReadingPageSemanticZoom.xaml.cs">
+      <DependentUpon>ReadingPageSemanticZoom.xaml</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <AppxManifest Include="Package.appxmanifest">
@@ -149,9 +152,12 @@
   <ItemGroup>
     <Content Include="Assets\SplashScreen.scale-100.png" />
     <Content Include="Resources\BgImages\diary.png" />
+    <Content Include="Resources\BgImages\essay_image.png" />
     <Content Include="Resources\BgImages\laud.png" />
     <Content Include="Resources\BgImages\laud_pressed.png" />
+    <Content Include="Resources\BgImages\question_image.png" />
     <Content Include="Resources\BgImages\reading_board.png" />
+    <Content Include="Resources\BgImages\serial_image.png" />
     <Content Include="Resources\BgImages\share_image.png" />
     <Content Include="Resources\CommonsImages\return_image.png" />
     <Content Include="Resources\CommonsImages\return_image_pressed.png" />
@@ -248,6 +254,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Page>
+    <Page Include="UserControls\ReadingPageSemanticZoom.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
   </ItemGroup>
   <ItemGroup />

@@ -15,6 +15,7 @@ using Windows.UI.Xaml.Navigation;
 using Many.ThirdParty.Core.ViewModels;
 using Windows.UI.Xaml.Shapes;
 using Windows.UI;
+using Many.ThirdParty.Core.Models.ReadingModels;
 
 namespace Many.ThirdParty.SubPages
 {
@@ -32,6 +33,24 @@ namespace Many.ThirdParty.SubPages
                 ChangeAllEllipseColor(ManyEllipse.Children, index);
             }
         }
+
+        //private void Button_Click(object sender, RoutedEventArgs e)
+        //{
+        //    ReadingPageViewModel context = CustomReading.DataContext as ReadingPageViewModel;
+
+        //    context.ReadingModel.Add(new ReadingModel()
+        //    {
+        //        ContentModelCollection = new System.Collections.ObjectModel.ObservableCollection<ReadingContentModel>
+        //        {
+        //            new ReadingContentModel
+        //            {
+        //                Author = "LINGHAO",
+        //                ContentSummary = "重要的眼角和项链一样闪着微光，空中飘着小于版的彩带，吃剩的火锅冒着仅存的那白色热气，整个房间里都弥漫着火锅香料和白酒的想起",
+        //                Title = "《Inception》第八话：重要的生日"
+        //            }
+        //        }
+        //    });
+        //}
     }
 
     /// <summary>
@@ -77,3 +96,49 @@ namespace Many.ThirdParty.SubPages
 
 
 }
+
+//1.中午下班，饥肠辘辘，此时你会选择去哪家快餐店饱腹一番？
+//A.肯德基
+//B.麦当劳
+//C.华莱士
+//D.必胜客
+//2.新闻界召开短跑大赛，哪里的记者铁定会夺取第一？
+//A.西方记者
+//B.香港记者
+//C.大陆记者
+//D.日本记者
+//3.你觉得一个地区该怎样选取领导人？
+//A.民主选拔
+//B.军事独裁
+//C.单姓王朝
+//D.钦点
+//4.你觉得哪句俗语让你受益匪浅？
+//A.闷声大发财
+//B.说曹操曹操到
+//C.失败乃成功之母
+//D.知之者不如好之者
+//5.“好啊”用广东话怎么说？
+//A.豪啊
+//B.合啊
+//C.吼啊
+//D.呼啊
+//6.下列四个关于“笑”成语你觉得哪个与众不同？
+//A.开怀大笑
+//B.笑面老虎
+//C.谈笑风生
+//D.笑里藏刀
+//7.“比喻看势头或看别人的眼色行事，根据形势的变化而改变方向或态度”这是哪个成语/俗语的释义？
+//A.见得风是得雨
+//B.见风使舵
+//C.墙头草随风倒
+//D.随机应变
+//8.年轻的你应该向谁请教一点“人生的经验”？
+//A.父母
+//B.长者
+//C.老师
+//D.大哥
+//9.怎样形容别人年少无知？
+//A.青春少年狂
+//B.小孩子不识世间事
+//C.经验不足、阅历太浅
+//D.too young

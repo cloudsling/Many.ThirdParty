@@ -113,6 +113,7 @@
     <Compile Include="Tools\BindableBase.cs" />
     <Compile Include="Tools\CommandBase.cs" />
     <Compile Include="ViewModels\MainFrameContainerViewModel.cs" />
+    <Compile Include="ViewModels\ReadingPageSemanticZoomViewModel.cs" />
     <Compile Include="ViewModels\ReadingPageViewModel.cs" />
     <EmbeddedResource Include="Properties\Many.ThirdParty.Core.rd.xml" />
   </ItemGroup>

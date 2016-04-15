@@ -8,6 +8,8 @@ namespace Many.ThirdParty.Core.Models.ReadingModels
 {
     public class ReadingContentModel
     {
+        public string ImageTypeSource { get; set; }
+
         public string Title { get; set; }
 
         public string Author { get; set; }

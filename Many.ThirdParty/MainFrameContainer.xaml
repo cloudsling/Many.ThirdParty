@@ -25,7 +25,7 @@
                 <RowDefinition Height="Auto"/>
                 <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
-            <Grid Height="40"
+            <Grid Height="50"
                   VerticalAlignment="Top">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="2*"/>
@@ -58,14 +58,14 @@
                 </Grid>
             </Grid>
             <Rectangle Grid.Row="1" 
-                   Fill="#CBCCCE"
-                   Height="1"/>
+                       Fill="#CBCCCE"
+                       Height="1"/>
             <ScrollViewer Grid.Row="2">
                 <Frame x:Name="mainFrameContainer"/>
             </ScrollViewer>
         </Grid>
         <Rectangle Grid.Row="1" 
-                   Fill="#CBCCCE"
+                   Fill="#DDDEDF"
                    Height="1"/>
         <Grid x:Name="navBtnBottom"
               Grid.Row="2"
