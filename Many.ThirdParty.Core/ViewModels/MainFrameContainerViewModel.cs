@@ -10,6 +10,17 @@ namespace Many.ThirdParty.Core.ViewModels
 {
     public class MainFrameContainerViewModel : BindableBase
     {
+        
+        double _windowCurrentWidth;
+        public double WindowCurrentWidth
+        {
+            get { return _windowCurrentWidth; }
+            set
+            {
+                SetProperty(ref _windowCurrentWidth, value);
+            }
+        }
+        
         string _pageTitle;
         public string PageTitle
         {
@@ -17,6 +28,16 @@ namespace Many.ThirdParty.Core.ViewModels
             set
             {
                 SetProperty(ref _pageTitle, value);
+            }
+        }
+
+        Visibility _opacityGridVisbility;
+        public Visibility OpacityGridVisbility
+        {
+            get { return _opacityGridVisbility; }
+            set
+            {
+                SetProperty(ref _opacityGridVisbility, value);
             }
         }
 

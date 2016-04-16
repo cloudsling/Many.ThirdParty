@@ -13,6 +13,14 @@
     d:DataContext="{d:DesignInstance Type=dvm:MainFrameContainerViewModel,
                                      IsDesignTimeCreatable=True}">
 
+    <Page.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="ms-appx:///Themes/TextBlockResourceDictionary.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </Page.Resources>
+    
     <Grid Background="White">
         <Grid.RowDefinitions>
             <RowDefinition Height="*"/>
@@ -61,9 +69,73 @@
             <Rectangle Grid.Row="1" 
                        Fill="#CBCCCE"
                        Height="1"/>
-            <ScrollViewer Grid.Row="2">
+            <Grid Grid.Row="2">
                 <Frame x:Name="mainFrameContainer"/>
-            </ScrollViewer>
+            </Grid>
+            <!--<Grid Grid.Row="2">
+                <StackPanel Orientation="Horizontal"> 
+                    <Grid x:Name="LeftGrid"
+                          Width="0" 
+                          Grid.Column="0" 
+                          Background="LightGray">
+                        <TextBlock Text="右拉刷新界面" 
+                                   Style="{StaticResource NormalText}"
+                                   HorizontalAlignment="Right"
+                                   VerticalAlignment="Center"/>
+                    </Grid>
+                    <Grid x:Name="RightGrid"
+                          Width="{Binding WindowCurrentWidth}"
+                          Grid.Column="1">
+                        <Frame x:Name="mainFrameContainer"/>
+                    </Grid>
+                </StackPanel>
+                <Grid Background="Beige"
+                      Opacity=".0"
+                      Visibility="{Binding OpacityGridVisbility}"
+                      ManipulationMode="All"
+                      ManipulationDelta="Grid_ManipulationDelta"
+                      ManipulationCompleted="Grid_ManipulationCompleted">
+                    <Grid.Transitions>
+                        <TransitionCollection>
+                            <NavigationThemeTransition />
+                        </TransitionCollection>
+                    </Grid.Transitions>
+                </Grid>
+            </Grid>-->
+            <!--<Grid Grid.Row="2">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid x:Name="LeftGrid"
+                          Width="0" 
+                          Grid.Column="0" 
+                          Background="LightGray">
+                        <TextBlock Text="右拉刷新界面" 
+                                   Style="{StaticResource NormalText}"
+                                   HorizontalAlignment="Right"
+                                   VerticalAlignment="Center"/>
+                    </Grid>
+                    <Grid x:Name="RightGrid"
+                          Grid.Column="1">
+                        <Frame x:Name="mainFrameContainer"/>
+                    </Grid>
+                </Grid>
+                <Grid Background="Beige"
+                      Opacity=".0"
+                      Visibility="{Binding OpacityGridVisbility}"
+                      ManipulationMode="All"
+                      ManipulationDelta="Grid_ManipulationDelta"
+                      ManipulationCompleted="Grid_ManipulationCompleted">
+                    <Grid.Transitions>
+                        <TransitionCollection>
+                            <NavigationThemeTransition />
+                        </TransitionCollection>
+                    </Grid.Transitions>
+                </Grid>
+            </Grid>-->
+
         </Grid>
         <Rectangle Grid.Row="1" 
                    Fill="#DDDEDF"

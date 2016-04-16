@@ -141,6 +141,9 @@
     <Compile Include="SubPages\ReadingPage.xaml.cs">
       <DependentUpon>ReadingPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="UserControls\CommonFlipView.xaml.cs">
+      <DependentUpon>CommonFlipView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="UserControls\ReadingPageSemanticZoom.xaml.cs">
       <DependentUpon>ReadingPageSemanticZoom.xaml</DependentUpon>
     </Compile>
@@ -159,17 +162,19 @@
     <Content Include="Resources\BgImages\laud_pressed.png" />
     <Content Include="Resources\BgImages\question_image.png" />
     <Content Include="Resources\BgImages\reading_board.png" />
+    <Content Include="Resources\BgImages\return_image.png" />
+    <Content Include="Resources\BgImages\return_image_pressed.png" />
     <Content Include="Resources\BgImages\serial_image.png" />
     <Content Include="Resources\BgImages\share_image.png" />
     <Content Include="Resources\CommonsImages\return_image.png" />
     <Content Include="Resources\CommonsImages\return_image_pressed.png" />
     <Content Include="Resources\CommonsImages\search.png" />
     <Content Include="Resources\CommonsImages\search_pressed.png" />
+    <Content Include="Resources\BgImages\StartImage.png" />
     <Content Include="Resources\Images\Search127.png" />
     <Content Include="Resources\Images\Search15.png" />
     <Content Include="Resources\Images\search23.png" />
     <Content Include="Resources\Images\Search796.png" />
-    <Content Include="Resources\Images\StartImage.png" />
     <Content Include="Properties\Default.rd.xml" />
     <Content Include="Assets\LockScreenLogo.scale-200.png" />
     <Content Include="Assets\SplashScreen.scale-200.png" />
@@ -256,6 +261,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Page>
+    <Page Include="UserControls\CommonFlipView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="UserControls\ReadingPageSemanticZoom.xaml">
       <SubType>Designer</SubType>

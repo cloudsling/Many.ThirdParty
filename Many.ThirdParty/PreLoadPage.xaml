@@ -4,8 +4,12 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:local="using:Many.ThirdParty"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:ctm="using:Many.ThirdParty.CustomControls"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    mc:Ignorable="d">
+    xmlns:dvm="using:Many.ThirdParty.Core.ViewModels"
+    mc:Ignorable="d"
+    DataContext="{Binding PreLoadPageViewModel, RelativeSource={RelativeSource Mode=Self}}"
+    d:DataContext="{d:DesignInstance Type=dvm:PreLoadPageViewModel,IsDesignTimeCreatable=True}">
     <Page.Resources>
         <Storyboard x:Name="DynamicImageAnimation">
             <DoubleAnimationUsingKeyFrames Storyboard.TargetName="border"
@@ -32,7 +36,9 @@
             </DoubleAnimationUsingKeyFrames>
         </Storyboard>
     </Page.Resources>
-    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+
+    <Grid DataContext="{Binding Path=TodayHomePageModel}"
+          Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
         <Grid Margin="0 -50" Height="Auto">
             <Grid.RowDefinitions>
@@ -45,7 +51,7 @@
                     Height="50"
                     VerticalAlignment="Top"/>
             <Grid Grid.Row="1" Background="Red">
-                <Image Source="{}"
+                <Image Source="{Binding ImageUrl}"
                        Stretch="UniformToFill"/>
                 <Grid>
                     <Grid.RowDefinitions>
@@ -61,7 +67,7 @@
                                Grid.Row="1" 
                                TextWrapping="Wrap" 
                                Foreground="White"
-                               Text="%ONEDAY%"
+                               Text="{Binding Path=Day}"
                                FontFamily="Consolas"
                                FontSize="80"/>
                     <Border Grid.Row="2"
@@ -74,7 +80,7 @@
                                    FontFamily="Consolas"
                                    Foreground="White" 
                                    TextWrapping="Wrap" 
-                                   Text="%ONEVOL%"/>
+                                   Text="{Binding Title}"/>
                         <TextBlock Margin="8"
                                    FontFamily="Consolas"
                                    TextWrapping="Wrap" 
@@ -85,14 +91,14 @@
                                    FontFamily="Consolas" 
                                    TextWrapping="Wrap" 
                                    Foreground="White" 
-                                   Text="%2016-3%"/>
+                                   Text="{Binding YearAndMonth}"/>
                     </StackPanel>
                     <TextBlock x:Name="DayContent" 
                                Margin="8" Grid.Row="3" 
                                TextWrapping="Wrap" 
                                Foreground="White" 
                                FontSize="18" 
-                               Text="%BALABALABALABALBABLABLAB%" 
+                               Text="{Binding MainContent}" 
                                RelativePanel.Above="MonthAndYear"/>
                 </Grid>
             </Grid>
@@ -115,22 +121,31 @@
                 <Paragraph FontSize="16">一</Paragraph>
                 <Paragraph FontSize="16">个</Paragraph>
             </RichTextBlock>
-            <Grid VerticalAlignment="Bottom" Height="100">
-                <TextBlock Height="50"
-                           Text="向上滑动进入ONE"
-                           Foreground="#FF01AEF0"
-                           FontFamily="Consolas" 
-                           FontSize="19"
-                           HorizontalAlignment="Center"
-                           ManipulationMode="TranslateY"
-                           ManipulationDelta="Grid_ManipulationDelta"
-                           ManipulationCompleted="Grid_ManipulationCompleted">
-                    <TextBlock.Transitions>
+            <Grid VerticalAlignment="Bottom"  
+                  Height="100">
+                <ctm:BlankButton Height="50"
+                                Width="240"
+                                ManipulationMode="TranslateY"
+                                ManipulationDelta="Grid_ManipulationDelta"
+                                ManipulationCompleted="Grid_ManipulationCompleted">
+                    <ctm:BlankButton.Transitions>
                         <TransitionCollection>
                             <NavigationThemeTransition/>
                         </TransitionCollection>
-                    </TextBlock.Transitions>
-                </TextBlock>
+                    </ctm:BlankButton.Transitions>
+                    <ctm:BlankButton.Template>
+                        <ControlTemplate>
+                            <Border>
+                                <TextBlock HorizontalAlignment="Center"
+                                           VerticalAlignment="Center" 
+                                           Text="向上滑动进入一个"
+                                           Foreground="#FF01AEF0"
+                                           FontFamily="Consolas"  
+                                           FontSize="19"/>
+                            </Border>
+                        </ControlTemplate>
+                    </ctm:BlankButton.Template>
+                </ctm:BlankButton>
             </Grid>
         </Grid>
     </Grid>

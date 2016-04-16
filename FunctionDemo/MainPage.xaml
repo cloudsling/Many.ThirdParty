@@ -5,9 +5,74 @@
     xmlns:local="using:FunctionDemo"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    mc:Ignorable="d">
+    mc:Ignorable="d"
+    DataContext="{Binding MainViewModel, RelativeSource={RelativeSource Mode=Self}}">
 
-    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+    <Grid>
+        <!--<Grid Background="White">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
 
+
+            <Grid x:Name="LeftGrid" Width="0" Grid.Column="0" Background="Blue">
+
+            </Grid>
+
+            <Grid x:Name="RightGrid"
+              Grid.Column="1" 
+              Background="Red">
+                <FlipView x:Name="fv"
+                          SelectionChanged="fv_SelectionChanged"
+                          ItemsSource="{Binding SourcePath}">
+                    <FlipView.ItemTemplate>
+                        <DataTemplate>
+                            <Grid> 
+                                <Image Stretch="Uniform"  Source="{Binding}" />
+                            </Grid>
+                        </DataTemplate>
+                    </FlipView.ItemTemplate>
+                </FlipView>
+            </Grid>
+        </Grid>-->
+        <!--<StackPanel Background="White" Orientation="Horizontal">
+            <Grid x:Name="LeftGrid" Width="0" Grid.Column="0" Background="Blue">
+
+            </Grid>
+
+            <Grid x:Name="RightGrid"
+              Grid.Column="1" 
+              Background="Red">
+                <FlipView x:Name="fv"
+                          SelectionChanged="fv_SelectionChanged"
+                          ItemsSource="{Binding SourcePath}">
+                    <FlipView.ItemTemplate>
+                        <DataTemplate>
+                            <Grid>
+                                <Image Stretch="Uniform"  Source="{Binding}" />
+                            </Grid>
+                        </DataTemplate>
+                    </FlipView.ItemTemplate>
+                </FlipView>
+            </Grid>
+        </StackPanel>-->
+        <Button Background="Yellow"
+                Width="{x:Bind WindowCurrentBoundsWidth,Mode=TwoWay}"
+                Height="{x:Bind WindowCurrentBoundsHeight,Mode=TwoWay}">
+            
+        </Button>
+        <!--<Grid Background="Beige"
+              Opacity=".0"
+              Visibility="{Binding Visable}"
+              ManipulationMode="All"
+              ManipulationDelta="Grid_ManipulationDelta"
+              ManipulationCompleted="Grid_ManipulationCompleted">
+            <Grid.Transitions>
+                <TransitionCollection>
+                    <NavigationThemeTransition />
+                </TransitionCollection>
+            </Grid.Transitions>
+        </Grid>-->
     </Grid>
 </Page>

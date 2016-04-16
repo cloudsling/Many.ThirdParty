@@ -16,101 +16,102 @@
         </ResourceDictionary>
     </Page.Resources>
 
-    <Grid Background="White">
-        <Grid.RowDefinitions>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="*"/>
-        </Grid.RowDefinitions>
-
-        <Grid Grid.Row="1">
+    <FlipView CompositeMode="Inherit">
+        <Grid Background="White">
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto"/>
                 <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
-            <Grid Padding="8 8 8 0"
-                  Margin="8 8 8 4">
-                <Grid.Background>
-                    <ImageBrush ImageSource="ms-appx:///Resources/BgImages/reading_board.png"/>
-                </Grid.Background>
+
+            <Grid Grid.Row="1">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="Auto"/>
-                    <RowDefinition Height="Auto"/>
-                    <RowDefinition Height="Auto"/>
-                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="*"/>
                 </Grid.RowDefinitions>
-                <ctm:BlankButton>
-                    <Image Stretch="UniformToFill" 
+                <Grid Padding="8 8 8 0"
+                  Margin="8 8 8 4">
+                    <Grid.Background>
+                        <ImageBrush ImageSource="ms-appx:///Resources/BgImages/reading_board.png"/>
+                    </Grid.Background>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+                    <ctm:BlankButton>
+                        <Image Stretch="UniformToFill" 
                            Source="ms-appx:///Resources/test.jpg"/>
-                </ctm:BlankButton>
-                <Grid Grid.Row="1"
+                    </ctm:BlankButton>
+                    <Grid Grid.Row="1"
                       Margin="0 7 0 15">
-                    <TextBlock HorizontalAlignment="Left"
+                        <TextBlock HorizontalAlignment="Left"
                                Text="VOL.1283"
                                Style="{StaticResource SmallText}"/>
-                    <TextBlock HorizontalAlignment="Right"
+                        <TextBlock HorizontalAlignment="Right"
                                Text="Coldplay赛高"
                                Style="{StaticResource SmallText}"/>
-                </Grid>
-                <Grid Grid.Row="2"
+                    </Grid>
+                    <Grid Grid.Row="2"
                       Margin="0 12 0 30">
-                    <TextBlock TextWrapping="Wrap" 
+                        <TextBlock TextWrapping="Wrap" 
                                Text="很多人觉得'爱'是比'喜欢'严重的事，不能轻易说出口。但我就是要说，我爱你。如果不能让你动心，起码吓吓你，让你无法忘记。 by 乌冬"
                                Style="{StaticResource NormalText}"/>
-                </Grid>
-                <Grid Grid.Row="3"
+                    </Grid>
+                    <Grid Grid.Row="3"
                       Margin="0 7">
-                    <TextBlock HorizontalAlignment="Right"
+                        <TextBlock HorizontalAlignment="Right"
                                Style="{StaticResource SmallDeepText}"
                                Text="Sun 10 Apr.2016"/>
+                    </Grid>
                 </Grid>
-            </Grid>
-            <Grid Grid.Row="1">
-                <Grid Height="50"
+                <Grid Grid.Row="1">
+                    <Grid Height="50"
                       Margin="12 0"
                       Padding="5" 
                       VerticalAlignment="Top">
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="8*"/>
-                        <ColumnDefinition Width="3*"/>
-                        <ColumnDefinition Width="2*"/>
-                    </Grid.ColumnDefinitions>
-                    <ctm:BlankButton Width="80"
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="8*"/>
+                            <ColumnDefinition Width="3*"/>
+                            <ColumnDefinition Width="2*"/>
+                        </Grid.ColumnDefinitions>
+                        <ctm:BlankButton Width="80"
                                      HorizontalAlignment="Left">
-                        <ctm:BlankButton.Content>
-                            <Border>
-                                <StackPanel Orientation="Horizontal">
-                                    <Image Source="ms-appx:///Resources/BgImages/diary.png"/>
-                                    <TextBlock Text="小计"
+                            <ctm:BlankButton.Content>
+                                <Border>
+                                    <StackPanel Orientation="Horizontal">
+                                        <Image Source="ms-appx:///Resources/BgImages/diary.png"/>
+                                        <TextBlock Text="小计"
                                                VerticalAlignment="Center"
                                                Style="{StaticResource SmallText}"/>
-                                </StackPanel>
-                            </Border>
-                        </ctm:BlankButton.Content>
-                    </ctm:BlankButton>
-                    <ctm:BlankButton Width="80"
+                                    </StackPanel>
+                                </Border>
+                            </ctm:BlankButton.Content>
+                        </ctm:BlankButton>
+                        <ctm:BlankButton Width="80"
                                      Grid.Column="1"
                                      HorizontalAlignment="Left">
-                        <ctm:BlankButton.Content>
-                            <Border>
-                                <StackPanel Orientation="Horizontal">
-                                    <Image Source="ms-appx:///Resources/BgImages/laud.png"/>
-                                    <TextBlock Text="23333"
+                            <ctm:BlankButton.Content>
+                                <Border>
+                                    <StackPanel Orientation="Horizontal">
+                                        <Image Source="ms-appx:///Resources/BgImages/laud.png"/>
+                                        <TextBlock Text="23333"
                                                VerticalAlignment="Center"
                                                Style="{StaticResource SmallDeepText}"/>
-                                </StackPanel>
-                            </Border>
-                        </ctm:BlankButton.Content>
-                    </ctm:BlankButton>
-                    <ctm:BlankButton Width="80"
+                                    </StackPanel>
+                                </Border>
+                            </ctm:BlankButton.Content>
+                        </ctm:BlankButton>
+                        <ctm:BlankButton Width="80"
                                      Grid.Column="2"
                                      HorizontalAlignment="Left">
-                        <ctm:BlankButton.Content>
-                            <Image Source="ms-appx:///Resources/BgImages/share_image.png"/>
-                        </ctm:BlankButton.Content>
-                    </ctm:BlankButton>
+                            <ctm:BlankButton.Content>
+                                <Image Source="ms-appx:///Resources/BgImages/share_image.png"/>
+                            </ctm:BlankButton.Content>
+                        </ctm:BlankButton>
+                    </Grid>
                 </Grid>
             </Grid>
         </Grid>
-    </Grid>
-
+    </FlipView>
 </Page>

@@ -8,16 +8,13 @@
     mc:Ignorable="d">
 
     <Grid Background="White">
-        <Image Source="ms-appx:///Resources/Images/StartImage.png"
+        <Image Source="ms-appx:///Resources/BgImages/StartImage.png"
                VerticalAlignment="Center"
                HorizontalAlignment="Center"
-               Margin="0 -30 0 0"
-               Width="200"
-               Height="200"
                Stretch="UniformToFill"/>
         <ProgressRing IsActive="True"
-                      Height="40"
-                      Width="40"
+                      Height="45"
+                      Width="45"
                       Foreground="#01AEF0"
                       VerticalAlignment="Bottom"
                       HorizontalAlignment="Center"

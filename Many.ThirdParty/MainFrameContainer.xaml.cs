@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
+using System.Threading.Tasks;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
 using Windows.UI.Core;
@@ -29,8 +30,7 @@ namespace Many.ThirdParty
         {
             CurrentScenario = NavigationCommonConfig.GetScenarioByName[mainFrameContainer.CurrentSourcePageType.Name];
 
-            UpdateContent(CurrentScenario.PageTitle);
-
+            UpdateContent(CurrentScenario.PageTitle); 
             UpdateGenericUI(CurrentScenario.Index);
         }
 
@@ -43,7 +43,12 @@ namespace Many.ThirdParty
 
         private void ChangeBackgroundAndNavigate(object sender, RoutedEventArgs e)
         {
-            mainFrameContainer.Navigate(NavigationCommonConfig.MainScenarios[Convert.ToInt32((sender as Button).Tag)].PageType);
+            ThisNavigate(Convert.ToInt32((sender as Button).Tag));
+        }
+        
+        private void Current_SizeChanged(object sender, WindowSizeChangedEventArgs e)
+        {
+            ResetWidth();
         }
     }
 
@@ -59,20 +64,6 @@ namespace Many.ThirdParty
         private static List<Image> FootButtonBackgroundImage;
 
         internal Scenario CurrentScenario { get; set; }
-
-        private static readonly List<BitmapImage> FootButtonSource = new List<BitmapImage> {
-          new BitmapImage (new Uri ("ms-appx:///Resources/MFCImages/home.png")),
-           new BitmapImage (new Uri ("ms-appx:///Resources/MFCImages/reading.png")),
-           new BitmapImage (new Uri ("ms-appx:///Resources/MFCImages/music.png")),
-           new BitmapImage (new Uri ("ms-appx:///Resources/MFCImages/movie.png"))
-        };
-
-        private static readonly List<BitmapImage> FootButtonActivedSource = new List<BitmapImage> {
-           new BitmapImage (new Uri ("ms-appx:///Resources/MFCImages/home_active.png")),
-           new BitmapImage (new Uri ("ms-appx:///Resources/MFCImages/reading_active.png")),
-           new BitmapImage (new Uri ("ms-appx:///Resources/MFCImages/music_active.png")),
-           new BitmapImage (new Uri ("ms-appx:///Resources/MFCImages/movie_active.png"))
-        };
     }
 
     /// <summary>
@@ -82,7 +73,7 @@ namespace Many.ThirdParty
     {
         public MainFrameContainer()
         {
-            MainFrameContainerViewModel = new MainFrameContainerViewModel();
+            InitializeViewModel();
 
             InitializeComponent();
             CurrentMainFrameContainer = this;
@@ -92,13 +83,31 @@ namespace Many.ThirdParty
 
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
+            Window.Current.SizeChanged += Current_SizeChanged;
             mainFrameContainer.Navigated += MainFrameContainer_Navigated;
 
-            ChangeBackgroundAndNavigate(homeButton, new RoutedEventArgs());
+            ThisNavigate(Convert.ToInt32(homeButton.Tag));
 
             SystemNavigationManager.GetForCurrentView().BackRequested += MainFrameContainer_BackRequested;
         }
 
+        private void ThisNavigate(int index)
+        {
+            mainFrameContainer.Navigate(NavigationCommonConfig.MainScenarios[index].PageType);
+        }
+
+        private void InitializeViewModel()
+        {
+            MainFrameContainerViewModel = new MainFrameContainerViewModel();
+
+            ResetWidth();
+        }
+
+        private void ResetWidth()
+        {
+            MainFrameContainerViewModel.WindowCurrentWidth = Window.Current.Bounds.Width;
+        }
+        
         private static void InitializeField()
         {
             FootButtonBackgroundImage = new List<Image>
@@ -132,10 +141,10 @@ namespace Many.ThirdParty
         {
             for (int i = 0; i < 4; i++)
             {
-                FootButtonBackgroundImage[i].Source = FootButtonSource[i];
+                FootButtonBackgroundImage[i].Source = DelegationCommonConfig.FootButtonSource[i];
             }
 
-            FootButtonBackgroundImage[index].Source = FootButtonActivedSource[index];
+            FootButtonBackgroundImage[index].Source = DelegationCommonConfig.FootButtonActivedSource[index];
         }
     }
 }
