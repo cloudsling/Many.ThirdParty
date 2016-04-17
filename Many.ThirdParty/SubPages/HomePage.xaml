@@ -6,7 +6,10 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:ctm="using:Many.ThirdParty.CustomControls"
-    mc:Ignorable="d">
+    xmlns:dvm="using:Many.ThirdParty.Core.ViewModels"
+    mc:Ignorable="d"
+    DataContext="{Binding HomePageViewModel, RelativeSource={RelativeSource Mode=Self}}"
+    d:DataContext="{d:DesignInstance Type=dvm:HomePageViewModel,IsDesignTimeCreatable=True}">
 
     <Page.Resources>
         <ResourceDictionary>
@@ -16,7 +19,11 @@
         </ResourceDictionary>
     </Page.Resources>
 
-    <FlipView CompositeMode="Inherit">
+    <FlipView x:Name="MainFlipView" 
+              CompositeMode="Inherit"
+              ItemsSource="{Binding HomeModelCollection}">
+        <FlipView.ItemTemplate>
+            <DataTemplate> 
         <Grid Background="White">
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto"/>
@@ -41,28 +48,28 @@
                     </Grid.RowDefinitions>
                     <ctm:BlankButton>
                         <Image Stretch="UniformToFill" 
-                           Source="ms-appx:///Resources/test.jpg"/>
+                           Source="{Binding Hp_Img_Url}"/>
                     </ctm:BlankButton>
                     <Grid Grid.Row="1"
                       Margin="0 7 0 15">
                         <TextBlock HorizontalAlignment="Left"
-                               Text="VOL.1283"
+                               Text="{Binding Hp_Title}"
                                Style="{StaticResource SmallText}"/>
                         <TextBlock HorizontalAlignment="Right"
-                               Text="Coldplay赛高"
+                               Text="{Binding Hp_Author}"
                                Style="{StaticResource SmallText}"/>
                     </Grid>
                     <Grid Grid.Row="2"
                       Margin="0 12 0 30">
                         <TextBlock TextWrapping="Wrap" 
-                               Text="很多人觉得'爱'是比'喜欢'严重的事，不能轻易说出口。但我就是要说，我爱你。如果不能让你动心，起码吓吓你，让你无法忘记。 by 乌冬"
+                               Text="{Binding Hp_Content}"
                                Style="{StaticResource NormalText}"/>
                     </Grid>
                     <Grid Grid.Row="3"
                       Margin="0 7">
                         <TextBlock HorizontalAlignment="Right"
                                Style="{StaticResource SmallDeepText}"
-                               Text="Sun 10 Apr.2016"/>
+                               Text="{Binding Hp_MaketTime}"/>
                     </Grid>
                 </Grid>
                 <Grid Grid.Row="1">
@@ -88,14 +95,16 @@
                                 </Border>
                             </ctm:BlankButton.Content>
                         </ctm:BlankButton>
-                        <ctm:BlankButton Width="80"
-                                     Grid.Column="1"
-                                     HorizontalAlignment="Left">
+                        <ctm:BlankButton x:Name="Love"
+                                         Width="80"
+                                         Grid.Column="1"
+                                         Click="Love_Click"
+                                         HorizontalAlignment="Left">
                             <ctm:BlankButton.Content>
                                 <Border>
                                     <StackPanel Orientation="Horizontal">
                                         <Image Source="ms-appx:///Resources/BgImages/laud.png"/>
-                                        <TextBlock Text="23333"
+                                        <TextBlock Text="{Binding PraiseNum}"
                                                VerticalAlignment="Center"
                                                Style="{StaticResource SmallDeepText}"/>
                                     </StackPanel>
@@ -113,5 +122,7 @@
                 </Grid>
             </Grid>
         </Grid>
-    </FlipView>
+            </DataTemplate>
+        </FlipView.ItemTemplate>
+    </FlipView> 
 </Page>

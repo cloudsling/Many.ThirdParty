@@ -1,4 +1,7 @@
-﻿using System;
+﻿using Many.ThirdParty.Core.Data;
+using Many.ThirdParty.Core.Models.HomeModels;
+using Many.ThirdParty.SubPages;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -23,15 +26,17 @@ namespace Many.ThirdParty
         {
             InitializeComponent();
         }
-        
+
         protected override async void OnNavigatedTo(NavigationEventArgs e)
         {
             //TODO: Delay 2s in debug mode
 #if DEBUG
-            await Task.Delay(1000);
+            //await Task.Delay(1000);
 #endif
+            HomePage.TodaysListId = await LoadResources.GetMainList(HomePage.CumulateListIndex.ToString());
+
             //TODO: load resource from internet
-            Frame.Navigate(typeof(PreLoadPage), new { });
+            Frame.Navigate(typeof(PreLoadPage), await LoadResources.LoadHomeModelResourcesAsync(HomePage.TodaysListId[0]));
         }
     }
 

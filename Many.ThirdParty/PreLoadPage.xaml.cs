@@ -1,4 +1,6 @@
-﻿using Many.ThirdParty.Core.ViewModels;
+﻿using Many.ThirdParty.Core.Models.HomeModels;
+using Many.ThirdParty.Core.ViewModels;
+using Many.ThirdParty.SubPages;
 using System;
 using System.Threading.Tasks;
 using Windows.UI.Xaml;
@@ -9,13 +11,11 @@ using Windows.UI.Xaml.Navigation;
 namespace Many.ThirdParty
 {
     public sealed partial class PreLoadPage : Page
-    {
-        public PreLoadPageViewModel PreLoadPageViewModel { get; set; }
+    { 
+        public HomeModel CurrentHomeModel { get; set; }
 
         public PreLoadPage()
-        {
-            PreLoadPageViewModel = new PreLoadPageViewModel();
-
+        { 
             InitializeComponent();
         }
         void Grid_ManipulationDelta(object sender, ManipulationDeltaRoutedEventArgs e)
@@ -28,7 +28,7 @@ namespace Many.ThirdParty
         async void Grid_ManipulationCompleted(object sender, ManipulationCompletedRoutedEventArgs e)
         {
             await Task.Delay(10);
-            this.Frame.Navigate(typeof(MainFrameContainer));
+            this.Frame.Navigate(typeof(MainFrameContainer), CurrentHomeModel);
         }
 
         protected override void OnNavigatedTo(NavigationEventArgs e)
@@ -38,7 +38,9 @@ namespace Many.ThirdParty
             if (e.Parameter != null)
             {
                 //TODO: Binding to interface
+                CurrentHomeModel = e.Parameter as HomeModel;
 
+                HomePage.CurrentHomeModle = CurrentHomeModel;
             }
         }
     }

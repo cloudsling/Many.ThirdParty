@@ -7,9 +7,7 @@
     xmlns:ctm="using:Many.ThirdParty.CustomControls"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:dvm="using:Many.ThirdParty.Core.ViewModels"
-    mc:Ignorable="d"
-    DataContext="{Binding PreLoadPageViewModel, RelativeSource={RelativeSource Mode=Self}}"
-    d:DataContext="{d:DesignInstance Type=dvm:PreLoadPageViewModel,IsDesignTimeCreatable=True}">
+    mc:Ignorable="d">
     <Page.Resources>
         <Storyboard x:Name="DynamicImageAnimation">
             <DoubleAnimationUsingKeyFrames Storyboard.TargetName="border"
@@ -36,8 +34,7 @@
             </DoubleAnimationUsingKeyFrames>
         </Storyboard>
     </Page.Resources>
-
-    <Grid DataContext="{Binding Path=TodayHomePageModel}"
+    <Grid DataContext="{x:Bind CurrentHomeModel}"
           Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
         <Grid Margin="0 -50" Height="Auto">
@@ -51,7 +48,7 @@
                     Height="50"
                     VerticalAlignment="Top"/>
             <Grid Grid.Row="1" Background="Red">
-                <Image Source="{Binding ImageUrl}"
+                <Image Source="{x:Bind CurrentHomeModel.Hp_Img_Url}"
                        Stretch="UniformToFill"/>
                 <Grid>
                     <Grid.RowDefinitions>
@@ -67,7 +64,7 @@
                                Grid.Row="1" 
                                TextWrapping="Wrap" 
                                Foreground="White"
-                               Text="{Binding Path=Day}"
+                               Text="{x:Bind CurrentHomeModel.Day}"
                                FontFamily="Consolas"
                                FontSize="80"/>
                     <Border Grid.Row="2"
@@ -80,7 +77,7 @@
                                    FontFamily="Consolas"
                                    Foreground="White" 
                                    TextWrapping="Wrap" 
-                                   Text="{Binding Title}"/>
+                                   Text="{x:Bind CurrentHomeModel.Hp_Title}"/>
                         <TextBlock Margin="8"
                                    FontFamily="Consolas"
                                    TextWrapping="Wrap" 
@@ -91,14 +88,14 @@
                                    FontFamily="Consolas" 
                                    TextWrapping="Wrap" 
                                    Foreground="White" 
-                                   Text="{Binding YearAndMonth}"/>
+                                   Text="{x:Bind CurrentHomeModel.Month}"/>
                     </StackPanel>
                     <TextBlock x:Name="DayContent" 
                                Margin="8" Grid.Row="3" 
                                TextWrapping="Wrap" 
                                Foreground="White" 
                                FontSize="18" 
-                               Text="{Binding MainContent}" 
+                               Text="{x:Bind CurrentHomeModel.Hp_Content}" 
                                RelativePanel.Above="MonthAndYear"/>
                 </Grid>
             </Grid>
@@ -149,4 +146,116 @@
             </Grid>
         </Grid>
     </Grid>
+    <!--<Grid DataContext="{Binding Path=TodayHomePageModel}"
+          Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+
+        <Grid Margin="0 -50" Height="Auto">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+            <Border x:Name="border"
+                    Grid.Row="0" 
+                    Height="50"
+                    VerticalAlignment="Top"/>
+            <Grid Grid.Row="1" Background="Red">
+                <Image Source="{Binding Hp_Img_Url}"
+                       Stretch="UniformToFill"/>
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="100"/>
+                    </Grid.RowDefinitions>
+                    <TextBlock x:Name="OneName"
+                               Margin="6 6 6 0"  
+                               Grid.Row="1" 
+                               TextWrapping="Wrap" 
+                               Foreground="White"
+                               Text="{Binding Path=Day}"
+                               FontFamily="Consolas"
+                               FontSize="80"/>
+                    <Border Grid.Row="2"
+                            Height="{Binding ElementName=border, Path=Height}" 
+                            VerticalAlignment="Bottom"/>
+                    <StackPanel Margin="5" 
+                                Grid.Row="2"
+                                Orientation="Horizontal">
+                        <TextBlock x:Name="Vol" Margin="8"
+                                   FontFamily="Consolas"
+                                   Foreground="White" 
+                                   TextWrapping="Wrap" 
+                                   Text="{Binding Hp_Title}"/>
+                        <TextBlock Margin="8"
+                                   FontFamily="Consolas"
+                                   TextWrapping="Wrap" 
+                                   Foreground="White" 
+                                   Text="|" />
+                        <TextBlock x:Name="MonthAndYear" 
+                                   Margin="8"
+                                   FontFamily="Consolas" 
+                                   TextWrapping="Wrap" 
+                                   Foreground="White" 
+                                   Text="{Binding Month}"/>
+                    </StackPanel>
+                    <TextBlock x:Name="DayContent" 
+                               Margin="8" Grid.Row="3" 
+                               TextWrapping="Wrap" 
+                               Foreground="White" 
+                               FontSize="18" 
+                               Text="{Binding Hp_Content}" 
+                               RelativePanel.Above="MonthAndYear"/>
+                </Grid>
+            </Grid>
+            <Border Grid.Row="2"
+                    Height="{Binding ElementName=border, Path=Height}"
+                    VerticalAlignment="Bottom"/>
+        </Grid>
+        <Grid Background="Black" 
+              Opacity=".5">
+            <RichTextBlock VerticalAlignment="Top" 
+                           HorizontalAlignment="Right"
+                           Foreground="White"
+                           Margin="50 94"
+                           FontFamily="Consolas" 
+                           TextAlignment="Center">
+                <Paragraph FontSize="24">0</Paragraph>
+                <Paragraph FontSize="24">N</Paragraph>
+                <Paragraph FontSize="24">E</Paragraph>
+                <Paragraph></Paragraph>
+                <Paragraph FontSize="16">一</Paragraph>
+                <Paragraph FontSize="16">个</Paragraph>
+            </RichTextBlock>
+            <Grid VerticalAlignment="Bottom"  
+                  Height="100">
+                <ctm:BlankButton Height="50"
+                                Width="240"
+                                ManipulationMode="TranslateY"
+                                ManipulationDelta="Grid_ManipulationDelta"
+                                ManipulationCompleted="Grid_ManipulationCompleted">
+                    <ctm:BlankButton.Transitions>
+                        <TransitionCollection>
+                            <NavigationThemeTransition/>
+                        </TransitionCollection>
+                    </ctm:BlankButton.Transitions>
+                    <ctm:BlankButton.Template>
+                        <ControlTemplate>
+                            <Border>
+                                <TextBlock HorizontalAlignment="Center"
+                                           VerticalAlignment="Center" 
+                                           Text="向上滑动进入一个"
+                                           Foreground="#FF01AEF0"
+                                           FontFamily="Consolas"  
+                                           FontSize="19"/>
+                            </Border>
+                        </ControlTemplate>
+                    </ctm:BlankButton.Template>
+                </ctm:BlankButton>
+            </Grid>
+        </Grid>
+    </Grid>-->
 </Page>

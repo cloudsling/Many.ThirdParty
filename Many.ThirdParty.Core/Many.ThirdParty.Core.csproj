@@ -107,7 +107,7 @@
     <None Include="project.json" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Data\PreloadResources.cs" />
+    <Compile Include="Data\LoadResources.cs" />
     <Compile Include="Models\HomeModels\HomeModel.cs" />
     <Compile Include="Models\MovieModels\MovieListModel.cs" />
     <Compile Include="Models\ReadingModels\ReadingContentModel.cs" />
@@ -121,7 +121,6 @@
     <Compile Include="ViewModels\HomePageViewModel.cs" />
     <Compile Include="ViewModels\MainFrameContainerViewModel.cs" />
     <Compile Include="ViewModels\MoviePageViewModel.cs" />
-    <Compile Include="ViewModels\PreLoadPageViewModel.cs" />
     <Compile Include="ViewModels\ReadingPageSemanticZoomViewModel.cs" />
     <Compile Include="ViewModels\ReadingPageViewModel.cs" />
     <EmbeddedResource Include="Properties\Many.ThirdParty.Core.rd.xml" />

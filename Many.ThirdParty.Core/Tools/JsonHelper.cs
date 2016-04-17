@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,7 +9,9 @@ using Windows.Data.Json;
 namespace Many.ThirdParty.Core.Tools
 {
     class JsonHelper
-    {
+    { 
+        private static readonly string DATANAME = "data";
+
         internal static JsonObject GetObjectFormString(string content)
         {
             JsonObject jsonObject;
@@ -22,11 +25,46 @@ namespace Many.ThirdParty.Core.Tools
 
         internal static JsonArray GetArrayFromObject(JsonObject json, string name)
         {
-            return json.GetNamedArray(name) ?? null;
+            try
+            {
+                return json.GetNamedArray(name);
+            }
+            catch (Exception)
+            {
+                return null;
+            }
         }
         internal static JsonObject GetObjectFromObject(JsonObject json, string name)
         {
-            return json.GetNamedObject(name) ?? null;
+            try
+            {
+                return json.GetNamedObject(name);
+            }
+            catch (Exception)
+            {
+                return null;
+            }
+        }
+
+
+        internal static JsonObject GetObjectFromString(string content)
+        {
+            return GetObjectFormString(content);
+        }
+
+        internal static JsonObject GetObjectFromObject(JsonObject json)
+        {
+            return GetObjectFromObject(json, DATANAME);
+        }
+
+        internal static JsonArray GetArrayFromObject(JsonObject json)
+        {
+            return GetArrayFromObject(json, DATANAME);
+        }
+
+        internal static T GetTFormObject<T>(string content) where T : class, new()
+        {
+            return JsonConvert.DeserializeObject<T>(content);
         }
     }
 }
