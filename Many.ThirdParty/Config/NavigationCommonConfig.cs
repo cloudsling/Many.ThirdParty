@@ -1,4 +1,5 @@
 ﻿using Many.ThirdParty.SubPages;
+using Many.ThirdParty.SubPages.ReadingDetailPage;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -15,7 +16,18 @@ namespace Many.ThirdParty.Config
             new Scenario { PageTitle="阅读", PageType=typeof(ReadingPage), Index = 1},
             new Scenario { PageTitle="音乐", PageType=typeof(MusicPage), Index = 2},
             new Scenario { PageTitle="电影", PageType=typeof(MoviePage), Index = 3},
-            new Scenario { PageType=typeof(MovieDetail), Index = 4},
+            new Scenario { PageType=typeof(MovieDetailPage), Index = 4},
+
+            new Scenario {PageTitle="短篇",PageType=typeof(EssayDetailPage), Index= 5 },
+            new Scenario {PageTitle="连载",PageType=typeof(SerialDetailPage), Index= 6 },
+            new Scenario {PageTitle="问答",PageType=typeof(QuestionDetailPage), Index= 7 },
+        };
+
+        internal static readonly List<Scenario> ReadingDetailPageCollection = new List<Scenario>
+        {
+            new Scenario {PageTitle="短篇",PageType=typeof(EssayDetailPage), Index= 0 },
+            new Scenario {PageTitle="连载",PageType=typeof(SerialDetailPage), Index= 1 },
+            new Scenario {PageTitle="问答",PageType=typeof(QuestionDetailPage), Index= 2 },
         };
 
         internal static readonly Dictionary<string, Scenario> GetScenarioByName = new Dictionary<string, Scenario>
@@ -24,7 +36,10 @@ namespace Many.ThirdParty.Config
             {typeof(ReadingPage).Name , MainScenarios[1] },
             {typeof(MusicPage).Name , MainScenarios[2] },
             {typeof(MoviePage).Name , MainScenarios[3] },
-            {typeof(MovieDetail).Name , MainScenarios[4] }
+            {typeof(MovieDetailPage).Name , MainScenarios[4] },
+            {typeof(EssayDetailPage).Name , MainScenarios[5] },
+            {typeof(SerialDetailPage).Name , MainScenarios[6] },
+            {typeof(QuestionDetailPage).Name , MainScenarios[7] }
         };
     }
 

@@ -16,8 +16,11 @@
     <MinimumVisualStudioVersion>14</MinimumVisualStudioVersion>
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{A5A43C5B-DE2A-4C0C-9213-0A381AF9435A};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
-    <PackageCertificateKeyFile>Many.ThirdParty_TemporaryKey.pfx</PackageCertificateKeyFile>
-    <PackageCertificateThumbprint>1FEC0F04DA39200DC6A6408ED84FC5DB03B75B4D</PackageCertificateThumbprint>
+    <PackageCertificateKeyFile>Many.ThirdParty_StoreKey.pfx</PackageCertificateKeyFile>
+    <PackageCertificateThumbprint>7D249B79C3C2CF6785A9BDDD1AD478467F040567</PackageCertificateThumbprint>
+    <AppxAutoIncrementPackageRevision>True</AppxAutoIncrementPackageRevision>
+    <AppxBundle>Always</AppxBundle>
+    <AppxBundlePlatforms>x86|x64|arm</AppxBundlePlatforms>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x86'">
     <DebugSymbols>true</DebugSymbols>
@@ -91,6 +94,7 @@
   </PropertyGroup>
   <ItemGroup>
     <!-- A reference to the entire .Net Framework and Windows SDK are automatically included -->
+    <None Include="Many.ThirdParty_StoreKey.pfx" />
     <None Include="project.json" />
   </ItemGroup>
   <ItemGroup>
@@ -129,14 +133,23 @@
     <Compile Include="SubPages\HomePage.xaml.cs">
       <DependentUpon>HomePage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="SubPages\MovieDetail.xaml.cs">
-      <DependentUpon>MovieDetail.xaml</DependentUpon>
+    <Compile Include="SubPages\MovieDetaiPagel.xaml.cs">
+      <DependentUpon>MovieDetaiPagel.xaml</DependentUpon>
     </Compile>
     <Compile Include="SubPages\MoviePage.xaml.cs">
       <DependentUpon>MoviePage.xaml</DependentUpon>
     </Compile>
     <Compile Include="SubPages\MusicPage.xaml.cs">
       <DependentUpon>MusicPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="SubPages\ReadingDetailPage\EssayDetailPage.xaml.cs">
+      <DependentUpon>EssayDetailPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="SubPages\ReadingDetailPage\QuestionDetailPage.xaml.cs">
+      <DependentUpon>QuestionDetailPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="SubPages\ReadingDetailPage\SerialDetailPage.xaml.cs">
+      <DependentUpon>SerialDetailPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="SubPages\ReadingPage.xaml.cs">
       <DependentUpon>ReadingPage.xaml</DependentUpon>
@@ -156,6 +169,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Assets\SplashScreen.scale-100.png" />
+    <None Include="Package.StoreAssociation.xml" />
     <Content Include="ReadingTree.png" />
     <Content Include="Resources\BgImages\diary.png" />
     <Content Include="Resources\BgImages\essay_image.png" />
@@ -238,7 +252,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="SubPages\MovieDetail.xaml">
+    <Page Include="SubPages\MovieDetaiPagel.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -247,6 +261,18 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="SubPages\MusicPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="SubPages\ReadingDetailPage\EssayDetailPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="SubPages\ReadingDetailPage\QuestionDetailPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="SubPages\ReadingDetailPage\SerialDetailPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -272,9 +298,7 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="SubPages\ReadingPage\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <SDKReference Include="Microsoft.UniversalCRT.Debug, Version=10.0.10586.0">
       <Name>Microsoft Universal CRT Debug Runtime</Name>

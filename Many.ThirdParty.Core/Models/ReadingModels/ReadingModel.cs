@@ -6,6 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Windows.ApplicationModel;
+using Windows.UI.Popups;
 
 namespace Many.ThirdParty.Core.Models.ReadingModels
 {
@@ -14,7 +15,11 @@ namespace Many.ThirdParty.Core.Models.ReadingModels
         public ReadingModel()
         {
             ContentModelCollection = new ObservableCollection<ReadingModelBase>();
+
+            //NavigateToDetailCommand = new CommandBase(GetTest);
         }
+
+       
 
         string _maketTime;
         public string MaketTime
@@ -41,7 +46,6 @@ namespace Many.ThirdParty.Core.Models.ReadingModels
                 SetProperty(ref _contentModelCollection, value);
             }
         }
-
-       // public ObservableCollection<ReadingModelBase> ContentModelCollection { get; set; }
+ // public ObservableCollection<ReadingModelBase> ContentModelCollection { get; set; }
     }
 }

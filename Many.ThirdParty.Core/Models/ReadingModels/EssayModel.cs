@@ -6,6 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Windows.Data.Json;
+using Many.ThirdParty.Core.Tools;
 
 namespace Many.ThirdParty.Core.Models.ReadingModels
 {
@@ -15,6 +16,7 @@ namespace Many.ThirdParty.Core.Models.ReadingModels
         {
             Type = type;
             CreateContent(json);
+            NavigateToDetailCommand = new CommandBase(Test);
         }
 
         public EssayModel()
@@ -22,7 +24,14 @@ namespace Many.ThirdParty.Core.Models.ReadingModels
 
         }
 
+        private void Test(object obj)
+        {
+
+        }
+
         public override IReadingContent Content { get; set; }
+
+        public override CommandBase NavigateToDetailCommand { get; set; }
 
         public override void CreateContent(JsonObject json)
         {

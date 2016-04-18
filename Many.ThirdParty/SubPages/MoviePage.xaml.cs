@@ -45,7 +45,7 @@ namespace Many.ThirdParty.SubPages
             if ((e.ClickedItem as MovieListModel) != null)
             {
                 //TODO:
-                Frame.Navigate(typeof(MovieDetail), $"http://m.wufazhuce.com/movie/{(e.ClickedItem as MovieListModel).Id}");
+                Frame.Navigate(typeof(MovieDetailPage), $"http://m.wufazhuce.com/movie/{(e.ClickedItem as MovieListModel).Id}");
             }
         }
 

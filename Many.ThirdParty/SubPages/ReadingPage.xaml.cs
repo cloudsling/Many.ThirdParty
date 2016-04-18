@@ -6,9 +6,9 @@ using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Shapes;
 using Windows.UI;
 using Windows.UI.Xaml.Navigation;
-using Many.ThirdParty.Core.Data;
+using Windows.UI.Popups;
 using Many.ThirdParty.Core.Models.ReadingModels;
-using System.Collections.ObjectModel;
+using Many.ThirdParty.Config;
 
 namespace Many.ThirdParty.SubPages
 {
@@ -27,6 +27,18 @@ namespace Many.ThirdParty.SubPages
 
         private int GetIndexFromFlipView(object sender) => (sender as FlipView).SelectedIndex;
 
+        private void MainListView_ItemClick(object sender, ItemClickEventArgs e)
+        {
+            ReadingModelBase readingModel = e.ClickedItem as ReadingModelBase;
+
+            this.Frame.Navigate(NavigationCommonConfig.MainScenarios[readingModel.Type + 4].PageType);
+            
+        }
+
+        private void BlankButton_Click(object sender, Windows.UI.Xaml.RoutedEventArgs e)
+        {
+
+        }
     }
 
     /// <summary>
@@ -56,6 +68,7 @@ namespace Many.ThirdParty.SubPages
             InitializeComponent();
             CurrentReadingPage = this;
 
+            this.NavigationCacheMode = NavigationCacheMode.Required;
         }
 
         protected override async void OnNavigatedTo(NavigationEventArgs e)
@@ -75,6 +88,11 @@ namespace Many.ThirdParty.SubPages
             {
                 (collection[index] as Ellipse).Fill = EllipseBackgroundColorCollection[index == currentIndex ? 0 : 1];
             }
+        }
+
+        public static void NavigateToDetail(Type pageType)
+        {
+            CurrentReadingPage.Frame.Navigate(pageType);
         }
     }
 }

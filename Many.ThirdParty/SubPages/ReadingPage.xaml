@@ -74,10 +74,12 @@
                 <SemanticZoom>
                     <SemanticZoom.ZoomedInView>
                         <ListView x:Name="MainListView"
-                          SelectionMode="None"
-                          VerticalAlignment="Top"
-                          VerticalContentAlignment="Top"
-                          ItemsSource="{Binding Source={StaticResource ReadingPageListViewCollection}}">
+                                  SelectionMode="None"
+                                  ItemClick="MainListView_ItemClick"
+                                  IsItemClickEnabled="True"
+                                  VerticalAlignment="Top"
+                                  VerticalContentAlignment="Top"
+                                  ItemsSource="{Binding Source={StaticResource ReadingPageListViewCollection}}">
                             <ListView.GroupStyle>
                                 <GroupStyle>
                                     <GroupStyle.HeaderTemplate>
@@ -95,29 +97,24 @@
                             </ListView.GroupStyle>
                             <ListView.ItemTemplate>
                                 <DataTemplate>
-                                    <ctm:BlankButton>
+                                    <ctm:BlankButton Click="BlankButton_Click" 
+                                                     Command="{Binding Path=NavigateToDetailCommand}"
+                                                     CommandParameter="{Binding}">
                                         <StackPanel>
-                                            <StackPanel.Resources>
-                                                <Style x:Key="Demo" TargetType="TextBlock">
-                                                    <Setter Property="FontFamily" Value="Consolas"/>
-                                                    <Setter Property="LineHeight" Value="23"/>
-                                                    <Setter Property="Margin" Value="4" />
-                                                </Style>
-                                            </StackPanel.Resources>
                                             <Image Height="28"
-                                               Stretch="Uniform"
-                                               Margin="2 8"
-                                               Source="{Binding Type,Converter={StaticResource BtnImageConverter}}"
-                                               HorizontalAlignment="Left"/>
-                                            <TextBlock Style="{StaticResource Demo}"
-                                                   FontWeight="Bold"
-                                                   Text="{Binding Content.Title}"/>
-                                            <TextBlock Style="{StaticResource Demo}"
-                                           Text="{Binding Content.AuthorContent}"
-                                           FontFamily="Consolas"/>
-                                            <TextBlock Style="{StaticResource Demo}"
-                                           Text="{Binding Content.ContentSummary}"
-                                           TextWrapping="Wrap"/>
+                                                   Stretch="Uniform"
+                                                   Margin="2 8"
+                                                   Source="{Binding Type,Converter={StaticResource BtnImageConverter}}"
+                                                   HorizontalAlignment="Left"/>
+                                            <TextBlock Style="{StaticResource ReadingText}"
+                                                       FontWeight="Bold"
+                                                       Text="{Binding Content.Title}"/>
+                                            <TextBlock Style="{StaticResource ReadingText}"
+                                                       Text="{Binding Content.AuthorContent}"
+                                                       FontFamily="Consolas"/>
+                                            <TextBlock Style="{StaticResource ReadingText}"
+                                                       Text="{Binding Content.ContentSummary}"
+                                                       TextWrapping="Wrap"/>
                                         </StackPanel>
                                     </ctm:BlankButton>
                                 </DataTemplate>

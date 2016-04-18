@@ -109,6 +109,7 @@
   <ItemGroup>
     <Compile Include="Converter\ReadingTypeBtnImageConverter.cs" />
     <Compile Include="Data\LoadResources.cs" />
+    <Compile Include="Factory\NavigateFactory.cs" />
     <Compile Include="Factory\ReadingModelFactory.cs" />
     <Compile Include="Models\CommonModels\AuthorModel.cs" />
     <Compile Include="Models\HomeModels\HomeModel.cs" />
