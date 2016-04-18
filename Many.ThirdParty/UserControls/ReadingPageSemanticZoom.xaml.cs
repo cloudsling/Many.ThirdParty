@@ -1,4 +1,5 @@
-﻿using Many.ThirdParty.Core.ViewModels;
+﻿using Many.ThirdParty.Core.Models.ReadingModels;
+using Many.ThirdParty.Core.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -28,5 +29,10 @@ namespace Many.ThirdParty.UserControls
         }
 
         public ReadingPageSemanticZoomViewModel ReadingPageViewModel { get; set; }
+
+        public void AddToCollection(ReadingModel model)
+        {
+            ReadingPageViewModel.ReadingModelCollection.Add(model);
+        }
     }
 }

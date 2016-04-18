@@ -13,7 +13,7 @@ namespace Many.ThirdParty.Core.Models.ReadingModels
     {
         public ReadingModel()
         {
-            ContentModelCollection = new ObservableCollection<IReadingModel>();
+            ContentModelCollection = new ObservableCollection<ReadingModelBase>();
         }
 
         string _maketTime;
@@ -26,6 +26,22 @@ namespace Many.ThirdParty.Core.Models.ReadingModels
             }
         }
 
-        public ObservableCollection<IReadingModel> ContentModelCollection { get; set; }
+        public void AddToCollection(ReadingModelBase model)
+        {
+            ContentModelCollection.Add(model);
+        }
+
+
+        ObservableCollection<ReadingModelBase> _contentModelCollection;
+        public ObservableCollection<ReadingModelBase> ContentModelCollection
+        {
+            get { return _contentModelCollection; }
+            set
+            {
+                SetProperty(ref _contentModelCollection, value);
+            }
+        }
+
+       // public ObservableCollection<ReadingModelBase> ContentModelCollection { get; set; }
     }
 }

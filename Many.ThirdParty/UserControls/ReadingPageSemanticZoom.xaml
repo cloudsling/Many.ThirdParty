@@ -11,7 +11,7 @@
     mc:Ignorable="d"
      DataContext="{Binding ReadingPageViewModel,
                           RelativeSource={RelativeSource Mode=Self}}"
-    d:DataContext="{d:DesignInstance Type=dvm:ReadingPageViewModel,
+    d:DataContext="{d:DesignInstance Type=dvm:ReadingPageSemanticZoomViewModel,
                                      IsDesignTimeCreatable=True}"
     d:DesignHeight="300"
     d:DesignWidth="400">
@@ -24,7 +24,7 @@
             <CollectionViewSource x:Name="ReadingPageListViewCollection"
                                   IsSourceGrouped="True"
                                   ItemsPath="ContentModelCollection"
-                                  Source="{Binding ReadingModel}">
+                                  Source="{Binding ReadingModelCollection}">
             </CollectionViewSource>
             <Style TargetType="ListViewItem">
                 <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
@@ -37,7 +37,6 @@
         <SemanticZoom>
             <SemanticZoom.ZoomedInView>
                 <ListView x:Name="MainListView"
-                          Height="600"
                           SelectionMode="None"
                           VerticalAlignment="Top"
                           VerticalContentAlignment="Top"
@@ -77,7 +76,7 @@
                                                    FontWeight="Bold"
                                                    Text="{Binding Content.Title}"/>
                                     <TextBlock Style="{StaticResource Demo}"
-                                           Text="{Binding Content.Author.User_Name}"
+                                           Text="{Binding Content.AuthorContent}"
                                            FontFamily="Consolas"/>
                                     <TextBlock Style="{StaticResource Demo}"
                                            Text="{Binding Content.ContentSummary}"
@@ -93,7 +92,7 @@
                     <ListView.ItemTemplate>
                         <DataTemplate>
                             <Border Background="#F8F8F8">
-                                <TextBlock Text="{Binding Group.ContentType}"
+                                <TextBlock Text="{Binding Group.MaketTime}"
                                                     Margin="8"
                                                     FontSize="16"/>
                             </Border>

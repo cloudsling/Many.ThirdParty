@@ -16,7 +16,7 @@ namespace Many.ThirdParty.Core.Service
 
         private static readonly string readingCarousel = "http://v3.wufazhuce.com:8000/api/reading/carousel/?";
 
-        private static readonly string readingContent = "http://v3.wufazhuce.com:8000/api/reading/index/0?";
+        private static readonly string readingContent = "http://v3.wufazhuce.com:8000/api/reading/index/{0}?";
 
         private static readonly string musicId = "http://v3.wufazhuce.com:8000/api/music/idlist/{0}?";
 

@@ -109,12 +109,13 @@
   <ItemGroup>
     <Compile Include="Converter\ReadingTypeBtnImageConverter.cs" />
     <Compile Include="Data\LoadResources.cs" />
+    <Compile Include="Factory\ReadingModelFactory.cs" />
     <Compile Include="Models\CommonModels\AuthorModel.cs" />
     <Compile Include="Models\HomeModels\HomeModel.cs" />
     <Compile Include="Models\MovieModels\MovieListModel.cs" />
     <Compile Include="Models\ReadingModels\EssayModel.cs" />
     <Compile Include="Models\ReadingModels\IReadingContent.cs" />
-    <Compile Include="Models\ReadingModels\IReadingModel.cs" />
+    <Compile Include="Models\ReadingModels\ReadingModelBase.cs" />
     <Compile Include="Models\ReadingModels\QuestionModel.cs" />
     <Compile Include="Models\ReadingModels\CarouselModel.cs" />
     <Compile Include="Models\ReadingModels\ReadingModel.cs" />

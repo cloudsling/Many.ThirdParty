@@ -8,29 +8,10 @@ using System.Threading.Tasks;
 using Windows.Data.Json;
 using Many.ThirdParty.Core.Models.ReadingModels;
 using System.Collections.ObjectModel;
+using Many.ThirdParty.Core.Factory;
 
 namespace Many.ThirdParty.Core.Data
 {
-    //public class PreloadResourcesTest
-    //{
-    //    public static async void Test()
-    //    {
-    //       // var model = await PreloadResources.LoadResourcesInFirstStartupAsync();
-
-    //        string response = await HttpHelper.GetStringAsync(new Uri(string.Format(ServicesUrl.MainContent, "1313")));
-
-    //        JsonObject json;
-
-    //        if (JsonObject.TryParse(response, out json))
-    //        {
-    //           JsonObject jsonObject = json.GetNamedObject("data");
-
-    //            HomeModel gen = JsonConvert.DeserializeObject<HomeModel>(jsonObject.Stringify());
-    //        }
-
-    //    }
-    //}
-
     public static class LoadResources
     {
         public static async Task<List<string>> GetHomeList(string listId)
@@ -69,10 +50,12 @@ namespace Many.ThirdParty.Core.Data
         {
             return GetTFormObject<ObservableCollection<CarouselModel>>(await GetMainListGeneric(ServicesUrl.ReadingCarousel));
         }
+
         public static async Task<ObservableCollection<ReadingModel>> GetReadingModel(string listId)
         {
             JsonArray array = await GetMainArrayGeneric(string.Format(ServicesUrl.ReadingContent, listId));
 
+            ObservableCollection<ReadingModel> collection = new ObservableCollection<ReadingModel>();
             foreach (var item in array)
             {
                 JsonObject json = item.GetObject();
@@ -87,13 +70,18 @@ namespace Many.ThirdParty.Core.Data
                 {
                     JsonObject obj = innerItem.GetObject();
 
-                   double type = obj.GetNamedNumber("type");
-                    //
+                    int type = (int)obj.GetNamedNumber("type");
+
+                    ReadingModelBase itemModel = ReadingModelFactory.CreateReadingModel(type, obj.GetNamedObject("content"));
+
+                    itemModel.Time = obj.GetNamedString("time");
+                    
+                    model.AddToCollection(itemModel);
                 }
 
+                collection.Add(model);
             }
-
-            return null;
+            return collection;
         }
     }
 }

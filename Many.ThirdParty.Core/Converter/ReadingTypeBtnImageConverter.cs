@@ -17,7 +17,7 @@ namespace Many.ThirdParty.Core.Converter
 
         public object Convert(object value, Type targetType, object parameter, string language)
         {
-            return ReadingTypeButtonImage[(int)value];
+            return ReadingTypeButtonImage[(int)value - 1];
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, string language)

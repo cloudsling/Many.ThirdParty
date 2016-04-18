@@ -2,12 +2,10 @@
 {
     public abstract class IReadingContent
     {
-        public virtual string ImageTypeSource { get; set; }
+        public abstract string Title { get; set; }
 
-        public virtual string Title { get; set; }
+        public abstract string AuthorContent { get; set; }
 
-        public virtual string AuthorContent { get; set; }
-
-        public virtual string ContentSummary { get; set; }
+        public abstract string ContentSummary { get; set; }
     }
 }

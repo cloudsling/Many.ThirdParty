@@ -56,14 +56,13 @@ namespace Many.ThirdParty.SubPages
             InitializeComponent();
             CurrentReadingPage = this;
 
-            CustomReading.ReadingPageViewModel = new ReadingPageSemanticZoomViewModel();
         }
 
         protected override async void OnNavigatedTo(NavigationEventArgs e)
         {
             await ReadingPageViewModel.RefreshCollection();
 
-           var collection = await LoadResources.GetReadingModel("0");
+            await ReadingPageViewModel.RefreshListView();
         }
 
         /// <summary>

@@ -1,4 +1,5 @@
-﻿using Many.ThirdParty.Core.Models.ReadingModels;
+﻿using Many.ThirdParty.Core.Data;
+using Many.ThirdParty.Core.Models.ReadingModels;
 using Many.ThirdParty.Core.Tools;
 using System;
 using System.Collections.Generic;
@@ -13,46 +14,63 @@ namespace Many.ThirdParty.Core.ViewModels
     {
         public ReadingPageSemanticZoomViewModel()
         {
-            _readingModel = new ObservableCollection<ReadingModel>();
-            _readingModel.Add(new ReadingModel
-            {
-                MaketTime = "2016-04-13",
-                ContentModelCollection = new ObservableCollection<IReadingModel>
-                {
-                   new SerialModel
-                   {
-                       Type = 2,
-                       Content =new SerialContent
-                       {
-                           Title = "abcdefg",
-                           ContentSummary = "Adfadgfaergrethtdyjf",
-                           Author = new Models.CommonModels.AuthorModel
-                           {
-                               User_Name = "LingHao"
-                           }
-                       }
-                   }
-                }
-            });
+            _readingModelCollection = new ObservableCollection<ReadingModel>();
+            // OnNavigatedTo();
+            #region ZS
+            //_readingModelCollection.Add(new ReadingModel
+            //{
+            //    MaketTime = "2016-1-12",
+            //    ContentModelCollection = new ObservableCollection<ReadingModelBase>
+            //    {
+            //        new EssayModel()
+            //        {
+            //            Type=1,
+            //            Time="2016-1-1",
+            //            Content = new EssayContent
+            //            {
+            //                AuthorContent ="aaaaaaaaaaaaaaaaaaaaaaa",
+            //                ContentSummary = "bbbbbbbbbbb",
+            //                Guide_Word = "ccccccccccccccc",
+            //                Hp_Title = "dddddddddddddd",
+            //                Author = new List<Models.CommonModels.AuthorModel>
+            //                {
+            //                    new Models.CommonModels.AuthorModel
+            //                    {
+            //                        User_Name= "linghao"
+            //                    }
+            //                }
+            //            }
+            //        }
+            //    }
+            //}); 
+            #endregion
         }
+
+        //protected void OnNavigatedTo()
+        //{
+        //    AddToCollection(async () => await LoadResources.GetReadingModel("0"));
+        //    //var collection = await LoadResources.GetReadingModel("0");
+        //}
+
 
         public void AddToCollection(ReadingModel model)
         {
-            _readingModel.Add(model);
+            _readingModelCollection.Add(model);
         }
 
-        public async Task RefreshCollection()
+        public async void AddToCollection(Func<Task<ObservableCollection<ReadingModel>>> func)
         {
-
+            ReadingModelCollection = await func();
         }
 
-        ObservableCollection<ReadingModel> _readingModel;
-        public ObservableCollection<ReadingModel> ReadingModel
+        ObservableCollection<ReadingModel> _readingModelCollection;
+
+        public ObservableCollection<ReadingModel> ReadingModelCollection
         {
-            get { return _readingModel; }
+            get { return _readingModelCollection; }
             set
             {
-                SetProperty(ref _readingModel, value);
+                SetProperty(ref _readingModelCollection, value);
             }
         }
     }

@@ -11,11 +11,12 @@ using Windows.ApplicationModel;
 
 namespace Many.ThirdParty.Core.ViewModels
 {
-    public partial class ReadingPageViewModel
+    public partial class ReadingPageViewModel : BindableBase
     {
         public ReadingPageViewModel()
         {
             CarouselModelCollection = new ObservableCollection<CarouselModel>();
+            ReadingModelCollection = new ObservableCollection<ReadingModel>();
         }
 
         public void AddToCollection(CarouselModel model)
@@ -30,21 +31,29 @@ namespace Many.ThirdParty.Core.ViewModels
                 AddToCollection(item);
             }
         }
+
+        public async Task RefreshListView()
+        {
+            foreach (var item in await LoadResources.GetReadingModel("0"))
+            {
+                ReadingModelCollection.Add(item);
+            } 
+        }
     }
 
-    public partial class ReadingPageViewModel
+    public partial class ReadingPageViewModel : BindableBase
     {
-        //ObservableCollection<CarouselModel> _carouselModelCollection;
-        //public ObservableCollection<CarouselModel> CarouselModelCollection
-        //{
-        //    get { return _carouselModelCollection; }
-        //    set
-        //    {
-        //        SetProperty(ref _carouselModelCollection, value);
-        //    }
-        //}
-
         public ObservableCollection<CarouselModel> CarouselModelCollection { get; set; }
 
+        ObservableCollection<ReadingModel> _readingModelCollection;
+
+        public ObservableCollection<ReadingModel> ReadingModelCollection
+        {
+            get { return _readingModelCollection; }
+            set
+            {
+                SetProperty(ref _readingModelCollection, value);
+            }
+        }
     }
 }
