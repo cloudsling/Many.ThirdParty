@@ -1,21 +1,7 @@
 ﻿using Many.ThirdParty.Core.Data;
-using Many.ThirdParty.Core.Models.HomeModels;
 using Many.ThirdParty.SubPages;
 using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Runtime.InteropServices.WindowsRuntime;
-using System.Threading.Tasks;
-using Windows.Foundation;
-using Windows.Foundation.Collections;
-using Windows.UI.Core;
-using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
-using Windows.UI.Xaml.Controls.Primitives;
-using Windows.UI.Xaml.Data;
-using Windows.UI.Xaml.Input;
-using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
 
 namespace Many.ThirdParty
@@ -33,7 +19,7 @@ namespace Many.ThirdParty
 #if DEBUG
             //await Task.Delay(1000);
 #endif
-            HomePage.TodaysListId = await LoadResources.GetMainList(HomePage.CumulateListIndex.ToString());
+            HomePage.TodaysListId = await LoadResources.GetHomeList(HomePage.CumulateListIndex.ToString());
 
             //TODO: load resource from internet
             Frame.Navigate(typeof(PreLoadPage), await LoadResources.LoadHomeModelResourcesAsync(HomePage.TodaysListId[0]));

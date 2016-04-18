@@ -8,8 +8,8 @@ using Windows.Data.Json;
 
 namespace Many.ThirdParty.Core.Tools
 {
-    class JsonHelper
-    { 
+    internal static class JsonHelper
+    {
         private static readonly string DATANAME = "data";
 
         internal static JsonObject GetObjectFormString(string content)

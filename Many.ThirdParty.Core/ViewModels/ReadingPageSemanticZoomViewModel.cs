@@ -13,13 +13,37 @@ namespace Many.ThirdParty.Core.ViewModels
     {
         public ReadingPageSemanticZoomViewModel()
         {
-            _readingModel = new ObservableCollection<ReadingModel> {
-                new ReadingModel(),
-                new ReadingModel(),
-                new ReadingModel(),
-                new ReadingModel(),
-                new ReadingModel(),
-            };
+            _readingModel = new ObservableCollection<ReadingModel>();
+            _readingModel.Add(new ReadingModel
+            {
+                MaketTime = "2016-04-13",
+                ContentModelCollection = new ObservableCollection<IReadingModel>
+                {
+                   new SerialModel
+                   {
+                       Type = 2,
+                       Content =new SerialContent
+                       {
+                           Title = "abcdefg",
+                           ContentSummary = "Adfadgfaergrethtdyjf",
+                           Author = new Models.CommonModels.AuthorModel
+                           {
+                               User_Name = "LingHao"
+                           }
+                       }
+                   }
+                }
+            });
+        }
+
+        public void AddToCollection(ReadingModel model)
+        {
+            _readingModel.Add(model);
+        }
+
+        public async Task RefreshCollection()
+        {
+
         }
 
         ObservableCollection<ReadingModel> _readingModel;

@@ -28,31 +28,5 @@ namespace Many.ThirdParty.UserControls
         }
 
         public ReadingPageSemanticZoomViewModel ReadingPageViewModel { get; set; }
-
-        //private static readonly List<SolidColorBrush> EllipseBackgroundColorCollection = new List<SolidColorBrush> {
-        //    new SolidColorBrush(Colors.SkyBlue),
-        //    new SolidColorBrush(Colors.White),
-        //};
-        //private void fv_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        //{
-        //    int index = (sender as FlipView).SelectedIndex;
-
-        //    if (index >= 0 && index <= 8)
-        //    {
-        //        // ChangeAllEllipseColor(ManyEllipse.Children, index);
-        //    }
-        //}
-
-        ///// <summary>
-        ///// 改变所有的圆点的颜色
-        ///// </summary>
-        ///// <param name="CurrentIndex"></param>
-        //private void ChangeAllEllipseColor(UIElementCollection collection, int currentIndex)
-        //{
-        //    for (int index = 0; index < collection.Count; index++)
-        //    {
-        //        (collection[index] as Ellipse).Fill = EllipseBackgroundColorCollection[index == currentIndex ? 0 : 1];
-        //    }
-        //}
     }
 }

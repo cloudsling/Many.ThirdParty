@@ -13,57 +13,19 @@ namespace Many.ThirdParty.Core.Models.ReadingModels
     {
         public ReadingModel()
         {
-            ContentModelCollection = new ObservableCollection<ReadingContentModel>();
-
-#if DEBUG
-            if (DesignMode.DesignModeEnabled)
-            {
-                ContentModelCollection.Add(new ReadingContentModel
-                {
-                    Author = "王若虚",
-                    ContentSummary = "重要的眼角和项链一样闪着微光，空中飘着小于版的彩带，吃剩的火锅冒着仅存的那白色热气，整个房间里都弥漫着火锅香料和白酒的想起",
-                    Title = "《火锅杀》第八话：重要的生日"
-                });
-                ContentModelCollection.Add(new ReadingContentModel
-                {
-                    Author = "lingling",
-                    ContentSummary = "dsfaadsfffffffffffffffffffffffffffffff",
-                    Title = "jaoahaohaohao"
-                });
-            }
-            ContentType = "2016-04-12";
-            ContentModelCollection.Add(new ReadingContentModel
-            {
-                Author = "王若虚",
-                ContentSummary = "重要的眼角和项链一样闪着微光，空中飘着小于版的彩带，吃剩的火锅冒着仅存的那白色热气，整个房间里都弥漫着火锅香料和白酒的想起",
-                ImageTypeSource = "ms-appx:///Resources/BgImages/essay_image.png",
-                Title = "《火锅杀》第八话：重要的生日"
-            });
-            ContentModelCollection.Add(new ReadingContentModel
-            {
-                Author = "王若虚",
-                ContentSummary = "重要的眼角和项链一样闪着微光，空中飘着小于版的彩带，吃剩的火锅冒着仅存的那白色热气，整个房间里都弥漫着火锅香料和白酒的想起",
-                Title = "《火锅杀》第八话：重要的生日"
-            });
-            ContentModelCollection.Add(new ReadingContentModel
-            {
-                Author = "lingling",
-                ContentSummary = "dsfaadsfffffffffffffffffffffffffffffff",
-                Title = "jaoahaohaohao"
-            });
-#endif
+            ContentModelCollection = new ObservableCollection<IReadingModel>();
         }
 
-        string _contentTpe;
-        public string ContentType
+        string _maketTime;
+        public string MaketTime
         {
-            get { return _contentTpe; }
+            get { return _maketTime; }
             set
             {
-                SetProperty(ref _contentTpe, value);
+                SetProperty(ref _maketTime, value);
             }
         }
 
-        public ObservableCollection<ReadingContentModel> ContentModelCollection { get; set; }
+        public ObservableCollection<IReadingModel> ContentModelCollection { get; set; }
     }
 }

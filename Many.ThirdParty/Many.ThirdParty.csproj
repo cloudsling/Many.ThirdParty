@@ -156,6 +156,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Assets\SplashScreen.scale-100.png" />
+    <Content Include="ReadingTree.png" />
     <Content Include="Resources\BgImages\diary.png" />
     <Content Include="Resources\BgImages\essay_image.png" />
     <Content Include="Resources\BgImages\laud.png" />
@@ -271,7 +272,9 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="SubPages\ReadingPage\" />
+  </ItemGroup>
   <ItemGroup>
     <SDKReference Include="Microsoft.UniversalCRT.Debug, Version=10.0.10586.0">
       <Name>Microsoft Universal CRT Debug Runtime</Name>

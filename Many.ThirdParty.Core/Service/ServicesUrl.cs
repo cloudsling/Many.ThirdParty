@@ -10,8 +10,6 @@ namespace Many.ThirdParty.Core.Service
     {
         private static readonly string unknowGeneral = "http://v3.wufazhuce.com:8000/api/adposlist/android?";
 
-        private static readonly string musicId = "http://v3.wufazhuce.com:8000/api/music/idlist/{0}?";
-
         private static readonly string mainId = "http://v3.wufazhuce.com:8000/api/hp/idlist/{0}?";
 
         private static readonly string mainContent = "http://v3.wufazhuce.com:8000/api/hp/detail/{0}?"; //ID
@@ -19,6 +17,8 @@ namespace Many.ThirdParty.Core.Service
         private static readonly string readingCarousel = "http://v3.wufazhuce.com:8000/api/reading/carousel/?";
 
         private static readonly string readingContent = "http://v3.wufazhuce.com:8000/api/reading/index/0?";
+
+        private static readonly string musicId = "http://v3.wufazhuce.com:8000/api/music/idlist/{0}?";
 
         private static readonly string unknowReading = "http://v3.wufazhuce.com:8000/api/reading/carousel/pv/68?";
 

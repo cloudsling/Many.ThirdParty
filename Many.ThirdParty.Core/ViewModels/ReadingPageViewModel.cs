@@ -1,4 +1,5 @@
-﻿using Many.ThirdParty.Core.Models.ReadingModels;
+﻿using Many.ThirdParty.Core.Data;
+using Many.ThirdParty.Core.Models.ReadingModels;
 using Many.ThirdParty.Core.Tools;
 using System;
 using System.Collections.Generic;
@@ -14,40 +15,36 @@ namespace Many.ThirdParty.Core.ViewModels
     {
         public ReadingPageViewModel()
         {
-            ReadingPageFlipViewImageSource = new ObservableCollection<string>();
-            //_readingModel = new ObservableCollection<ReadingModel> {
-            //    new ReadingModel(),
-            //    new ReadingModel(),
-            //    new ReadingModel(),
-            //    new ReadingModel(),
-            //    new ReadingModel(),
-            //};
-            ReadingPageFlipViewImageSource.Add("ms-appx:///Resources/Test/cover.jpg");
-            ReadingPageFlipViewImageSource.Add("ms-appx:///Resources/Test/cover.jpg");
-            ReadingPageFlipViewImageSource.Add("ms-appx:///Resources/Test/cover.jpg");
-            ReadingPageFlipViewImageSource.Add("ms-appx:///Resources/Test/cover.jpg");
-            ReadingPageFlipViewImageSource.Add("ms-appx:///Resources/Test/cover.jpg");
-            ReadingPageFlipViewImageSource.Add("ms-appx:///Resources/Test/cover.jpg");
-            ReadingPageFlipViewImageSource.Add("ms-appx:///Resources/Test/cover.jpg");
-            ReadingPageFlipViewImageSource.Add("ms-appx:///Resources/Test/cover.jpg");
-            ReadingPageFlipViewImageSource.Add("ms-appx:///Resources/Test/cover.jpg");
-#if DEBUG
-            if (DesignMode.DesignModeEnabled)
-            {
-                //TODO: do something in design mode
-                ReadingPageFlipViewImageSource.Add("ms-appx:///Resources/Test/cover.jpg");
-                ReadingPageFlipViewImageSource.Add("ms-appx:///Resources/Test/cover.jpg");
-                ReadingPageFlipViewImageSource.Add("ms-appx:///Resources/Test/cover.jpg");
-                ReadingPageFlipViewImageSource.Add("ms-appx:///Resources/Test/cover.jpg");
-            }
-#endif
+            CarouselModelCollection = new ObservableCollection<CarouselModel>();
+        }
 
+        public void AddToCollection(CarouselModel model)
+        {
+            CarouselModelCollection.Add(model);
+        }
+
+        public async Task RefreshCollection()
+        {
+            foreach (var item in await LoadResources.GetCarouselModel())
+            {
+                AddToCollection(item);
+            }
         }
     }
 
     public partial class ReadingPageViewModel
     {
-        public ObservableCollection<string> ReadingPageFlipViewImageSource { get; set; }
-        
+        //ObservableCollection<CarouselModel> _carouselModelCollection;
+        //public ObservableCollection<CarouselModel> CarouselModelCollection
+        //{
+        //    get { return _carouselModelCollection; }
+        //    set
+        //    {
+        //        SetProperty(ref _carouselModelCollection, value);
+        //    }
+        //}
+
+        public ObservableCollection<CarouselModel> CarouselModelCollection { get; set; }
+
     }
 }

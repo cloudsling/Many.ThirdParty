@@ -32,21 +32,20 @@
     <Grid>
         <Grid>
             <Grid.RowDefinitions>
-                <RowDefinition Height="1*"/>
+                <RowDefinition Height="2*"/>
                 <RowDefinition Height="5*"/>
             </Grid.RowDefinitions>
             <Grid>
                 <FlipView x:Name="fv"
-                    Height="170"
-                    ItemsSource="{Binding ReadingPageFlipViewImageSource}"
-                    SelectionChanged="fv_SelectionChanged">
+                          ItemsSource="{Binding CarouselModelCollection}"
+                          SelectionChanged="fv_SelectionChanged">
                     <FlipView.ItemTemplate>
                         <DataTemplate>
                             <Border>
                                 <ctm:BlankButton>
                                     <Image x:Name="bkimg" 
-                                        Stretch="Uniform" 
-                                        Source="{Binding}"/>
+                                            Stretch="UniformToFill" 
+                                            Source="{Binding Cover}"/>
                                 </ctm:BlankButton>
                             </Border>
                         </DataTemplate>

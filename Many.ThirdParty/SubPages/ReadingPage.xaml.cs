@@ -1,21 +1,14 @@
-﻿using System;
+﻿using Many.ThirdParty.Core.ViewModels;
+using System;
 using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Runtime.InteropServices.WindowsRuntime;
-using Windows.Foundation;
-using Windows.Foundation.Collections;
-using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
-using Windows.UI.Xaml.Controls.Primitives;
-using Windows.UI.Xaml.Data;
-using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
-using Windows.UI.Xaml.Navigation;
-using Many.ThirdParty.Core.ViewModels;
 using Windows.UI.Xaml.Shapes;
 using Windows.UI;
+using Windows.UI.Xaml.Navigation;
+using Many.ThirdParty.Core.Data;
 using Many.ThirdParty.Core.Models.ReadingModels;
+using System.Collections.ObjectModel;
 
 namespace Many.ThirdParty.SubPages
 {
@@ -26,31 +19,14 @@ namespace Many.ThirdParty.SubPages
     {
         private void fv_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            int index = (sender as FlipView).SelectedIndex;
-
-            if (index >= 0 && index <= 8)
+            if (GetIndexFromFlipView(sender) >= 0 && GetIndexFromFlipView(sender) <= 8)
             {
-                ChangeAllEllipseColor(ManyEllipse.Children, index);
+                ChangeAllEllipseColor(ManyEllipse.Children, GetIndexFromFlipView(sender));
             }
         }
 
-        //private void Button_Click(object sender, RoutedEventArgs e)
-        //{
-        //    ReadingPageViewModel context = CustomReading.DataContext as ReadingPageViewModel;
+        private int GetIndexFromFlipView(object sender) => (sender as FlipView).SelectedIndex;
 
-        //    context.ReadingModel.Add(new ReadingModel()
-        //    {
-        //        ContentModelCollection = new System.Collections.ObjectModel.ObservableCollection<ReadingContentModel>
-        //        {
-        //            new ReadingContentModel
-        //            {
-        //                Author = "LINGHAO",
-        //                ContentSummary = "重要的眼角和项链一样闪着微光，空中飘着小于版的彩带，吃剩的火锅冒着仅存的那白色热气，整个房间里都弥漫着火锅香料和白酒的想起",
-        //                Title = "《Inception》第八话：重要的生日"
-        //            }
-        //        }
-        //    });
-        //}
     }
 
     /// <summary>
@@ -79,6 +55,15 @@ namespace Many.ThirdParty.SubPages
 
             InitializeComponent();
             CurrentReadingPage = this;
+
+            CustomReading.ReadingPageViewModel = new ReadingPageSemanticZoomViewModel();
+        }
+
+        protected override async void OnNavigatedTo(NavigationEventArgs e)
+        {
+            await ReadingPageViewModel.RefreshCollection();
+
+           var collection = await LoadResources.GetReadingModel("0");
         }
 
         /// <summary>
@@ -93,8 +78,6 @@ namespace Many.ThirdParty.SubPages
             }
         }
     }
-
-
 }
 
 //1.中午下班，饥肠辘辘，此时你会选择去哪家快餐店饱腹一番？

@@ -5,6 +5,7 @@
     xmlns:local="using:Many.ThirdParty.UserControls"
     xmlns:dvm="using:Many.ThirdParty.Core.ViewModels"
     xmlns:ctm="using:Many.ThirdParty.CustomControls"
+    xmlns:cvt="using:Many.ThirdParty.Core.Converter"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d"
@@ -28,6 +29,7 @@
             <Style TargetType="ListViewItem">
                 <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
             </Style>
+            <cvt:ReadingTypeBtnImageConverter x:Name="BtnImageConverter"/>
         </ResourceDictionary>
     </UserControl.Resources>
 
@@ -46,9 +48,9 @@
                                 <DataTemplate>
                                     <StackPanel>
                                         <ctm:BlankButton HorizontalContentAlignment="Stretch">
-                                            <TextBlock Text="{Binding ContentType}"
+                                            <TextBlock Text="{Binding MaketTime}"
                                                            Margin="8"
-                                                           FontSize="15"/>
+                                                           FontSize="14"/>
                                         </ctm:BlankButton>
                                     </StackPanel>
                                 </DataTemplate>
@@ -69,16 +71,16 @@
                                     <Image Height="28"
                                                Stretch="Uniform"
                                                Margin="2 8"
-                                               Source="{Binding ImageTypeSource}"
+                                               Source="{Binding Type,Converter={StaticResource BtnImageConverter}}"
                                                HorizontalAlignment="Left"/>
                                     <TextBlock Style="{StaticResource Demo}"
                                                    FontWeight="Bold"
-                                                   Text="{Binding Title}"/>
+                                                   Text="{Binding Content.Title}"/>
                                     <TextBlock Style="{StaticResource Demo}"
-                                           Text="{Binding Author}"
+                                           Text="{Binding Content.Author.User_Name}"
                                            FontFamily="Consolas"/>
                                     <TextBlock Style="{StaticResource Demo}"
-                                           Text="{Binding ContentSummary}"
+                                           Text="{Binding Content.ContentSummary}"
                                            TextWrapping="Wrap"/>
                                 </StackPanel>
                             </ctm:BlankButton>
