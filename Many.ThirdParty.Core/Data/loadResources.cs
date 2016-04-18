@@ -88,6 +88,7 @@ namespace Many.ThirdParty.Core.Data
                     JsonObject obj = innerItem.GetObject();
 
                    double type = obj.GetNamedNumber("type");
+                    //
                 }
 
             }
