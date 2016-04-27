@@ -1,4 +1,5 @@
-﻿using Many.ThirdParty.Config;
+﻿using Many.ThirdParty.AddlPages;
+using Many.ThirdParty.Config;
 using Many.ThirdParty.Core.ViewModels;
 using Many.ThirdParty.SubPages;
 using System;
@@ -50,6 +51,11 @@ namespace Many.ThirdParty
         {
             ResetWidth();
         }
+
+        private void SearchButton_Click(object sender, RoutedEventArgs e)
+        {
+            ThisFrameNavigate(typeof(SearchPage));
+        }
     }
 
     /// <summary>
@@ -93,7 +99,13 @@ namespace Many.ThirdParty
 
         private void ThisNavigate(int index)
         {
-            mainFrameContainer.Navigate(NavigationCommonConfig.MainScenarios[index].PageType);
+            ThisFrameNavigate(NavigationCommonConfig.MainScenarios[index].PageType);
+            //mainFrameContainer.Navigate();
+        }
+
+        private void ThisFrameNavigate(Type pageType)
+        {
+            mainFrameContainer.Navigate(pageType);
         }
 
         private void InitializeViewModel()

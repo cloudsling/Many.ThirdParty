@@ -17,7 +17,7 @@ namespace Many.ThirdParty
             this.Suspending += OnSuspending;
         }
 
-        protected override void OnLaunched(LaunchActivatedEventArgs args)
+        protected override void OnLaunched(LaunchActivatedEventArgs e)
         {
 #if DEBUG
             this.DebugSettings.EnableFrameRateCounter |= System.Diagnostics.Debugger.IsAttached;
@@ -31,7 +31,7 @@ namespace Many.ThirdParty
                 rootFrame.NavigationFailed += OnNavigationFailed;
                 rootFrame.Navigated += RootFrame_Navigated;
 
-                if (args.PreviousExecutionState == ApplicationExecutionState.Terminated)
+                if (e.PreviousExecutionState == ApplicationExecutionState.Terminated)
                 {
                     //TODO: 从之前挂起的应用程序加载状态
                 }
@@ -41,12 +41,12 @@ namespace Many.ThirdParty
 
             if (rootFrame.Content == null)
             {
-                rootFrame.Navigate(typeof(ExtendedSplash), args.Arguments);
+                rootFrame.Navigate(typeof(ExtendedSplash), e.Arguments);
             }
 
             Window.Current.Activate();
         }
-        
+
         private void OnSuspending(object sender, SuspendingEventArgs e)
         {
             var deferral = e.SuspendingOperation.GetDeferral();
@@ -56,9 +56,9 @@ namespace Many.ThirdParty
 
         void RootFrame_Navigated(object sender, NavigationEventArgs e)
         {
-            SystemNavigationManager.GetForCurrentView().AppViewBackButtonVisibility =
-                (sender as Frame).BackStack.Any() ?
-                 AppViewBackButtonVisibility.Visible : AppViewBackButtonVisibility.Collapsed;
+            SystemNavigationManager.GetForCurrentView().AppViewBackButtonVisibility = 
+                (Window.Current.Content as Frame).BackStack.Any() ? 
+                AppViewBackButtonVisibility.Visible : AppViewBackButtonVisibility.Collapsed;
         }
 
         void OnNavigationFailed(object sender, NavigationFailedEventArgs e)

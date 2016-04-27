@@ -6,8 +6,259 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d">
+    <Page.Resources>
+        <SolidColorBrush x:Key="FontColor" 
+                         Color="{Binding ThemeColor.FontColor.Color}"/>
+        <Storyboard x:Name="searchStartAnimation">
+            <DoubleAnimation Storyboard.TargetName="border"
+                             Storyboard.TargetProperty="Height"
+                             Duration="0:0:.6"
+                             BeginTime="0:0:0" To="0"
+                             EnableDependentAnimation="True"/>
+        </Storyboard>
+    </Page.Resources>
 
-    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
-
-    </Grid>
+    <!--<Grid>
+        <ProgressRing Height="50" Width="50"
+                      VerticalAlignment="Center"
+                      IsActive="{Binding IsActive}"/>
+        <StackPanel>
+            <Grid Padding="1.2"
+                  Margin="0 3" Height="40"
+                  VerticalAlignment="Top">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="1*"/>
+                    <ColumnDefinition Width="1*"/>
+                    <ColumnDefinition Width="1*"/>
+                    <ColumnDefinition Width="1*"/>
+                    <ColumnDefinition Width="1.5*"/>
+                </Grid.ColumnDefinitions>
+                <Button x:Name="def" Grid.Column="0"
+                    Template="{StaticResource BlankButton}"
+                    HorizontalAlignment="Center"
+                    FontFamily="Consolas"
+                    Foreground="#FF1212" Content="插图"
+                    Command="{Binding SearchCommand}"
+                    CommandParameter="1" Tag="0"
+                    Click="Button_Click"/>
+                <Button Grid.Column="1"
+                    Template="{StaticResource BlankButton}"
+                    HorizontalAlignment="Center"
+                    FontFamily="Consolas"
+                    Foreground="#36C3F1" Content="阅读"
+                    Command="{Binding SearchCommand}"
+                    CommandParameter="2" Tag="1"
+                    Click="Button_Click"/>
+                <Button Grid.Column="2"
+                    Template="{StaticResource BlankButton}"
+                    HorizontalAlignment="Center"
+                    FontFamily="Consolas"
+                    Foreground="#36C3F1" Content="音乐"
+                    Command="{Binding SearchCommand}"
+                    CommandParameter="3" Tag="2"
+                    Click="Button_Click"/>
+                <Button Grid.Column="3"
+                    Template="{StaticResource BlankButton}"
+                    HorizontalAlignment="Center"
+                    FontFamily="Consolas"
+                    Foreground="#36C3F1" Content="影视"
+                    Command="{Binding SearchCommand}"
+                    CommandParameter="4" Tag="3"
+                    Click="Button_Click"/>
+                <Button Grid.Column="4"
+                    Template="{StaticResource BlankButton}"
+                    HorizontalAlignment="Center"
+                    FontFamily="Consolas"
+                    Foreground="#36C3F1" Content="作者/音乐人"
+                    Command="{Binding SearchCommand}"
+                    CommandParameter="5" Tag="4"
+                    Click="Button_Click"/>
+                <ProgressBar Grid.Column="0" Grid.ColumnSpan="5"
+                             VerticalAlignment="Bottom"
+                             IsIndeterminate="{Binding IsActive}" 
+                             Visibility="{Binding Visable}"/>
+            </Grid>
+            <Border x:Name="border" Height="150">
+                <Image VerticalAlignment="Top"
+                       Margin="0 8"
+                       Source="ms-appx:///Assets/Res/Search_image1.png"/>
+            </Border>
+            <StackPanel>
+                <ListView Margin="0" Padding="0"
+                          ItemsSource="{Binding Path=DayObject}"
+                          IsItemClickEnabled="True" 
+                          ItemClick="ListView_ItemClick">
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <Border Margin="0 2">
+                                <Grid Height="68">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="Auto"/>
+                                        <ColumnDefinition Width="*"/>
+                                    </Grid.ColumnDefinitions>
+                                    <Border Margin="0 0 2 0" Grid.Column="0">
+                                        <Image Source="{Binding DayImagePath}"/>
+                                    </Border>
+                                    <Grid Grid.Column="1">
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition />
+                                            <RowDefinition />
+                                        </Grid.RowDefinitions>
+                                        <TextBlock Grid.Row="0" Margin=" 5 2"
+                                           VerticalAlignment="Center"
+                                           Text="{Binding ByWho}"
+                                           FontSize="14"
+                                           FontFamily="Consolas"
+                                           FontWeight="Bold"/>
+                                        <TextBlock Grid.Row="1" Margin=" 5 1"
+                                           VerticalAlignment="Center"
+                                           Text="{Binding MainString}"
+                                           FontSize="10"/>
+                                    </Grid>
+                                </Grid>
+                            </Border>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+                <ListView Margin="0" Padding="0"
+                          ItemsSource="{Binding Path=ReadingOC}"
+                          IsItemClickEnabled="True" 
+                          ItemClick="ListView_ItemClick">
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <Border Margin="3 2">
+                                <Grid Height="24">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="Auto"/>
+                                        <ColumnDefinition Width="*"/>
+                                    </Grid.ColumnDefinitions>
+                                    <Border Grid.Column="0" Padding="2">
+                                        <Image/>
+                                    </Border>
+                                    <Border Grid.Column="1">
+                                        <TextBlock Grid.Row="0" Margin="7 2"
+                                                   VerticalAlignment="Center"
+                                                   HorizontalAlignment="Left"
+                                                   Text="{Binding Title}"
+                                                   FontSize="14"
+                                                   FontFamily="Consolas"
+                                                   FontWeight="Bold"/>
+                                    </Border>
+                                </Grid>
+                            </Border>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+                <ListView Margin="0" Padding="0"
+                          ItemsSource="{Binding Path=MusicOC}"
+                          IsItemClickEnabled="True" 
+                          ItemClick="ListView_ItemClick">
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <Border Margin="0 2">
+                                <Grid Height="68">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="Auto"/>
+                                        <ColumnDefinition Width="*"/>
+                                    </Grid.ColumnDefinitions>
+                                    <Border Margin="0 0 2 0" Grid.Column="0">
+                                        <Image Source="{Binding Cover}"/>
+                                    </Border>
+                                    <Grid Grid.Column="1">
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition />
+                                            <RowDefinition />
+                                        </Grid.RowDefinitions>
+                                        <TextBlock Grid.Row="0" Margin=" 5 2"
+                                           VerticalAlignment="Center"
+                                           Text="{Binding Title}"
+                                           FontSize="14"
+                                           FontFamily="Consolas"
+                                           FontWeight="Bold"/>
+                                        <TextBlock Grid.Row="1" Margin=" 5 1"
+                                           VerticalAlignment="Center"
+                                           Text="{Binding Author.UserName}"
+                                           FontSize="10"/>
+                                    </Grid>
+                                </Grid>
+                            </Border>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+                <ListView Margin="0" Padding="0"
+                          ItemsSource="{Binding Path=MovieOC}"
+                          IsItemClickEnabled="True" 
+                          ItemClick="ListView_ItemClick">
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <Border Margin="3 2">
+                                <Grid Height="28">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="Auto"/>
+                                        <ColumnDefinition Width="*"/>
+                                    </Grid.ColumnDefinitions>
+                                    <Border Grid.Column="0" Padding="2">
+                                        <Image Source="ms-appx:///Assets/Res/search_movie.png"/>
+                                    </Border>
+                                    <Border Grid.Column="1">
+                                        <TextBlock Grid.Row="0" Margin="7 2"
+                                                   VerticalAlignment="Center"
+                                                   HorizontalAlignment="Left"
+                                                   Text="{Binding Title}"
+                                                   FontSize="14"
+                                                   FontFamily="Consolas"
+                                                   FontWeight="Bold"/>
+                                    </Border>
+                                </Grid>
+                            </Border>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+                <ListView Margin="0" Padding="0"
+                          ItemsSource="{Binding Path=PeopleOC}"
+                          IsItemClickEnabled="True" 
+                          ItemClick="ListView_ItemClick">
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <Border Margin="0 2">
+                                <Grid Height="68">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="Auto"/>
+                                        <ColumnDefinition Width="*"/>
+                                    </Grid.ColumnDefinitions>
+                                    <Border Grid.Column="0"
+                                             Margin="0 0 2 0" CornerRadius="90"
+                                             Width="50" Height="50"
+                                             VerticalAlignment="Center">
+                                        <Border.Background>
+                                            <ImageBrush ImageSource="{Binding WebUri}"/>
+                                        </Border.Background>
+                                    </Border>
+                                    <Grid Grid.Column="1">
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition />
+                                            <RowDefinition />
+                                        </Grid.RowDefinitions>
+                                        <TextBlock Grid.Row="0" Margin=" 5 2"
+                                           VerticalAlignment="Center"
+                                           Text="{Binding UserName}"
+                                           FontSize="14"
+                                           FontFamily="Consolas"
+                                           FontWeight="Bold"/>
+                                        <TextBlock Grid.Row="1" Margin=" 5 1"
+                                           VerticalAlignment="Center"
+                                           Text="{Binding Desc}"
+                                           FontSize="10"/>
+                                    </Grid>
+                                </Grid>
+                            </Border>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+                <Image Visibility="{Binding NoSearchResult}" 
+                       VerticalAlignment="Top"
+                       Source="ms-appx:///Resources/BgImages/search_image.png"/>
+            </StackPanel>
+        </StackPanel>
+    </Grid>-->
 </Page>

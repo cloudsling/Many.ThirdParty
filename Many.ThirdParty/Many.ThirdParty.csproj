@@ -9,7 +9,7 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>Many.ThirdParty</RootNamespace>
     <AssemblyName>Many.ThirdParty</AssemblyName>
-    <DefaultLanguage>en-US</DefaultLanguage>
+    <DefaultLanguage>zh-CN</DefaultLanguage>
     <TargetPlatformIdentifier>UAP</TargetPlatformIdentifier>
     <TargetPlatformVersion>10.0.10586.0</TargetPlatformVersion>
     <TargetPlatformMinVersion>10.0.10240.0</TargetPlatformMinVersion>
@@ -18,7 +18,7 @@
     <ProjectTypeGuids>{A5A43C5B-DE2A-4C0C-9213-0A381AF9435A};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <PackageCertificateKeyFile>Many.ThirdParty_StoreKey.pfx</PackageCertificateKeyFile>
     <PackageCertificateThumbprint>7D249B79C3C2CF6785A9BDDD1AD478467F040567</PackageCertificateThumbprint>
-    <AppxAutoIncrementPackageRevision>True</AppxAutoIncrementPackageRevision>
+    <AppxAutoIncrementPackageRevision>False</AppxAutoIncrementPackageRevision>
     <AppxBundle>Always</AppxBundle>
     <AppxBundlePlatforms>x86|x64|arm</AppxBundlePlatforms>
   </PropertyGroup>
@@ -168,17 +168,25 @@
     <None Include="Many.ThirdParty_TemporaryKey.pfx" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Assets\BadgeLogo.scale-200.png" />
+    <Content Include="Assets\BadgeLogo.scale-400.png" />
     <Content Include="Assets\SplashScreen.scale-100.png" />
     <None Include="Package.StoreAssociation.xml" />
+    <Content Include="Assets\Square71x71Logo.scale-100.png" />
+    <Content Include="Assets\Square71x71Logo.scale-125.png" />
+    <Content Include="Assets\Square71x71Logo.scale-200.png" />
+    <Content Include="Assets\Wide310x150Logo.scale-200.png" />
     <Content Include="ReadingTree.png" />
     <Content Include="Resources\BgImages\diary.png" />
     <Content Include="Resources\BgImages\essay_image.png" />
     <Content Include="Resources\BgImages\laud.png" />
     <Content Include="Resources\BgImages\laud_pressed.png" />
+    <Content Include="Resources\BgImages\no_search_result.png" />
     <Content Include="Resources\BgImages\question_image.png" />
     <Content Include="Resources\BgImages\reading_board.png" />
     <Content Include="Resources\BgImages\return_image.png" />
     <Content Include="Resources\BgImages\return_image_pressed.png" />
+    <Content Include="Resources\BgImages\search_image.png" />
     <Content Include="Resources\BgImages\serial_image.png" />
     <Content Include="Resources\BgImages\share_image.png" />
     <Content Include="Resources\CommonsImages\return_image.png" />
@@ -191,13 +199,11 @@
     <Content Include="Resources\Images\search23.png" />
     <Content Include="Resources\Images\Search796.png" />
     <Content Include="Properties\Default.rd.xml" />
-    <Content Include="Assets\LockScreenLogo.scale-200.png" />
     <Content Include="Assets\SplashScreen.scale-200.png" />
     <Content Include="Assets\Square150x150Logo.scale-200.png" />
     <Content Include="Assets\Square44x44Logo.scale-200.png" />
     <Content Include="Assets\Square44x44Logo.targetsize-24_altform-unplated.png" />
     <Content Include="Assets\StoreLogo.png" />
-    <Content Include="Assets\Wide310x150Logo.scale-200.png" />
     <Content Include="Resources\MFCImages\home.png" />
     <Content Include="Resources\MFCImages\home_active.png" />
     <Content Include="Resources\MFCImages\movie.png" />
