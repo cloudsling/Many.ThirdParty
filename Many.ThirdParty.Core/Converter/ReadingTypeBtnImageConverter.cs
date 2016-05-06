@@ -9,7 +9,7 @@ namespace Many.ThirdParty.Core.Converter
 {
     public class ReadingTypeBtnImageConverter : IValueConverter
     {
-        private static readonly List<string> ReadingTypeButtonImage = new List<string> {
+        private static readonly IList<string> ReadingTypeButtonImage = new List<string> {
             "ms-appx:///Resources/BgImages/essay_image.png",
             "ms-appx:///Resources/BgImages/serial_image.png",
             "ms-appx:///Resources/BgImages/question_image.png"

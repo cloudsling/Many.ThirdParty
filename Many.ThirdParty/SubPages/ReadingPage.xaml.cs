@@ -30,9 +30,9 @@ namespace Many.ThirdParty.SubPages
 
         private async void MainListView_ItemClick(object sender, ItemClickEventArgs e)
         {
-            ReadingModelBase readingModel = e.ClickedItem as ReadingModelBase;
-            this.Frame.Navigate(NavigationCommonConfig.MainScenarios[readingModel.Type + 4].PageType,
-                  await QuestionDetailPageViewModel.CreateQuestionDetailPageViewModel(readingModel.Id));
+            ReadingModelBase modelBase = e.ClickedItem as ReadingModelBase;
+            this.Frame.Navigate(NavigationCommonConfig.MainScenarios[modelBase.Type + 4].PageType,
+                  await QuestionDetailPageViewModel.CreateQuestionDetailPageViewModel(modelBase.Id));
 
         }
 
@@ -74,9 +74,11 @@ namespace Many.ThirdParty.SubPages
 
         protected override async void OnNavigatedTo(NavigationEventArgs e)
         {
-            await ReadingPageViewModel.RefreshCollection();
-
-            await ReadingPageViewModel.RefreshListView();
+            if (ReadingPageViewModel.CarouselModelCollection.Count <= 0)
+            {
+                await ReadingPageViewModel.RefreshCollection();
+                await ReadingPageViewModel.RefreshListView();
+            }
         }
 
         /// <summary>

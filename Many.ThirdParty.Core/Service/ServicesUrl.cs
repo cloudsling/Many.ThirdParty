@@ -235,5 +235,45 @@
                 return questionComment;
             }
         }
+
+        public static string SerialContent
+        {
+            get
+            {
+                return serialContent;
+            }
+        }
+
+        public static string SerialInfo
+        {
+            get
+            {
+                return serialInfo;
+            }
+        }
+
+        public static string SerialComment
+        {
+            get
+            {
+                return serialComment;
+            }
+        }
+
+        public static string EssayContent
+        {
+            get
+            {
+                return essayContent;
+            }
+        }
+
+        public static string EssayUpdate
+        {
+            get
+            {
+                return essayUpdate;
+            }
+        }
     }
 }

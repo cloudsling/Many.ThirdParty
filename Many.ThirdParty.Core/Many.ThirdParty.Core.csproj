@@ -108,7 +108,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Converter\ReadingTypeBtnImageConverter.cs" />
-    <Compile Include="Data\LoadResources.cs" />
+    <Compile Include="Data\CommentLoader.cs" />
+    <Compile Include="Data\ResourcesLoader.cs" />
     <Compile Include="Factory\ReadingDetailFactory.cs" />
     <Compile Include="Factory\ReadingModelFactory.cs" />
     <Compile Include="Models\CommonModels\Author.cs" />
@@ -133,8 +134,10 @@
     <Compile Include="ViewModels\HomePageViewModel.cs" />
     <Compile Include="ViewModels\MainFrameContainerViewModel.cs" />
     <Compile Include="ViewModels\MoviePageViewModel.cs" />
+    <Compile Include="ViewModels\ReadingDetailPageViewModels\EssayDetailPageViewModel.cs" />
     <Compile Include="ViewModels\ReadingDetailPageViewModels\QuestionDetailPageViewModel.cs" />
     <Compile Include="ViewModels\ReadingDetailPageViewModels\ReadingDetailPageViewModelBase.cs" />
+    <Compile Include="ViewModels\ReadingDetailPageViewModels\SerialDetailPageViewModel.cs" />
     <Compile Include="ViewModels\ReadingPageViewModel.cs" />
     <EmbeddedResource Include="Properties\Many.ThirdParty.Core.rd.xml" />
   </ItemGroup>

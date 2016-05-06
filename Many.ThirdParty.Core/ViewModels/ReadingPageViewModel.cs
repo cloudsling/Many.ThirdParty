@@ -26,7 +26,7 @@ namespace Many.ThirdParty.Core.ViewModels
 
         public async Task RefreshCollection()
         {
-            foreach (var item in await LoadResources.GetCarouselModel())
+            foreach (var item in await ResourcesLoader.GetCarouselModel())
             {
                 AddToCollection(item);
             }
@@ -34,7 +34,7 @@ namespace Many.ThirdParty.Core.ViewModels
 
         public async Task RefreshListView()
         {
-            foreach (var item in await LoadResources.GetReadingModel("0"))
+            foreach (var item in await ResourcesLoader.GetReadingModel("0"))
             {
                 ReadingModelCollection.Add(item);
             } 

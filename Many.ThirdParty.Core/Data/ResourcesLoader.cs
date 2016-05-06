@@ -12,7 +12,7 @@ using Many.ThirdParty.Core.Factory;
 
 namespace Many.ThirdParty.Core.Data
 {
-    public static class LoadResources
+    public static class ResourcesLoader
     {
         public static async Task<List<string>> GetHomeList(string listId)
         {

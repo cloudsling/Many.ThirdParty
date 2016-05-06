@@ -57,11 +57,9 @@
                       HorizontalAlignment="Right"
                       Visibility="{Binding BottomNavBtnAndProfileVisibility}">
                     <ctm:BlankButton HorizontalAlignment="Right"
-                                    Margin="8 6">
+                                    Margin="4">
                         <ctm:BlankButton.Content>
-                            <FontIcon Foreground="#AAAAAA"
-                                  FontFamily="Segoe MDL2 Assets"
-                                  Glyph="&#xE77B;"/>
+                            <Image Source="ms-appx:///Resources/BgImages/individual_center.png"/>
                         </ctm:BlankButton.Content>
                     </ctm:BlankButton>
                 </Grid>

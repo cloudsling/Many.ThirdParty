@@ -23,6 +23,21 @@
     <Style x:Key="ReadingText" TargetType="TextBlock">
         <Setter Property="FontFamily" Value="Consolas"/>
         <Setter Property="LineHeight" Value="23"/>
-        <Setter Property="Margin" Value="4" />
+        <Setter Property="Margin" Value="5" />
     </Style>
+
+    <Style x:Key="ReadingContent" TargetType="TextBlock">
+        <Setter Property="TextWrapping" Value="Wrap"/>
+        <Setter Property="FontFamily" Value="Consolas"/>
+        <Setter Property="Margin" Value="5"/>
+        <Setter Property="LineHeight" Value="23"/>
+        <Setter Property="Foreground" Value="Black"/>
+    </Style>
+
+    <!--TextWrapping="Wrap"
+                           FontFamily="Consolas"
+                           Margin="5"
+                           FontWeight="Light"
+                           Foreground="Black"-->
+
 </ResourceDictionary>

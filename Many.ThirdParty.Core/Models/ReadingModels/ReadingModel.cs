@@ -1,4 +1,5 @@
 ﻿using Many.ThirdParty.Core.Tools;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -19,7 +20,6 @@ namespace Many.ThirdParty.Core.Models.ReadingModels
             //NavigateToDetailCommand = new CommandBase(GetTest);
         }
 
-       
 
         string _maketTime;
         public string MaketTime
@@ -35,8 +35,7 @@ namespace Many.ThirdParty.Core.Models.ReadingModels
         {
             ContentModelCollection.Add(model);
         }
-
-
+         
         ObservableCollection<ReadingModelBase> _contentModelCollection;
         public ObservableCollection<ReadingModelBase> ContentModelCollection
         {
@@ -46,6 +45,5 @@ namespace Many.ThirdParty.Core.Models.ReadingModels
                 SetProperty(ref _contentModelCollection, value);
             }
         }
- // public ObservableCollection<ReadingModelBase> ContentModelCollection { get; set; }
     }
 }

@@ -19,10 +19,10 @@ namespace Many.ThirdParty
 #if DEBUG
             //await Task.Delay(1000);
 #endif
-            HomePage.TodaysListId = await LoadResources.GetHomeList(HomePage.CumulateListIndex.ToString());
+            HomePage.TodaysListId = await ResourcesLoader.GetHomeList(HomePage.CumulateListIndex.ToString());
 
             //TODO: load resource from internet
-            Frame.Navigate(typeof(PreLoadPage), await LoadResources.LoadHomeModelResourcesAsync(HomePage.TodaysListId[0]));
+            Frame.Navigate(typeof(PreLoadPage), await ResourcesLoader.LoadHomeModelResourcesAsync(HomePage.TodaysListId[0]));
         }
     }
 

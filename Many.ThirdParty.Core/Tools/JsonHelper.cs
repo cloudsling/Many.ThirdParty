@@ -62,6 +62,7 @@ namespace Many.ThirdParty.Core.Tools
         internal static T GetTFormObject<T>(string content) where T : class, new()
         {
             return JsonConvert.DeserializeObject<T>(content);
+             
         }
     }
 }
