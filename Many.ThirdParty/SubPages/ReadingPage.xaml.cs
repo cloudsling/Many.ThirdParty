@@ -9,6 +9,7 @@ using Windows.UI.Xaml.Navigation;
 using Windows.UI.Popups;
 using Many.ThirdParty.Core.Models.ReadingModels;
 using Many.ThirdParty.Config;
+using Many.ThirdParty.Core.ViewModels.ReadingDetailPageViewModels;
 
 namespace Many.ThirdParty.SubPages
 {
@@ -27,12 +28,12 @@ namespace Many.ThirdParty.SubPages
 
         private int GetIndexFromFlipView(object sender) => (sender as FlipView).SelectedIndex;
 
-        private void MainListView_ItemClick(object sender, ItemClickEventArgs e)
+        private async void MainListView_ItemClick(object sender, ItemClickEventArgs e)
         {
             ReadingModelBase readingModel = e.ClickedItem as ReadingModelBase;
+            this.Frame.Navigate(NavigationCommonConfig.MainScenarios[readingModel.Type + 4].PageType,
+                  await QuestionDetailPageViewModel.CreateQuestionDetailPageViewModel(readingModel.Id));
 
-            this.Frame.Navigate(NavigationCommonConfig.MainScenarios[readingModel.Type + 4].PageType);
-            
         }
 
         private void BlankButton_Click(object sender, Windows.UI.Xaml.RoutedEventArgs e)

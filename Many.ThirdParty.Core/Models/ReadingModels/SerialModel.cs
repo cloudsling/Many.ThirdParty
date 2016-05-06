@@ -24,10 +24,22 @@ namespace Many.ThirdParty.Core.Models.ReadingModels
 
         }
 
+        public override string Id
+        {
+            get
+            {
+                return Content.Id;
+            }
+
+            set
+            {
+            }
+        }
+
         public override IReadingContent Content { get; set; }
 
         public override CommandBase NavigateToDetailCommand { get; set; }
-
+        
         public override void CreateContent(JsonObject json)
         {
             Content = JsonConvert.DeserializeObject<SerialContent>(json.Stringify());
@@ -36,8 +48,6 @@ namespace Many.ThirdParty.Core.Models.ReadingModels
 
     public class SerialContent : IReadingContent
     {
-        public string Id { get; set; }
-
         public string Serial_Id { get; set; }
 
         public string Number { get; set; }
@@ -48,7 +58,7 @@ namespace Many.ThirdParty.Core.Models.ReadingModels
 
         public string Read_Num { get; set; }
 
-        public AuthorModel Author { get; set; }
+        public Author Author { get; set; }
         
         public override string AuthorContent
         {
@@ -73,6 +83,19 @@ namespace Many.ThirdParty.Core.Models.ReadingModels
             set
             {
                 Excerpt = value;
+            }
+        }
+
+        public override string Id
+        {
+            get
+            {
+                return Serial_Id;
+            }
+
+            set
+            {
+                Serial_Id = value;
             }
         }
     }

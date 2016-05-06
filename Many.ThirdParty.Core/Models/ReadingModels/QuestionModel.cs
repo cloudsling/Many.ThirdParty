@@ -28,6 +28,18 @@ namespace Many.ThirdParty.Core.Models.ReadingModels
 
         public override CommandBase NavigateToDetailCommand { get; set; }
 
+        public override string Id
+        {
+            get
+            {
+                return Content.Id;
+            }
+
+            set
+            { 
+            }
+        }
+
         public override void CreateContent(JsonObject json)
         {
             Content = JsonConvert.DeserializeObject<QuestionContent>(json.Stringify());
@@ -82,6 +94,19 @@ namespace Many.ThirdParty.Core.Models.ReadingModels
             set
             {
                 Answer_Content = value;
+            }
+        }
+
+        public override string Id
+        {
+            get
+            {
+                return Question_Id;
+            }
+
+            set
+            {
+                Question_Id = value;
             }
         }
     }

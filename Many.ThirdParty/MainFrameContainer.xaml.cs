@@ -1,4 +1,4 @@
-﻿using Many.ThirdParty.AddlPages;
+﻿//using Many.ThirdParty.AddlPages;
 using Many.ThirdParty.Config;
 using Many.ThirdParty.Core.ViewModels;
 using Many.ThirdParty.SubPages;
@@ -54,7 +54,7 @@ namespace Many.ThirdParty
 
         private void SearchButton_Click(object sender, RoutedEventArgs e)
         {
-            ThisFrameNavigate(typeof(SearchPage));
+            //ThisFrameNavigate(typeof(SearchPage));
         }
     }
 

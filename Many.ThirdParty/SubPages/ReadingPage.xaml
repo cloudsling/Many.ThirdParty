@@ -19,7 +19,7 @@
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
                 <ResourceDictionary Source="ms-appx:///Themes/TextBlockResourceDictionary.xaml"/>
-            </ResourceDictionary.MergedDictionaries> 
+            </ResourceDictionary.MergedDictionaries>
             <Style TargetType="ListViewItem">
                 <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
             </Style>
@@ -97,9 +97,7 @@
                             </ListView.GroupStyle>
                             <ListView.ItemTemplate>
                                 <DataTemplate>
-                                    <ctm:BlankButton Click="BlankButton_Click" 
-                                                     Command="{Binding Path=NavigateToDetailCommand}"
-                                                     CommandParameter="{Binding}">
+                                    <Border>
                                         <StackPanel>
                                             <Image Height="28"
                                                    Stretch="Uniform"
@@ -116,7 +114,7 @@
                                                        Text="{Binding Content.ContentSummary}"
                                                        TextWrapping="Wrap"/>
                                         </StackPanel>
-                                    </ctm:BlankButton>
+                                    </Border>
                                 </DataTemplate>
                             </ListView.ItemTemplate>
                         </ListView>
@@ -136,118 +134,6 @@
                     </SemanticZoom.ZoomedOutView>
                 </SemanticZoom>
             </Grid>
-
         </Grid>
-        <!--<Button Height="40" Width="40" Click="Button_Click" VerticalAlignment="Center" HorizontalAlignment="Center" Background="Red"/>-->
     </Grid>
-    <!--<Grid>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="1*"/>
-            <RowDefinition Height="5*"/>
-        </Grid.RowDefinitions>
-        <Grid>
-            <FlipView x:Name="fv"
-                    Height="170"
-                    ItemsSource="{Binding ReadingPageFlipViewImageSource}"
-                    SelectionChanged="fv_SelectionChanged">
-                <FlipView.ItemTemplate>
-                    <DataTemplate>
-                        <Border>
-                            <ctm:BlankButton>
-                                <Image x:Name="bkimg" 
-                                        Stretch="Uniform" 
-                                        Source="{Binding}"/>
-                            </ctm:BlankButton>
-                        </Border>
-                    </DataTemplate>
-                </FlipView.ItemTemplate>
-            </FlipView>
-            <StackPanel x:Name="ManyEllipse"
-                        Height="6" 
-                        Width="100"
-                        Margin="0 5"
-                        VerticalAlignment="Bottom"
-                        Orientation="Horizontal">
-                <Ellipse Margin="3 0 3 0" Width="5" Height="5"/>
-                <Ellipse Margin="3 0 3 0" Width="5" Height="5" />
-                <Ellipse Margin="3 0 3 0" Width="5" Height="5" />
-                <Ellipse Margin="3 0 3 0" Width="5" Height="5" />
-                <Ellipse Margin="3 0 3 0" Width="5" Height="5" />
-                <Ellipse Margin="3 0 3 0" Width="5" Height="5" />
-                <Ellipse Margin="3 0 3 0" Width="5" Height="5" />
-                <Ellipse Margin="3 0 3 0" Width="5" Height="5" />
-                <Ellipse Margin="3 0 3 0" Width="5" Height="5" />
-            </StackPanel>
-        </Grid>
-        <Grid Grid.Row="1" Background="White">
-            <SemanticZoom>
-                <SemanticZoom.ZoomedInView>
-                    <ListView x:Name="items_listview"
-                              Height="550"
-                              SelectionMode="None"
-                              VerticalAlignment="Top"
-                              VerticalContentAlignment="Top"
-                              ItemsSource="{Binding Source={StaticResource ReadingPageListViewCollection}}">
-                        <ListView.GroupStyle>
-                            <GroupStyle>
-                                <GroupStyle.HeaderTemplate>
-                                    <DataTemplate>
-                                        <StackPanel>
-                                            <ctm:BlankButton HorizontalContentAlignment="Stretch">
-                                                <TextBlock Text="{Binding ContentType}"
-                                                           Margin="8"
-                                                           FontSize="12"/>
-                                            </ctm:BlankButton>
-                                        </StackPanel>
-                                    </DataTemplate>
-                                </GroupStyle.HeaderTemplate>
-                            </GroupStyle>
-                        </ListView.GroupStyle>
-                        <ListView.ItemTemplate>
-                            <DataTemplate>
-                                <ctm:BlankButton>
-                                    <StackPanel>
-                                        <StackPanel.Resources>
-                                            <Style x:Key="Demo" TargetType="TextBlock">
-                                                <Setter Property="FontFamily" Value="Consolas"/>
-                                                <Setter Property="LineHeight" Value="19"/>
-                                                <Setter Property="Margin" Value="4" />
-                                            </Style>
-                                        </StackPanel.Resources>
-                                        <Image Height="21"
-                                               Stretch="Uniform"
-                                               Margin="0 4"
-                                               Source="{Binding ImageTypeSource}"
-                                               HorizontalAlignment="Left"/>
-                                        <TextBlock Style="{StaticResource Demo}"
-                                                   FontWeight="Bold"
-                                                   Text="{Binding Title}"/>
-                                        <TextBlock Style="{StaticResource Demo}"
-                                           Text="{Binding Author}"
-                                           FontFamily="Consolas"/>
-                                        <TextBlock Style="{StaticResource Demo}"
-                                           Text="{Binding ContentSummary}"
-                                           TextWrapping="Wrap"/>
-                                    </StackPanel>
-                                </ctm:BlankButton>
-                            </DataTemplate>
-                        </ListView.ItemTemplate>
-                    </ListView>
-                </SemanticZoom.ZoomedInView>
-                <SemanticZoom.ZoomedOutView>
-                    <ListView ItemsSource="{Binding Source={StaticResource ReadingPageListViewCollection}, Path=CollectionGroups}">
-                        <ListView.ItemTemplate>
-                            <DataTemplate>
-                                <Border Background="#F8F8F8">
-                                    <TextBlock Text="{Binding Group.ContentType}"
-                                                    Margin="8"
-                                                    FontSize="12"/>
-                                </Border>
-                            </DataTemplate>
-                        </ListView.ItemTemplate>
-                    </ListView>
-                </SemanticZoom.ZoomedOutView>
-            </SemanticZoom>
-        </Grid>
-    </Grid>-->
 </Page>

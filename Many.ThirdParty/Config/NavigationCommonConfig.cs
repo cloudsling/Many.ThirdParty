@@ -23,12 +23,12 @@ namespace Many.ThirdParty.Config
             new Scenario {PageTitle="问答",PageType=typeof(QuestionDetailPage), Index= 7 },
         };
 
-        internal static readonly List<Scenario> ReadingDetailPageCollection = new List<Scenario>
-        {
-            new Scenario {PageTitle="短篇",PageType=typeof(EssayDetailPage), Index= 0 },
-            new Scenario {PageTitle="连载",PageType=typeof(SerialDetailPage), Index= 1 },
-            new Scenario {PageTitle="问答",PageType=typeof(QuestionDetailPage), Index= 2 },
-        };
+        //internal static readonly List<Scenario> ReadingDetailPageCollection = new List<Scenario>
+        //{
+        //    new Scenario {PageTitle="短篇",PageType=typeof(EssayDetailPage), Index= 0 },
+        //    new Scenario {PageTitle="连载",PageType=typeof(SerialDetailPage), Index= 1 },
+        //    new Scenario {PageTitle="问答",PageType=typeof(QuestionDetailPage), Index= 2 },
+        //};
 
         internal static readonly Dictionary<string, Scenario> GetScenarioByName = new Dictionary<string, Scenario>
         {

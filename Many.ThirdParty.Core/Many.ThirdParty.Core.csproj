@@ -109,9 +109,11 @@
   <ItemGroup>
     <Compile Include="Converter\ReadingTypeBtnImageConverter.cs" />
     <Compile Include="Data\LoadResources.cs" />
-    <Compile Include="Factory\NavigateFactory.cs" />
+    <Compile Include="Factory\ReadingDetailFactory.cs" />
     <Compile Include="Factory\ReadingModelFactory.cs" />
-    <Compile Include="Models\CommonModels\AuthorModel.cs" />
+    <Compile Include="Models\CommonModels\Author.cs" />
+    <Compile Include="Models\CommonModels\CommentModel.cs" />
+    <Compile Include="Models\CommonModels\User.cs" />
     <Compile Include="Models\HomeModels\HomeModel.cs" />
     <Compile Include="Models\MovieModels\MovieListModel.cs" />
     <Compile Include="Models\ReadingModels\EssayModel.cs" />
@@ -125,16 +127,20 @@
     <Compile Include="Service\ServicesUrl.cs" />
     <Compile Include="Tools\BindableBase.cs" />
     <Compile Include="Tools\CommandBase.cs" />
+    <Compile Include="Tools\DataHelper.cs" />
     <Compile Include="Tools\HttpHelper.cs" />
     <Compile Include="Tools\JsonHelper.cs" />
     <Compile Include="ViewModels\HomePageViewModel.cs" />
     <Compile Include="ViewModels\MainFrameContainerViewModel.cs" />
     <Compile Include="ViewModels\MoviePageViewModel.cs" />
-    <Compile Include="ViewModels\ReadingPageSemanticZoomViewModel.cs" />
+    <Compile Include="ViewModels\ReadingDetailPageViewModels\QuestionDetailPageViewModel.cs" />
+    <Compile Include="ViewModels\ReadingDetailPageViewModels\ReadingDetailPageViewModelBase.cs" />
     <Compile Include="ViewModels\ReadingPageViewModel.cs" />
     <EmbeddedResource Include="Properties\Many.ThirdParty.Core.rd.xml" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Models\ReadingDetailModels\" />
+  </ItemGroup>
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '14.0' ">
     <VisualStudioVersion>14.0</VisualStudioVersion>
   </PropertyGroup>

@@ -18,6 +18,7 @@ namespace Many.ThirdParty
         { 
             InitializeComponent();
         }
+
         void Grid_ManipulationDelta(object sender, ManipulationDeltaRoutedEventArgs e)
         {
             (sender as FrameworkElement).SetValue(

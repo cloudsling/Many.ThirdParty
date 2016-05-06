@@ -34,8 +34,7 @@
             </DoubleAnimationUsingKeyFrames>
         </Storyboard>
     </Page.Resources>
-    <Grid DataContext="{x:Bind CurrentHomeModel}"
-          Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+    <Grid>
 
         <Grid Margin="0 -50" Height="Auto">
             <Grid.RowDefinitions>
@@ -47,7 +46,7 @@
                     Grid.Row="0" 
                     Height="50"
                     VerticalAlignment="Top"/>
-            <Grid Grid.Row="1" Background="Red">
+            <Grid Grid.Row="1">
                 <Image Source="{x:Bind CurrentHomeModel.Hp_Img_Url}"
                        Stretch="UniformToFill"/>
                 <Grid>

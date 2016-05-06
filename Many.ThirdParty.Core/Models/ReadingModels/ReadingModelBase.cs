@@ -8,12 +8,13 @@ namespace Many.ThirdParty.Core.Models.ReadingModels
         public int Type { get; set; }
 
         public string Time { get; set; }
+
+        public abstract string Id { get; set; }
         
         public virtual IReadingContent Content { get; set; }
 
         public abstract void CreateContent(JsonObject json);
         
-        public abstract CommandBase NavigateToDetailCommand { get; set; }
-
+        public abstract CommandBase NavigateToDetailCommand { get; set; } 
     }
 }

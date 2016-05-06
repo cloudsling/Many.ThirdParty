@@ -29,14 +29,28 @@ namespace Many.ThirdParty.Core.Models.ReadingModels
 
         }
 
+
         public override IReadingContent Content { get; set; }
 
         public override CommandBase NavigateToDetailCommand { get; set; }
 
+
+        public override string Id
+        {
+            get
+            {
+                return Content.Id;
+            }
+            set
+            {
+            }
+        }
+
+
         public override void CreateContent(JsonObject json)
         {
             Content = JsonConvert.DeserializeObject<EssayContent>(json.Stringify());
-            
+
         }
     }
 
@@ -50,13 +64,13 @@ namespace Many.ThirdParty.Core.Models.ReadingModels
 
         public string Guide_Word { get; set; }
 
-        public List<AuthorModel> Author { get; set; } = new List<AuthorModel>();
-         
+        public List<Author> Author { get; set; } = new List<Author>();
+
         public override string Title
         {
             get
             {
-               return Hp_Title;
+                return Hp_Title;
             }
 
             set
@@ -69,7 +83,7 @@ namespace Many.ThirdParty.Core.Models.ReadingModels
         {
             get
             {
-               return  Author[0].User_Name;
+                return Author[0].User_Name;
             }
 
             set
@@ -88,6 +102,19 @@ namespace Many.ThirdParty.Core.Models.ReadingModels
             set
             {
                 Guide_Word = value;
+            }
+        }
+
+        public override string Id
+        {
+            get
+            {
+                return Content_Id;
+            }
+
+            set
+            {
+                Content_Id = value;
             }
         }
     }

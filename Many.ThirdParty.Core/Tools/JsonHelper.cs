@@ -1,9 +1,5 @@
 ﻿using Newtonsoft.Json;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Windows.Data.Json;
 
 namespace Many.ThirdParty.Core.Tools
@@ -34,6 +30,7 @@ namespace Many.ThirdParty.Core.Tools
                 return null;
             }
         }
+
         internal static JsonObject GetObjectFromObject(JsonObject json, string name)
         {
             try
