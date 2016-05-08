@@ -39,7 +39,7 @@ namespace Many.ThirdParty.Core.Models.ReadingModels
         public override IReadingContent Content { get; set; }
 
         public override CommandBase NavigateToDetailCommand { get; set; }
-        
+
         public override void CreateContent(JsonObject json)
         {
             Content = JsonConvert.DeserializeObject<SerialContent>(json.Stringify());
@@ -59,7 +59,7 @@ namespace Many.ThirdParty.Core.Models.ReadingModels
         public string Read_Num { get; set; }
 
         public Author Author { get; set; }
-        
+
         public override string AuthorContent
         {
             get
@@ -86,17 +86,6 @@ namespace Many.ThirdParty.Core.Models.ReadingModels
             }
         }
 
-        public override string Id
-        {
-            get
-            {
-                return Serial_Id;
-            }
-
-            set
-            {
-                Serial_Id = value;
-            }
-        }
+        public override string Id { get; set; }
     }
 }

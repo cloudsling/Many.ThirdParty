@@ -10,6 +10,7 @@ using Windows.UI.Popups;
 using Many.ThirdParty.Core.Models.ReadingModels;
 using Many.ThirdParty.Config;
 using Many.ThirdParty.Core.ViewModels.ReadingDetailPageViewModels;
+using Many.ThirdParty.Core.Factory;
 
 namespace Many.ThirdParty.SubPages
 {
@@ -31,8 +32,13 @@ namespace Many.ThirdParty.SubPages
         private async void MainListView_ItemClick(object sender, ItemClickEventArgs e)
         {
             ReadingModelBase modelBase = e.ClickedItem as ReadingModelBase;
-            this.Frame.Navigate(NavigationCommonConfig.MainScenarios[modelBase.Type + 4].PageType,
-                  await QuestionDetailPageViewModel.CreateQuestionDetailPageViewModel(modelBase.Id));
+
+            var sth = NavigationCommonConfig.MainScenarios[modelBase.Type + 4].PageType;
+
+            var st = await ReadingViewModelFactory.CreateReadingDetailPageViewModel(modelBase);
+            //this.Frame.Navigate(NavigationCommonConfig.MainScenarios[modelBase.Type + 4].PageType,
+            //  await QuestionDetailPageViewModel.CreateQuestionDetailPageViewModel(modelBase.Id));
+            this.Frame.Navigate(sth, st);
 
         }
 

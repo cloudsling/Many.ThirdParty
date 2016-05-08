@@ -1,6 +1,8 @@
 ﻿using Many.ThirdParty.Core.Data;
+using Many.ThirdParty.Core.Tools;
 using Many.ThirdParty.SubPages;
 using System;
+using Windows.UI.Popups;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Navigation;
 
@@ -19,6 +21,11 @@ namespace Many.ThirdParty
 #if DEBUG
             //await Task.Delay(1000);
 #endif
+            if (!await HttpHelper.CheckInternet())
+            {
+                await new MessageDialog("请连接互联网后重试！").ShowAsync();
+                Windows.UI.Xaml.Application.Current.Exit();
+            }
             HomePage.TodaysListId = await ResourcesLoader.GetHomeList(HomePage.CumulateListIndex.ToString());
 
             //TODO: load resource from internet

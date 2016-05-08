@@ -109,9 +109,11 @@
   <ItemGroup>
     <Compile Include="Converter\ReadingTypeBtnImageConverter.cs" />
     <Compile Include="Data\CommentLoader.cs" />
+    <Compile Include="Data\DataTranslater.cs" />
     <Compile Include="Data\ResourcesLoader.cs" />
     <Compile Include="Factory\ReadingDetailFactory.cs" />
     <Compile Include="Factory\ReadingModelFactory.cs" />
+    <Compile Include="Factory\ReadingViewModelFactory.cs" />
     <Compile Include="Models\CommonModels\Author.cs" />
     <Compile Include="Models\CommonModels\CommentModel.cs" />
     <Compile Include="Models\CommonModels\User.cs" />

@@ -119,8 +119,8 @@
             </RichTextBlock>
             <Grid VerticalAlignment="Bottom"  
                   Height="100">
-                <ctm:BlankButton Height="50"
-                                Width="240"
+                <ctm:BlankButton Height="100"
+                                Width="340"
                                 ManipulationMode="TranslateY"
                                 ManipulationDelta="Grid_ManipulationDelta"
                                 ManipulationCompleted="Grid_ManipulationCompleted">

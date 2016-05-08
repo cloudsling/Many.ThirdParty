@@ -3,6 +3,7 @@ using Many.ThirdParty.Core.Models.ReadingModels;
 using Many.ThirdParty.Core.Tools;
 using Newtonsoft.Json;
 using System.Collections.ObjectModel;
+using System.Diagnostics;
 using System.Threading.Tasks;
 
 namespace Many.ThirdParty.Core.ViewModels.ReadingDetailPageViewModels
@@ -15,13 +16,13 @@ namespace Many.ThirdParty.Core.ViewModels.ReadingDetailPageViewModels
             NormalComments = new ObservableCollection<CommentModel>();
         }
 
-        public abstract string Charge_Edt { get; set; }
+        public string Charge_Edt { get; set; }
 
-        public abstract string PraiseNum { get; set; }
+        public string PraiseNum { get; set; }
 
-        public abstract string CommentNum { get; set; }
+        public string CommentNum { get; set; }
 
-        public abstract string ShareNum { get; set; }
+        public string ShareNum { get; set; }
 
         ObservableCollection<ReadingModelBase> _contentModelCollection;
         public ObservableCollection<ReadingModelBase> ContentModelCollection
@@ -53,11 +54,14 @@ namespace Many.ThirdParty.Core.ViewModels.ReadingDetailPageViewModels
                 {
                     this.NormalComments.Add(tem);
                 }
+#if DEBUG
+                Debug.WriteLine(tem.User.Web_Url);
+#endif
             }
         }
 
-        public abstract ObservableCollection<CommentModel> HotComments { get; set; }
+        public ObservableCollection<CommentModel> HotComments { get; set; }
 
-        public abstract ObservableCollection<CommentModel> NormalComments { get; set; }
+        public ObservableCollection<CommentModel> NormalComments { get; set; }
     }
 }

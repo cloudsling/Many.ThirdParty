@@ -1,4 +1,5 @@
 ﻿using Many.ThirdParty.Core.ViewModels.ReadingDetailPageViewModels;
+using System.Diagnostics;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Navigation;
 
@@ -14,14 +15,13 @@ namespace Many.ThirdParty.SubPages.ReadingDetailPage
 
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
-            ViewModel = e.Parameter as QuestionDetailPageViewModel ?? null;  
+            ViewModel = e.Parameter as QuestionDetailPageViewModel ?? new QuestionDetailPageViewModel();
+
         }
     }
 
     public sealed partial class QuestionDetailPage : Page
-    {
-        public string Hello { get; set; } 
-
+    { 
         public QuestionDetailPageViewModel ViewModel { get; set; }
     }
 }

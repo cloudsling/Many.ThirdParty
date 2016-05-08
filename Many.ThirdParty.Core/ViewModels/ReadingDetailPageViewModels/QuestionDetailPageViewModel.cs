@@ -11,6 +11,7 @@ using System.Threading.Tasks;
 using Windows.Data.Json;
 using Many.ThirdParty.Core.Models.CommonModels;
 using System.Collections.ObjectModel;
+using Windows.UI.Xaml;
 
 namespace Many.ThirdParty.Core.ViewModels.ReadingDetailPageViewModels
 {
@@ -41,34 +42,9 @@ namespace Many.ThirdParty.Core.ViewModels.ReadingDetailPageViewModels
             set { _answer_Content = value; }
         }
 
-        public override string Charge_Edt { get; set; }
-
-        public override string PraiseNum { get; set; }
-
-        public override string CommentNum { get; set; }
-
-        public override string ShareNum { get; set; }
-
-        public override ObservableCollection<CommentModel> HotComments { get; set; }
-
-        public override ObservableCollection<CommentModel> NormalComments { get; set; }
-
-        private static string GetQuestionUri(string id)
-        {
-            return string.Format(ServicesUrl.QuestionContent, id, DateTime.Now.ToString("d").Replace('/', '-'));
-        }
-
-        private static string GetCommentString(string id)
+        private static string GetCommentUri(string id)
         {
             return string.Format(ServicesUrl.QuestionComment, id, "0");
-        }
-
-        public static async Task AddToCollection(QuestionDetailPageViewModel viewModel, string uri)
-        {
-            foreach (var item in await DataHelper.GetCommentJsonArrayAsync(uri))
-            {
-                viewModel.HotComments.Add(JsonConvert.DeserializeObject<CommentModel>(item.Stringify()));
-            }
         }
 
         public static async Task<QuestionDetailPageViewModel> CreateQuestionDetailPageViewModel(string id)
@@ -76,8 +52,13 @@ namespace Many.ThirdParty.Core.ViewModels.ReadingDetailPageViewModels
             if (string.IsNullOrEmpty(id)) return null;
 
             var viewModel = JsonConvert.DeserializeObject<QuestionDetailPageViewModel>((await DataHelper.GetJsonObjectAsync(GetQuestionUri(id))).Stringify());
-            await viewModel.AddToCommentsCollection(GetCommentString(id));
+            await viewModel.AddToCommentsCollection(GetCommentUri(id));
             return viewModel;
+        }
+
+        private static string GetQuestionUri(string id)
+        {
+            return string.Format(ServicesUrl.QuestionContent, id, DateTime.Now.ToString("d").Replace('/', '-'));
         }
     }
 }

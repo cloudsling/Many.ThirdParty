@@ -22,7 +22,7 @@
 
         private static readonly string serialInfo = "http://v3.wufazhuce.com:8000/api/related/serial/{0}?";
 
-        private static readonly string serialComment = "http://v3.wufazhuce.com:8000/api/comment/praiseandtime/serial/106/{0}?";
+        private static readonly string serialComment = "http://v3.wufazhuce.com:8000/api/comment/praiseandtime/serial/{0}/{1}?";
 
         private static readonly string essayContent = "http://v3.wufazhuce.com:8000/api/essay/{0}?";
 
@@ -273,6 +273,14 @@
             get
             {
                 return essayUpdate;
+            }
+        }
+
+        public static string EssayComment
+        {
+            get
+            {
+                return essayComment;
             }
         }
     }
