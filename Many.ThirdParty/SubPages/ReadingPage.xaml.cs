@@ -10,7 +10,8 @@ using Windows.UI.Popups;
 using Many.ThirdParty.Core.Models.ReadingModels;
 using Many.ThirdParty.Config;
 using Many.ThirdParty.Core.ViewModels.ReadingDetailPageViewModels;
-using Many.ThirdParty.Core.Factory;
+using Many.ThirdParty.Core.Factories;
+using Windows.UI.Core;
 
 namespace Many.ThirdParty.SubPages
 {
@@ -27,6 +28,7 @@ namespace Many.ThirdParty.SubPages
             }
         }
 
+
         private int GetIndexFromFlipView(object sender) => (sender as FlipView).SelectedIndex;
 
         private async void MainListView_ItemClick(object sender, ItemClickEventArgs e)
@@ -41,6 +43,20 @@ namespace Many.ThirdParty.SubPages
             this.Frame.Navigate(sth, st);
 
         }
+
+        private void ReadingPage_BackRequested(object sender, BackRequestedEventArgs e)
+        {
+            if (Frame.CanGoBack)
+            {
+                Frame.GoBack();
+                e.Handled = true;
+            }
+        }
+
+        private void MainFrameContainer_BackRequested(object sender, BackRequestedEventArgs e)
+        {
+        }
+
 
         private void BlankButton_Click(object sender, Windows.UI.Xaml.RoutedEventArgs e)
         {
@@ -86,6 +102,7 @@ namespace Many.ThirdParty.SubPages
                 await ReadingPageViewModel.RefreshListView();
             }
         }
+
 
         /// <summary>
         /// 改变所有的圆点的颜色

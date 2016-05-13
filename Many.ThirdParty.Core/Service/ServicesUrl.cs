@@ -44,12 +44,15 @@
 
         private static readonly string movieList = "http://v3.wufazhuce.com:8000/api/movie/list/0?";
 
-        
         private static string searchMain = "http://v3.wufazhuce.com:8000/api/search/hp/{0}?";
+
         private static string searchAuthor = "http://v3.wufazhuce.com:8000/api/search/author/{0}?";
+
         private static string searchMovie = "http://v3.wufazhuce.com:8000/api/search/movie/{0}?";
+
         private static string searchMusic = "http://v3.wufazhuce.com:8000/api/search/music/{0}?";
-        private static string searchArticle = "http://v3.wufazhuce.com:8000/api/search/reading/{0}?";
+
+        private static string searchReading = "http://v3.wufazhuce.com:8000/api/search/reading/{0}?";
 
         public static string UnknowGeneral
         {
@@ -153,11 +156,6 @@
             {
                 return searchMain;
             }
-
-            set
-            {
-                searchMain = value;
-            }
         }
 
         public static string SearchAuthor
@@ -165,11 +163,6 @@
             get
             {
                 return searchAuthor;
-            }
-
-            set
-            {
-                searchAuthor = value;
             }
         }
 
@@ -179,11 +172,6 @@
             {
                 return searchMovie;
             }
-
-            set
-            {
-                searchMovie = value;
-            }
         }
 
         public static string SearchMusic
@@ -192,25 +180,8 @@
             {
                 return searchMusic;
             }
-
-            set
-            {
-                searchMusic = value;
-            }
         }
 
-        public static string SearchArticle
-        {
-            get
-            {
-                return searchArticle;
-            }
-
-            set
-            {
-                searchArticle = value;
-            }
-        }
 
         public static string QuestionContent
         {
@@ -281,6 +252,14 @@
             get
             {
                 return essayComment;
+            }
+        }
+
+        public static string SearchReading
+        {
+            get
+            {
+                return searchReading;
             }
         }
     }

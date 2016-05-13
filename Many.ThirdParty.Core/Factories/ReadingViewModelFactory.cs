@@ -2,7 +2,7 @@
 using Many.ThirdParty.Core.ViewModels.ReadingDetailPageViewModels;
 using System.Threading.Tasks;
 
-namespace Many.ThirdParty.Core.Factory
+namespace Many.ThirdParty.Core.Factories
 {
     public static class ReadingViewModelFactory
     {

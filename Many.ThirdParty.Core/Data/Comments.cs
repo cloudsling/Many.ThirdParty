@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace Many.ThirdParty.Core.Data
 {
-    internal static class CommentLoader
+    internal static class Comments
     {
 
         internal async static Task<ObservableCollection<CommentModel>> GetComment(string uri)

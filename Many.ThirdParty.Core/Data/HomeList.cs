@@ -8,11 +8,11 @@ using System.Threading.Tasks;
 using Windows.Data.Json;
 using Many.ThirdParty.Core.Models.ReadingModels;
 using System.Collections.ObjectModel;
-using Many.ThirdParty.Core.Factory;
+using Many.ThirdParty.Core.Factories;
 
 namespace Many.ThirdParty.Core.Data
 {
-    public static class ResourcesLoader
+    public static class HomeList
     {
         public static async Task<List<string>> GetHomeList(string listId)
         {

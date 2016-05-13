@@ -108,17 +108,18 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Converter\ReadingTypeBtnImageConverter.cs" />
-    <Compile Include="Data\CommentLoader.cs" />
-    <Compile Include="Data\DataTranslater.cs" />
-    <Compile Include="Data\ResourcesLoader.cs" />
-    <Compile Include="Factory\ReadingDetailFactory.cs" />
-    <Compile Include="Factory\ReadingModelFactory.cs" />
-    <Compile Include="Factory\ReadingViewModelFactory.cs" />
+    <Compile Include="Data\Comments.cs" />
+    <Compile Include="Data\HomeList.cs" />
+    <Compile Include="Factories\ReadingDetailFactory.cs" />
+    <Compile Include="Factories\ReadingModelFactory.cs" />
+    <Compile Include="Factories\ReadingViewModelFactory.cs" />
+    <Compile Include="Models\AddlModels\SearchReadingModel.cs" />
     <Compile Include="Models\CommonModels\Author.cs" />
     <Compile Include="Models\CommonModels\CommentModel.cs" />
     <Compile Include="Models\CommonModels\User.cs" />
     <Compile Include="Models\HomeModels\HomeModel.cs" />
     <Compile Include="Models\MovieModels\MovieListModel.cs" />
+    <Compile Include="Models\MusicModels\MusicModel.cs" />
     <Compile Include="Models\ReadingModels\EssayModel.cs" />
     <Compile Include="Models\ReadingModels\IReadingContent.cs" />
     <Compile Include="Models\ReadingModels\ReadingModelBase.cs" />
@@ -128,11 +129,14 @@
     <Compile Include="Models\ReadingModels\SerialModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Service\ServicesUrl.cs" />
+    <Compile Include="Commands\AsyncCommand.cs" />
     <Compile Include="Tools\BindableBase.cs" />
-    <Compile Include="Tools\CommandBase.cs" />
+    <Compile Include="Commands\Command.cs" />
+    <Compile Include="Commands\CommandBase.cs" />
     <Compile Include="Tools\DataHelper.cs" />
     <Compile Include="Tools\HttpHelper.cs" />
     <Compile Include="Tools\JsonHelper.cs" />
+    <Compile Include="ViewModels\AddlPageViewModels\SearchPageViewModel.cs" />
     <Compile Include="ViewModels\HomePageViewModel.cs" />
     <Compile Include="ViewModels\MainFrameContainerViewModel.cs" />
     <Compile Include="ViewModels\MoviePageViewModel.cs" />

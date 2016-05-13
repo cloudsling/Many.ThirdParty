@@ -1,4 +1,4 @@
-﻿using Many.ThirdParty.Core.Tools;
+﻿using Many.ThirdParty.Core.Commands;
 using Windows.Data.Json;
 
 namespace Many.ThirdParty.Core.Models.ReadingModels
@@ -10,11 +10,11 @@ namespace Many.ThirdParty.Core.Models.ReadingModels
         public string Time { get; set; }
 
         public abstract string Id { get; set; }
-        
+
         public virtual IReadingContent Content { get; set; }
 
         public abstract void CreateContent(JsonObject json);
-        
-        public abstract CommandBase NavigateToDetailCommand { get; set; } 
+
+        public abstract Command NavigateToDetailCommand { get; set; }
     }
 }

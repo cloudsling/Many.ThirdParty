@@ -1,7 +1,7 @@
 ﻿using Many.ThirdParty.Core.Models.ReadingModels;
 using Windows.Data.Json;
 
-namespace Many.ThirdParty.Core.Factory
+namespace Many.ThirdParty.Core.Factories
 {
     internal static class ReadingModelFactory
     {

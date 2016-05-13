@@ -2,6 +2,8 @@
 using Many.ThirdParty.SubPages.ReadingDetailPage;
 using System;
 using System.Collections.Generic;
+using Windows.UI.Core;
+using Windows.UI.Xaml.Controls;
 
 namespace Many.ThirdParty.Config
 {
@@ -19,13 +21,6 @@ namespace Many.ThirdParty.Config
             new Scenario {PageTitle="连载",PageType=typeof(SerialDetailPage), Index= 6 },
             new Scenario {PageTitle="问答",PageType=typeof(QuestionDetailPage), Index= 7 },
         };
-
-        //internal static readonly List<Scenario> ReadingDetailPageCollection = new List<Scenario>
-        //{
-        //    new Scenario {PageTitle="短篇",PageType=typeof(EssayDetailPage), Index= 0 },
-        //    new Scenario {PageTitle="连载",PageType=typeof(SerialDetailPage), Index= 1 },
-        //    new Scenario {PageTitle="问答",PageType=typeof(QuestionDetailPage), Index= 2 },
-        //};
 
         internal static readonly Dictionary<string, Scenario> GetScenarioByName = new Dictionary<string, Scenario>
         {
@@ -46,7 +41,7 @@ namespace Many.ThirdParty.Config
 
         public Type PageType { get; set; }
 
-        public string PageTypeName { get; set; } 
+        public string PageTypeName { get; set; }
 
         public int Index { get; set; }
     }

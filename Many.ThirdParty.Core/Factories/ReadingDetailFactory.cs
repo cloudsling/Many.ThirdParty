@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Many.ThirdParty.Core.Factory
+namespace Many.ThirdParty.Core.Factories
 {
     internal class ReadingDetailFactory
     {

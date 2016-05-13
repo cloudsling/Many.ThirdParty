@@ -33,7 +33,7 @@ namespace Many.ThirdParty.Core.ViewModels
         }
         public async Task AddHomeModel(string contentId)
         {
-            AddHomeModel(await ResourcesLoader.LoadHomeModelResourcesAsync(contentId));
+            AddHomeModel(await HomeList.LoadHomeModelResourcesAsync(contentId));
         }
     }
 }

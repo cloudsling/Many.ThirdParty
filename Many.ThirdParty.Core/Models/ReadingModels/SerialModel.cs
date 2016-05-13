@@ -1,8 +1,8 @@
 ﻿using System;
+using Many.ThirdParty.Core.Commands;
 using Many.ThirdParty.Core.Models.CommonModels;
 using Windows.Data.Json;
 using Newtonsoft.Json;
-using Many.ThirdParty.Core.Tools;
 
 namespace Many.ThirdParty.Core.Models.ReadingModels
 {
@@ -16,7 +16,7 @@ namespace Many.ThirdParty.Core.Models.ReadingModels
         {
             Type = type;
             CreateContent(json);
-            NavigateToDetailCommand = new CommandBase(Test);
+            NavigateToDetailCommand = new Command(Test);
         }
 
         private void Test(object obj)
@@ -38,7 +38,7 @@ namespace Many.ThirdParty.Core.Models.ReadingModels
 
         public override IReadingContent Content { get; set; }
 
-        public override CommandBase NavigateToDetailCommand { get; set; }
+        public override Command NavigateToDetailCommand { get; set; }
 
         public override void CreateContent(JsonObject json)
         {

@@ -1,23 +1,11 @@
-﻿//using Many.ThirdParty.AddlPages;
-using Many.ThirdParty.Config;
+﻿using Many.ThirdParty.Config;
 using Many.ThirdParty.Core.ViewModels;
 using Many.ThirdParty.SubPages;
 using System;
 using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Runtime.InteropServices.WindowsRuntime;
-using System.Threading.Tasks;
-using Windows.Foundation;
-using Windows.Foundation.Collections;
 using Windows.UI.Core;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
-using Windows.UI.Xaml.Controls.Primitives;
-using Windows.UI.Xaml.Data;
-using Windows.UI.Xaml.Input;
-using Windows.UI.Xaml.Media;
-using Windows.UI.Xaml.Media.Imaging;
 using Windows.UI.Xaml.Navigation;
 
 namespace Many.ThirdParty
@@ -31,22 +19,35 @@ namespace Many.ThirdParty
         {
             CurrentScenario = NavigationCommonConfig.GetScenarioByName[mainFrameContainer.CurrentSourcePageType.Name];
 
-            UpdateContent(CurrentScenario.PageTitle); 
+            UpdateContent(CurrentScenario.PageTitle);
             UpdateGenericUI(CurrentScenario.Index);
         }
 
         private void MainFrameContainer_BackRequested(object sender, BackRequestedEventArgs e)
         {
             if (mainFrameContainer.CanGoBack)
-                mainFrameContainer.GoBack();
-            e.Handled = true;
+            {
+                switch (mainFrameContainer.SourcePageType.Name)
+                {
+                    case nameof(HomePage): return;
+                    case nameof(ReadingPage): return;
+                    case nameof(MusicPage): return;
+                    case nameof(MoviePage): return;
+                    default:
+                        {
+                            mainFrameContainer.GoBack();
+                            e.Handled = true;
+                            return;
+                        }
+                }
+            }
         }
 
         private void ChangeBackgroundAndNavigate(object sender, RoutedEventArgs e)
         {
             ThisNavigate(Convert.ToInt32((sender as Button).Tag));
         }
-        
+
         private void Current_SizeChanged(object sender, WindowSizeChangedEventArgs e)
         {
             ResetWidth();
@@ -119,7 +120,7 @@ namespace Many.ThirdParty
         {
             MainFrameContainerViewModel.WindowCurrentWidth = Window.Current.Bounds.Width;
         }
-        
+
         private static void InitializeField()
         {
             FootButtonBackgroundImage = new List<Image>
