@@ -27,37 +27,18 @@ namespace Many.ThirdParty.SubPages
                 ChangeAllEllipseColor(ManyEllipse.Children, GetIndexFromFlipView(sender));
             }
         }
-
-
+        
         private int GetIndexFromFlipView(object sender) => (sender as FlipView).SelectedIndex;
 
         private async void MainListView_ItemClick(object sender, ItemClickEventArgs e)
         {
             ReadingModelBase modelBase = e.ClickedItem as ReadingModelBase;
-
-            var sth = NavigationCommonConfig.MainScenarios[modelBase.Type + 4].PageType;
-
-            var st = await ReadingViewModelFactory.CreateReadingDetailPageViewModel(modelBase);
-            //this.Frame.Navigate(NavigationCommonConfig.MainScenarios[modelBase.Type + 4].PageType,
-            //  await QuestionDetailPageViewModel.CreateQuestionDetailPageViewModel(modelBase.Id));
-            this.Frame.Navigate(sth, st);
-
+ 
+            this.Frame.Navigate(
+                NavigationManager.MainScenarios[modelBase.Type + 4].PageType,
+                await ReadingViewModelFactory.CreateReadingDetailPageViewModel(modelBase));
         }
-
-        private void ReadingPage_BackRequested(object sender, BackRequestedEventArgs e)
-        {
-            if (Frame.CanGoBack)
-            {
-                Frame.GoBack();
-                e.Handled = true;
-            }
-        }
-
-        private void MainFrameContainer_BackRequested(object sender, BackRequestedEventArgs e)
-        {
-        }
-
-
+        
         private void BlankButton_Click(object sender, Windows.UI.Xaml.RoutedEventArgs e)
         {
 

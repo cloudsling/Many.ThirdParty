@@ -3,262 +3,301 @@
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:local="using:Many.ThirdParty.AddlPages"
+    xmlns:ctm="using:Many.ThirdParty.CustomControls"
+    xmlns:cvtr="using:Many.ThirdParty.Core.Converter"
+    xmlns:hmModel="using:Many.ThirdParty.Core.Models.HomeModels"
+    xmlns:redModel="using:Many.ThirdParty.Core.Models.AddlModels"
+    xmlns:muzkModel="using:Many.ThirdParty.Core.Models.MusicModels"
+    xmlns:movModel="using:Many.ThirdParty.Core.Models.MovieModels"
+    xmlns:ozrModel="using:Many.ThirdParty.Core.Models.CommonModels"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d">
-    <Page.Resources>
-        <SolidColorBrush x:Key="FontColor" 
-                         Color="{Binding ThemeColor.FontColor.Color}"/>
-        <Storyboard x:Name="searchStartAnimation">
-            <DoubleAnimation Storyboard.TargetName="border"
-                             Storyboard.TargetProperty="Height"
-                             Duration="0:0:.6"
-                             BeginTime="0:0:0" To="0"
-                             EnableDependentAnimation="True"/>
-        </Storyboard>
-    </Page.Resources>
 
-    <!--<Grid>
-        <ProgressRing Height="50" Width="50"
-                      VerticalAlignment="Center"
-                      IsActive="{Binding IsActive}"/>
-        <StackPanel>
-            <Grid Padding="1.2"
-                  Margin="0 3" Height="40"
-                  VerticalAlignment="Top">
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="1*"/>
-                    <ColumnDefinition Width="1*"/>
-                    <ColumnDefinition Width="1*"/>
-                    <ColumnDefinition Width="1*"/>
-                    <ColumnDefinition Width="1.5*"/>
-                </Grid.ColumnDefinitions>
-                <Button x:Name="def" Grid.Column="0"
-                    Template="{StaticResource BlankButton}"
-                    HorizontalAlignment="Center"
-                    FontFamily="Consolas"
-                    Foreground="#FF1212" Content="插图"
-                    Command="{Binding SearchCommand}"
-                    CommandParameter="1" Tag="0"
-                    Click="Button_Click"/>
-                <Button Grid.Column="1"
-                    Template="{StaticResource BlankButton}"
-                    HorizontalAlignment="Center"
-                    FontFamily="Consolas"
-                    Foreground="#36C3F1" Content="阅读"
-                    Command="{Binding SearchCommand}"
-                    CommandParameter="2" Tag="1"
-                    Click="Button_Click"/>
-                <Button Grid.Column="2"
-                    Template="{StaticResource BlankButton}"
-                    HorizontalAlignment="Center"
-                    FontFamily="Consolas"
-                    Foreground="#36C3F1" Content="音乐"
-                    Command="{Binding SearchCommand}"
-                    CommandParameter="3" Tag="2"
-                    Click="Button_Click"/>
-                <Button Grid.Column="3"
-                    Template="{StaticResource BlankButton}"
-                    HorizontalAlignment="Center"
-                    FontFamily="Consolas"
-                    Foreground="#36C3F1" Content="影视"
-                    Command="{Binding SearchCommand}"
-                    CommandParameter="4" Tag="3"
-                    Click="Button_Click"/>
-                <Button Grid.Column="4"
-                    Template="{StaticResource BlankButton}"
-                    HorizontalAlignment="Center"
-                    FontFamily="Consolas"
-                    Foreground="#36C3F1" Content="作者/音乐人"
-                    Command="{Binding SearchCommand}"
-                    CommandParameter="5" Tag="4"
-                    Click="Button_Click"/>
-                <ProgressBar Grid.Column="0" Grid.ColumnSpan="5"
-                             VerticalAlignment="Bottom"
-                             IsIndeterminate="{Binding IsActive}" 
-                             Visibility="{Binding Visable}"/>
+    <Page.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="ms-appx:///Themes/TextBlockResourceDictionary.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+            <cvtr:SwitchVisibilityConverter x:Name="SwitchVisibility" />
+            <cvtr:ReadingTypeBtnImageConverter x:Name="BtnType"/>
+            <Style TargetType="ListViewItem">
+                <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
+            </Style>
+            <Style TargetType="ListView">
+                <Setter Property="SelectionMode" Value="None"/>
+                <Setter Property="Margin" Value="0"/>
+                <Setter Property="Padding" Value="0"/>
+                <Setter Property="IsItemClickEnabled" Value="True"/>
+            </Style>
+            <Style TargetType="ctm:BlankButton">
+                <Setter Property="HorizontalAlignment" Value="Center"/>
+                <Setter Property="VerticalAlignment" Value="Center"/>
+                <Setter Property="Foreground" Value="#FF333333"/>
+            </Style>
+            <Storyboard x:Name="StartAnimation">
+                <DoubleAnimation Storyboard.TargetName="border"
+                             Storyboard.TargetProperty="Height"
+                             Duration="0:0:.4"
+                             BeginTime="0:0:0" To="0"
+                             EnableDependentAnimation="True">
+                    <DoubleAnimation.EasingFunction>
+                        <CircleEase EasingMode="EaseOut"/>
+                    </DoubleAnimation.EasingFunction>
+                </DoubleAnimation>
+            </Storyboard>
+        </ResourceDictionary>
+    </Page.Resources>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <Grid Height="50"
+              Background="#FFF8F8F8"
+              VerticalAlignment="Top">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="2*"/>
+                <ColumnDefinition Width="13*"/>
+                <ColumnDefinition Width="2*"/>
+            </Grid.ColumnDefinitions>
+            <Grid HorizontalAlignment="Left">
+                <ctm:BlankButton x:Name="GoBackButton" Click="GoBackButton_Click">
+                    <Image Source="ms-appx:///Resources/bGiMAGES/return_image.png"/>
+                </ctm:BlankButton>
             </Grid>
-            <Border x:Name="border" Height="150">
-                <Image VerticalAlignment="Top"
-                       Margin="0 8"
-                       Source="ms-appx:///Assets/Res/Search_image1.png"/>
-            </Border>
+            <Grid Grid.Column="1"
+                  VerticalAlignment="Center">
+                <TextBox x:Name="SearchContent"/>
+            </Grid>
+            <Grid Grid.Column="2"
+                  HorizontalAlignment="Center">
+                <ctm:BlankButton HorizontalAlignment="Center"
+                                 Command="{x:Bind ViewModel.SearchCommand, Mode=OneWay}"
+                                 CommandParameter="{Binding ElementName=SearchContent,Path=Text}"
+                                 Margin="4">
+                    <ctm:BlankButton.Content>
+                        <Image Source="ms-appx:///Resources/BgImages/Search.png"/>
+                    </ctm:BlankButton.Content>
+                </ctm:BlankButton>
+            </Grid>
+        </Grid>
+        <Grid Grid.Row="1">
+
+            <ProgressRing Height="50" Width="50"
+                      VerticalAlignment="Center"
+                      IsActive="{x:Bind ViewModel.IsActive, Mode=OneWay}"/>
             <StackPanel>
-                <ListView Margin="0" Padding="0"
-                          ItemsSource="{Binding Path=DayObject}"
-                          IsItemClickEnabled="True" 
-                          ItemClick="ListView_ItemClick">
-                    <ListView.ItemTemplate>
-                        <DataTemplate>
-                            <Border Margin="0 2">
-                                <Grid Height="68">
-                                    <Grid.ColumnDefinitions>
-                                        <ColumnDefinition Width="Auto"/>
-                                        <ColumnDefinition Width="*"/>
-                                    </Grid.ColumnDefinitions>
-                                    <Border Margin="0 0 2 0" Grid.Column="0">
-                                        <Image Source="{Binding DayImagePath}"/>
-                                    </Border>
-                                    <Grid Grid.Column="1">
-                                        <Grid.RowDefinitions>
-                                            <RowDefinition />
-                                            <RowDefinition />
-                                        </Grid.RowDefinitions>
-                                        <TextBlock Grid.Row="0" Margin=" 5 2"
+                <Border x:Name="border" Height="100">
+                </Border>
+                <Grid Padding="1.2"
+                      Background="White"
+                      Visibility="{x:Bind ViewModel.Visable, Mode=OneWay, Converter={StaticResource SwitchVisibility}}"
+                      Margin="0 3" Height="40">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="1*"/>
+                        <ColumnDefinition Width="1*"/>
+                        <ColumnDefinition Width="1*"/>
+                        <ColumnDefinition Width="1*"/>
+                        <ColumnDefinition Width="1.5*"/>
+                    </Grid.ColumnDefinitions>
+                    <ctm:BlankButton x:Name="Hp" Grid.Column="0" 
+                                     Content="插图"
+                                     Foreground="#FF8EB6E6" 
+                                     Click="Button_Click"/>
+                    <ctm:BlankButton x:Name="Reading" Grid.Column="1"   
+                                     Content="阅读"
+                                     Click="Button_Click"/>
+                    <ctm:BlankButton x:Name="Music"  Grid.Column="2"
+                                     Content="音乐" 
+                                     Click="Button_Click"/>
+                    <ctm:BlankButton x:Name="Movie"  Grid.Column="3" 
+                                     Content="影视" 
+                                     Click="Button_Click"/>
+                    <ctm:BlankButton x:Name="Author"  Grid.Column="4" 
+                                     Content="作者/音乐人" 
+                                     Click="Button_Click"/>
+                </Grid>
+                <StackPanel>
+                    <Image Width="250"
+                           Visibility="{x:Bind ViewModel.Visable, Mode=OneWay}" 
+                           VerticalAlignment="Top"
+                           HorizontalAlignment="Center"
+                           Source="ms-appx:///Resources/BgImages/search_image.png"/>
+
+                    <ListView x:Name="HpList"
+                              ItemsSource="{x:Bind ViewModel.HomeModelCollection}"
+                              ItemClick="HpList_ItemClick">
+                        <ListView.ItemTemplate>
+                            <DataTemplate x:DataType="hmModel:HomeModel">
+                                <Border Margin="0 2">
+                                    <Grid Height="68">
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="Auto"/>
+                                            <ColumnDefinition Width="*"/>
+                                        </Grid.ColumnDefinitions>
+                                        <Border Margin="3" Grid.Column="0">
+                                            <Image Source="{x:Bind Hp_Img_Url}"/>
+                                        </Border>
+                                        <Grid Grid.Column="1">
+                                            <Grid.RowDefinitions>
+                                                <RowDefinition />
+                                                <RowDefinition />
+                                            </Grid.RowDefinitions>
+                                            <TextBlock Grid.Row="0" Margin=" 5 2"
                                            VerticalAlignment="Center"
-                                           Text="{Binding ByWho}"
+                                           Text="{x:Bind Hp_Author}"
                                            FontSize="14"
                                            FontFamily="Consolas"
                                            FontWeight="Bold"/>
-                                        <TextBlock Grid.Row="1" Margin=" 5 1"
+                                            <TextBlock Grid.Row="1" Margin=" 5 1"
                                            VerticalAlignment="Center"
-                                           Text="{Binding MainString}"
+                                           Text="{x:Bind Hp_Content}"
                                            FontSize="10"/>
+                                        </Grid>
                                     </Grid>
-                                </Grid>
-                            </Border>
-                        </DataTemplate>
-                    </ListView.ItemTemplate>
-                </ListView>
-                <ListView Margin="0" Padding="0"
-                          ItemsSource="{Binding Path=ReadingOC}"
-                          IsItemClickEnabled="True" 
-                          ItemClick="ListView_ItemClick">
-                    <ListView.ItemTemplate>
-                        <DataTemplate>
-                            <Border Margin="3 2">
-                                <Grid Height="24">
+                                </Border>
+                            </DataTemplate>
+                        </ListView.ItemTemplate>
+                    </ListView>
+                    <ListView x:Name="ReadingList"
+                              Visibility="Collapsed" 
+                              ItemsSource="{x:Bind ViewModel.SearchReadingModelCollection, Mode=OneWay}"
+                              ItemClick="ListView_ItemClick">
+                        <ListView.ItemTemplate>
+                            <DataTemplate x:DataType="redModel:SearchReadingModel">
+                                <Border Margin="3 2">
+                                    <Grid Height="24">
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="Auto"/>
+                                            <ColumnDefinition Width="*"/>
+                                            <ColumnDefinition Width="Auto"/>
+                                        </Grid.ColumnDefinitions>
+                                        <Border Grid.Column="0" Padding="2">
+                                            <Image Source="{x:Bind Type, Mode=OneWay, Converter={StaticResource BtnType}}"/>
+                                        </Border>
+                                        <Border Grid.Column="1">
+                                            <TextBlock Grid.Row="0" Margin="7 2"
+                                                   VerticalAlignment="Center"
+                                                   HorizontalAlignment="Left"
+                                                   Text="{x:Bind Title, Mode=OneWay}"
+                                                   FontSize="14"
+                                                   FontFamily="Consolas"
+                                                   FontWeight="Bold"/>
+                                        </Border>
+                                    </Grid>
+                                </Border>
+                            </DataTemplate>
+                        </ListView.ItemTemplate>
+                    </ListView>
+                    <ListView x:Name="MusicList"
+                              Visibility="Collapsed"
+                              ItemsSource="{x:Bind ViewModel.MusicModelCollection}" 
+                              ItemClick="ListView_ItemClick">
+                        <ListView.ItemTemplate>
+                            <DataTemplate x:DataType="muzkModel:MusicModel">
+                                <Border Margin="0 2">
+                                    <Grid Height="68">
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="Auto"/>
+                                            <ColumnDefinition Width="*"/>
+                                        </Grid.ColumnDefinitions>
+                                        <Border Height="28" Margin="0 0 2 0" Grid.Column="0">
+                                            <Image Stretch="UniformToFill" 
+                                                   Source="{x:Bind Cover, Mode=OneWay, Converter={StaticResource BtnType}}"/>
+                                        </Border>
+                                        <Grid Grid.Column="1">
+                                            <Grid.RowDefinitions>
+                                                <RowDefinition />
+                                                <RowDefinition />
+                                            </Grid.RowDefinitions>
+                                            <TextBlock Grid.Row="0" Margin=" 5 2"
+                                           VerticalAlignment="Center"
+                                           Text="{x:Bind Title}"
+                                           FontSize="14"
+                                           FontFamily="Consolas"
+                                           FontWeight="Bold"/>
+                                            <TextBlock Grid.Row="1" Margin=" 5 1"
+                                           VerticalAlignment="Center"
+                                           Text="{x:Bind Author.User_Name}"
+                                           FontSize="10"/>
+                                        </Grid>
+                                    </Grid>
+                                </Border>
+                            </DataTemplate>
+                        </ListView.ItemTemplate>
+                    </ListView>
+                    <ListView x:Name="MovieList"
+                              Visibility="Collapsed"
+                              ItemsSource="{x:Bind ViewModel.MovieListModelCollection}" 
+                              ItemClick="ListView_ItemClick">
+                        <ListView.ItemTemplate>
+                            <DataTemplate x:DataType="movModel:MovieListModel">
+                                <Grid Height="28" Margin="3 2">
                                     <Grid.ColumnDefinitions>
                                         <ColumnDefinition Width="Auto"/>
                                         <ColumnDefinition Width="*"/>
                                     </Grid.ColumnDefinitions>
                                     <Border Grid.Column="0" Padding="2">
-                                        <Image/>
+                                        <Image Source="ms-appx:///Resources/BgImages/search_movie.png"/>
                                     </Border>
                                     <Border Grid.Column="1">
                                         <TextBlock Grid.Row="0" Margin="7 2"
                                                    VerticalAlignment="Center"
                                                    HorizontalAlignment="Left"
-                                                   Text="{Binding Title}"
+                                                   Text="{x:Bind Title}"
                                                    FontSize="14"
                                                    FontFamily="Consolas"
                                                    FontWeight="Bold"/>
                                     </Border>
                                 </Grid>
-                            </Border>
-                        </DataTemplate>
-                    </ListView.ItemTemplate>
-                </ListView>
-                <ListView Margin="0" Padding="0"
-                          ItemsSource="{Binding Path=MusicOC}"
-                          IsItemClickEnabled="True" 
-                          ItemClick="ListView_ItemClick">
-                    <ListView.ItemTemplate>
-                        <DataTemplate>
-                            <Border Margin="0 2">
-                                <Grid Height="68">
-                                    <Grid.ColumnDefinitions>
-                                        <ColumnDefinition Width="Auto"/>
-                                        <ColumnDefinition Width="*"/>
-                                    </Grid.ColumnDefinitions>
-                                    <Border Margin="0 0 2 0" Grid.Column="0">
-                                        <Image Source="{Binding Cover}"/>
-                                    </Border>
-                                    <Grid Grid.Column="1">
-                                        <Grid.RowDefinitions>
-                                            <RowDefinition />
-                                            <RowDefinition />
-                                        </Grid.RowDefinitions>
-                                        <TextBlock Grid.Row="0" Margin=" 5 2"
-                                           VerticalAlignment="Center"
-                                           Text="{Binding Title}"
-                                           FontSize="14"
-                                           FontFamily="Consolas"
-                                           FontWeight="Bold"/>
-                                        <TextBlock Grid.Row="1" Margin=" 5 1"
-                                           VerticalAlignment="Center"
-                                           Text="{Binding Author.UserName}"
-                                           FontSize="10"/>
-                                    </Grid>
-                                </Grid>
-                            </Border>
-                        </DataTemplate>
-                    </ListView.ItemTemplate>
-                </ListView>
-                <ListView Margin="0" Padding="0"
-                          ItemsSource="{Binding Path=MovieOC}"
-                          IsItemClickEnabled="True" 
-                          ItemClick="ListView_ItemClick">
-                    <ListView.ItemTemplate>
-                        <DataTemplate>
-                            <Border Margin="3 2">
-                                <Grid Height="28">
-                                    <Grid.ColumnDefinitions>
-                                        <ColumnDefinition Width="Auto"/>
-                                        <ColumnDefinition Width="*"/>
-                                    </Grid.ColumnDefinitions>
-                                    <Border Grid.Column="0" Padding="2">
-                                        <Image Source="ms-appx:///Assets/Res/search_movie.png"/>
-                                    </Border>
-                                    <Border Grid.Column="1">
-                                        <TextBlock Grid.Row="0" Margin="7 2"
-                                                   VerticalAlignment="Center"
-                                                   HorizontalAlignment="Left"
-                                                   Text="{Binding Title}"
-                                                   FontSize="14"
-                                                   FontFamily="Consolas"
-                                                   FontWeight="Bold"/>
-                                    </Border>
-                                </Grid>
-                            </Border>
-                        </DataTemplate>
-                    </ListView.ItemTemplate>
-                </ListView>
-                <ListView Margin="0" Padding="0"
-                          ItemsSource="{Binding Path=PeopleOC}"
-                          IsItemClickEnabled="True" 
-                          ItemClick="ListView_ItemClick">
-                    <ListView.ItemTemplate>
-                        <DataTemplate>
-                            <Border Margin="0 2">
-                                <Grid Height="68">
-                                    <Grid.ColumnDefinitions>
-                                        <ColumnDefinition Width="Auto"/>
-                                        <ColumnDefinition Width="*"/>
-                                    </Grid.ColumnDefinitions>
-                                    <Border Grid.Column="0"
+                            </DataTemplate>
+                        </ListView.ItemTemplate>
+                    </ListView>
+                    <ListView x:Name="AuthorList"
+                              Visibility="Collapsed"
+                              ItemsSource="{x:Bind ViewModel.AuthorCollection, Mode=OneWay}" 
+                              ItemClick="ListView_ItemClick">
+                        <ListView.ItemTemplate>
+                            <DataTemplate x:DataType="ozrModel:Author">
+                                <Border Margin="0 2">
+                                    <Grid Height="68">
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="Auto"/>
+                                            <ColumnDefinition Width="*"/>
+                                        </Grid.ColumnDefinitions>
+                                        <Border Grid.Column="0"
                                              Margin="0 0 2 0" CornerRadius="90"
-                                             Width="50" Height="50"
+                                             Width="28" Height="28"
                                              VerticalAlignment="Center">
-                                        <Border.Background>
-                                            <ImageBrush ImageSource="{Binding WebUri}"/>
-                                        </Border.Background>
-                                    </Border>
-                                    <Grid Grid.Column="1">
-                                        <Grid.RowDefinitions>
-                                            <RowDefinition />
-                                            <RowDefinition />
-                                        </Grid.RowDefinitions>
-                                        <TextBlock Grid.Row="0" Margin=" 5 2"
+                                            <Border.Background>
+                                                <ImageBrush ImageSource="{x:Bind Web_Url, Mode=OneWay, Converter={StaticResource BtnType}}"/>
+                                            </Border.Background>
+                                        </Border>
+                                        <Grid Grid.Column="1">
+                                            <Grid.RowDefinitions>
+                                                <RowDefinition />
+                                                <RowDefinition />
+                                            </Grid.RowDefinitions>
+                                            <TextBlock Grid.Row="0" Margin=" 5 2"
                                            VerticalAlignment="Center"
-                                           Text="{Binding UserName}"
+                                           Text="{x:Bind User_Name}"
                                            FontSize="14"
                                            FontFamily="Consolas"
                                            FontWeight="Bold"/>
-                                        <TextBlock Grid.Row="1" Margin=" 5 1"
+                                            <TextBlock Grid.Row="1" Margin=" 5 1"
                                            VerticalAlignment="Center"
-                                           Text="{Binding Desc}"
+                                           Text="{x:Bind Desc}"
                                            FontSize="10"/>
+                                        </Grid>
                                     </Grid>
-                                </Grid>
-                            </Border>
-                        </DataTemplate>
-                    </ListView.ItemTemplate>
-                </ListView>
-                <Image Visibility="{Binding NoSearchResult}" 
-                       VerticalAlignment="Top"
-                       Source="ms-appx:///Resources/BgImages/search_image.png"/>
+                                </Border>
+                            </DataTemplate>
+                        </ListView.ItemTemplate>
+                    </ListView>
+
+                </StackPanel>
             </StackPanel>
-        </StackPanel>
-    </Grid>-->
+        </Grid>
+    </Grid>
 </Page>

@@ -116,10 +116,10 @@
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Config\NavigationCommonConfig.cs" />
+    <Compile Include="Config\NavigationManager.cs" />
     <Compile Include="CustomControls\BlankButton.cs" />
     <Compile Include="CustomControls\HomeButton.cs" />
-    <Compile Include="Config\DelegationCommonConfig.cs" />
+    <Compile Include="Config\DelegationManager.cs" />
     <Compile Include="ExtendedSplash.xaml.cs">
       <DependentUpon>ExtendedSplash.xaml</DependentUpon>
     </Compile>
@@ -184,13 +184,14 @@
     <Content Include="Resources\BgImages\reading_board.png" />
     <Content Include="Resources\BgImages\return_image.png" />
     <Content Include="Resources\BgImages\return_image_pressed.png" />
+    <Content Include="Resources\BgImages\search.png" />
     <Content Include="Resources\BgImages\search_image.png" />
+    <Content Include="Resources\BgImages\search_movie.png" />
+    <Content Include="Resources\BgImages\search_pressed.png" />
     <Content Include="Resources\BgImages\serial_image.png" />
     <Content Include="Resources\BgImages\share_image.png" />
     <Content Include="Resources\CommonsImages\return_image.png" />
     <Content Include="Resources\CommonsImages\return_image_pressed.png" />
-    <Content Include="Resources\CommonsImages\search.png" />
-    <Content Include="Resources\CommonsImages\search_pressed.png" />
     <Content Include="Resources\BgImages\StartImage.png" />
     <Content Include="Resources\Images\Search127.png" />
     <Content Include="Resources\Images\Search15.png" />

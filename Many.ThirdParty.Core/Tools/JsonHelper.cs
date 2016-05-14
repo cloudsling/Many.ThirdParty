@@ -59,10 +59,9 @@ namespace Many.ThirdParty.Core.Tools
             return GetArrayFromObject(json, DATANAME);
         }
 
-        internal static T GetTFormObject<T>(string content) where T : class, new()
+        internal static T GetTFormString<T>(string content) where T : class, new()
         {
-            return JsonConvert.DeserializeObject<T>(content);
-             
+            return JsonConvert.DeserializeObject<T>(content); 
         }
     }
 }

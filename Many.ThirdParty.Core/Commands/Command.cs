@@ -17,7 +17,7 @@ namespace Many.ThirdParty.Core.Commands
         }
 
         public Command(Action<object> excute) : this(excute, b => true) { }
-
+        
         public override void Execute(object parameter)
         {
             _excute(parameter);

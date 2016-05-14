@@ -1,4 +1,5 @@
-﻿using Many.ThirdParty.SubPages;
+﻿using Many.ThirdParty.AddlPages;
+using Many.ThirdParty.SubPages;
 using Many.ThirdParty.SubPages.ReadingDetailPage;
 using System;
 using System.Collections.Generic;
@@ -7,8 +8,27 @@ using Windows.UI.Xaml.Controls;
 
 namespace Many.ThirdParty.Config
 {
-    internal class NavigationCommonConfig
+    internal class NavigationManager
     {
+        private static Frame _generalFrame;
+
+        internal static Frame GeneralFrame
+        {
+            get { return _generalFrame; }
+            set { _generalFrame = value; }
+        }
+
+        internal static void GeneralNavigate(Type pageType)
+        {
+            _generalFrame?.Navigate(pageType);
+        }
+
+        internal static void GoBack(Frame frame)
+        {
+            if (frame.CanGoBack)
+                frame.GoBack();
+        }
+
         internal static readonly List<Scenario> MainScenarios = new List<Scenario>
         {
             new Scenario { PageTitle="ONE", PageType=typeof(HomePage), Index = 0},
@@ -31,18 +51,18 @@ namespace Many.ThirdParty.Config
             {typeof(MovieDetailPage).Name , MainScenarios[4] },
             {typeof(EssayDetailPage).Name , MainScenarios[5] },
             {typeof(SerialDetailPage).Name , MainScenarios[6] },
-            {typeof(QuestionDetailPage).Name , MainScenarios[7] }
+            {typeof(QuestionDetailPage).Name , MainScenarios[7] },
         };
     }
 
     internal class Scenario
     {
-        public string PageTitle { get; set; }
+        internal string PageTitle { get; set; }
 
-        public Type PageType { get; set; }
+        internal Type PageType { get; set; }
 
-        public string PageTypeName { get; set; }
+        internal string PageTypeName { get; set; }
 
-        public int Index { get; set; }
+        internal int Index { get; set; }
     }
 }

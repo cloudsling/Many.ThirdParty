@@ -9,28 +9,32 @@ using Windows.Data.Json;
 using Many.ThirdParty.Core.Models.ReadingModels;
 using System.Collections.ObjectModel;
 using Many.ThirdParty.Core.Factories;
+using Many.ThirdParty.Core.Models.AddlModels;
+using Many.ThirdParty.Core.Models.MusicModels;
+using Many.ThirdParty.Core.Models.MovieModels;
+using Many.ThirdParty.Core.Models.CommonModels;
 
 namespace Many.ThirdParty.Core.Data
 {
-    public static class HomeList
+    public static class CommonDataLoader
     {
         public static async Task<List<string>> GetHomeList(string listId)
         {
-            return GetTFormObject<List<string>>(await GetMainListGeneric(string.Format(ServicesUrl.MainId, listId)));
+            return GetTFormString<List<string>>(await GetMainListGeneric(string.Format(ServicesUrl.MainId, listId)));
         }
 
-        public static async Task<HomeModel> LoadHomeModelResourcesAsync(string contentId)
+        public static async Task<HomeModel> LoadHomeModelAsync(string contentId)
         {
-            return GetTFormObject<HomeModel>(await GetMainContentGeneric(string.Format(ServicesUrl.MainContent, contentId)));
-        }
-
+            return GetTFormString<HomeModel>(await GetMainContentGeneric(string.Format(ServicesUrl.MainContent, contentId)));
+        } 
+        
         #region private method
         private static async Task<string> GetMainListGeneric(string uri)
         {
             return GetArrayFromObject(await GetMainJsonObjectAsync(uri)).Stringify();
         }
 
-        private static async Task<JsonArray> GetMainArrayGeneric(string uri)
+        internal static async Task<JsonArray> GetMainArrayGeneric(string uri)
         {
             return GetArrayFromObject(await GetMainJsonObjectAsync(uri));
         }
@@ -48,7 +52,7 @@ namespace Many.ThirdParty.Core.Data
 
         public static async Task<ObservableCollection<CarouselModel>> GetCarouselModel()
         {
-            return GetTFormObject<ObservableCollection<CarouselModel>>(await GetMainListGeneric(ServicesUrl.ReadingCarousel));
+            return GetTFormString<ObservableCollection<CarouselModel>>(await GetMainListGeneric(ServicesUrl.ReadingCarousel));
         }
 
         public static async Task<ObservableCollection<ReadingModel>> GetReadingModel(string listId)
@@ -75,7 +79,7 @@ namespace Many.ThirdParty.Core.Data
                     ReadingModelBase itemModel = ReadingModelFactory.CreateReadingModel(type, obj.GetNamedObject("content"));
 
                     itemModel.Time = obj.GetNamedString("time");
-                    
+
                     model.AddToCollection(itemModel);
                 }
 

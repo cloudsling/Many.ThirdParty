@@ -12,7 +12,6 @@ namespace Many.ThirdParty.Core.Data
 {
     internal static class Comments
     {
-
         internal async static Task<ObservableCollection<CommentModel>> GetComment(string uri)
         {
             ObservableCollection<CommentModel> collection = new ObservableCollection<CommentModel>();

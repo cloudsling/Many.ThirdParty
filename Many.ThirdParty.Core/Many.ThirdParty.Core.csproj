@@ -108,8 +108,11 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Converter\ReadingTypeBtnImageConverter.cs" />
+    <Compile Include="Converter\StringToBitmapImageConverter.cs" />
+    <Compile Include="Converter\SwitchVisibilityConverter.cs" />
     <Compile Include="Data\Comments.cs" />
-    <Compile Include="Data\HomeList.cs" />
+    <Compile Include="Data\CommonDataLoader.cs" />
+    <Compile Include="Data\Searcher.cs" />
     <Compile Include="Factories\ReadingDetailFactory.cs" />
     <Compile Include="Factories\ReadingModelFactory.cs" />
     <Compile Include="Factories\ReadingViewModelFactory.cs" />
@@ -148,6 +151,7 @@
     <EmbeddedResource Include="Properties\Many.ThirdParty.Core.rd.xml" />
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="Interface\" />
     <Folder Include="Models\ReadingDetailModels\" />
   </ItemGroup>
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '14.0' ">

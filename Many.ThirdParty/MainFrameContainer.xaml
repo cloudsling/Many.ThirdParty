@@ -42,7 +42,7 @@
                 </Grid.ColumnDefinitions>
                 <Grid HorizontalAlignment="Left">
                     <ctm:BlankButton x:Name="SearchButton" Click="SearchButton_Click">
-                        <Image Source="ms-appx:///Resources/CommonsImages/search.png"/>
+                        <Image Source="ms-appx:///Resources/BgImages/search.png"/>
                     </ctm:BlankButton>
                 </Grid>
                 <Grid Grid.Column="1"

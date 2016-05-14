@@ -1,4 +1,5 @@
-﻿using Many.ThirdParty.Config;
+﻿using Many.ThirdParty.AddlPages;
+using Many.ThirdParty.Config;
 using Many.ThirdParty.Core.ViewModels;
 using Many.ThirdParty.SubPages;
 using System;
@@ -17,7 +18,7 @@ namespace Many.ThirdParty
     {
         private void MainFrameContainer_Navigated(object sender, NavigationEventArgs e)
         {
-            CurrentScenario = NavigationCommonConfig.GetScenarioByName[mainFrameContainer.CurrentSourcePageType.Name];
+            CurrentScenario = NavigationManager.GetScenarioByName[mainFrameContainer.CurrentSourcePageType.Name];
 
             UpdateContent(CurrentScenario.PageTitle);
             UpdateGenericUI(CurrentScenario.Index);
@@ -25,22 +26,23 @@ namespace Many.ThirdParty
 
         private void MainFrameContainer_BackRequested(object sender, BackRequestedEventArgs e)
         {
-            if (mainFrameContainer.CanGoBack)
+            switch (mainFrameContainer.SourcePageType.Name)
             {
-                switch (mainFrameContainer.SourcePageType.Name)
-                {
-                    case nameof(HomePage): return;
-                    case nameof(ReadingPage): return;
-                    case nameof(MusicPage): return;
-                    case nameof(MoviePage): return;
-                    default:
+                case nameof(HomePage): return;
+                case nameof(ReadingPage): return;
+                case nameof(MusicPage): return;
+                case nameof(MoviePage): return;
+                default:
+                    {
+                        if (mainFrameContainer.CanGoBack)
                         {
                             mainFrameContainer.GoBack();
                             e.Handled = true;
-                            return;
                         }
-                }
+                        return;
+                    }
             }
+
         }
 
         private void ChangeBackgroundAndNavigate(object sender, RoutedEventArgs e)
@@ -55,7 +57,7 @@ namespace Many.ThirdParty
 
         private void SearchButton_Click(object sender, RoutedEventArgs e)
         {
-            //ThisFrameNavigate(typeof(SearchPage));
+            NavigationManager.GeneralFrame.Navigate(typeof(SearchPage));
         }
     }
 
@@ -100,8 +102,7 @@ namespace Many.ThirdParty
 
         private void ThisNavigate(int index)
         {
-            ThisFrameNavigate(NavigationCommonConfig.MainScenarios[index].PageType);
-            //mainFrameContainer.Navigate();
+            ThisFrameNavigate(NavigationManager.MainScenarios[index].PageType);
         }
 
         private void ThisFrameNavigate(Type pageType)
@@ -154,10 +155,10 @@ namespace Many.ThirdParty
         {
             for (int i = 0; i < 4; i++)
             {
-                FootButtonBackgroundImage[i].Source = DelegationCommonConfig.FootButtonSource[i];
+                FootButtonBackgroundImage[i].Source = DelegationManager.FootButtonSource[i];
             }
 
-            FootButtonBackgroundImage[index].Source = DelegationCommonConfig.FootButtonActivedSource[index];
+            FootButtonBackgroundImage[index].Source = DelegationManager.FootButtonActivedSource[index];
         }
     }
 }

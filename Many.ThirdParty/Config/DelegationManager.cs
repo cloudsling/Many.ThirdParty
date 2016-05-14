@@ -8,7 +8,7 @@ using Windows.UI.Xaml.Media.Imaging;
 
 namespace Many.ThirdParty.Config
 {
-    internal static class DelegationCommonConfig
+    internal static class DelegationManager
     {
         internal static readonly List<BitmapImage> FootButtonSource = new List<BitmapImage> {
           new BitmapImage (new Uri ("ms-appx:///Resources/MFCImages/home.png")),

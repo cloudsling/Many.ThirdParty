@@ -55,8 +55,9 @@ namespace Many.ThirdParty.SubPages
         }
 
         Dictionary<string, bool> isClickDic = new Dictionary<string, bool>();
+
         /// <summary>
-        /// 老代码，应尽快重构
+        /// expired code
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>

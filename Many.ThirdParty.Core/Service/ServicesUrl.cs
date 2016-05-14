@@ -34,7 +34,7 @@
 
         private static readonly string unknowReading = "http://v3.wufazhuce.com:8000/api/reading/carousel/pv/68?";
 
-        private static readonly string musicContent = "http://v3.wufazhuce.com:8000/api/music/update/430/{0}"; //DataTime
+        private static readonly string musicContent = "http://v3.wufazhuce.com:8000/api/music/update/{0}/{1}"; //DataTime
 
         private static readonly string musicRelatedContent = "http://v3.wufazhuce.com:8000/api/related/music/{0}"; //id
 

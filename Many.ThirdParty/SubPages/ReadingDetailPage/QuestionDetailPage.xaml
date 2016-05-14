@@ -5,6 +5,7 @@
     xmlns:local="using:Many.ThirdParty.SubPages.ReadingDetailPage"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:ctm="using:Many.ThirdParty.CustomControls"
+    xmlns:cvtr="using:Many.ThirdParty.Core.Converter"
     xmlns:cvm="using:Many.ThirdParty.Core.Models.CommonModels"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
     mc:Ignorable="d">
@@ -14,6 +15,7 @@
             <ResourceDictionary.MergedDictionaries>
                 <ResourceDictionary Source="ms-appx:///Themes/TextBlockResourceDictionary.xaml"/>
             </ResourceDictionary.MergedDictionaries>
+            <cvtr:StringToBitmapImageConverter x:Name="StringToBitmapImage" />
             <Style TargetType="ListViewItem">
                 <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
             </Style>
@@ -79,7 +81,7 @@
                                          VerticalAlignment="Top"
                                          HorizontalAlignment="Center">
                                     <Ellipse.Fill>
-                                        <ImageBrush ImageSource="{x:Bind User.Web_Url}" />
+                                        <ImageBrush ImageSource="{x:Bind User.Web_Url, Mode=OneWay, Converter={StaticResource StringToBitmapImage}}" />
                                     </Ellipse.Fill>
                                 </Ellipse>
                                 <Grid Grid.Column="1">
@@ -159,7 +161,7 @@
                                          VerticalAlignment="Top"
                                          HorizontalAlignment="Center">
                                     <Ellipse.Fill>
-                                        <ImageBrush ImageSource="{x:Bind User.Web_Url}" />
+                                        <ImageBrush ImageSource="{x:Bind User.Web_Url, Mode=OneWay, Converter={StaticResource StringToBitmapImage}}" />
                                     </Ellipse.Fill>
                                 </Ellipse>
                                 <Grid Grid.Column="1">
