@@ -18,7 +18,7 @@
     <ProjectTypeGuids>{A5A43C5B-DE2A-4C0C-9213-0A381AF9435A};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <PackageCertificateKeyFile>Many.ThirdParty_StoreKey.pfx</PackageCertificateKeyFile>
     <PackageCertificateThumbprint>7D249B79C3C2CF6785A9BDDD1AD478467F040567</PackageCertificateThumbprint>
-    <AppxAutoIncrementPackageRevision>False</AppxAutoIncrementPackageRevision>
+    <AppxAutoIncrementPackageRevision>True</AppxAutoIncrementPackageRevision>
     <AppxBundle>Always</AppxBundle>
     <AppxBundlePlatforms>x86|x64|arm</AppxBundlePlatforms>
   </PropertyGroup>
@@ -98,12 +98,6 @@
     <None Include="project.json" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AddlPages\CommentPage.xaml.cs">
-      <DependentUpon>CommentPage.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="AddlPages\LoginPage.xaml.cs">
-      <DependentUpon>LoginPage.xaml</DependentUpon>
-    </Compile>
     <Compile Include="AddlPages\SearchPage.xaml.cs">
       <DependentUpon>SearchPage.xaml</DependentUpon>
     </Compile>
@@ -130,6 +124,9 @@
       <DependentUpon>PreLoadPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SubPages\CarouselDetailPage.xaml.cs">
+      <DependentUpon>CarouselDetailPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="SubPages\HomePage.xaml.cs">
       <DependentUpon>HomePage.xaml</DependentUpon>
     </Compile>
@@ -193,6 +190,7 @@
     <Content Include="Resources\CommonsImages\return_image.png" />
     <Content Include="Resources\CommonsImages\return_image_pressed.png" />
     <Content Include="Resources\BgImages\StartImage.png" />
+    <Content Include="Resources\default_indi_bg.png" />
     <Content Include="Resources\Images\Search127.png" />
     <Content Include="Resources\Images\Search15.png" />
     <Content Include="Resources\Images\search23.png" />
@@ -221,14 +219,6 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Page Include="AddlPages\CommentPage.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="AddlPages\LoginPage.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
     <Page Include="AddlPages\SearchPage.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -250,6 +240,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="PreLoadPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="SubPages\CarouselDetailPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

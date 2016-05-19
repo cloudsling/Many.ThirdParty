@@ -1,4 +1,5 @@
-﻿using Many.ThirdParty.Core.ViewModels.ReadingDetailPageViewModels;
+﻿using Many.ThirdParty.Config;
+using Many.ThirdParty.Core.ViewModels.ReadingDetailPageViewModels;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -28,6 +29,11 @@ namespace Many.ThirdParty.SubPages.ReadingDetailPage
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
             ViewModel = e.Parameter as SerialDetailPageViewModel ?? new SerialDetailPageViewModel();
+        }
+
+        private void BackButton_Click(object sender, RoutedEventArgs e)
+        {
+            NavigationManager.GoBack(this.Frame);
         }
     }
 }

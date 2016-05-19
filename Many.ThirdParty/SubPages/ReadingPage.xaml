@@ -10,7 +10,7 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d"
-    DataContext="{Binding ReadingPageViewModel,
+    DataContext="{Binding ViewModel,
                           RelativeSource={RelativeSource Mode=Self}}"
     d:DataContext="{d:DesignInstance Type=dvm:ReadingPageViewModel,
                                      IsDesignTimeCreatable=True}">
@@ -39,12 +39,12 @@
             </Grid.RowDefinitions>
             <Grid>
                 <FlipView x:Name="fv"
-                          ItemsSource="{Binding CarouselModelCollection}"
+                          ItemsSource="{Binding CarouselModelCollection}" 
                           SelectionChanged="fv_SelectionChanged">
                     <FlipView.ItemTemplate>
                         <DataTemplate>
                             <Border>
-                                <ctm:BlankButton>
+                                <ctm:BlankButton Click="BlankButton_Click">
                                     <Image x:Name="bkimg" 
                                             Stretch="UniformToFill" 
                                             Source="{Binding Cover}"/>

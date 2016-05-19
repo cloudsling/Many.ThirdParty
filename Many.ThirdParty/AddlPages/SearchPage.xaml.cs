@@ -1,19 +1,13 @@
 ﻿using Many.ThirdParty.Config;
-using Many.ThirdParty.Core.Models.HomeModels;
+using Many.ThirdParty.Core.Models.AddlModels;
 using Many.ThirdParty.Core.ViewModels.AddlPageViewModels;
-using System;
+using Many.ThirdParty.Core.ViewModels.ReadingDetailPageViewModels;
+using Many.ThirdParty.SubPages;
+using Many.ThirdParty.SubPages.ReadingDetailPage;
 using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Runtime.InteropServices.WindowsRuntime;
-using Windows.Foundation;
-using Windows.Foundation.Collections;
 using Windows.UI;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
-using Windows.UI.Xaml.Controls.Primitives;
-using Windows.UI.Xaml.Data;
-using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
 
@@ -24,11 +18,6 @@ namespace Many.ThirdParty.AddlPages
     /// </summary>
     public sealed partial class SearchPage : Page
     {
-        private void ListView_ItemClick(object sender, ItemClickEventArgs e)
-        {
-            var model = sender as HomeModel;
-        }
-
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             UpdateSearchButtonsUI(sender as Button);
@@ -41,6 +30,41 @@ namespace Many.ThirdParty.AddlPages
         }
 
         private void HpList_ItemClick(object sender, ItemClickEventArgs e)
+        {
+            NavigationManager.GeneralNavigate(typeof(HomePage), e.ClickedItem);
+        }
+
+        private async void ReadingList_ItemClick(object sender, ItemClickEventArgs e)
+        {
+            var model = e.ClickedItem as SearchReadingModel;
+            
+            switch (model.Type)
+            {
+                case "essay":
+                    NavigationManager.GeneralNavigate(typeof(EssayDetailPage), await EssayDetailPageViewModel.CreateViewModel(model.Id));
+                    return;
+                case "question":
+                    NavigationManager.GeneralNavigate(typeof(QuestionDetailPage), await QuestionDetailPageViewModel.CreateViewModel(model.Id));
+                    return;
+                case "serialcontent":
+                    NavigationManager.GeneralNavigate(typeof(SerialDetailPage), await SerialDetailPageViewModel.CreateViewModel(model.Id));
+                    return;
+                default:
+                    return;
+            }
+        }
+
+        private void MusicList_ItemClick(object sender, ItemClickEventArgs e)
+        {
+            NavigationManager.GeneralNavigate(typeof(MusicPage), e.ClickedItem);
+        }
+
+        private void MovieList_ItemClick(object sender, ItemClickEventArgs e)
+        {
+            NavigationManager.GeneralNavigate(typeof(MovieDetailPage), e.ClickedItem);
+        }
+
+        private void AuthorList_ItemClick(object sender, ItemClickEventArgs e)
         {
 
         }
@@ -56,6 +80,8 @@ namespace Many.ThirdParty.AddlPages
             ViewModel = new SearchPageViewModel();
             this.InitializeComponent();
             InitializeFields();
+
+            NavigationCacheMode = NavigationCacheMode.Required;
         }
 
         void InitializeFields()
@@ -94,6 +120,8 @@ namespace Many.ThirdParty.AddlPages
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
             StartAnimation.Begin();
+
+            SearchContent.Focus(FocusState.Keyboard);
         }
     }
 

@@ -8,7 +8,7 @@
 
         private static readonly string mainContent = "http://v3.wufazhuce.com:8000/api/hp/detail/{0}?"; //ID
 
-        private static readonly string readingCarousel = "http://v3.wufazhuce.com:8000/api/reading/carousel/?";
+        private static readonly string readingCarousel = "http://v3.wufazhuce.com:8000/api/reading/carousel/{0}?";
 
         private static readonly string readingContent = "http://v3.wufazhuce.com:8000/api/reading/index/{0}?";
 

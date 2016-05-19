@@ -1,5 +1,7 @@
 ﻿using Newtonsoft.Json;
 using System;
+using System.Collections;
+using System.Collections.Generic;
 using Windows.Data.Json;
 
 namespace Many.ThirdParty.Core.Tools
@@ -42,8 +44,7 @@ namespace Many.ThirdParty.Core.Tools
                 return null;
             }
         }
-
-
+        
         internal static JsonObject GetObjectFromString(string content)
         {
             return GetObjectFormString(content);
@@ -59,9 +60,15 @@ namespace Many.ThirdParty.Core.Tools
             return GetArrayFromObject(json, DATANAME);
         }
 
-        internal static T GetTFormString<T>(string content) where T : class, new()
+        internal static T GetTFormString<T>(string content) where T : class
         {
-            return JsonConvert.DeserializeObject<T>(content); 
+            return JsonConvert.DeserializeObject<T>(content);
+        }
+
+        internal static IEnumerable<T> GetTFormArray<T>(JsonArray array) where T : class
+        {
+            foreach (var item in array) 
+                yield return JsonConvert.DeserializeObject<T>(item.Stringify()); 
         }
     }
 }

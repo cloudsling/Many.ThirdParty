@@ -1,4 +1,5 @@
-﻿using Many.ThirdParty.Core.Data;
+﻿using Many.ThirdParty.Core.Commons;
+using Many.ThirdParty.Core.Data;
 using Many.ThirdParty.Core.Models.HomeModels;
 using Many.ThirdParty.Core.Tools;
 using System;
@@ -10,7 +11,7 @@ using System.Threading.Tasks;
 
 namespace Many.ThirdParty.Core.ViewModels
 {
-    public class HomePageViewModel : BindableBase
+    public class HomePageViewModel : ViewModelBase
     {
         public HomePageViewModel()
         {
@@ -29,11 +30,16 @@ namespace Many.ThirdParty.Core.ViewModels
 
         public void AddHomeModel(HomeModel model)
         {
-            HomeModelCollection.Add(model);
+            _homeModelCollection.Add(model);
         }
         public async Task AddHomeModel(string contentId)
         {
-            AddHomeModel(await CommonDataLoader.LoadHomeModelAsync(contentId));
+            _homeModelCollection.Add(await CommonDataLoader.LoadHomeModelAsync(contentId));
+        }
+
+        public void InsertHomeModel(HomeModel model)
+        {
+            _homeModelCollection.Insert(0, model);
         }
     }
 }

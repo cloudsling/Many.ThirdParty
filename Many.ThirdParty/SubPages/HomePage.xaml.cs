@@ -41,9 +41,18 @@ namespace Many.ThirdParty.SubPages
 
         protected override async void OnNavigatedTo(NavigationEventArgs e)
         {
-            HomePageViewModel.AddHomeModel(CurrentHomeModle ?? new HomeModel());
+            if (e.Parameter != null)
+            {
+                HomePageViewModel.InsertHomeModel(e.Parameter as HomeModel);
+            }
+            else
+            {
+                HomePageViewModel.AddHomeModel(CurrentHomeModle ?? new HomeModel());
 
-            await LoadRemainingHomeModel();
+                await LoadRemainingHomeModel();
+
+            }
+
         }
 
         private async Task LoadRemainingHomeModel()

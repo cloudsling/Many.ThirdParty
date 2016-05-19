@@ -4,40 +4,36 @@
     xmlns:local="using:Many.ThirdParty.Themes">
 
     <Style x:Key="SmallText" TargetType="TextBlock">
-        <Setter Property="FontSize" Value="11"/>
-        <Setter Property="FontFamily" Value="Consolas"/>
+        <Setter Property="FontSize" Value="13"/>
         <Setter Property="Foreground" Value="#9C9C9C"/>
     </Style>
-    <Style x:Key="SmallDeepText" TargetType="TextBlock">
-        <Setter Property="FontSize" Value="12"/>
+    
+    <Style TargetType="TextBlock">
         <Setter Property="FontFamily" Value="Consolas"/>
+    </Style>
+
+    <Style x:Key="SmallDeepText" TargetType="TextBlock">
+        <Setter Property="FontSize" Value="14"/>
         <Setter Property="Foreground" Value="#9D9D9D"/>
     </Style>
+
     <Style x:Key="NormalText" TargetType="TextBlock">
-        <Setter Property="LineHeight" Value="20"/>
-        <Setter Property="FontSize" Value="14"/>
+        <Setter Property="LineHeight" Value="22"/>
+        <Setter Property="FontSize" Value="16"/>
         <Setter Property="FontFamily" Value="Consolas"/>
         <Setter Property="Foreground" Value="#353535"/>
     </Style>
 
     <Style x:Key="ReadingText" TargetType="TextBlock">
-        <Setter Property="FontFamily" Value="Consolas"/>
-        <Setter Property="LineHeight" Value="23"/>
+        <Setter Property="LineHeight" Value="25"/>
         <Setter Property="Margin" Value="5" />
     </Style>
 
     <Style x:Key="ReadingContent" TargetType="TextBlock">
         <Setter Property="TextWrapping" Value="Wrap"/>
-        <Setter Property="FontFamily" Value="Consolas"/>
         <Setter Property="Margin" Value="5"/>
-        <Setter Property="LineHeight" Value="23"/>
+        <Setter Property="LineHeight" Value="25"/>
         <Setter Property="Foreground" Value="Black"/>
     </Style>
-
-    <!--TextWrapping="Wrap"
-                           FontFamily="Consolas"
-                           Margin="5"
-                           FontWeight="Light"
-                           Foreground="Black"-->
 
 </ResourceDictionary>

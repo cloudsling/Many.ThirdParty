@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Many.ThirdParty.Core.Models.MusicModels;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -47,8 +48,8 @@ namespace Many.ThirdParty.SubPages
             }
             else
             {
-                //var music = e.Parameter as MusicModel;
-                // musicWebView.Navigate(new Uri(musicUri + music.Id.ToString()));
+                var music = e.Parameter as MusicModel;
+                musicWebView.Navigate(new Uri(musicUri + music.Id.ToString()));
             }
             CurrentCount += 1;
         }

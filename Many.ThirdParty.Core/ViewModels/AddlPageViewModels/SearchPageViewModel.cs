@@ -13,18 +13,20 @@ using System.Threading.Tasks;
 using Windows.UI.Xaml;
 using Many.ThirdParty.Core.Data;
 using Many.ThirdParty.Core.Models.CommonModels;
+using Many.ThirdParty.Core.Commons;
 
 namespace Many.ThirdParty.Core.ViewModels.AddlPageViewModels
 {
-    public partial class SearchPageViewModel : BindableBase
+    public partial class SearchPageViewModel : ViewModelBase
     {
         public SearchPageViewModel()
         {
             UpdateUI(Visibility.Visible, false);
 
             NoSearchResult = Visibility.Collapsed;
-            SearchCommand = new AsyncCommand(Search);
-            ShowResult = new Command(ShowResults);
+            //SearchCommand = new AsyncCommand(Search);
+            SearchCommand = new Command(Search);
+
             HomeModelCollection = new ObservableCollection<HomeModel>();
             SearchReadingModelCollection = new ObservableCollection<SearchReadingModel>();
             MusicModelCollection = new ObservableCollection<MusicModel>();
@@ -32,18 +34,23 @@ namespace Many.ThirdParty.Core.ViewModels.AddlPageViewModels
             AuthorCollection = new ObservableCollection<Author>();
         }
 
-        async Task Search(object obj)
+        async void Search(object obj)
         {
             UpdateUI(Visibility.Collapsed, true);
 
             await AddToCollection(HomeModelCollection, obj as string);
 
-            IsActive = false;
+            await SearchOther(obj as string);
 
-            await AddToCollection(SearchReadingModelCollection, obj as string);
-            await AddToCollection(MusicModelCollection, obj as string);
-            await AddToCollection(MovieListModelCollection, obj as string);
-            await AddToCollection(AuthorCollection, obj as string);
+            IsActive = false;
+        }
+
+        async Task SearchOther(string searchContent)
+        {
+            await AddToCollection(SearchReadingModelCollection, searchContent);
+            await AddToCollection(MusicModelCollection, searchContent);
+            await AddToCollection(MovieListModelCollection, searchContent);
+            await AddToCollection(AuthorCollection, searchContent);
         }
 
         async Task AddToCollection<T>(ObservableCollection<T> collection, string searchContent) where T : class, new()
@@ -51,7 +58,7 @@ namespace Many.ThirdParty.Core.ViewModels.AddlPageViewModels
             foreach (var item in await Searcher<T>.Search(searchContent))
             {
                 collection.Add(item);
-                await Task.Delay(5);
+                await Task.Delay(1);
             }
         }
 
@@ -60,17 +67,13 @@ namespace Many.ThirdParty.Core.ViewModels.AddlPageViewModels
             Visable = vis;
             IsActive = isActive;
         }
-
-        public void ShowResults(object obj)
-        {
-
-        }
+        
     }
 
     /// <summary>
     /// fields and properties
     /// </summary>
-    public partial class SearchPageViewModel : BindableBase
+    public partial class SearchPageViewModel : ViewModelBase
     {
         public string SearchContent { get; set; }
 

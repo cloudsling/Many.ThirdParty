@@ -41,7 +41,7 @@ namespace Many.ThirdParty.Core.ViewModels.ReadingDetailPageViewModels
             set { _content = value; }
         }
 
-        internal static async Task<ReadingDetailPageViewModelBase> CreateQuestionDetailPageViewModel(string id)
+        public static async Task<ReadingDetailPageViewModelBase> CreateViewModel(string id)
         {
             if (string.IsNullOrEmpty(id)) return null;
 

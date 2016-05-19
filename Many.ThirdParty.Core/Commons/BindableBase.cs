@@ -1,4 +1,4 @@
-﻿namespace Many.ThirdParty.Core.Tools
+﻿namespace Many.ThirdParty.Core.Commons
 {
     using System.ComponentModel;
     using System.Runtime.CompilerServices;

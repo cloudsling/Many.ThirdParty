@@ -3,6 +3,7 @@ using Many.ThirdParty.Core.Models.MovieModels;
 using System.Collections.ObjectModel;
 using Windows.ApplicationModel;
 using Many.ThirdParty.Core.Tools;
+using Many.ThirdParty.Core.Commons;
 
 namespace Many.ThirdParty.Core.ViewModels
 {

@@ -28,6 +28,7 @@
                 <Setter Property="SelectionMode" Value="None"/>
                 <Setter Property="Margin" Value="0"/>
                 <Setter Property="Padding" Value="0"/>
+                <Setter Property="Height" Value="600"/>
                 <Setter Property="IsItemClickEnabled" Value="True"/>
             </Style>
             <Style TargetType="ctm:BlankButton">
@@ -63,7 +64,7 @@
             </Grid.ColumnDefinitions>
             <Grid HorizontalAlignment="Left">
                 <ctm:BlankButton x:Name="GoBackButton" Click="GoBackButton_Click">
-                    <Image Source="ms-appx:///Resources/bGiMAGES/return_image.png"/>
+                    <Image Source="ms-appx:///Resources/BgImages/return_image.png"/>
                 </ctm:BlankButton>
             </Grid>
             <Grid Grid.Column="1"
@@ -125,7 +126,7 @@
                            HorizontalAlignment="Center"
                            Source="ms-appx:///Resources/BgImages/search_image.png"/>
 
-                    <ListView x:Name="HpList"
+                    <ListView x:Name="HpList"  
                               ItemsSource="{x:Bind ViewModel.HomeModelCollection}"
                               ItemClick="HpList_ItemClick">
                         <ListView.ItemTemplate>
@@ -160,10 +161,10 @@
                             </DataTemplate>
                         </ListView.ItemTemplate>
                     </ListView>
-                    <ListView x:Name="ReadingList"
+                    <ListView x:Name="ReadingList" 
                               Visibility="Collapsed" 
                               ItemsSource="{x:Bind ViewModel.SearchReadingModelCollection, Mode=OneWay}"
-                              ItemClick="ListView_ItemClick">
+                              ItemClick="ReadingList_ItemClick">
                         <ListView.ItemTemplate>
                             <DataTemplate x:DataType="redModel:SearchReadingModel">
                                 <Border Margin="3 2">
@@ -190,10 +191,10 @@
                             </DataTemplate>
                         </ListView.ItemTemplate>
                     </ListView>
-                    <ListView x:Name="MusicList"
+                    <ListView x:Name="MusicList" 
                               Visibility="Collapsed"
                               ItemsSource="{x:Bind ViewModel.MusicModelCollection}" 
-                              ItemClick="ListView_ItemClick">
+                              ItemClick="MusicList_ItemClick">
                         <ListView.ItemTemplate>
                             <DataTemplate x:DataType="muzkModel:MusicModel">
                                 <Border Margin="0 2">
@@ -202,7 +203,7 @@
                                             <ColumnDefinition Width="Auto"/>
                                             <ColumnDefinition Width="*"/>
                                         </Grid.ColumnDefinitions>
-                                        <Border Height="28" Margin="0 0 2 0" Grid.Column="0">
+                                        <Border Height="35" Margin="0 0 2 0" Grid.Column="0">
                                             <Image Stretch="UniformToFill" 
                                                    Source="{x:Bind Cover, Mode=OneWay, Converter={StaticResource BtnType}}"/>
                                         </Border>
@@ -230,7 +231,7 @@
                     <ListView x:Name="MovieList"
                               Visibility="Collapsed"
                               ItemsSource="{x:Bind ViewModel.MovieListModelCollection}" 
-                              ItemClick="ListView_ItemClick">
+                              ItemClick="MovieList_ItemClick">
                         <ListView.ItemTemplate>
                             <DataTemplate x:DataType="movModel:MovieListModel">
                                 <Grid Height="28" Margin="3 2">
@@ -257,7 +258,7 @@
                     <ListView x:Name="AuthorList"
                               Visibility="Collapsed"
                               ItemsSource="{x:Bind ViewModel.AuthorCollection, Mode=OneWay}" 
-                              ItemClick="ListView_ItemClick">
+                              ItemClick="AuthorList_ItemClick">
                         <ListView.ItemTemplate>
                             <DataTemplate x:DataType="ozrModel:Author">
                                 <Border Margin="0 2">

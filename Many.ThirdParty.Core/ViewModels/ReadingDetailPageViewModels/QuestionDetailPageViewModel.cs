@@ -47,7 +47,7 @@ namespace Many.ThirdParty.Core.ViewModels.ReadingDetailPageViewModels
             return string.Format(ServicesUrl.QuestionComment, id, "0");
         }
 
-        public static async Task<QuestionDetailPageViewModel> CreateQuestionDetailPageViewModel(string id)
+        public static async Task<QuestionDetailPageViewModel> CreateViewModel(string id)
         {
             if (string.IsNullOrEmpty(id)) return null;
 

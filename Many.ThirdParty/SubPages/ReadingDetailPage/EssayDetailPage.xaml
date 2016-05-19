@@ -27,19 +27,48 @@
 
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
         <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
             <RowDefinition Height="*"/>
             <RowDefinition Height="44"/>
         </Grid.RowDefinitions>
-        <ScrollViewer Padding="7">
+        <Grid Height="50"
+              VerticalAlignment="Top">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="2*"/>
+                <ColumnDefinition Width="13*"/>
+                <ColumnDefinition Width="2*"/>
+            </Grid.ColumnDefinitions>
+            <Grid HorizontalAlignment="Left">
+                <ctm:BlankButton x:Name="BackButton" Click="BackButton_Click">
+                    <Image Source="ms-appx:///Resources/BgImages/return_image.png"/>
+                </ctm:BlankButton>
+            </Grid>
+            <Grid Grid.Column="1"
+                  HorizontalAlignment="Center">
+                <TextBlock Text="短篇" 
+                           VerticalAlignment="Center"
+                           Foreground="#4E5C6C"
+                           FontSize="19"
+                           FontWeight="Medium"/>
+            </Grid>
+        <Rectangle Grid.Row="1"
+                   Grid.Column="0"
+                   Grid.ColumnSpan="3"
+                   Fill="#CBCCCE"
+                   Height="1"/>
+        </Grid>
+        <ScrollViewer Grid.Row="1"
+                      Padding="1">
             <StackPanel>
                 <Grid Padding="5">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="Auto"/>
                         <ColumnDefinition Width="*"/>
                     </Grid.ColumnDefinitions>
-                    <!--<Image  Height="30"
-                                        Width="30"
-                                        Source="{x:Bind User.Web_Url}"/>-->
                     <Ellipse Height="30"
                                          Width="30"
                                          Margin="0 9 5 0"
@@ -221,7 +250,7 @@
                 </ListView>
             </StackPanel>
         </ScrollViewer>
-        <Grid Grid.Row="1">
+        <Grid Grid.Row="2">
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto"/>
                 <RowDefinition Height="*"/>

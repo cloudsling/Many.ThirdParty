@@ -3,7 +3,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Input;
 
-namespace Many.ThirdParty.Core.Commands
+namespace Many.ThirdParty.Core.Commons
 {
     public abstract class CommandBase : ICommand
     {

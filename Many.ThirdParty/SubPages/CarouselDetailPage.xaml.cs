@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Many.ThirdParty.Core.ViewModels;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -13,18 +14,20 @@ using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
 
-// The Blank Page item template is documented at http://go.microsoft.com/fwlink/?LinkId=234238
-
-namespace Many.ThirdParty.AddlPages
+namespace Many.ThirdParty.SubPages
 {
-    /// <summary>
-    /// An empty page that can be used on its own or navigated to within a Frame.
-    /// </summary>
-    public sealed partial class LoginPage : Page
+    public sealed partial class CarouselDetailPage : Page
     {
-        public LoginPage()
+        public CarouselDetailPageViewModel ViewModel { get; set; }
+
+        public CarouselDetailPage()
         {
             this.InitializeComponent();
+        }
+
+        protected override void OnNavigatedTo(NavigationEventArgs e)
+        {
+            ViewModel = e.Parameter as CarouselDetailPageViewModel ?? new CarouselDetailPageViewModel();
         }
     }
 }

@@ -1,13 +1,8 @@
-﻿using Many.ThirdParty.Core.Data;
+﻿using Many.ThirdParty.Core.Commons;
+using Many.ThirdParty.Core.Data;
 using Many.ThirdParty.Core.Models.ReadingModels;
-using Many.ThirdParty.Core.Tools;
-using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
-using Windows.ApplicationModel;
 
 namespace Many.ThirdParty.Core.ViewModels
 {
@@ -26,7 +21,7 @@ namespace Many.ThirdParty.Core.ViewModels
 
         public async Task RefreshCollection()
         {
-            foreach (var item in await CommonDataLoader.GetCarouselModel())
+            foreach (var item in await CommonDataLoader.GetCarouselModel<CarouselModel>(""))
             {
                 AddToCollection(item);
             }

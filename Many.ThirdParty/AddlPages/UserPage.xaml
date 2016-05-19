@@ -6,8 +6,32 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d">
+    
+    <Page.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="ms-appx:///Themes/TextBlockResourceDictionary.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+            <Style TargetType="ListViewItem">
+                <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
+            </Style>
+            <Style TargetType="ListView">
+                <Setter Property="SelectionMode" Value="None"/>
+            </Style>
+        </ResourceDictionary>
+    </Page.Resources>
 
-    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
-
-    </Grid>
+    <StackPanel Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+        <Image Source="ms-appx:///Resources/default_indi_bg.png"
+               VerticalAlignment="Top"
+               Height="220"
+               Stretch="Fill"/>
+        <ListViewItem Background="#FFF8F8F8">
+            <TextBlock Text="设置" 
+                       Style="{StaticResource SmallDeepText}"/>
+        </ListViewItem>
+        <ListView>
+            
+        </ListView>
+    </StackPanel>
 </Page>

@@ -1,4 +1,5 @@
-﻿using Many.ThirdParty.Core.Tools;
+﻿using Many.ThirdParty.Core.Commons;
+using Many.ThirdParty.Core.Tools;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,7 +9,7 @@ using Windows.UI.Xaml;
 
 namespace Many.ThirdParty.Core.ViewModels
 {
-    public class MainFrameContainerViewModel : BindableBase
+    public class MainFrameContainerViewModel : ViewModelBase
     {
         double _windowCurrentWidth;
         public double WindowCurrentWidth

@@ -22,6 +22,7 @@ namespace Many.ThirdParty.Core.Converter
         {
             { "essay",  ReadingTypeButtonImage[0] },
             { "serial",  ReadingTypeButtonImage[1]},
+            { "serialcontent", ReadingTypeButtonImage[1]},
             { "question",  ReadingTypeButtonImage[2]},
         };
 
@@ -31,7 +32,8 @@ namespace Many.ThirdParty.Core.Converter
             {
                 if (ImageSource.ContainsKey(value as string))
                     return new BitmapImage(ImageSource[value as string]);
-                return new BitmapImage(ReadingTypeButtonImage[0]);
+
+                return new BitmapImage(new Uri(value as string));
             }
             return new BitmapImage(ReadingTypeButtonImage[(int)value - 1]);
         }

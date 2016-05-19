@@ -18,6 +18,11 @@ namespace Many.ThirdParty.Config
             set { _generalFrame = value; }
         }
 
+        internal static void GeneralNavigate(Type pageType, object parameter)
+        {
+            _generalFrame?.Navigate(pageType, parameter);
+        }
+
         internal static void GeneralNavigate(Type pageType)
         {
             _generalFrame?.Navigate(pageType);

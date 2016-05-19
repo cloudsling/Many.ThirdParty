@@ -59,6 +59,11 @@ namespace Many.ThirdParty
         {
             NavigationManager.GeneralFrame.Navigate(typeof(SearchPage));
         }
+
+        private void UserButton_Click(object sender, RoutedEventArgs e)
+        {
+            NavigationManager.GeneralFrame.Navigate(typeof(UserPage));
+        }
     }
 
     /// <summary>
@@ -73,6 +78,8 @@ namespace Many.ThirdParty
         private static List<Image> FootButtonBackgroundImage;
 
         internal Scenario CurrentScenario { get; set; }
+
+        private int CurrentBottomImageIndex { get; set; } = 0;
     }
 
     /// <summary>
@@ -88,6 +95,8 @@ namespace Many.ThirdParty
             CurrentMainFrameContainer = this;
 
             InitializeField();
+
+            this.NavigationCacheMode = NavigationCacheMode.Required;
         }
 
         protected override void OnNavigatedTo(NavigationEventArgs e)
@@ -153,12 +162,11 @@ namespace Many.ThirdParty
 
         private void UpdateBottomButtonUI(int index)
         {
-            for (int i = 0; i < 4; i++)
-            {
-                FootButtonBackgroundImage[i].Source = DelegationManager.FootButtonSource[i];
-            }
+            FootButtonBackgroundImage[CurrentBottomImageIndex].Source = DelegationManager.FootButtonSource[CurrentBottomImageIndex];
 
-            FootButtonBackgroundImage[index].Source = DelegationManager.FootButtonActivedSource[index];
+            CurrentBottomImageIndex = index;
+
+            FootButtonBackgroundImage[CurrentBottomImageIndex].Source = DelegationManager.FootButtonActivedSource[CurrentBottomImageIndex];
         }
     }
 }

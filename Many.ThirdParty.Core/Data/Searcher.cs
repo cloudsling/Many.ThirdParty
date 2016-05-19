@@ -34,12 +34,20 @@ namespace Many.ThirdParty.Core.Data
                     return null;
             }
         }
-        public static async Task<ObservableCollection<T>> Search(string searchContent)
+
+        public static async Task<IEnumerable<T>> Search(string searchContent)
         {
-            return GetTFormString<ObservableCollection<T>>(
+            return GetTFormString<IEnumerable<T>>(
                   (await CommonDataLoader.GetMainArrayGeneric(
                       GetSearchUri(searchContent))
                   ).Stringify());
-        } 
+        }
+
+        public static async Task<IEnumerable<T>> SearchWithLargeContent(string searchContent)
+        {
+            return GetTFormArray<T>((
+                await CommonDataLoader.GetMainArrayGeneric(
+                      GetSearchUri(searchContent))));
+        }
     }
 }

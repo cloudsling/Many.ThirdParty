@@ -1,4 +1,7 @@
 ﻿using Many.ThirdParty.Core.ViewModels;
+using Many.ThirdParty.Core.Models.ReadingModels;
+using Many.ThirdParty.Config;
+using Many.ThirdParty.Core.Factories;
 using System;
 using System.Collections.Generic;
 using Windows.UI.Xaml.Controls;
@@ -6,12 +9,6 @@ using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Shapes;
 using Windows.UI;
 using Windows.UI.Xaml.Navigation;
-using Windows.UI.Popups;
-using Many.ThirdParty.Core.Models.ReadingModels;
-using Many.ThirdParty.Config;
-using Many.ThirdParty.Core.ViewModels.ReadingDetailPageViewModels;
-using Many.ThirdParty.Core.Factories;
-using Windows.UI.Core;
 
 namespace Many.ThirdParty.SubPages
 {
@@ -27,21 +24,24 @@ namespace Many.ThirdParty.SubPages
                 ChangeAllEllipseColor(ManyEllipse.Children, GetIndexFromFlipView(sender));
             }
         }
-        
+
         private int GetIndexFromFlipView(object sender) => (sender as FlipView).SelectedIndex;
+
+        private int GetIndexFromFlipView() => fv.SelectedIndex;
 
         private async void MainListView_ItemClick(object sender, ItemClickEventArgs e)
         {
             ReadingModelBase modelBase = e.ClickedItem as ReadingModelBase;
- 
-            this.Frame.Navigate(
+
+            NavigationManager.GeneralNavigate(
                 NavigationManager.MainScenarios[modelBase.Type + 4].PageType,
                 await ReadingViewModelFactory.CreateReadingDetailPageViewModel(modelBase));
         }
-        
-        private void BlankButton_Click(object sender, Windows.UI.Xaml.RoutedEventArgs e)
-        {
 
+        private async void BlankButton_Click(object sender, Windows.UI.Xaml.RoutedEventArgs e)
+        {
+            NavigationManager.GeneralNavigate(typeof(CarouselDetailPage),
+               await CarouselDetailPageViewModelFactory.CreateViewModel(ViewModel.CarouselModelCollection[GetIndexFromFlipView()]));
         }
     }
 
@@ -50,7 +50,7 @@ namespace Many.ThirdParty.SubPages
     /// </summary>
     public sealed partial class ReadingPage : Page
     {
-        public ReadingPageViewModel ReadingPageViewModel { get; set; }
+        public ReadingPageViewModel ViewModel { get; set; }
 
         private static ReadingPage CurrentReadingPage;
 
@@ -67,7 +67,7 @@ namespace Many.ThirdParty.SubPages
     {
         public ReadingPage()
         {
-            ReadingPageViewModel = new ReadingPageViewModel();
+            ViewModel = new ReadingPageViewModel();
 
             InitializeComponent();
             CurrentReadingPage = this;
@@ -77,13 +77,12 @@ namespace Many.ThirdParty.SubPages
 
         protected override async void OnNavigatedTo(NavigationEventArgs e)
         {
-            if (ReadingPageViewModel.CarouselModelCollection.Count <= 0)
+            if (ViewModel.CarouselModelCollection.Count <= 0)
             {
-                await ReadingPageViewModel.RefreshCollection();
-                await ReadingPageViewModel.RefreshListView();
+                await ViewModel.RefreshCollection();
+                await ViewModel.RefreshListView();
             }
         }
-
 
         /// <summary>
         /// 改变所有的圆点的颜色

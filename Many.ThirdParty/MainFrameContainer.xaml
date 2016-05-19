@@ -56,8 +56,10 @@
                 <Grid Grid.Column="2"
                       HorizontalAlignment="Right"
                       Visibility="{Binding BottomNavBtnAndProfileVisibility}">
-                    <ctm:BlankButton HorizontalAlignment="Right"
-                                    Margin="4">
+                    <ctm:BlankButton x:Name="UserButton"
+                                     HorizontalAlignment="Right"
+                                     Click="UserButton_Click"
+                                     Margin="4">
                         <ctm:BlankButton.Content>
                             <Image Source="ms-appx:///Resources/BgImages/individual_center.png"/>
                         </ctm:BlankButton.Content>

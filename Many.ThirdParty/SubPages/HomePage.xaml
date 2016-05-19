@@ -53,8 +53,8 @@
                     <Grid Grid.Row="1"
                       Margin="0 7 0 15">
                         <TextBlock HorizontalAlignment="Left"
-                               Text="{Binding Hp_Title}"
-                               Style="{StaticResource SmallText}"/>
+                                   Text="{Binding Hp_Title}"
+                                   Style="{StaticResource SmallText}"/>
                         <TextBlock HorizontalAlignment="Right"
                                Text="{Binding Hp_Author}"
                                Style="{StaticResource SmallText}"/>
