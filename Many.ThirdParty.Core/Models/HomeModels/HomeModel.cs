@@ -1,13 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Many.ThirdParty.Core.Commons;
+using Many.ThirdParty.Core.Themes;
+using System;
 
 namespace Many.ThirdParty.Core.Models.HomeModels
 {
-    public class HomeModel
+    public class HomeModel : BindableBase, IThemeMode
     {
         public string Hpcontent_Id { get; set; }
 
@@ -32,5 +29,16 @@ namespace Many.ThirdParty.Core.Models.HomeModels
         public string ShareNum { get; set; }
 
         public string CommentNum { get; set; }
+
+        private static IColorsCollection _colorsCollection;
+
+        public IColorsCollection ColorsCollection
+        {
+            get { return _colorsCollection; }
+            set
+            {
+                SetProperty(ref _colorsCollection, value);
+            }
+        }
     }
 }

@@ -1,16 +1,19 @@
 ﻿using Many.ThirdParty.Core.Data;
 using Many.ThirdParty.Core.Models.ReadingModels;
-using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace Many.ThirdParty.Core.ViewModels
 {
-    public class CarouselDetailPageViewModel
+    public class CarouselDetailPageViewModel : ICarousel
     {
+        public CarouselDetailPageViewModel(CarouselModel generalModel) : this()
+        {
+            Title = generalModel.Title;
+            Cover = generalModel.Cover;
+            Bottom_Text = generalModel.Bottom_Text;
+            BgColor = generalModel.BgColor; 
+        }
         public CarouselDetailPageViewModel()
         {
             CarouselDetailModelCollection = new ObservableCollection<CarouselDetailModel>();
@@ -22,9 +25,16 @@ namespace Many.ThirdParty.Core.ViewModels
             {
                 CarouselDetailModelCollection.Add(item);
             }
+            CarouselDetailModel.ResetIndex();
         }
 
-        public CarouselModel GeneralModel { get; set; }
+        public string Title { get; set; }
+
+        public string Cover { get; set; }
+
+        public string Bottom_Text { get; set; }
+
+        public string BgColor { get; set; } 
 
         public ObservableCollection<CarouselDetailModel> CarouselDetailModelCollection { get; set; }
     }

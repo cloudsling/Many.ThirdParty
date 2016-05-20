@@ -34,7 +34,7 @@ namespace Many.ThirdParty.Core.ViewModels.AddlPageViewModels
             AuthorCollection = new ObservableCollection<Author>();
         }
 
-        async void Search(object obj)
+        public async void Search(object obj)
         {
             UpdateUI(Visibility.Collapsed, true);
 
@@ -67,7 +67,7 @@ namespace Many.ThirdParty.Core.ViewModels.AddlPageViewModels
             Visable = vis;
             IsActive = isActive;
         }
-        
+
     }
 
     /// <summary>

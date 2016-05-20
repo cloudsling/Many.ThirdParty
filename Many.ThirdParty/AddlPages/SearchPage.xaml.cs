@@ -5,6 +5,7 @@ using Many.ThirdParty.Core.ViewModels.ReadingDetailPageViewModels;
 using Many.ThirdParty.SubPages;
 using Many.ThirdParty.SubPages.ReadingDetailPage;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 using Windows.UI;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
@@ -68,6 +69,12 @@ namespace Many.ThirdParty.AddlPages
         {
 
         }
+        
+        private void SearchContent_KeyUp(object sender, Windows.UI.Xaml.Input.KeyRoutedEventArgs e)
+        {
+            if (e.Key == Windows.System.VirtualKey.Enter)
+                ViewModel.Search(SearchContent.Text);
+        }
     }
 
     /// <summary>
@@ -81,7 +88,7 @@ namespace Many.ThirdParty.AddlPages
             this.InitializeComponent();
             InitializeFields();
 
-            NavigationCacheMode = NavigationCacheMode.Required;
+            NavigationCacheMode = NavigationCacheMode.Enabled;
         }
 
         void InitializeFields()
@@ -117,12 +124,12 @@ namespace Many.ThirdParty.AddlPages
             CurrentButton.Foreground = selectedColorBrush;
         }
 
-        protected override void OnNavigatedTo(NavigationEventArgs e)
+        protected async override void OnNavigatedTo(NavigationEventArgs e)
         {
             StartAnimation.Begin();
-
-            SearchContent.Focus(FocusState.Keyboard);
-        }
+            await Task.Delay(400);
+            SearchContent.Focus(FocusState.Pointer);
+        } 
     }
 
     public sealed partial class SearchPage : Page

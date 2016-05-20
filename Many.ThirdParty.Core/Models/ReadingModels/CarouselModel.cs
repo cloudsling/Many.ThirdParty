@@ -1,6 +1,8 @@
-﻿namespace Many.ThirdParty.Core.Models.ReadingModels
+﻿using System;
+
+namespace Many.ThirdParty.Core.Models.ReadingModels
 {
-    public class CarouselModel
+    public class CarouselModel : ICarousel
     {
         public string Id { get; set; }
 
@@ -15,13 +17,26 @@
         public string Pv_Url { get; set; }
     }
 
+    internal interface ICarousel
+    {
+        string Title { get; set; }
+
+        string Cover { get; set; }
+
+        string Bottom_Text { get; set; }
+
+        string BgColor { get; set; }
+    }
+
     public class CarouselDetailModel
     {
-        public CarouselModel GeneralModel { get; set; }
+        public static int index = 1;
 
-        public string Item_Id { get; set; }
+        public static void ResetIndex() => index = 1;
 
         public string Title { get; set; }
+
+        public string Item_Id { get; set; }
 
         public string Introduction { get; set; }
 
@@ -32,5 +47,7 @@
         public string Web_Url { get; set; }
 
         public string Number { get; set; }
+
+        public string Index { get { return index++.ToString(); } }
     }
 }

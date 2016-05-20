@@ -151,8 +151,8 @@
     <Compile Include="SubPages\ReadingPage.xaml.cs">
       <DependentUpon>ReadingPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="UserControls\CommonFlipView.xaml.cs">
-      <DependentUpon>CommonFlipView.xaml</DependentUpon>
+    <Compile Include="UserControls\GeneralListViewItem.xaml.cs">
+      <DependentUpon>GeneralListViewItem.xaml</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
@@ -170,9 +170,14 @@
     <Content Include="Assets\Square71x71Logo.scale-125.png" />
     <Content Include="Assets\Square71x71Logo.scale-200.png" />
     <Content Include="Assets\Wide310x150Logo.scale-200.png" />
+    <Content Include="Resources\BgImages\attention_sportq_bg.png" />
+    <Content Include="Resources\BgImages\center_night_mode.png" />
+    <Content Include="Resources\BgImages\checkbox_click.png" />
+    <Content Include="Resources\BgImages\close.png" />
     <Content Include="Resources\BgImages\comment_image.png" />
     <Content Include="Resources\BgImages\diary.png" />
     <Content Include="Resources\BgImages\essay_image.png" />
+    <Content Include="Resources\BgImages\head.png" />
     <Content Include="Resources\BgImages\individual_center.png" />
     <Content Include="Resources\BgImages\laud.png" />
     <Content Include="Resources\BgImages\laud_pressed.png" />
@@ -288,7 +293,7 @@
       <Generator>MSBuild:Compile</Generator>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Page>
-    <Page Include="UserControls\CommonFlipView.xaml">
+    <Page Include="UserControls\GeneralListViewItem.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

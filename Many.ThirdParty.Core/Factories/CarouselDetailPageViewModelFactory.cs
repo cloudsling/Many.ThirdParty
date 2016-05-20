@@ -12,12 +12,10 @@ namespace Many.ThirdParty.Core.Factories
     {
         public static async Task<CarouselDetailPageViewModel> CreateViewModel(CarouselModel model)
         {
-            CarouselDetailPageViewModel viewModel = new CarouselDetailPageViewModel();
-
-            viewModel.GeneralModel = model;
+            CarouselDetailPageViewModel viewModel = new CarouselDetailPageViewModel(model);
 
             await viewModel.RefreshCollection(model.Id);
-            
+
             return viewModel;
         }
     }

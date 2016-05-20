@@ -9,6 +9,9 @@ using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Shapes;
 using Windows.UI;
 using Windows.UI.Xaml.Navigation;
+using System.Threading;
+using Windows.UI.Xaml;
+using System.Diagnostics;
 
 namespace Many.ThirdParty.SubPages
 {
@@ -82,7 +85,31 @@ namespace Many.ThirdParty.SubPages
                 await ViewModel.RefreshCollection();
                 await ViewModel.RefreshListView();
             }
+
+            RegisterTimer(timer);
+
+            timer.Start();
         }
+
+        private void RegisterTimer(DispatcherTimer timer)
+        {
+            timer.Interval = TimeSpan.FromMilliseconds(1000 / fps);
+
+            timer.Tick += (p1, p2) =>
+            {
+                if (GetIndexFromFlipView() == 8)
+                    fv.SelectedIndex = 0;
+                else
+                    fv.SelectedIndex += 1;
+#if DEBUG
+                Debug.WriteLine(fv.SelectedIndex); 
+#endif
+            };
+        }
+
+        private double fps = .2;
+
+        private DispatcherTimer timer = new DispatcherTimer();
 
         /// <summary>
         /// 改变所有的圆点的颜色

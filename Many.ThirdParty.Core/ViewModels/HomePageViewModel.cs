@@ -1,12 +1,7 @@
 ﻿using Many.ThirdParty.Core.Commons;
 using Many.ThirdParty.Core.Data;
 using Many.ThirdParty.Core.Models.HomeModels;
-using Many.ThirdParty.Core.Tools;
-using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace Many.ThirdParty.Core.ViewModels

@@ -78,7 +78,7 @@
                                          VerticalAlignment="Top"
                                          HorizontalAlignment="Center">
                         <Ellipse.Fill>
-                            <ImageBrush ImageSource="{x:Bind ViewModel.Author.Web_Url}" />
+                            <ImageBrush ImageSource="{x:Bind ViewModel.Author.Web_Url, Converter={StaticResource StringToBitmapImage}}" />
                         </Ellipse.Fill>
                     </Ellipse>
                     <Grid Grid.Column="1">

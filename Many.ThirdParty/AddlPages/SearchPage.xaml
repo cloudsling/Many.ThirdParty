@@ -69,7 +69,8 @@
             </Grid>
             <Grid Grid.Column="1"
                   VerticalAlignment="Center">
-                <TextBox x:Name="SearchContent"/>
+                <TextBox x:Name="SearchContent"
+                         KeyUp="SearchContent_KeyUp"/>
             </Grid>
             <Grid Grid.Column="2"
                   HorizontalAlignment="Center">

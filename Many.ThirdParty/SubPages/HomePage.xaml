@@ -6,10 +6,10 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:ctm="using:Many.ThirdParty.CustomControls"
-    xmlns:dvm="using:Many.ThirdParty.Core.ViewModels"
-    mc:Ignorable="d"
-    DataContext="{Binding HomePageViewModel, RelativeSource={RelativeSource Mode=Self}}"
-    d:DataContext="{d:DesignInstance Type=dvm:HomePageViewModel,IsDesignTimeCreatable=True}">
+    xmlns:dvm="using:Many.ThirdParty.Core.ViewModels" 
+    xmlns:common="using:Many.ThirdParty.Core.Commons"
+    xmlns:home="using:Many.ThirdParty.Core.Models.HomeModels"
+    mc:Ignorable="d">
 
     <Page.Resources>
         <ResourceDictionary>
@@ -19,110 +19,114 @@
         </ResourceDictionary>
     </Page.Resources>
 
-    <FlipView x:Name="MainFlipView" 
-              CompositeMode="Inherit"
-              ItemsSource="{Binding HomeModelCollection}">
-        <FlipView.ItemTemplate>
-            <DataTemplate> 
-        <Grid Background="White">
-            <Grid.RowDefinitions>
-                <RowDefinition Height="Auto"/>
-                <RowDefinition Height="*"/>
-            </Grid.RowDefinitions>
+    <Grid>
+        <FlipView x:Name="MainFlipView" 
+                  CompositeMode="Inherit"
+                  ManipulationMode="All" 
+                  Background="White"
+                  ItemsSource="{x:Bind ViewModel.HomeModelCollection, Mode=OneWay}">
+            <FlipView.ItemTemplate>
+                <DataTemplate x:DataType="home:HomeModel">
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="*"/>
+                        </Grid.RowDefinitions>
 
-            <Grid Grid.Row="1">
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="Auto"/>
-                    <RowDefinition Height="*"/>
-                </Grid.RowDefinitions>
-                <Grid Padding="8 8 8 0"
-                  Margin="8 8 8 4">
-                    <Grid.Background>
-                        <ImageBrush ImageSource="ms-appx:///Resources/BgImages/reading_board.png"/>
-                    </Grid.Background>
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="Auto"/>
-                        <RowDefinition Height="Auto"/>
-                        <RowDefinition Height="Auto"/>
-                        <RowDefinition Height="Auto"/>
-                    </Grid.RowDefinitions>
-                    <ctm:BlankButton>
-                        <Image Stretch="UniformToFill" 
-                           Source="{Binding Hp_Img_Url}"/>
-                    </ctm:BlankButton>
-                    <Grid Grid.Row="1"
-                      Margin="0 7 0 15">
-                        <TextBlock HorizontalAlignment="Left"
-                                   Text="{Binding Hp_Title}"
-                                   Style="{StaticResource SmallText}"/>
-                        <TextBlock HorizontalAlignment="Right"
-                               Text="{Binding Hp_Author}"
-                               Style="{StaticResource SmallText}"/>
-                    </Grid>
-                    <Grid Grid.Row="2"
-                      Margin="0 12 0 30">
-                        <TextBlock TextWrapping="Wrap" 
-                               Text="{Binding Hp_Content}"
+                        <Grid Grid.Row="1">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="*"/>
+                            </Grid.RowDefinitions>
+                            <Grid x:Name="ImageGrid" Padding="8 8 8 0"
+                                  Margin="8 8 8 4">
+                                <Grid.Background>
+                                    <ImageBrush ImageSource="ms-appx:///Resources/BgImages/reading_board.png"/>
+                                </Grid.Background>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="Auto"/>
+                                </Grid.RowDefinitions>
+                                <ctm:BlankButton Click="BlankButton_Click">
+                                    <Image Stretch="UniformToFill" 
+                                           Source="{x:Bind Hp_Img_Url, Mode=OneWay}"/>
+                                </ctm:BlankButton>
+                                <Grid Grid.Row="1"
+                                      Margin="0 7 0 15">
+                                    <TextBlock HorizontalAlignment="Left"
+                                               Text="{x:Bind Hp_Title, Mode=OneWay}"
+                                               Style="{StaticResource SmallText}"/>
+                                    <TextBlock HorizontalAlignment="Right"
+                                               Text="{x:Bind Hp_Author, Mode=OneWay}"
+                                               Style="{StaticResource SmallText}"/>
+                                </Grid>
+                                <Grid Grid.Row="2"
+                                      Margin="0 12 0 30">
+                                    <TextBlock TextWrapping="Wrap" 
+                               Text="{x:Bind Hp_Content, Mode=OneWay}"
                                Style="{StaticResource NormalText}"/>
-                    </Grid>
-                    <Grid Grid.Row="3"
+                                </Grid>
+                                <Grid Grid.Row="3"
                       Margin="0 7">
-                        <TextBlock HorizontalAlignment="Right"
+                                    <TextBlock HorizontalAlignment="Right"
                                Style="{StaticResource SmallDeepText}"
-                               Text="{Binding Hp_MaketTime}"/>
-                    </Grid>
-                </Grid>
-                <Grid Grid.Row="1">
-                    <Grid Height="50"
+                               Text="{x:Bind Hp_MaketTime, Mode=OneWay}"/>
+                                </Grid>
+                            </Grid>
+                            <Grid Grid.Row="1">
+                                <Grid Height="50"
                       Margin="12 0"
                       Padding="5" 
                       VerticalAlignment="Top">
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="8*"/>
-                            <ColumnDefinition Width="3*"/>
-                            <ColumnDefinition Width="2*"/>
-                        </Grid.ColumnDefinitions>
-                        <ctm:BlankButton Width="80"
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="8*"/>
+                                        <ColumnDefinition Width="3*"/>
+                                        <ColumnDefinition Width="2*"/>
+                                    </Grid.ColumnDefinitions>
+                                    <ctm:BlankButton Width="80"
                                      HorizontalAlignment="Left">
-                            <ctm:BlankButton.Content>
-                                <Border>
-                                    <StackPanel Orientation="Horizontal">
-                                        <Image Source="ms-appx:///Resources/BgImages/diary.png"/>
-                                        <TextBlock Text="小计"
+                                        <ctm:BlankButton.Content>
+                                            <Border>
+                                                <StackPanel Orientation="Horizontal">
+                                                    <Image Source="ms-appx:///Resources/BgImages/diary.png"/>
+                                                    <TextBlock Text="小计"
                                                VerticalAlignment="Center"
                                                Style="{StaticResource SmallText}"/>
-                                    </StackPanel>
-                                </Border>
-                            </ctm:BlankButton.Content>
-                        </ctm:BlankButton>
-                        <ctm:BlankButton x:Name="Love"
+                                                </StackPanel>
+                                            </Border>
+                                        </ctm:BlankButton.Content>
+                                    </ctm:BlankButton>
+                                    <ctm:BlankButton x:Name="Love"
                                          Width="80"
                                          Grid.Column="1"
                                          Click="Love_Click"
                                          HorizontalAlignment="Left">
-                            <ctm:BlankButton.Content>
-                                <Border>
-                                    <StackPanel Orientation="Horizontal">
-                                        <Image Source="ms-appx:///Resources/BgImages/laud.png"/>
-                                        <TextBlock Text="{Binding PraiseNum}"
-                                               VerticalAlignment="Center"
-                                               Style="{StaticResource SmallDeepText}"/>
-                                    </StackPanel>
-                                </Border>
-                            </ctm:BlankButton.Content>
-                        </ctm:BlankButton>
-                        <ctm:BlankButton Width="80"
+                                        <ctm:BlankButton.Content>
+                                            <Border>
+                                                <StackPanel Orientation="Horizontal">
+                                                    <Image Source="ms-appx:///Resources/BgImages/laud.png"/>
+                                                    <TextBlock Text="{x:Bind PraiseNum, Mode=OneWay}"
+                                                               VerticalAlignment="Center"
+                                                               Style="{StaticResource SmallDeepText}"/>
+                                                </StackPanel>
+                                            </Border>
+                                        </ctm:BlankButton.Content>
+                                    </ctm:BlankButton>
+                                    <ctm:BlankButton Width="80"
                                      Grid.Column="2"
                                      HorizontalAlignment="Left">
-                            <ctm:BlankButton.Content>
-                                <Image Source="ms-appx:///Resources/BgImages/share_image.png"/>
-                            </ctm:BlankButton.Content>
-                        </ctm:BlankButton>
+                                        <ctm:BlankButton.Content>
+                                            <Image Source="ms-appx:///Resources/BgImages/share_image.png"/>
+                                        </ctm:BlankButton.Content>
+                                    </ctm:BlankButton>
+                                </Grid>
+                            </Grid>
+                        </Grid>
                     </Grid>
-                </Grid>
-            </Grid>
-        </Grid>
-            </DataTemplate>
-        </FlipView.ItemTemplate>
-    </FlipView> 
+                </DataTemplate>
+            </FlipView.ItemTemplate>
+        </FlipView>
+    </Grid>
 </Page>

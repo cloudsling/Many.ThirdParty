@@ -1,1 +1,1 @@
-MainPackage=C:\Users\Hao Ling\Documents\Source\Repos\Many.ThirdParty\Many.ThirdParty\bin\x86\Release\Upload\Many.ThirdParty_2.0.3.0_x86.appx
+MainPackage=C:\Users\Hao Ling\Documents\Source\Repos\Many.ThirdParty\Many.ThirdParty\bin\x86\Release\Upload\Many.ThirdParty_2.0.5.0_x86.appx

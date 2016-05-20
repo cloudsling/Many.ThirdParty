@@ -5,9 +5,11 @@ using Windows.Storage;
 
 namespace Many.ThirdParty.Core.Data
 {
+    /// <summary>
+    /// porperties
+    /// </summary>
     public partial class Settings : INotifyPropertyChanged
     {
-
         public double GeneralFontSize
         {
             get { return ReadSettings(nameof(GeneralFontSize), 25); }
@@ -16,16 +18,25 @@ namespace Many.ThirdParty.Core.Data
                 SaveSettings(nameof(GeneralFontSize), value);
             }
         }
-    }
 
+        public bool NightModeEnable
+        {
+            get { return ReadSettings(nameof(NightModeEnable), false); }
+            set
+            {
+                SaveSettings(nameof(NightModeEnable), value);
+            }
+        }
+    }
+    
     public partial class Settings : INotifyPropertyChanged
     {
-        public static ApplicationDataContainer LocalSettings { get; set; } = ApplicationData.Current.LocalSettings;
+        private static ApplicationDataContainer LocalSettings { get; set; } = ApplicationData.Current.LocalSettings;
 
         public void SaveSettings(string key, object value, [CallerMemberName]string propertyName = null)
         {
             LocalSettings.Values[key] = value;
-            OnPropertyChanged();
+            OnPropertyChanged(propertyName);
         }
 
         T ReadSettings<T>(string key, T defaultValue)
@@ -47,6 +58,5 @@ namespace Many.ThirdParty.Core.Data
             Volatile.Read(ref PropertyChanged)?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
     }
-
 }
 

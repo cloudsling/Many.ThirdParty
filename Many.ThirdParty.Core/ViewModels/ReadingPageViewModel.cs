@@ -27,6 +27,8 @@ namespace Many.ThirdParty.Core.ViewModels
             }
         }
 
+        public int GetCarouselModelCollectionCount() => _readingModelCollection.Count;
+
         public async Task RefreshListView()
         {
             foreach (var item in await CommonDataLoader.GetReadingModel("0"))

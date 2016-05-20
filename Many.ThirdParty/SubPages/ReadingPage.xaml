@@ -38,18 +38,18 @@
                 <RowDefinition Height="5*"/>
             </Grid.RowDefinitions>
             <Grid>
-                <FlipView x:Name="fv"
+                <FlipView x:Name="fv" 
                           ItemsSource="{Binding CarouselModelCollection}" 
                           SelectionChanged="fv_SelectionChanged">
                     <FlipView.ItemTemplate>
                         <DataTemplate>
-                            <Border>
+                            <ListViewItem>
                                 <ctm:BlankButton Click="BlankButton_Click">
                                     <Image x:Name="bkimg" 
-                                            Stretch="UniformToFill" 
-                                            Source="{Binding Cover}"/>
+                                           Stretch="UniformToFill" 
+                                           Source="{Binding Cover}"/>
                                 </ctm:BlankButton>
-                            </Border>
+                            </ListViewItem>
                         </DataTemplate>
                     </FlipView.ItemTemplate>
                 </FlipView>
@@ -84,13 +84,14 @@
                                 <GroupStyle>
                                     <GroupStyle.HeaderTemplate>
                                         <DataTemplate>
-                                            <StackPanel>
-                                                <ctm:BlankButton HorizontalContentAlignment="Stretch">
-                                                    <TextBlock Text="{Binding MaketTime}"
-                                                           Margin="8"
-                                                           FontSize="14"/>
-                                                </ctm:BlankButton>
-                                            </StackPanel>
+                                            <Border Background="#FFF8F8F8"
+                                                    Margin="-15 -7 -500 -7">
+                                                <TextBlock Text="{Binding MaketTime}"
+                                                           VerticalAlignment="Center"
+                                                           HorizontalAlignment="Left"
+                                                           Margin="15"
+                                                    FontSize="16"/>
+                                            </Border>
                                         </DataTemplate>
                                     </GroupStyle.HeaderTemplate>
                                 </GroupStyle>

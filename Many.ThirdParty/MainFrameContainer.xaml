@@ -7,11 +7,7 @@
     xmlns:ctm="using:Many.ThirdParty.CustomControls"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    mc:Ignorable="d"
-    DataContext="{Binding MainFrameContainerViewModel,
-                          RelativeSource={RelativeSource Mode=Self}}"
-    d:DataContext="{d:DesignInstance Type=dvm:MainFrameContainerViewModel,
-                                     IsDesignTimeCreatable=True}">
+    mc:Ignorable="d">
 
     <Page.Resources>
         <ResourceDictionary>
@@ -20,8 +16,8 @@
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </Page.Resources>
-    
-    <Grid Background="White">
+
+    <Grid Background="{x:Bind MainFrameContainerViewModel.TitleBar, Mode=OneWay}">
         <Grid.RowDefinitions>
             <RowDefinition Height="*"/>
             <RowDefinition Height="Auto"/>
@@ -41,21 +37,22 @@
                     <ColumnDefinition Width="2*"/>
                 </Grid.ColumnDefinitions>
                 <Grid HorizontalAlignment="Left">
-                    <ctm:BlankButton x:Name="SearchButton" Click="SearchButton_Click">
+                    <ctm:BlankButton x:Name="SearchButton" 
+                                     Click="SearchButton_Click">
                         <Image Source="ms-appx:///Resources/BgImages/search.png"/>
                     </ctm:BlankButton>
                 </Grid>
                 <Grid Grid.Column="1"
-                  HorizontalAlignment="Center">
-                    <TextBlock Text="{Binding Path=PageTitle}" 
-                           VerticalAlignment="Center"
-                           Foreground="#4E5C6C"
-                           FontSize="19"
-                           FontWeight="Medium"/>
+                      HorizontalAlignment="Center">
+                    <TextBlock Text="{x:Bind MainFrameContainerViewModel.PageTitle, Mode=OneWay}" 
+                               VerticalAlignment="Center"
+                               Foreground="#4E5C6C"
+                               FontSize="19"
+                               FontWeight="Medium"/>
                 </Grid>
                 <Grid Grid.Column="2"
                       HorizontalAlignment="Right"
-                      Visibility="{Binding BottomNavBtnAndProfileVisibility}">
+                      Visibility="{x:Bind MainFrameContainerViewModel.BottomNavBtnAndProfileVisibility, Mode=OneWay}">
                     <ctm:BlankButton x:Name="UserButton"
                                      HorizontalAlignment="Right"
                                      Click="UserButton_Click"
@@ -69,73 +66,10 @@
             <Rectangle Grid.Row="1" 
                        Fill="#CBCCCE"
                        Height="1"/>
-            <Grid Grid.Row="2">
-                <Frame x:Name="mainFrameContainer"/>
+            <Grid Grid.Row="2" >
+                <Frame x:Name="mainFrameContainer"
+                       Navigated="MainFrameContainer_Navigated"/>
             </Grid>
-            <!--<Grid Grid.Row="2">
-                <StackPanel Orientation="Horizontal"> 
-                    <Grid x:Name="LeftGrid"
-                          Width="0" 
-                          Grid.Column="0" 
-                          Background="LightGray">
-                        <TextBlock Text="右拉刷新界面" 
-                                   Style="{StaticResource NormalText}"
-                                   HorizontalAlignment="Right"
-                                   VerticalAlignment="Center"/>
-                    </Grid>
-                    <Grid x:Name="RightGrid"
-                          Width="{Binding WindowCurrentWidth}"
-                          Grid.Column="1">
-                        <Frame x:Name="mainFrameContainer"/>
-                    </Grid>
-                </StackPanel>
-                <Grid Background="Beige"
-                      Opacity=".0"
-                      Visibility="{Binding OpacityGridVisbility}"
-                      ManipulationMode="All"
-                      ManipulationDelta="Grid_ManipulationDelta"
-                      ManipulationCompleted="Grid_ManipulationCompleted">
-                    <Grid.Transitions>
-                        <TransitionCollection>
-                            <NavigationThemeTransition />
-                        </TransitionCollection>
-                    </Grid.Transitions>
-                </Grid>
-            </Grid>-->
-            <!--<Grid Grid.Row="2">
-                <Grid>
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="Auto"/>
-                        <ColumnDefinition Width="*"/>
-                    </Grid.ColumnDefinitions>
-                    <Grid x:Name="LeftGrid"
-                          Width="0" 
-                          Grid.Column="0" 
-                          Background="LightGray">
-                        <TextBlock Text="右拉刷新界面" 
-                                   Style="{StaticResource NormalText}"
-                                   HorizontalAlignment="Right"
-                                   VerticalAlignment="Center"/>
-                    </Grid>
-                    <Grid x:Name="RightGrid"
-                          Grid.Column="1">
-                        <Frame x:Name="mainFrameContainer"/>
-                    </Grid>
-                </Grid>
-                <Grid Background="Beige"
-                      Opacity=".0"
-                      Visibility="{Binding OpacityGridVisbility}"
-                      ManipulationMode="All"
-                      ManipulationDelta="Grid_ManipulationDelta"
-                      ManipulationCompleted="Grid_ManipulationCompleted">
-                    <Grid.Transitions>
-                        <TransitionCollection>
-                            <NavigationThemeTransition />
-                        </TransitionCollection>
-                    </Grid.Transitions>
-                </Grid>
-            </Grid>-->
-
         </Grid>
         <Rectangle Grid.Row="1" 
                    Fill="#DDDEDF"
@@ -143,8 +77,7 @@
         <Grid x:Name="navBtnBottom"
               Grid.Row="2"
               Height="60"
-              Visibility="{Binding Path=BottomNavBtnAndProfileVisibility}"
-              Background="White">
+              Visibility="{x:Bind MainFrameContainerViewModel.BottomNavBtnAndProfileVisibility, Mode=OneWay}">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition/>
                 <ColumnDefinition/>
@@ -163,14 +96,14 @@
                             Tag="1"
                             Click="ChangeBackgroundAndNavigate">
                 <Image x:Name="readButtonBkImg" 
-                       Source="ms-appx:///Resources/MFCImages/Movie.png"/>
+                       Source="ms-appx:///Resources/MFCImages/Reading.png"/>
             </ctm:HomeButton>
             <ctm:HomeButton x:Name="musicButton" 
                             Grid.Column="2"
                             Tag="2"
                             Click="ChangeBackgroundAndNavigate">
                 <Image x:Name="musicButtonBkImg" 
-                       Source="ms-appx:///Resources/MFCImages/Movie.png"/>
+                       Source="ms-appx:///Resources/MFCImages/Music.png"/>
             </ctm:HomeButton>
             <ctm:HomeButton x:Name="movieButton" 
                             Grid.Column="3"

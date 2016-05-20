@@ -1,30 +1,37 @@
-﻿using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Runtime.InteropServices.WindowsRuntime;
-using Windows.Foundation;
-using Windows.Foundation.Collections;
+﻿using Many.ThirdParty.Core.Commons;
+using Many.ThirdParty.Core.ViewModels.AddlPageViewModels;
+using System;
+using Windows.ApplicationModel.DataTransfer;
+using Windows.UI.Popups;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
-using Windows.UI.Xaml.Controls.Primitives;
-using Windows.UI.Xaml.Data;
-using Windows.UI.Xaml.Input;
-using Windows.UI.Xaml.Media;
-using Windows.UI.Xaml.Navigation;
-
-// The Blank Page item template is documented at http://go.microsoft.com/fwlink/?LinkId=234238
 
 namespace Many.ThirdParty.AddlPages
 {
-    /// <summary>
-    /// An empty page that can be used on its own or navigated to within a Frame.
-    /// </summary>
     public sealed partial class UserPage : Page
     {
+        public ViewModelBase ViewModel { get; set; }
+
         public UserPage()
         {
+            ViewModel = new ViewModelBase();
+
             this.InitializeComponent();
+        }
+
+        private async void Button_Click(object sender, RoutedEventArgs e)
+        {
+            DataPackage dataPackage = new DataPackage();
+
+            dataPackage.SetText("208664459");
+            Clipboard.SetContent(dataPackage);
+
+            await new MessageDialog("已复制到剪贴板！").ShowAsync();
+        }
+
+        private void NightMode_ItemClick(object sender, ItemClickEventArgs e)
+        {
+            ViewModel.ChangeThemeMode();
         }
     }
 }

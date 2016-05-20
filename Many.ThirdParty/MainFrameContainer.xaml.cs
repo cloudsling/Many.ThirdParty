@@ -42,7 +42,6 @@ namespace Many.ThirdParty
                         return;
                     }
             }
-
         }
 
         private void ChangeBackgroundAndNavigate(object sender, RoutedEventArgs e)
@@ -57,12 +56,12 @@ namespace Many.ThirdParty
 
         private void SearchButton_Click(object sender, RoutedEventArgs e)
         {
-            NavigationManager.GeneralFrame.Navigate(typeof(SearchPage));
+            NavigationManager.GeneralNavigate(typeof(SearchPage));
         }
 
         private void UserButton_Click(object sender, RoutedEventArgs e)
         {
-            NavigationManager.GeneralFrame.Navigate(typeof(UserPage));
+            NavigationManager.GeneralNavigate(typeof(UserPage));
         }
     }
 
@@ -95,16 +94,14 @@ namespace Many.ThirdParty
             CurrentMainFrameContainer = this;
 
             InitializeField();
-
+            ThisNavigate(Convert.ToInt32(homeButton.Tag));
+            
             this.NavigationCacheMode = NavigationCacheMode.Required;
         }
 
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
             Window.Current.SizeChanged += Current_SizeChanged;
-            mainFrameContainer.Navigated += MainFrameContainer_Navigated;
-
-            ThisNavigate(Convert.ToInt32(homeButton.Tag));
 
             SystemNavigationManager.GetForCurrentView().BackRequested += MainFrameContainer_BackRequested;
         }

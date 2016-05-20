@@ -2,19 +2,10 @@
 using Many.ThirdParty.Core.ViewModels;
 using System;
 using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Runtime.InteropServices.WindowsRuntime;
 using System.Threading.Tasks;
-using Windows.Foundation;
-using Windows.Foundation.Collections;
 using Windows.UI.Popups;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
-using Windows.UI.Xaml.Controls.Primitives;
-using Windows.UI.Xaml.Data;
-using Windows.UI.Xaml.Input;
-using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
 using Windows.Web.Http;
 
@@ -28,14 +19,19 @@ namespace Many.ThirdParty.SubPages
 
         internal static HomeModel CurrentHomeModle;
 
-        public HomePageViewModel HomePageViewModel { get; set; }
+        public HomePageViewModel ViewModel { get; set; }
+
+        private void BlankButton_Click(object sender, RoutedEventArgs e)
+        {
+            //NavigationManager.GeneralNavigate(typeof(ImageDetailPage));
+        }
     }
 
     public sealed partial class HomePage : Page
     {
         public HomePage()
         {
-            HomePageViewModel = new HomePageViewModel();
+            ViewModel = new HomePageViewModel();
             this.InitializeComponent();
         }
 
@@ -43,11 +39,11 @@ namespace Many.ThirdParty.SubPages
         {
             if (e.Parameter != null)
             {
-                HomePageViewModel.InsertHomeModel(e.Parameter as HomeModel);
+                ViewModel.InsertHomeModel(e.Parameter as HomeModel);
             }
             else
             {
-                HomePageViewModel.AddHomeModel(CurrentHomeModle ?? new HomeModel());
+                ViewModel.AddHomeModel(CurrentHomeModle ?? new HomeModel());
 
                 await LoadRemainingHomeModel();
 
@@ -59,7 +55,7 @@ namespace Many.ThirdParty.SubPages
         {
             for (int index = 1; index < TodaysListId.Count; index++)
             {
-                await HomePageViewModel.AddHomeModel(TodaysListId[index]);
+                await ViewModel.AddHomeModel(TodaysListId[index]);
             }
         }
 

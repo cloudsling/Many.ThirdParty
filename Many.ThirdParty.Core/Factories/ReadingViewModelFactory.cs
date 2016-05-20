@@ -21,6 +21,20 @@ namespace Many.ThirdParty.Core.Factories
                     return null;
             }
         }
-        
+
+        public static async Task<ReadingDetailPageViewModelBase> CreateReadingDetailPageViewModel(CarouselDetailModel model)
+        {
+            switch (model.Type)
+            {
+                case "3":
+                    return await QuestionDetailPageViewModel.CreateViewModel(model.Item_Id);
+                case "1":
+                    return await EssayDetailPageViewModel.CreateViewModel(model.Item_Id);
+                case "2":
+                    return await SerialDetailPageViewModel.CreateViewModel(model.Item_Id);//连载
+                default:
+                    return null;
+            }
+        }
     }
 }

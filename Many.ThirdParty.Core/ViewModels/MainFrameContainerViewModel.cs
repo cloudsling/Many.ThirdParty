@@ -1,16 +1,43 @@
 ﻿using Many.ThirdParty.Core.Commons;
-using Many.ThirdParty.Core.Tools;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Windows.UI.Xaml;
+using Windows.UI.Xaml.Media;
 
 namespace Many.ThirdParty.Core.ViewModels
 {
     public class MainFrameContainerViewModel : ViewModelBase
     {
+        public MainFrameContainerViewModel()
+        {
+            TitleBar = _colorsCollection?.TitleBar;
+
+            OnThemeChanged += (coll) =>
+            {
+                TitleBar = coll.TitleBar;
+                MainBackground = coll.MainBackground;
+            };
+        }
+
+        private Brush _mainBackground;
+
+        public Brush MainBackground
+        {
+            get { return _mainBackground; }
+            set
+            {
+                SetProperty(ref _mainBackground, value);
+            }
+        }
+        private Brush _titleBar;
+
+        public Brush TitleBar
+        {
+            get { return _titleBar; }
+            set
+            {
+                SetProperty(ref _titleBar, value);
+            }
+        }
+
         double _windowCurrentWidth;
         public double WindowCurrentWidth
         {
@@ -55,6 +82,7 @@ namespace Many.ThirdParty.Core.ViewModels
         }
 
         public void SetBottomNavBtnAndProfileVisibe() => BottomNavBtnAndProfileVisibility = Visibility.Visible;
+
         public void SetBottomNavBtnAndProfileCollapsed() => BottomNavBtnAndProfileVisibility = Visibility.Collapsed;
     }
 }

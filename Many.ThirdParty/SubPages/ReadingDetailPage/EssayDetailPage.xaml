@@ -70,12 +70,12 @@
                         <ColumnDefinition Width="*"/>
                     </Grid.ColumnDefinitions>
                     <Ellipse Height="30"
-                                         Width="30"
-                                         Margin="0 9 5 0"
-                                         VerticalAlignment="Top"
-                                         HorizontalAlignment="Center">
+                            Width="30"
+                            Margin="0 9 5 0"
+                            VerticalAlignment="Top"
+                            HorizontalAlignment="Center">
                         <Ellipse.Fill>
-                            <ImageBrush ImageSource="{x:Bind ViewModel.Author[0].Web_Url}" />
+                            <ImageBrush ImageSource="{x:Bind ViewModel.Author[0].Web_Url, Converter={StaticResource StringToBitmapImage}}" />
                         </Ellipse.Fill>
                     </Ellipse>
                     <Grid Grid.Column="1">
@@ -92,9 +92,10 @@
                            TextWrapping="Wrap"
                            FontSize="19"
                            FontWeight="Black"
-                           Margin="5 9 5 4"
+                           Margin="10"
                            Style="{StaticResource ReadingText}"/>
                 <TextBlock Text="{x:Bind ViewModel.Hp_Content}" 
+                           Margin="20 5"
                            Style="{StaticResource ReadingContent}"/>
                 <ListViewItem Background="#FFF8F8F8"
                               Margin="-7 0">

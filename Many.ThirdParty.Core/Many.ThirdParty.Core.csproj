@@ -108,6 +108,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Commons\ViewModelBase.cs" />
+    <Compile Include="Converter\BooleanToVisibilityConverter.cs" />
     <Compile Include="Converter\ReadingTypeBtnImageConverter.cs" />
     <Compile Include="Converter\StringToBitmapImageConverter.cs" />
     <Compile Include="Converter\SwitchVisibilityConverter.cs" />
@@ -139,6 +140,10 @@
     <Compile Include="Commons\BindableBase.cs" />
     <Compile Include="Commands\Command.cs" />
     <Compile Include="Commons\CommandBase.cs" />
+    <Compile Include="Themes\DayModeColorsCollection.cs" />
+    <Compile Include="Themes\IThemeColorsCollection.cs" />
+    <Compile Include="Themes\IThemeMode.cs" />
+    <Compile Include="Themes\NightModeColorsCollection.cs" />
     <Compile Include="Tools\DataHelper.cs" />
     <Compile Include="Tools\HttpHelper.cs" />
     <Compile Include="Tools\JsonHelper.cs" />
@@ -155,7 +160,6 @@
     <EmbeddedResource Include="Properties\Many.ThirdParty.Core.rd.xml" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Interface\" />
     <Folder Include="Models\ReadingDetailModels\" />
   </ItemGroup>
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '14.0' ">
