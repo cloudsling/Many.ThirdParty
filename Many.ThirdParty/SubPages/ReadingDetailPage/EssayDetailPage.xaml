@@ -5,6 +5,7 @@
     xmlns:local="using:Many.ThirdParty.SubPages.ReadingDetailPage" 
     xmlns:ctm="using:Many.ThirdParty.CustomControls"
     xmlns:cvtr="using:Many.ThirdParty.Core.Converter"
+    xmlns:uct="using:Many.ThirdParty.UserControls"
     xmlns:cvm="using:Many.ThirdParty.Core.Models.CommonModels"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
@@ -25,13 +26,14 @@
         </ResourceDictionary>
     </Page.Resources>
 
-    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+    <Grid Background="{ThemeResource MainBackground}">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="*"/>
             <RowDefinition Height="44"/>
         </Grid.RowDefinitions>
         <Grid Height="50"
+              Background="{ThemeResource TitleBar}"
               VerticalAlignment="Top">
             <Grid.RowDefinitions>
                 <RowDefinition Height="*"/>
@@ -84,7 +86,7 @@
                                        Style="{StaticResource ReadingContent}" />
                             <TextBlock Text="{x:Bind ViewModel.Hp_MaketTime}"
                                        Margin="5 0"
-                                       Style="{StaticResource SmallDeepText}"/>
+                                       Style="{ThemeResource SmallDeepText}"/>
                         </StackPanel>
                     </Grid>
                 </Grid>
@@ -93,15 +95,11 @@
                            FontSize="19"
                            FontWeight="Black"
                            Margin="10"
-                           Style="{StaticResource ReadingText}"/>
+                           Style="{ThemeResource ReadingText}"/>
                 <TextBlock Text="{x:Bind ViewModel.Hp_Content}" 
                            Margin="20 5"
-                           Style="{StaticResource ReadingContent}"/>
-                <ListViewItem Background="#FFF8F8F8"
-                              Margin="-7 0">
-                    <TextBlock Text="评论列表" 
-                                   Style="{StaticResource SmallDeepText}"/>
-                </ListViewItem>
+                           Style="{ThemeResource ReadingContent}"/> 
+                <uct:GeneralListViewItem  Title="评论列表" />
                 <ListView x:Name="HotComment"
                           ItemsSource="{x:Bind ViewModel.HotComments}">
                     <ListView.ItemTemplate>
@@ -251,7 +249,8 @@
                 </ListView>
             </StackPanel>
         </ScrollViewer>
-        <Grid Grid.Row="2">
+        <Grid Grid.Row="2"
+              Background="{ThemeResource MainBackground}">
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto"/>
                 <RowDefinition Height="*"/>

@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace Many.ThirdParty.Core.ViewModels.ReadingDetailPageViewModels
 {
-    public abstract class ReadingDetailPageViewModelBase : BindableBase
+    public abstract class ReadingDetailPageViewModelBase : ViewModelBase
     {
         public ReadingDetailPageViewModelBase()
         {

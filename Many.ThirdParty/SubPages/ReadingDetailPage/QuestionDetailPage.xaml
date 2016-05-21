@@ -7,6 +7,7 @@
     xmlns:ctm="using:Many.ThirdParty.CustomControls"
     xmlns:cvtr="using:Many.ThirdParty.Core.Converter"
     xmlns:cvm="using:Many.ThirdParty.Core.Models.CommonModels"
+    xmlns:uct="using:Many.ThirdParty.UserControls"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
     mc:Ignorable="d">
 
@@ -25,13 +26,14 @@
         </ResourceDictionary>
     </Page.Resources>
 
-    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+    <Grid Background="{ThemeResource MainBackground}">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="*"/>
             <RowDefinition Height="44"/>
         </Grid.RowDefinitions>
         <Grid Height="50"
+              Background="{ThemeResource TitleBar}"
               VerticalAlignment="Top">
             <Grid.RowDefinitions>
                 <RowDefinition Height="*"/>
@@ -58,7 +60,7 @@
             <Rectangle Grid.Row="1"
                    Grid.Column="0"
                    Grid.ColumnSpan="3"
-                   Fill="#CBCCCE"
+                   Fill="{ThemeResource TopLine}"
                    Height="1"/>
         </Grid>
         <ScrollViewer Grid.Row="1"
@@ -89,12 +91,8 @@
                                Style="{StaticResource SmallDeepText}"/>
                 </Grid>
                 <TextBlock Text="{x:Bind ViewModel.Answer_Content}" 
-                           Style="{StaticResource ReadingContent}"/>
-                <ListViewItem Background="#FFF8F8F8"
-                              Margin="-7 0">
-                    <TextBlock Text="评论列表" 
-                                   Style="{StaticResource SmallDeepText}"/>
-                </ListViewItem>
+                           Style="{StaticResource ReadingContent}"/> 
+                <uct:GeneralListViewItem  Title="评论列表" />
                 <ListView x:Name="HotComment"
                           ItemsSource="{x:Bind ViewModel.HotComments}">
                     <ListView.ItemTemplate>
@@ -244,7 +242,8 @@
                 </ListView>
             </StackPanel>
         </ScrollViewer>
-        <Grid Grid.Row="2">
+        <Grid Grid.Row="2"
+              Background="{ThemeResource TitleBar}">
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto"/>
                 <RowDefinition Height="*"/>
@@ -271,7 +270,7 @@
                                 <Image Source="ms-appx:///Resources/BgImages/laud.png"/>
                                 <TextBlock Text="{x:Bind ViewModel.PraiseNum}"
                                            VerticalAlignment="Center"
-                                           Style="{StaticResource SmallDeepText}"/>
+                                           Style="{ThemeResource SmallDeepText}"/>
                             </StackPanel>
                         </Border>
                     </ctm:BlankButton.Content>
@@ -291,7 +290,7 @@
                             <Image Source="ms-appx:///Resources/BgImages/comment_image.png"/>
                             <TextBlock Text="{x:Bind ViewModel.CommentNum,Mode=OneWay}"
                                        VerticalAlignment="Center"
-                                       Style="{StaticResource SmallDeepText}"/>
+                                       Style="{ThemeResource SmallDeepText}"/>
                         </StackPanel>
                     </ctm:BlankButton.Content>
                 </ctm:BlankButton>
@@ -310,7 +309,7 @@
                             <Image Source="ms-appx:///Resources/BgImages/share_image.png"/>
                             <TextBlock Text="{x:Bind ViewModel.ShareNum}"
                                        VerticalAlignment="Center"
-                                       Style="{StaticResource SmallDeepText}"/>
+                                       Style="{ThemeResource SmallDeepText}"/>
                         </StackPanel>
                     </ctm:BlankButton.Content>
                 </ctm:BlankButton>

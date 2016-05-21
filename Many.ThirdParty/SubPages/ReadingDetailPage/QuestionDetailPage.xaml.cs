@@ -1,6 +1,7 @@
 ﻿using Many.ThirdParty.Config;
 using Many.ThirdParty.Core.ViewModels.ReadingDetailPageViewModels;
 using System.Diagnostics;
+using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Navigation;
 
@@ -15,8 +16,9 @@ namespace Many.ThirdParty.SubPages.ReadingDetailPage
 
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
-            ViewModel = e.Parameter as QuestionDetailPageViewModel ?? new QuestionDetailPageViewModel();
+            ViewModel = e.Parameter as QuestionDetailPageViewModel ?? new QuestionDetailPageViewModel(); 
 
+            this.RequestedTheme = ViewModel.AppSettings.NightModeEnable ? ElementTheme.Dark : ElementTheme.Light;
         }
 
         private void BackButton_Click(object sender, Windows.UI.Xaml.RoutedEventArgs e)

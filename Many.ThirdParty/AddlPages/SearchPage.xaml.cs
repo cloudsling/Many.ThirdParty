@@ -126,6 +126,8 @@ namespace Many.ThirdParty.AddlPages
 
         protected async override void OnNavigatedTo(NavigationEventArgs e)
         {
+            this.RequestedTheme = ViewModel.AppSettings.NightModeEnable ? ElementTheme.Dark : ElementTheme.Light;
+            
             StartAnimation.Begin();
             await Task.Delay(400);
             SearchContent.Focus(FocusState.Pointer);

@@ -15,7 +15,7 @@
             <ResourceDictionary.MergedDictionaries>
                 <ResourceDictionary Source="ms-appx:///Themes/TextBlockResourceDictionary.xaml"/>
             </ResourceDictionary.MergedDictionaries>
-
+ 
             <cvt:BooleanToVisibilityConverter x:Name="BoolToVis" />
 
             <Style TargetType="ListViewItem">
@@ -28,7 +28,8 @@
         </ResourceDictionary>
     </Page.Resources>
 
-    <StackPanel Background="{x:Bind ViewModel.ColorsCollection.MainBackground, Mode=OneWay}">
+    <!--<StackPanel Background="{x:Bind ViewModel.ColorsCollection.MainBackground, Mode=OneWay}">-->
+    <StackPanel Background="{ThemeResource MainBackground}">
         <Grid>
             <Image Source="ms-appx:///Resources/default_indi_bg.png"
                    VerticalAlignment="Top"
@@ -48,8 +49,7 @@
                            Foreground="White"/>
             </StackPanel>
         </Grid>
-        <uct:GeneralListViewItem Title="设置" 
-                                 Colors="{x:Bind ViewModel.ColorsCollection, Mode=OneWay}" />
+        <uct:GeneralListViewItem Title="设置"/>
         <ListView x:Name="NightMode"
                   ItemClick="NightMode_ItemClick">
             <ListViewItem>
@@ -62,7 +62,7 @@
                     <Image Source="ms-appx:///Resources/BgImages/center_night_mode.png"
                            Margin="3"/>
                     <TextBlock Grid.Column="1" 
-                               Foreground="{x:Bind ViewModel.ColorsCollection.FontColor, Mode=OneWay}"
+                               Foreground="{ThemeResource FontColor}"
                                VerticalAlignment="Center"
                                Text="夜间模式"
                                Margin="5 0"/>
@@ -75,8 +75,7 @@
                 </Grid>
             </ListViewItem>
         </ListView>
-        <uct:GeneralListViewItem Title="关于" 
-                                 Colors="{x:Bind ViewModel.ColorsCollection, Mode=OneWay}" />
+        <uct:GeneralListViewItem Title="关于"/>
         <ListView>
             <ListViewItem>
                 <TextBlock Text="欢迎加入一个 uwp的反馈交流群： 208664459" 

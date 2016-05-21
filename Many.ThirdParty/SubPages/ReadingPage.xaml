@@ -5,7 +5,7 @@
     xmlns:local="using:Many.ThirdParty.SubPages"
     xmlns:dvm="using:Many.ThirdParty.Core.ViewModels"
     xmlns:ctm="using:Many.ThirdParty.CustomControls"
-    xmlns:utm="using:Many.ThirdParty.UserControls"
+    xmlns:uct="using:Many.ThirdParty.UserControls"
     xmlns:cvt="using:Many.ThirdParty.Core.Converter"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
@@ -84,14 +84,15 @@
                                 <GroupStyle>
                                     <GroupStyle.HeaderTemplate>
                                         <DataTemplate>
-                                            <Border Background="#FFF8F8F8"
+                                            <uct:GeneralListViewItem Title="{Binding MaketTime}" />
+                                            <!--<Border Background="#FFF8F8F8"
                                                     Margin="-15 -7 -500 -7">
                                                 <TextBlock Text="{Binding MaketTime}"
                                                            VerticalAlignment="Center"
                                                            HorizontalAlignment="Left"
                                                            Margin="15"
                                                     FontSize="16"/>
-                                            </Border>
+                                            </Border>-->
                                         </DataTemplate>
                                     </GroupStyle.HeaderTemplate>
                                 </GroupStyle>
@@ -124,7 +125,8 @@
                         <ListView ItemsSource="{Binding Source={StaticResource ReadingPageListViewCollection}, Path=CollectionGroups}">
                             <ListView.ItemTemplate>
                                 <DataTemplate>
-                                    <Border Background="#F8F8F8">
+                                    <!--<uct:GeneralListViewItem Title="{Binding Group.MaketTime}" />-->
+                                    <Border Background="{ThemeResource ListHeader}">
                                         <TextBlock Text="{Binding Group.MaketTime}"
                                                     Margin="8"
                                                     FontSize="16"/>

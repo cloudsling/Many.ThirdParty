@@ -5,28 +5,28 @@
 
     <Style x:Key="SmallText" TargetType="TextBlock">
         <Setter Property="FontSize" Value="13"/>
-        <Setter Property="Foreground" Value="#9C9C9C"/>
-    </Style>
-    
-    <Style TargetType="TextBlock">
-        <Setter Property="FontFamily" Value="Consolas"/>
+        <Setter Property="Foreground" Value="{ThemeResource SmallLightFontColor}"/>
     </Style>
 
-    <Style x:Key="SmallDeepText" TargetType="TextBlock">
-        <Setter Property="FontSize" Value="14"/>
-        <Setter Property="Foreground" Value="#9D9D9D"/>
+    <Style x:Key="SmallDeepText" TargetType="TextBlock" BasedOn="{StaticResource SmallText}">
+        <Setter Property="FontSize" Value="14"/> 
+    </Style>
+
+    <Style TargetType="TextBlock" x:Key="AllTextBlock">
+        <Setter Property="Foreground" Value="{ThemeResource FontColor}"/>
     </Style>
 
     <Style x:Key="NormalText" TargetType="TextBlock">
         <Setter Property="LineHeight" Value="22"/>
         <Setter Property="FontSize" Value="16"/>
         <Setter Property="FontFamily" Value="Consolas"/>
-        <Setter Property="Foreground" Value="#353535"/>
+        <Setter Property="Foreground" Value="{ThemeResource FontColor}"/>
     </Style>
 
     <Style x:Key="ReadingText" TargetType="TextBlock">
         <Setter Property="LineHeight" Value="25"/>
         <Setter Property="Margin" Value="5" />
+        <Setter Property="Foreground" Value="{ThemeResource FontColor}"/>
     </Style>
 
     <Style x:Key="ReadingContent" TargetType="TextBlock">
@@ -34,6 +34,7 @@
         <Setter Property="Margin" Value="5"/>
         <Setter Property="LineHeight" Value="25"/>
         <Setter Property="Foreground" Value="Black"/>
+        <Setter Property="Foreground" Value="{ThemeResource FontColor}"/>
     </Style>
 
 </ResourceDictionary>

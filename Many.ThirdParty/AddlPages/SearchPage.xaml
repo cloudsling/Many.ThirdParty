@@ -55,7 +55,7 @@
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
         <Grid Height="50"
-              Background="#FFF8F8F8"
+              Background="{ThemeResource TitleBar}"
               VerticalAlignment="Top">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="2*"/>
@@ -84,16 +84,15 @@
                 </ctm:BlankButton>
             </Grid>
         </Grid>
-        <Grid Grid.Row="1">
-
+        <Grid Grid.Row="1"
+              Background="{ThemeResource MainBackground}"> 
             <ProgressRing Height="50" Width="50"
-                      VerticalAlignment="Center"
-                      IsActive="{x:Bind ViewModel.IsActive, Mode=OneWay}"/>
+                          VerticalAlignment="Center"
+                          IsActive="{x:Bind ViewModel.IsActive, Mode=OneWay}"/>
             <StackPanel>
                 <Border x:Name="border" Height="100">
                 </Border>
                 <Grid Padding="1.2"
-                      Background="White"
                       Visibility="{x:Bind ViewModel.Visable, Mode=OneWay, Converter={StaticResource SwitchVisibility}}"
                       Margin="0 3" Height="40">
                     <Grid.ColumnDefinitions>

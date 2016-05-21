@@ -18,6 +18,8 @@ namespace Many.ThirdParty.SubPages.ReadingDetailPage
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
             ViewModel = e.Parameter as EssayDetailPageViewModel ?? new EssayDetailPageViewModel();
+
+            this.RequestedTheme = ViewModel.AppSettings.NightModeEnable ? ElementTheme.Dark : ElementTheme.Light; 
         }
 
         private void BackButton_Click(object sender, RoutedEventArgs e)

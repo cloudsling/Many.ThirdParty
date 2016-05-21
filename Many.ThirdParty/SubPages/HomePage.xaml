@@ -10,20 +10,12 @@
     xmlns:common="using:Many.ThirdParty.Core.Commons"
     xmlns:home="using:Many.ThirdParty.Core.Models.HomeModels"
     mc:Ignorable="d">
-
-    <Page.Resources>
-        <ResourceDictionary>
-            <ResourceDictionary.MergedDictionaries>
-                <ResourceDictionary Source="ms-appx:///Themes/TextBlockResourceDictionary.xaml"/>
-            </ResourceDictionary.MergedDictionaries>
-        </ResourceDictionary>
-    </Page.Resources>
-
+  
     <Grid>
         <FlipView x:Name="MainFlipView" 
                   CompositeMode="Inherit"
                   ManipulationMode="All" 
-                  Background="White"
+                  Background="{ThemeResource MainBackground}"
                   ItemsSource="{x:Bind ViewModel.HomeModelCollection, Mode=OneWay}">
             <FlipView.ItemTemplate>
                 <DataTemplate x:DataType="home:HomeModel">
@@ -39,10 +31,11 @@
                                 <RowDefinition Height="*"/>
                             </Grid.RowDefinitions>
                             <Grid x:Name="ImageGrid" Padding="8 8 8 0"
-                                  Margin="8 8 8 4">
-                                <Grid.Background>
+                                  Margin="8 8 8 4"
+                                  Background="{ThemeResource ReadingBorder}">
+                                <!--<Grid.Background>
                                     <ImageBrush ImageSource="ms-appx:///Resources/BgImages/reading_board.png"/>
-                                </Grid.Background>
+                                </Grid.Background>-->
                                 <Grid.RowDefinitions>
                                     <RowDefinition Height="Auto"/>
                                     <RowDefinition Height="Auto"/>

@@ -1,10 +1,12 @@
 ﻿using Many.ThirdParty.Core.Commons;
-using Many.ThirdParty.Core.ViewModels.AddlPageViewModels;
+using Many.ThirdParty.Core.Tools;
 using System;
+using System.Threading.Tasks;
 using Windows.ApplicationModel.DataTransfer;
 using Windows.UI.Popups;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
+using Windows.UI.Xaml.Navigation;
 
 namespace Many.ThirdParty.AddlPages
 {
@@ -19,6 +21,11 @@ namespace Many.ThirdParty.AddlPages
             this.InitializeComponent();
         }
 
+        protected override void OnNavigatedTo(NavigationEventArgs e)
+        {
+            this.RequestedTheme = ViewModel.AppSettings.NightModeEnable ? ElementTheme.Dark : ElementTheme.Light;
+        }
+
         private async void Button_Click(object sender, RoutedEventArgs e)
         {
             DataPackage dataPackage = new DataPackage();
@@ -31,7 +38,31 @@ namespace Many.ThirdParty.AddlPages
 
         private void NightMode_ItemClick(object sender, ItemClickEventArgs e)
         {
-            ViewModel.ChangeThemeMode();
+            if (this.RequestedTheme == ElementTheme.Dark || this.RequestedTheme == ElementTheme.Default)
+            {
+                this.RequestedTheme = ElementTheme.Light;
+            }
+            else
+            {
+                this.RequestedTheme = ElementTheme.Dark;
+            }
+            ViewModel.ChangeThemeMode(this.RequestedTheme);
+            ModifyStatusBar();
+        }
+
+        public void ModifyStatusBar()
+        {
+            switch (this.RequestedTheme)
+            {
+                case ElementTheme.Light:
+                    StatusBarModifier.SetLightStatusBar();
+                    return;
+                case ElementTheme.Dark:
+                    StatusBarModifier.SetDarkStatusBar();
+                    return;
+                default:
+                    break;
+            }
         }
     }
 }

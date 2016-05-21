@@ -1,10 +1,9 @@
-﻿using Many.ThirdParty.Core.Commons;
-using Many.ThirdParty.Core.Themes;
+﻿using Many.ThirdParty.Core.Commons; 
 using System;
 
 namespace Many.ThirdParty.Core.Models.HomeModels
 {
-    public class HomeModel : BindableBase, IThemeMode
+    public class HomeModel : BindableBase 
     {
         public string Hpcontent_Id { get; set; }
 
@@ -29,16 +28,6 @@ namespace Many.ThirdParty.Core.Models.HomeModels
         public string ShareNum { get; set; }
 
         public string CommentNum { get; set; }
-
-        private static IColorsCollection _colorsCollection;
-
-        public IColorsCollection ColorsCollection
-        {
-            get { return _colorsCollection; }
-            set
-            {
-                SetProperty(ref _colorsCollection, value);
-            }
-        }
+         
     }
 }

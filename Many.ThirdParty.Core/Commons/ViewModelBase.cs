@@ -1,31 +1,17 @@
 ﻿using Many.ThirdParty.Core.Data;
-using Many.ThirdParty.Core.Themes;
 using System;
 using Windows.UI.Xaml;
 
 namespace Many.ThirdParty.Core.Commons
 {
-    public class ViewModelBase : BindableBase, IThemeMode
+    public class ViewModelBase : BindableBase
     {
         private static Settings _settings = new Settings();
 
-        protected static event Action<IColorsCollection> OnThemeChanged;
-
+    
         public ViewModelBase()
         {
             if (_settings == null) _settings = new Settings();
-
-            if (_colorsCollection == null)
-            {
-                if (_settings.NightModeEnable)
-                {
-                    _colorsCollection = new NightModeColorsCollection();
-                }
-                else
-                {
-                    _colorsCollection = new DayModeColorsCollection();
-                }
-            }
         }
 
         public Settings AppSettings
@@ -40,36 +26,9 @@ namespace Many.ThirdParty.Core.Commons
             }
         }
 
-        public void ChangeThemeMode()
+        public void ChangeThemeMode(ElementTheme theme)
         {
-            _settings.NightModeEnable = !_settings.NightModeEnable;
-
-            if (_settings.NightModeEnable)
-            {
-                ColorsCollection = nightColorsCollection;
-            }
-            else
-            {
-                ColorsCollection = dayColorsCollection;
-            }
-            //OnThemeChanged?.Invoke(ColorsCollection);
-        } 
-
-        protected static NightModeColorsCollection nightColorsCollection = new NightModeColorsCollection();
-        protected static DayModeColorsCollection dayColorsCollection = new DayModeColorsCollection();
-
-        protected static IColorsCollection _colorsCollection;
-
-        public static IColorsCollection GetCurrentColorsCollection() => _colorsCollection;
-
-        public IColorsCollection ColorsCollection
-        {
-            get { return _colorsCollection; }
-            set
-            {
-                SetProperty(ref _colorsCollection, value);
-                OnThemeChanged?.Invoke(_colorsCollection);
-            }
+            _settings.NightModeEnable = theme == ElementTheme.Dark;
         }
 
         public double WindowHeight

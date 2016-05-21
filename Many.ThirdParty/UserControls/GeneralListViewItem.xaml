@@ -20,8 +20,8 @@
         </ResourceDictionary>
     </UserControl.Resources>
 
-    <ListViewItem Background="{x:Bind Colors.ListHeader, Mode=OneWay}">
+    <ListViewItem Background="{ThemeResource ListHeader}">
         <TextBlock Text="{x:Bind Title}"
-                   Foreground="{x:Bind Colors.FontColor, Mode=OneWay}"/>
+                   Foreground="{ThemeResource SmallLightFontColor}"/>
     </ListViewItem>
 </UserControl>

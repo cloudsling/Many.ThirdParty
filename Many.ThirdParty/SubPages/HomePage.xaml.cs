@@ -18,6 +18,7 @@ namespace Many.ThirdParty.SubPages
         public static List<string> TodaysListId { get; set; }
 
         internal static HomeModel CurrentHomeModle;
+        internal static HomePage CurrentHomePage;
 
         public HomePageViewModel ViewModel { get; set; }
 
@@ -33,6 +34,7 @@ namespace Many.ThirdParty.SubPages
         {
             ViewModel = new HomePageViewModel();
             this.InitializeComponent();
+            CurrentHomePage = this;
         }
 
         protected override async void OnNavigatedTo(NavigationEventArgs e)

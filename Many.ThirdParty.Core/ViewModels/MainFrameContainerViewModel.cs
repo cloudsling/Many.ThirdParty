@@ -7,14 +7,7 @@ namespace Many.ThirdParty.Core.ViewModels
     public class MainFrameContainerViewModel : ViewModelBase
     {
         public MainFrameContainerViewModel()
-        {
-            TitleBar = _colorsCollection?.TitleBar;
-
-            OnThemeChanged += (coll) =>
-            {
-                TitleBar = coll.TitleBar;
-                MainBackground = coll.MainBackground;
-            };
+        { 
         }
 
         private Brush _mainBackground;
@@ -26,17 +19,7 @@ namespace Many.ThirdParty.Core.ViewModels
             {
                 SetProperty(ref _mainBackground, value);
             }
-        }
-        private Brush _titleBar;
-
-        public Brush TitleBar
-        {
-            get { return _titleBar; }
-            set
-            {
-                SetProperty(ref _titleBar, value);
-            }
-        }
+        } 
 
         double _windowCurrentWidth;
         public double WindowCurrentWidth

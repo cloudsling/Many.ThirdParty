@@ -1,5 +1,6 @@
 ﻿using Many.ThirdParty.AddlPages;
 using Many.ThirdParty.Config;
+using Many.ThirdParty.Core.Tools;
 using Many.ThirdParty.Core.ViewModels;
 using Many.ThirdParty.SubPages;
 using System;
@@ -22,7 +23,7 @@ namespace Many.ThirdParty
 
             UpdateContent(CurrentScenario.PageTitle);
             UpdateGenericUI(CurrentScenario.Index);
-        }
+        } 
 
         private void MainFrameContainer_BackRequested(object sender, BackRequestedEventArgs e)
         {
@@ -95,12 +96,17 @@ namespace Many.ThirdParty
 
             InitializeField();
             ThisNavigate(Convert.ToInt32(homeButton.Tag));
-            
+
             this.NavigationCacheMode = NavigationCacheMode.Required;
         }
 
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
+            this.RequestedTheme = MainFrameContainerViewModel.AppSettings.NightModeEnable ? ElementTheme.Dark : ElementTheme.Light;
+            ModifyStatusBar();
+
+            HomePage.CurrentHomePage.RequestedTheme = this.RequestedTheme;
+
             Window.Current.SizeChanged += Current_SizeChanged;
 
             SystemNavigationManager.GetForCurrentView().BackRequested += MainFrameContainer_BackRequested;
@@ -164,6 +170,21 @@ namespace Many.ThirdParty
             CurrentBottomImageIndex = index;
 
             FootButtonBackgroundImage[CurrentBottomImageIndex].Source = DelegationManager.FootButtonActivedSource[CurrentBottomImageIndex];
+        }
+
+        public void ModifyStatusBar()
+        {
+            switch (this.RequestedTheme)
+            {
+                case ElementTheme.Light:
+                    StatusBarModifier.SetLightStatusBar();
+                    return;
+                case ElementTheme.Dark:
+                    StatusBarModifier.SetDarkStatusBar();
+                    return;
+                default:
+                    break;
+            }
         }
     }
 }

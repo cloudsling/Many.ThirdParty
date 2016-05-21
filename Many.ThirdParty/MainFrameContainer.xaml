@@ -16,8 +16,8 @@
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </Page.Resources>
-
-    <Grid Background="{x:Bind MainFrameContainerViewModel.TitleBar, Mode=OneWay}">
+ 
+    <Grid Background="{ThemeResource TitleBar}">
         <Grid.RowDefinitions>
             <RowDefinition Height="*"/>
             <RowDefinition Height="Auto"/>
@@ -64,15 +64,15 @@
                 </Grid>
             </Grid>
             <Rectangle Grid.Row="1" 
-                       Fill="#CBCCCE"
+                       Fill="{ThemeResource TopLine}"
                        Height="1"/>
-            <Grid Grid.Row="2" >
-                <Frame x:Name="mainFrameContainer"
+            <Grid Grid.Row="2" Background="{ThemeResource MainBackground}">
+                <Frame x:Name="mainFrameContainer" 
                        Navigated="MainFrameContainer_Navigated"/>
             </Grid>
         </Grid>
-        <Rectangle Grid.Row="1" 
-                   Fill="#DDDEDF"
+        <Rectangle Grid.Row="1"
+                   Fill="{ThemeResource BottomLine}"
                    Height="1"/>
         <Grid x:Name="navBtnBottom"
               Grid.Row="2"
