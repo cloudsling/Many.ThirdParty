@@ -4,7 +4,7 @@
     xmlns:local="using:Many.ThirdParty.Themes">
 
     <Style x:Key="SmallText" TargetType="TextBlock">
-        <Setter Property="FontSize" Value="13"/>
+        <Setter Property="FontSize" Value="14"/>
         <Setter Property="Foreground" Value="{ThemeResource SmallLightFontColor}"/>
     </Style>
 
@@ -31,7 +31,7 @@
 
     <Style x:Key="ReadingContent" TargetType="TextBlock">
         <Setter Property="TextWrapping" Value="Wrap"/>
-        <Setter Property="Margin" Value="5"/>
+        <Setter Property="Margin" Value="8"/>
         <Setter Property="LineHeight" Value="25"/>
         <Setter Property="Foreground" Value="Black"/>
         <Setter Property="Foreground" Value="{ThemeResource FontColor}"/>

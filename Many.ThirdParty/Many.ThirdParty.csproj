@@ -151,8 +151,17 @@
     <Compile Include="SubPages\ReadingPage.xaml.cs">
       <DependentUpon>ReadingPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="UserControls\CommentList.xaml.cs">
+      <DependentUpon>CommentList.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\CommentsList.xaml.cs">
+      <DependentUpon>CommentsList.xaml</DependentUpon>
+    </Compile>
     <Compile Include="UserControls\GeneralListViewItem.xaml.cs">
       <DependentUpon>GeneralListViewItem.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\ReadingDetailPageBottomGrid.xaml.cs">
+      <DependentUpon>ReadingDetailPageBottomGrid.xaml</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
@@ -298,7 +307,19 @@
       <Generator>MSBuild:Compile</Generator>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Page>
+    <Page Include="UserControls\CommentList.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControls\CommentsList.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="UserControls\GeneralListViewItem.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControls\ReadingDetailPageBottomGrid.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

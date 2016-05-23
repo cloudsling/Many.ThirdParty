@@ -13,9 +13,6 @@
 
     <Page.Resources>
         <ResourceDictionary>
-            <ResourceDictionary.MergedDictionaries>
-                <ResourceDictionary Source="ms-appx:///Themes/TextBlockResourceDictionary.xaml"/>
-            </ResourceDictionary.MergedDictionaries>
             <cvtr:StringToBitmapImageConverter x:Name="StringToBitmapImage" />
             <Style TargetType="ListViewItem">
                 <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
@@ -25,7 +22,7 @@
             </Style>
         </ResourceDictionary>
     </Page.Resources>
-
+ 
     <Grid Background="{ThemeResource MainBackground}">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
@@ -99,228 +96,17 @@
                 <TextBlock Text="{x:Bind ViewModel.Hp_Content}" 
                            Margin="20 5"
                            Style="{ThemeResource ReadingContent}"/> 
-                <uct:GeneralListViewItem  Title="评论列表" />
-                <ListView x:Name="HotComment"
-                          ItemsSource="{x:Bind ViewModel.HotComments}">
-                    <ListView.ItemTemplate>
-                        <DataTemplate x:DataType="cvm:CommentModel">
-                            <Grid Padding="5">
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="Auto"/>
-                                    <ColumnDefinition Width="*"/>
-                                </Grid.ColumnDefinitions>
-                                <!--<Image  Height="30"
-                                        Width="30"
-                                        Source="{x:Bind User.Web_Url}"/>-->
-                                <Ellipse Height="30"
-                                         Width="30"
-                                         Margin="0 9 5 0"
-                                         VerticalAlignment="Top"
-                                         HorizontalAlignment="Center">
-                                    <Ellipse.Fill>
-                                        <ImageBrush ImageSource="{x:Bind User.Web_Url, Mode=OneWay, Converter={StaticResource StringToBitmapImage}}" />
-                                    </Ellipse.Fill>
-                                </Ellipse>
-                                <Grid Grid.Column="1">
-                                    <Grid.RowDefinitions>
-                                        <RowDefinition/>
-                                        <RowDefinition/>
-                                    </Grid.RowDefinitions>
-                                    <Grid >
-                                        <StackPanel HorizontalAlignment="Left">
-                                            <TextBlock  Text="{x:Bind User.User_Name}"
-                                                        Style="{StaticResource ReadingContent}" />
-                                            <TextBlock  Text="{x:Bind Input_Date}"
-                                                        Margin="5 0"
-                                                        Style="{StaticResource SmallDeepText}"/>
-                                        </StackPanel>
-                                        <Grid Height="30" 
-                                              HorizontalAlignment="Right"
-                                              VerticalAlignment="Center">
-                                            <ctm:BlankButton>
-                                                <ctm:BlankButton.Content>
-                                                    <Border>
-                                                        <StackPanel Orientation="Horizontal"
-                                                                    HorizontalAlignment="Center">
-                                                            <Image Source="ms-appx:///Resources/BgImages/laud.png"/>
-                                                            <TextBlock Text="{x:Bind PraiseNum}"
-                                                                       VerticalAlignment="Center"
-                                                                       Style="{StaticResource SmallDeepText}"/>
-                                                        </StackPanel>
-                                                    </Border>
-                                                </ctm:BlankButton.Content>
-                                            </ctm:BlankButton>
-                                        </Grid>
-                                    </Grid>
-                                    <TextBlock Grid.Row="1" 
-                                               Text="{x:Bind Content}"
-                                               Style="{StaticResource ReadingContent}"/>
-                                </Grid>
-                                <Rectangle Grid.Column="0" 
-                                         Grid.ColumnSpan="2" 
-                                         VerticalAlignment="Bottom" 
-                                         Margin="-100 0"
-                                         Height="1" 
-                                         Fill="Gray"
-                                         Width="600" />
-                            </Grid>
-                        </DataTemplate>
-                    </ListView.ItemTemplate>
-                </ListView>
-                <Grid Margin="0 -10 0 0">
-                    <Rectangle VerticalAlignment="Center"  
-                               Margin="0"
-                               Height=".8" 
-                               Fill="Gray"
-                               Width="600" />
-                    <Grid Background="White"
-                          Margin="0 3"
-                          Padding="5 0"
-                          HorizontalAlignment="Center" 
-                          VerticalAlignment="Center">
-                        <TextBlock Grid.Column="1" 
-                                   Text="以上是热门评论"
-                                   Style="{StaticResource SmallDeepText}"/>
-                    </Grid>
-                </Grid>
-                <ListView x:Name="NormalComment"
-                          ItemsSource="{x:Bind ViewModel.NormalComments}" >
-                    <ListView.ItemTemplate>
-                        <DataTemplate x:DataType="cvm:CommentModel">
-                            <Grid Padding="5">
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="Auto"/>
-                                    <ColumnDefinition Width="*"/>
-                                </Grid.ColumnDefinitions>
-                                <Ellipse Height="30"
-                                         Width="30"
-                                         Margin="0 9 5 0"
-                                         VerticalAlignment="Top"
-                                         HorizontalAlignment="Center">
-                                    <Ellipse.Fill>
-                                        <ImageBrush ImageSource="{x:Bind User.Web_Url, Mode=OneWay, Converter={StaticResource StringToBitmapImage}}" />
-                                    </Ellipse.Fill>
-                                </Ellipse>
-                                <Grid Grid.Column="1">
-                                    <Grid.RowDefinitions>
-                                        <RowDefinition/>
-                                        <RowDefinition/>
-                                    </Grid.RowDefinitions>
-                                    <Grid >
-                                        <StackPanel HorizontalAlignment="Left">
-                                            <TextBlock  Text="{x:Bind User.User_Name}"
-                                                        Style="{StaticResource ReadingContent}" />
-                                            <TextBlock  Text="{x:Bind Input_Date}"
-                                                        Margin="5 0"
-                                                        Style="{StaticResource SmallDeepText}"/>
-                                        </StackPanel>
-                                        <Grid Height="30" 
-                                              HorizontalAlignment="Right"
-                                              VerticalAlignment="Center">
-                                            <ctm:BlankButton>
-                                                <ctm:BlankButton.Content>
-                                                    <Border>
-                                                        <StackPanel Orientation="Horizontal"
-                                                                    HorizontalAlignment="Center">
-                                                            <Image Source="ms-appx:///Resources/BgImages/laud.png"/>
-                                                            <TextBlock Text="{x:Bind PraiseNum}"
-                                                                       VerticalAlignment="Center"
-                                                                       Style="{StaticResource SmallDeepText}"/>
-                                                        </StackPanel>
-                                                    </Border>
-                                                </ctm:BlankButton.Content>
-                                            </ctm:BlankButton>
-                                        </Grid>
-                                    </Grid>
-                                    <TextBlock Grid.Row="1" 
-                                               Text="{x:Bind Content}"
-                                               Style="{StaticResource ReadingContent}"/>
-                                </Grid>
-                                <Rectangle Grid.Column="0" 
-                                         Grid.ColumnSpan="2" 
-                                         VerticalAlignment="Bottom" 
-                                         Margin="-100 0"
-                                         Height="1" 
-                                         Fill="Gray"
-                                         Width="600" />
-                            </Grid>
-                        </DataTemplate>
-                    </ListView.ItemTemplate>
-                </ListView>
+                <uct:GeneralListViewItem  Title="评论列表"/>
+
+                <uct:CommentsList  x:Name="HotComment"
+                                   HotComments="{x:Bind ViewModel.HotComments}"
+                                   NormalComments="{x:Bind ViewModel.NormalComments}"/> 
             </StackPanel>
         </ScrollViewer>
-        <Grid Grid.Row="2"
-              Background="{ThemeResource MainBackground}">
-            <Grid.RowDefinitions>
-                <RowDefinition Height="Auto"/>
-                <RowDefinition Height="*"/>
-            </Grid.RowDefinitions>
-            <Rectangle VerticalAlignment="Top"  
-                       Margin="0"
-                     Height=".8" 
-                     Fill="Gray"
-                     Width="600" />
-            <Grid Grid.Row="1">
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition />
-                    <ColumnDefinition Width="Auto"/>
-                    <ColumnDefinition />
-                    <ColumnDefinition Width="Auto"/>
-                    <ColumnDefinition />
-                </Grid.ColumnDefinitions>
-                <ctm:BlankButton x:Name="Love"
-                                 Grid.Column="0" >
-                    <ctm:BlankButton.Content>
-                        <Border>
-                            <StackPanel Orientation="Horizontal"
-                                    HorizontalAlignment="Center">
-                                <Image Source="ms-appx:///Resources/BgImages/laud.png"/>
-                                <TextBlock Text="{x:Bind ViewModel.PraiseNum}"
-                                           VerticalAlignment="Center"
-                                           Style="{StaticResource SmallDeepText}"/>
-                            </StackPanel>
-                        </Border>
-                    </ctm:BlankButton.Content>
-                </ctm:BlankButton>
-                <Rectangle Grid.Column="1"
-                           Fill="Gray" 
-                           Width="24" Height=".8"   
-                           RenderTransformOrigin="0.5,0.5">
-                    <Rectangle.RenderTransform>
-                        <CompositeTransform Rotation="-90"/>
-                    </Rectangle.RenderTransform>
-                </Rectangle>
-                <ctm:BlankButton Grid.Column="2">
-                    <ctm:BlankButton.Content>
-                        <StackPanel Orientation="Horizontal" 
-                                    HorizontalAlignment="Center">
-                            <Image Source="ms-appx:///Resources/BgImages/comment_image.png"/>
-                            <TextBlock Text="{x:Bind ViewModel.CommentNum,Mode=OneWay}"
-                                       VerticalAlignment="Center"
-                                       Style="{StaticResource SmallDeepText}"/>
-                        </StackPanel>
-                    </ctm:BlankButton.Content>
-                </ctm:BlankButton>
-                <Rectangle Grid.Column="3"
-                           Fill="Gray"
-                           Width="24" Height=".8"   
-                           RenderTransformOrigin="0.5,0.5">
-                    <Rectangle.RenderTransform>
-                        <CompositeTransform Rotation="-90"/>
-                    </Rectangle.RenderTransform>
-                </Rectangle>
-                <ctm:BlankButton Grid.Column="4">
-                    <ctm:BlankButton.Content>
-                        <StackPanel Orientation="Horizontal" 
-                                    HorizontalAlignment="Center">
-                            <Image Source="ms-appx:///Resources/BgImages/share_image.png"/>
-                            <TextBlock Text="{x:Bind ViewModel.ShareNum}"
-                                       VerticalAlignment="Center"
-                                       Style="{StaticResource SmallDeepText}"/>
-                        </StackPanel>
-                    </ctm:BlankButton.Content>
-                </ctm:BlankButton>
-            </Grid>
-        </Grid>
+
+        <uct:ReadingDetailPageBottomGrid Grid.Row="2"
+                                         PraiseNum="{x:Bind ViewModel.PraiseNum, Mode=OneWay}"
+                                         CommentNum="{x:Bind ViewModel.CommentNum, Mode=OneWay}"
+                                         ShareNum="{x:Bind ViewModel.ShareNum, Mode=OneWay}"/> 
     </Grid>
 </Page>

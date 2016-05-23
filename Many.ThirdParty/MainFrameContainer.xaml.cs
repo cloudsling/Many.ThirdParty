@@ -1,8 +1,8 @@
 ﻿using Many.ThirdParty.AddlPages;
+using Many.ThirdParty.SubPages;
 using Many.ThirdParty.Config;
 using Many.ThirdParty.Core.Tools;
 using Many.ThirdParty.Core.ViewModels;
-using Many.ThirdParty.SubPages;
 using System;
 using System.Collections.Generic;
 using Windows.UI.Core;

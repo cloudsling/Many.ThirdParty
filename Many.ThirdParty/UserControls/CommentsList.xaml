@@ -1,0 +1,27 @@
+﻿<UserControl
+    x:Class="Many.ThirdParty.UserControls.CommentsList"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:Many.ThirdParty.UserControls"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d">
+
+    <ScrollViewer DragOver="ScrollViewer_DragOver"
+                  VerticalScrollMode="Enabled"
+                  ViewChanged="ScrollViewer_ViewChanged">
+        <StackPanel>
+            <local:CommentList CommentModelCollection="{x:Bind HotComments, Mode=OneWay}"/> 
+            <Grid Margin="0 -15 0 0">
+                <Grid Padding="25 0"
+                      Background="{ThemeResource MainBackground}"
+                      HorizontalAlignment="Center" 
+                      VerticalAlignment="Center">
+                    <TextBlock Text="以上是热门评论"
+                               Style="{StaticResource SmallDeepText}"/>
+                </Grid>
+            </Grid>
+            <local:CommentList CommentModelCollection="{x:Bind NormalComments, Mode=OneWay}"/>
+        </StackPanel>
+    </ScrollViewer>
+</UserControl>
