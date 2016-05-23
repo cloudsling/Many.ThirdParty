@@ -30,6 +30,7 @@ namespace Many.ThirdParty.SubPages.ReadingDetailPage
         {
             ViewModel = e.Parameter as SerialDetailPageViewModel ?? new SerialDetailPageViewModel();
 
+            S
             this.RequestedTheme = ViewModel.AppSettings.NightModeEnable ? ElementTheme.Dark : ElementTheme.Light;
         }
 
