@@ -50,7 +50,6 @@ namespace Many.ThirdParty.SubPages
                 await LoadRemainingHomeModel();
 
             }
-
         }
 
         private async Task LoadRemainingHomeModel()

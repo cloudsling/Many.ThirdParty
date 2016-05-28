@@ -18,6 +18,16 @@ namespace Many.ThirdParty.Core.Data
             return GetTFormString<List<string>>(await GetMainListGeneric(string.Format(ServicesUrl.MainId, listId)));
         }
 
+        public static async Task<IEnumerable<HomeModel>> LoadHomeModelsAsync(IEnumerable<string> homeList)
+        {
+            List<HomeModel> home = new List<HomeModel>();
+            foreach (var item in homeList)
+            {
+                home.Add(await LoadHomeModelAsync(item));
+            }
+            return home;
+        } 
+
         public static async Task<HomeModel> LoadHomeModelAsync(string contentId)
         {
             return GetTFormString<HomeModel>(await GetMainContentGeneric(string.Format(ServicesUrl.MainContent, contentId)));

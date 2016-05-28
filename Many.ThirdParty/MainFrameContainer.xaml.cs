@@ -23,7 +23,7 @@ namespace Many.ThirdParty
 
             UpdateContent(CurrentScenario.PageTitle);
             UpdateGenericUI(CurrentScenario.Index);
-        } 
+        }
 
         private void MainFrameContainer_BackRequested(object sender, BackRequestedEventArgs e)
         {

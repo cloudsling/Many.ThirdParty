@@ -16,6 +16,8 @@ namespace Many.ThirdParty.Core.Tools
 
         private static StatusBar statusBar = IfCanModifyStatusBar ? StatusBar.GetForCurrentView() : null;
 
+        public static double StatusBarHeight { get { return statusBar.OccludedRect.Height; } }
+
         private static readonly StatusBarProgressIndicator progressIndicator
                 = IfCanModifyStatusBar ? StatusBar.GetForCurrentView().ProgressIndicator : null;
 
@@ -48,6 +50,11 @@ namespace Many.ThirdParty.Core.Tools
         public static void SetLightStatusBar()
         {
             SetStatusBar(DarkColor, LightColor);
+        }
+
+        public static void Clear()
+        {
+            statusBar.BackgroundOpacity = 0;
         }
 
         public async static Task SetStatusBarProgressIndicator(double? progressValue, string text)

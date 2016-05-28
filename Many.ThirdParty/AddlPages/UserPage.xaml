@@ -28,10 +28,10 @@
         </ResourceDictionary>
     </Page.Resources>
 
-    <!--<StackPanel Background="{x:Bind ViewModel.ColorsCollection.MainBackground, Mode=OneWay}">-->
     <StackPanel Background="{ThemeResource MainBackground}">
         <Grid>
-            <Image Source="ms-appx:///Resources/default_indi_bg.png"
+            <Image x:Name="TopImage" 
+                   Source="ms-appx:///Resources/default_indi_bg.png"
                    VerticalAlignment="Top"
                    Height="230"
                    Stretch="Fill"/>

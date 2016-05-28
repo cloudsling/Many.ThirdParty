@@ -58,7 +58,7 @@ namespace Many.ThirdParty.Core.ViewModels.ReadingDetailPageViewModels
 
         private static string GetQuestionUri(string id)
         {
-            return string.Format(ServicesUrl.QuestionContent, id, DateTime.Now.ToString("d").Replace('/', '-'));
+            return string.Format(ServicesUrl.QuestionContent, id, DateTime.Now.ToString("d").Replace("/", "-"));
         }
     }
 }

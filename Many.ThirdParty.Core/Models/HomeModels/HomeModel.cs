@@ -1,9 +1,9 @@
-﻿using Many.ThirdParty.Core.Commons; 
+﻿using Many.ThirdParty.Core.Commons;
 using System;
 
 namespace Many.ThirdParty.Core.Models.HomeModels
 {
-    public class HomeModel : BindableBase 
+    public class HomeModel : BindableBase
     {
         public string Hpcontent_Id { get; set; }
 
@@ -17,7 +17,12 @@ namespace Many.ThirdParty.Core.Models.HomeModels
 
         public string Hp_Content { get; set; }
 
-        public string Hp_MaketTime { get; set; }
+        private string _hp_MaketTime;
+        public string Hp_MaketTime
+        {
+            get { return _hp_MaketTime; }
+            set { _hp_MaketTime = value.Split(' ')[0]; }
+        }
 
         public string Day { get { return DateTime.Now.Day.ToString(); } }
 
@@ -28,6 +33,6 @@ namespace Many.ThirdParty.Core.Models.HomeModels
         public string ShareNum { get; set; }
 
         public string CommentNum { get; set; }
-         
+
     }
 }

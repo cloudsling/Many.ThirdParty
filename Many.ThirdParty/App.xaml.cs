@@ -1,11 +1,16 @@
 ﻿using System;
 using System.Linq;
+using System.Threading.Tasks;
 using Windows.ApplicationModel;
 using Windows.ApplicationModel.Activation;
+using Windows.ApplicationModel.Background;
 using Windows.UI.Core;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Navigation;
+using Many.ThirdParty.Background;
+using Many.ThirdParty.Config;
+using System.Diagnostics;
 
 namespace Many.ThirdParty
 {
@@ -17,7 +22,25 @@ namespace Many.ThirdParty
             this.Suspending += OnSuspending;
         }
 
-        protected override void OnLaunched(LaunchActivatedEventArgs e)
+        private async Task RegisterBackgroundTask()
+        {
+            var task = await TaskConfiguration.RegisterBackgroundTask(
+                typeof(LiveTileTask),
+                "LiveTile",
+                new TimeTrigger(60 * 12, false),
+                new SystemCondition(SystemConditionType.InternetAvailable));
+              
+            task.Completed += Task_Completed; ;
+        }
+
+        private void Task_Completed(BackgroundTaskRegistration sender, BackgroundTaskCompletedEventArgs args)
+        {
+#if DEBUG
+            Debug.WriteLine($"Task_Completed............................");
+#endif 
+        } 
+
+        protected override async void OnLaunched(LaunchActivatedEventArgs e)
         {
 #if DEBUG
             this.DebugSettings.EnableFrameRateCounter |= System.Diagnostics.Debugger.IsAttached;
@@ -37,6 +60,8 @@ namespace Many.ThirdParty
                 }
 
                 Window.Current.Content = rootFrame;
+
+                await RegisterBackgroundTask();
             }
 
             if (rootFrame.Content == null)

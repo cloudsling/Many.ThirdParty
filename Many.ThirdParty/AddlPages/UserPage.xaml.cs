@@ -23,7 +23,15 @@ namespace Many.ThirdParty.AddlPages
 
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
+            StatusBarModifier.Clear();
+            TopImage.SetValue(MarginProperty, new Thickness(0, -StatusBarModifier.StatusBarHeight, 0, 0));
+
             this.RequestedTheme = ViewModel.AppSettings.NightModeEnable ? ElementTheme.Dark : ElementTheme.Light;
+        }
+
+        protected override void OnNavigatingFrom(NavigatingCancelEventArgs e)
+        {
+            ModifyStatusBar();
         }
 
         private async void Button_Click(object sender, RoutedEventArgs e)
@@ -47,7 +55,7 @@ namespace Many.ThirdParty.AddlPages
                 this.RequestedTheme = ElementTheme.Dark;
             }
             ViewModel.ChangeThemeMode(this.RequestedTheme);
-            ModifyStatusBar();
+            //ModifyStatusBar();
         }
 
         public void ModifyStatusBar()

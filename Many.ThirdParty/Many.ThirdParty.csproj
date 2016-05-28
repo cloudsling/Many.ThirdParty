@@ -111,6 +111,7 @@
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
     <Compile Include="Config\NavigationManager.cs" />
+    <Compile Include="Config\TaskConfiguration.cs" />
     <Compile Include="CustomControls\BlankButton.cs" />
     <Compile Include="CustomControls\HomeButton.cs" />
     <Compile Include="Config\DelegationManager.cs" />
@@ -175,6 +176,7 @@
     <Content Include="Assets\BadgeLogo.scale-400.png" />
     <Content Include="Assets\SplashScreen.scale-100.png" />
     <None Include="Package.StoreAssociation.xml" />
+    <Content Include="Assets\Square310x310Logo.scale-200.png" />
     <Content Include="Assets\Square71x71Logo.scale-100.png" />
     <Content Include="Assets\Square71x71Logo.scale-125.png" />
     <Content Include="Assets\Square71x71Logo.scale-200.png" />
@@ -334,6 +336,10 @@
     </SDKReference>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Many.ThirdParty.Background\Many.ThirdParty.Background.csproj">
+      <Project>{05efe5b1-a6e1-4ed0-94d2-3873efa200d6}</Project>
+      <Name>Many.ThirdParty.Background</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Many.ThirdParty.Core\Many.ThirdParty.Core.csproj">
       <Project>{a8132e4e-cbbd-45f8-bbfa-121d6e7e71fa}</Project>
       <Name>Many.ThirdParty.Core</Name>
