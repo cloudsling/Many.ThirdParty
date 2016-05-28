@@ -26,6 +26,11 @@ namespace Many.ThirdParty.SubPages
         {
             //NavigationManager.GeneralNavigate(typeof(ImageDetailPage));
         }
+
+        private void MainContent_Holding(object sender, Windows.UI.Xaml.Input.HoldingRoutedEventArgs e)
+        {
+
+        }
     }
 
     public sealed partial class HomePage : Page

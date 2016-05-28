@@ -9,6 +9,7 @@ using Windows.UI.Core;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Navigation;
+using Many.ThirdParty.Core.Tasks;
 
 namespace Many.ThirdParty
 {
@@ -100,7 +101,7 @@ namespace Many.ThirdParty
             this.NavigationCacheMode = NavigationCacheMode.Required;
         }
 
-        protected override void OnNavigatedTo(NavigationEventArgs e)
+        protected async override void OnNavigatedTo(NavigationEventArgs e)
         {
             this.RequestedTheme = MainFrameContainerViewModel.AppSettings.NightModeEnable ? ElementTheme.Dark : ElementTheme.Light;
             ModifyStatusBar();
@@ -110,6 +111,7 @@ namespace Many.ThirdParty
             Window.Current.SizeChanged += Current_SizeChanged;
 
             SystemNavigationManager.GetForCurrentView().BackRequested += MainFrameContainer_BackRequested;
+            await LiveTileTask.RequestUpdate(); 
         }
 
         private void ThisNavigate(int index)

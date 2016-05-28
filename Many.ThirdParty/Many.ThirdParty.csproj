@@ -192,6 +192,7 @@
     <Content Include="Resources\BgImages\individual_center.png" />
     <Content Include="Resources\BgImages\laud.png" />
     <Content Include="Resources\BgImages\laud_pressed.png" />
+    <Content Include="Resources\BgImages\laud_selected.png" />
     <Content Include="Resources\BgImages\no_search_result.png" />
     <Content Include="Resources\BgImages\question_image.png" />
     <Content Include="Resources\BgImages\reading_board.png" />

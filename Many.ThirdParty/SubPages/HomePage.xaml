@@ -53,8 +53,9 @@
                                                Text="{x:Bind Hp_Author, Mode=OneWay}"
                                                Style="{StaticResource SmallText}"/>
                                     </Grid>
-                                    <Grid Grid.Row="2"
-                                      Margin="0 12 0 30">
+                                    <Grid x:Name="MainContent" Grid.Row="2"
+                                          Holding="MainContent_Holding"
+                                          Margin="0 12 0 30">
                                         <TextBlock TextWrapping="Wrap" 
                                Text="{x:Bind Hp_Content, Mode=OneWay}"
                                Style="{StaticResource NormalText}"/>

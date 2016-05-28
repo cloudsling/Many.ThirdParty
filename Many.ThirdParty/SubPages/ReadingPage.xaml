@@ -17,17 +17,14 @@
 
     <Page.Resources>
         <ResourceDictionary>
-            <ResourceDictionary.MergedDictionaries>
-                <ResourceDictionary Source="ms-appx:///Themes/TextBlockResourceDictionary.xaml"/>
-            </ResourceDictionary.MergedDictionaries>
-            <Style TargetType="ListViewItem">
-                <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
-            </Style>
             <CollectionViewSource x:Name="ReadingPageListViewCollection"
                                   IsSourceGrouped="True"
                                   ItemsPath="ContentModelCollection"
                                   Source="{Binding ReadingModelCollection}">
             </CollectionViewSource>
+            <Style TargetType="ListViewItem">
+                <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
+            </Style>
             <cvt:ReadingTypeBtnImageConverter x:Name="BtnImageConverter"/>
         </ResourceDictionary>
     </Page.Resources>
@@ -38,18 +35,18 @@
                 <RowDefinition Height="5*"/>
             </Grid.RowDefinitions>
             <Grid>
-                <FlipView x:Name="fv" 
-                          ItemsSource="{Binding CarouselModelCollection}" 
-                          SelectionChanged="fv_SelectionChanged">
+                <FlipView x:Name="fv"  
+                              ItemsSource="{Binding CarouselModelCollection}" 
+                              SelectionChanged="fv_SelectionChanged">
                     <FlipView.ItemTemplate>
                         <DataTemplate>
-                            <ListViewItem>
+                            <Grid>
                                 <ctm:BlankButton Click="BlankButton_Click">
-                                    <Image x:Name="bkimg" 
+                                    <Image x:Name="bkimg"
                                            Stretch="UniformToFill" 
                                            Source="{Binding Cover}"/>
                                 </ctm:BlankButton>
-                            </ListViewItem>
+                            </Grid>
                         </DataTemplate>
                     </FlipView.ItemTemplate>
                 </FlipView>
@@ -84,15 +81,15 @@
                                 <GroupStyle>
                                     <GroupStyle.HeaderTemplate>
                                         <DataTemplate>
-                                            <uct:GeneralListViewItem Title="{Binding MaketTime}" />
-                                            <!--<Border Background="#FFF8F8F8"
+                                            <Border Background="{ThemeResource ListHeader}"
                                                     Margin="-15 -7 -500 -7">
                                                 <TextBlock Text="{Binding MaketTime}"
+                                                           Foreground="{ThemeResource SmallLightFontColor}"
                                                            VerticalAlignment="Center"
                                                            HorizontalAlignment="Left"
                                                            Margin="15"
-                                                    FontSize="16"/>
-                                            </Border>-->
+                                                           FontSize="14"/>
+                                            </Border>
                                         </DataTemplate>
                                     </GroupStyle.HeaderTemplate>
                                 </GroupStyle>

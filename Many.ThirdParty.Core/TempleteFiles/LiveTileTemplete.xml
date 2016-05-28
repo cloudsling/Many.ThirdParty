@@ -1,0 +1,38 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+
+<tile>
+  <visual version="2">
+
+    <binding template="TileMedium" branding="logo">
+      <text hint-style="caption">{Hp_Title}</text>
+      <text hint-style="captionSubtle" hint-wrap="true">{Hp_Content}</text>
+    </binding>
+
+    <binding template="TileWide" branding="nameAndLogo" displayName="{Hp_MaketTime}">
+      <text hint-style="caption">{Hp_Title}</text>
+      <text hint-style="captionSubtle" hint-wrap="true">{Hp_Content}</text>
+    </binding>
+
+    <binding template="TileLarge" branding="nameAndLogo" displayName="{Day}">
+      <group>
+        <subgroup>
+          <text hint-style="caption">{Hp_Title}</text>
+          <text hint-style="captionSubtle">{Hp_MaketTime}</text>
+          <text hint-style="captionSubtle" hint-wrap="true">{Hp_Content}</text>
+        </subgroup>
+      </group>
+
+      <text />
+
+      <group>
+        <subgroup>
+          <text hint-style="caption">{Hp_TitleT}</text>
+          <text hint-style="captionSubtle">{Hp_MaketTimeT}</text>
+          <text hint-style="captionSubtle" hint-wrap="true">{Hp_ContentT}</text>
+        </subgroup>
+      </group>
+    </binding>
+
+  </visual>
+</tile>
+
