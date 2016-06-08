@@ -164,6 +164,9 @@
     <Compile Include="UserControls\ReadingDetailPageBottomGrid.xaml.cs">
       <DependentUpon>ReadingDetailPageBottomGrid.xaml</DependentUpon>
     </Compile>
+    <Compile Include="UserControls\ReadingListView.xaml.cs">
+      <DependentUpon>ReadingListView.xaml</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <AppxManifest Include="Package.appxmanifest">
@@ -228,6 +231,7 @@
     <Content Include="Resources\MFCImages\reading_active.png" />
     <Content Include="Resources\MFCImages\search.png" />
     <Content Include="Resources\test.jpg" />
+    <Content Include="Resources\Test\blur2.jpg" />
     <Content Include="Resources\Test\cover.jpg" />
     <Content Include="Resources\Test\test.jpg" />
   </ItemGroup>
@@ -323,6 +327,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="UserControls\ReadingDetailPageBottomGrid.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControls\ReadingListView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

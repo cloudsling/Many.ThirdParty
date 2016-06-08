@@ -5,9 +5,45 @@
     xmlns:local="using:Many.ThirdParty"
     xmlns:dvm="using:Many.ThirdParty.Core.ViewModels"
     xmlns:ctm="using:Many.ThirdParty.CustomControls"
+    xmlns:uct="using:Many.ThirdParty.UserControls"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d">
+
+    <Page.Resources>
+        <Storyboard x:Name="Appear">
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetName="QuickActionGrid"
+                             Storyboard.TargetProperty="Width" 
+                             BeginTime="0:0:0"
+                             Duration="0:0:1.2"
+                             EnableDependentAnimation="True"  
+                             SpeedRatio="1.3">
+                <EasingDoubleKeyFrame KeyTime="0:0:.1" Value="150">
+                    <EasingDoubleKeyFrame.EasingFunction>
+                        <CircleEase EasingMode="EaseOut" />
+                    </EasingDoubleKeyFrame.EasingFunction>
+                </EasingDoubleKeyFrame> 
+                <EasingDoubleKeyFrame KeyTime="0:0:1.2" Value="0">
+                    <EasingDoubleKeyFrame.EasingFunction>
+                        <CircleEase EasingMode="EaseOut" />
+                    </EasingDoubleKeyFrame.EasingFunction>
+                </EasingDoubleKeyFrame>
+            </DoubleAnimationUsingKeyFrames>
+        </Storyboard>
+        <Storyboard x:Name="Disappear">
+            <DoubleAnimation Storyboard.TargetName="QuickActionGrid"
+                             Storyboard.TargetProperty="Width"
+                             To="0"
+                             BeginTime="0:0:0"
+                             Duration="0:0:0.3"
+                             EnableDependentAnimation="True"  
+                             SpeedRatio="1.3" >
+                <DoubleAnimation.EasingFunction>
+                    <CircleEase EasingMode="EaseInOut"/>
+                </DoubleAnimation.EasingFunction>
+            </DoubleAnimation>
+        </Storyboard>
+    </Page.Resources>
 
     <Grid Background="{ThemeResource TitleBar}">
         <Grid.RowDefinitions>
@@ -58,9 +94,79 @@
             <Rectangle Grid.Row="1" 
                        Fill="{ThemeResource TopLine}"
                        Height="1"/>
+
             <Grid Grid.Row="2" Background="{ThemeResource MainBackground}">
+
+                <!--<VisualStateManager.VisualStateGroups>
+                    <VisualStateGroup x:Name="SlideState">
+                        <VisualState x:Name="Appear">
+                            <Storyboard>
+                                <DoubleAnimation Storyboard.TargetName="QuickActionGrid"
+                                                 Storyboard.TargetProperty="Width"
+                                                 To="150"
+                                                 BeginTime="0:0:0"
+                                                 Duration="0:0:0.4"
+                                                 EnableDependentAnimation="True"  
+                                                 SpeedRatio="1.3" >
+                                    <DoubleAnimation.EasingFunction>
+                                        <CircleEase EasingMode="EaseInOut"/>
+                                    </DoubleAnimation.EasingFunction>
+                                </DoubleAnimation>
+                            </Storyboard>
+                        </VisualState>
+                        <VisualState x:Name="Disappear">
+                            <Storyboard>
+                                <DoubleAnimation Storyboard.TargetName="QuickActionGrid"
+                                                 Storyboard.TargetProperty="(Margin.Right)"
+                                                 To="-150"
+                                                 Duration="0:0:0.5"
+                                                 EnableDependentAnimation="True"  
+                                                 SpeedRatio="1.3" >
+                                    <DoubleAnimation.EasingFunction>
+                                        <CircleEase EasingMode="EaseInOut"/>
+                                    </DoubleAnimation.EasingFunction>
+                                </DoubleAnimation>
+                            </Storyboard>
+                        </VisualState>
+                    </VisualStateGroup>
+                </VisualStateManager.VisualStateGroups>-->
                 <Frame x:Name="mainFrameContainer" 
                        Navigated="MainFrameContainer_Navigated"/>
+                <Rectangle x:Name="SlideGrid"
+                      Width="18"  
+                      Opacity=".01"
+                      Fill="#FFFFFFFF"
+                      HorizontalAlignment="Right"
+                      ManipulationMode="All"
+                      ManipulationDelta="SlideGrid_ManipulationDelta"
+                      ManipulationCompleted="SlideGrid_ManipulationCompleted">
+                    <Rectangle.Transitions>
+                        <TransitionCollection>
+                            <NavigationThemeTransition/>
+                        </TransitionCollection>
+                    </Rectangle.Transitions>
+                </Rectangle>
+                <Grid x:Name="QuickActionGrid"
+                      HorizontalAlignment="Right"
+                      Width="0" 
+                      Height="350"
+                      Opacity=".65"
+                      LostFocus="QuickActionGrid_LostFocus"
+                      >
+                    <ScrollViewer>
+                        <StackPanel Padding="10">
+                            <uct:GeneralListViewItem Title="夜间模式" 
+                                                     Height="35"/>
+                            <ToggleSwitch x:Name="NightModeSwitch"
+                                          Height="30" 
+                                          PointerReleased="NightModeSwitch_PointerReleased"
+                                          IsOn="{x:Bind MainFrameContainerViewModel.AppSettings.NightModeEnable, Mode=TwoWay}"/>
+                        </StackPanel>
+                    </ScrollViewer>
+                    <Grid.Background>
+                        <ImageBrush ImageSource="ms-appx:///Resources/Test/blur2.jpg"/>
+                    </Grid.Background>
+                </Grid>
             </Grid>
         </Grid>
         <Rectangle Grid.Row="1"
@@ -69,6 +175,7 @@
         <Grid x:Name="navBtnBottom"
               Grid.Row="2"
               Height="60"
+              VerticalAlignment="Bottom"
               Visibility="{x:Bind MainFrameContainerViewModel.BottomNavBtnAndProfileVisibility, Mode=OneWay}">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition/>

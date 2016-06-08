@@ -33,12 +33,13 @@
         </ResourceDictionary>
     </Page.Resources>
 
-    <Grid Background="{x:Bind ViewModel.BgColor, Mode=OneWay }">
+    <Grid Background="{x:Bind ViewModel.BgColor, Mode=OneWay }"
+          Margin="0 -15 0 0">
         <Grid.RowDefinitions>
             <RowDefinition Height="50"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
-        <Grid Height="50"
+        <Grid Height="50" 
               VerticalAlignment="Top">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="2*"/>
@@ -61,7 +62,8 @@
                            FontWeight="Medium"/>
             </Grid>
         </Grid>
-        <ScrollViewer Grid.Row="1">
+        <ScrollViewer Grid.Row="1"
+                      Margin="0 15 0 0">
             <StackPanel>
                 <ListView x:Name="CarouselList" ItemsSource="{x:Bind ViewModel.CarouselDetailModelCollection, Mode=OneWay}" 
                           ItemClick="CarouselList_ItemClick">

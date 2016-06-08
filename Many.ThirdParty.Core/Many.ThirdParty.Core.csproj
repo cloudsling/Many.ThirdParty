@@ -114,10 +114,12 @@
     <Compile Include="Converter\SwitchVisibilityConverter.cs" />
     <Compile Include="Data\Comments.cs" />
     <Compile Include="Data\CommonDataLoader.cs" />
+    <Compile Include="Data\IncrementalLoadingCollection.cs" />
+    <Compile Include="Data\Replicators.cs" />
+    <Compile Include="Data\Saver.cs" />
     <Compile Include="Data\Searcher.cs" />
     <Compile Include="Data\Settings.cs" />
     <Compile Include="Factories\CarouselDetailPageViewModelFactory.cs" />
-    <Compile Include="Factories\ReadingDetailFactory.cs" />
     <Compile Include="Factories\ReadingModelFactory.cs" />
     <Compile Include="Factories\ReadingViewModelFactory.cs" />
     <Compile Include="Models\AddlModels\SearchReadingModel.cs" />

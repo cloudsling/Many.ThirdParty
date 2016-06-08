@@ -4,6 +4,7 @@ using System;
 using Windows.UI.Popups;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
+using Many.ThirdParty.Core.Models.ReadingModels;
 
 namespace Many.ThirdParty.UserControls
 {
@@ -13,6 +14,17 @@ namespace Many.ThirdParty.UserControls
         {
             this.InitializeComponent();
         }
+
+        public ObservableCollection<ReadingModelBase> ContentModelCollection
+        {
+            get { return (ObservableCollection<ReadingModelBase>)GetValue(ContentModelCollectionProperty); }
+            set { SetValue(ContentModelCollectionProperty, value); }
+        }
+
+        // Using a DependencyProperty as the backing store for ContentModelCollection.  This enables animation, styling, binding, etc...
+        public static readonly DependencyProperty ContentModelCollectionProperty =
+            DependencyProperty.Register("ContentModelCollection", typeof(ObservableCollection<ReadingModelBase>), typeof(CommentsList), new PropertyMetadata(2));
+
 
         public ObservableCollection<CommentModel> HotComments
         {

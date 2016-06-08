@@ -1,10 +1,20 @@
 ﻿using Many.ThirdParty.Core.Commons;
 using System;
+using Many.ThirdParty.Core.ViewModels;
+using Many.ThirdParty.Core.Commands;
+using Many.ThirdParty.Core.Data;
 
 namespace Many.ThirdParty.Core.Models.HomeModels
 {
     public class HomeModel : BindableBase
     {
+        private static CommandBase StaticSavePicCommand = new AsyncCommand(HomePageViewModel.SavePic);
+        private static CommandBase StaticCopyCommand = new Command(Replicators.CopyString);
+
+        public CommandBase CopyCommand { get { return StaticCopyCommand; } }
+
+        public CommandBase SavePicCommand { get { return StaticSavePicCommand; } }
+
         public string Hpcontent_Id { get; set; }
 
         public string Hp_Title { get; set; }

@@ -2,6 +2,7 @@
 using System.Threading.Tasks;
 using Windows.UI;
 using Windows.UI.ViewManagement;
+using Windows.UI.Xaml;
 
 namespace Many.ThirdParty.Core.Tools
 {
@@ -16,7 +17,7 @@ namespace Many.ThirdParty.Core.Tools
 
         private static StatusBar statusBar = IfCanModifyStatusBar ? StatusBar.GetForCurrentView() : null;
 
-        public static double StatusBarHeight { get { return statusBar.OccludedRect.Height; } }
+        public static double StatusBarHeight { get { return statusBar != null ? statusBar.OccludedRect.Height : 0; } }
 
         private static readonly StatusBarProgressIndicator progressIndicator
                 = IfCanModifyStatusBar ? StatusBar.GetForCurrentView().ProgressIndicator : null;
@@ -54,7 +55,8 @@ namespace Many.ThirdParty.Core.Tools
 
         public static void Clear()
         {
-            statusBar.BackgroundOpacity = 0;
+            if (IfCanModifyStatusBar)
+                statusBar.BackgroundOpacity = 0;
         }
 
         public async static Task SetStatusBarProgressIndicator(double? progressValue, string text)
@@ -64,5 +66,6 @@ namespace Many.ThirdParty.Core.Tools
             progressIndicator.Text = text;
             await progressIndicator.ShowAsync();
         }
+
     }
 }

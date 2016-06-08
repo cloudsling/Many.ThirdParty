@@ -18,7 +18,9 @@
             </Style>
         </ResourceDictionary>
     </UserControl.Resources>
-    <ListView ItemsSource="{x:Bind CommentModelCollection, Mode=OneWay}">
+    <ListView ItemsSource="{x:Bind CommentModelCollection, Mode=OneWay}"
+              SelectionMode="None" 
+              IsSwipeEnabled="False">
         <ListView.ItemTemplate>
             <DataTemplate x:DataType="cvm:CommentModel">
                 <Grid Padding="8">

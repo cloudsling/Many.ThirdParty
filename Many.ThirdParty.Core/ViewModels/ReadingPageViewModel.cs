@@ -11,7 +11,8 @@ namespace Many.ThirdParty.Core.ViewModels
         public ReadingPageViewModel()
         {
             CarouselModelCollection = new ObservableCollection<CarouselModel>();
-            ReadingModelCollection = new ObservableCollection<ReadingModel>();
+
+            ReadingModelCollection = new IncrementalLoadingCollection<ReadingModel>(index => CommonDataLoader.GetReadingModel(index.ToString()));
         }
 
         public void AddToCollection(CarouselModel model)
@@ -34,7 +35,7 @@ namespace Many.ThirdParty.Core.ViewModels
             foreach (var item in await CommonDataLoader.GetReadingModel("0"))
             {
                 ReadingModelCollection.Add(item);
-            } 
+            }
         }
     }
 
@@ -42,9 +43,9 @@ namespace Many.ThirdParty.Core.ViewModels
     {
         public ObservableCollection<CarouselModel> CarouselModelCollection { get; set; }
 
-        ObservableCollection<ReadingModel> _readingModelCollection;
+        IncrementalLoadingCollection<ReadingModel> _readingModelCollection;
 
-        public ObservableCollection<ReadingModel> ReadingModelCollection
+        public IncrementalLoadingCollection<ReadingModel> ReadingModelCollection
         {
             get { return _readingModelCollection; }
             set

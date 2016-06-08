@@ -25,6 +25,7 @@ namespace Many.ThirdParty.Core.Commons
                 _settings = value;
             }
         }
+         
 
         public void ChangeThemeMode(ElementTheme theme)
         {

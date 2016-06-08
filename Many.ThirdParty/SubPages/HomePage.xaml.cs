@@ -2,12 +2,13 @@
 using Many.ThirdParty.Core.ViewModels;
 using System;
 using System.Collections.Generic;
-using System.Threading.Tasks;
 using Windows.UI.Popups;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Navigation;
 using Windows.Web.Http;
+using Many.ThirdParty.Core.Data;
+using Windows.Storage;
 
 namespace Many.ThirdParty.SubPages
 {
@@ -24,12 +25,10 @@ namespace Many.ThirdParty.SubPages
 
         private void BlankButton_Click(object sender, RoutedEventArgs e)
         {
-            //NavigationManager.GeneralNavigate(typeof(ImageDetailPage));
         }
 
-        private void MainContent_Holding(object sender, Windows.UI.Xaml.Input.HoldingRoutedEventArgs e)
+        private void MainFlipView_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-
         }
     }
 
@@ -51,18 +50,8 @@ namespace Many.ThirdParty.SubPages
             else
             {
                 ViewModel.AddHomeModel(CurrentHomeModle ?? new HomeModel());
-
-                await LoadRemainingHomeModel();
-
             }
-        }
-
-        private async Task LoadRemainingHomeModel()
-        {
-            for (int index = 1; index < TodaysListId.Count; index++)
-            {
-                await ViewModel.AddHomeModel(TodaysListId[index]);
-            }
+            await ViewModel.AddHomeModels(TodaysListId);
         }
 
         Dictionary<string, bool> isClickDic = new Dictionary<string, bool>();

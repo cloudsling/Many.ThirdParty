@@ -7,6 +7,7 @@ using Windows.UI.Popups;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Navigation;
+using Windows.Storage;
 
 namespace Many.ThirdParty.AddlPages
 {
@@ -55,7 +56,6 @@ namespace Many.ThirdParty.AddlPages
                 this.RequestedTheme = ElementTheme.Dark;
             }
             ViewModel.ChangeThemeMode(this.RequestedTheme);
-            //ModifyStatusBar();
         }
 
         public void ModifyStatusBar()

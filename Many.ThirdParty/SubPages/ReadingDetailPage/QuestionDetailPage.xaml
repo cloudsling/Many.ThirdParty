@@ -88,10 +88,9 @@
                                Style="{StaticResource SmallDeepText}"/>
                 </Grid>
                 <TextBlock Text="{x:Bind ViewModel.Answer_Content}" 
-                           Style="{StaticResource ReadingContent}"/> 
-                <uct:GeneralListViewItem  Title="评论列表" />
-
+                           Style="{StaticResource ReadingContent}"/>
                 <uct:CommentsList  x:Name="HotComment"
+                                   ContentModelCollection="{x:Bind ViewModel.ContentModelCollection}"
                                    HotComments="{x:Bind ViewModel.HotComments}"
                                    NormalComments="{x:Bind ViewModel.NormalComments}"/>
             </StackPanel>

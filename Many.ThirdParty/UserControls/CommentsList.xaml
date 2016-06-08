@@ -11,6 +11,9 @@
                   VerticalScrollMode="Enabled"
                   ViewChanged="ScrollViewer_ViewChanged">
         <StackPanel>
+            <local:GeneralListViewItem  Title="相关推荐"/>
+            <local:ReadingListView ContentModelCollection="{x:Bind ContentModelCollection, Mode=OneWay}"/>
+            <local:GeneralListViewItem  Title="评论列表"/> 
             <local:CommentList CommentModelCollection="{x:Bind HotComments, Mode=OneWay}"/> 
             <Grid Margin="0 -15 0 0">
                 <Grid Padding="25 0"

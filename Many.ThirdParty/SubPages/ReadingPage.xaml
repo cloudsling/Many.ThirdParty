@@ -4,6 +4,7 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:local="using:Many.ThirdParty.SubPages"
     xmlns:dvm="using:Many.ThirdParty.Core.ViewModels"
+    xmlns:cvm="using:Many.ThirdParty.Core.Models.ReadingModels"
     xmlns:ctm="using:Many.ThirdParty.CustomControls"
     xmlns:uct="using:Many.ThirdParty.UserControls"
     xmlns:cvt="using:Many.ThirdParty.Core.Converter"
@@ -17,11 +18,6 @@
 
     <Page.Resources>
         <ResourceDictionary>
-            <CollectionViewSource x:Name="ReadingPageListViewCollection"
-                                  IsSourceGrouped="True"
-                                  ItemsPath="ContentModelCollection"
-                                  Source="{Binding ReadingModelCollection}">
-            </CollectionViewSource>
             <Style TargetType="ListViewItem">
                 <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
             </Style>
@@ -29,22 +25,22 @@
         </ResourceDictionary>
     </Page.Resources>
     <Grid>
-        <Grid>
-            <Grid.RowDefinitions>
-                <RowDefinition Height="2*"/>
-                <RowDefinition Height="5*"/>
-            </Grid.RowDefinitions>
-            <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="1.8*"/>
+            <RowDefinition Height="5*"/>
+        </Grid.RowDefinitions> 
+            <Grid x:Name="FlipViewGrid"
+                  Height="225">
                 <FlipView x:Name="fv"  
-                              ItemsSource="{Binding CarouselModelCollection}" 
+                              ItemsSource="{x:Bind ViewModel.CarouselModelCollection}" 
                               SelectionChanged="fv_SelectionChanged">
                     <FlipView.ItemTemplate>
-                        <DataTemplate>
+                    <DataTemplate x:DataType="cvm:CarouselModel">
                             <Grid>
                                 <ctm:BlankButton Click="BlankButton_Click">
                                     <Image x:Name="bkimg"
                                            Stretch="UniformToFill" 
-                                           Source="{Binding Cover}"/>
+                                           Source="{x:Bind Cover}"/>
                                 </ctm:BlankButton>
                             </Grid>
                         </DataTemplate>
@@ -67,73 +63,71 @@
                     <Ellipse Margin="3 0 3 0" Width="5" Height="5" />
                 </StackPanel>
             </Grid>
-            <Grid Grid.Row="1">
-                <SemanticZoom>
-                    <SemanticZoom.ZoomedInView>
-                        <ListView x:Name="MainListView"
-                                  SelectionMode="None"
-                                  ItemClick="MainListView_ItemClick"
-                                  IsItemClickEnabled="True"
-                                  VerticalAlignment="Top"
-                                  VerticalContentAlignment="Top"
-                                  ItemsSource="{Binding Source={StaticResource ReadingPageListViewCollection}}">
-                            <ListView.GroupStyle>
-                                <GroupStyle>
-                                    <GroupStyle.HeaderTemplate>
-                                        <DataTemplate>
-                                            <Border Background="{ThemeResource ListHeader}"
+            <ListView SelectionMode="None" 
+                      IsSwipeEnabled="False"
+                      Margin="0 4"
+                      Grid.Row="1"
+                      IsItemClickEnabled="True"
+                      VerticalAlignment="Top"
+                      VerticalContentAlignment="Top"
+                      IncrementalLoadingTrigger="Edge"
+                      DataFetchSize="1.0" 
+                      IncrementalLoadingThreshold="1"
+                      ItemsSource="{x:Bind ViewModel.ReadingModelCollection}">
+                <ListView.ItemTemplate>
+                <DataTemplate x:DataType="cvm:ReadingModel">
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="*"/>
+                            </Grid.RowDefinitions>
+                            <Border Background="{ThemeResource ListHeader}"
                                                     Margin="-15 -7 -500 -7">
-                                                <TextBlock Text="{Binding MaketTime}"
+                                <TextBlock Text="{x:Bind MaketTime}"
                                                            Foreground="{ThemeResource SmallLightFontColor}"
                                                            VerticalAlignment="Center"
                                                            HorizontalAlignment="Left"
                                                            Margin="15"
                                                            FontSize="14"/>
-                                            </Border>
-                                        </DataTemplate>
-                                    </GroupStyle.HeaderTemplate>
-                                </GroupStyle>
-                            </ListView.GroupStyle>
+                        </Border>
+                        <!--<uct:ReadingListView Grid.Row="1" ContentModelCollection="{x:Bind ContentModelCollection, Mode=OneWay}"/>-->
+                        <ListView x:Name="MainListView"
+                                  Grid.Row="1"
+                                  IsSwipeEnabled="False"
+                                  Margin="0 10"
+                                  ScrollViewer.IsVerticalScrollChainingEnabled="True"
+                                  SelectionMode="None"
+                                  ItemClick="MainListView_ItemClick"
+                                  VerticalAlignment="Top"
+                                  VerticalContentAlignment="Top"  
+                                  IsItemClickEnabled="True"
+                                  ItemsSource="{x:Bind ContentModelCollection, Mode=OneWay}">
                             <ListView.ItemTemplate>
-                                <DataTemplate>
+                                <DataTemplate x:DataType="cvm:ReadingModelBase">
                                     <Border>
                                         <StackPanel>
                                             <Image Height="28"
-                                                   Stretch="Uniform"
-                                                   Margin="2 8"
-                                                   Source="{Binding Type,Converter={StaticResource BtnImageConverter}}"
-                                                   HorizontalAlignment="Left"/>
+                                                    Stretch="Uniform"
+                                                    Margin="2 8"
+                                                    Source="{x:Bind Type,Converter={StaticResource BtnImageConverter}}"
+                                                    HorizontalAlignment="Left"/>
                                             <TextBlock Style="{StaticResource ReadingText}"
                                                        FontWeight="Bold"
-                                                       Text="{Binding Content.Title}"/>
+                                                       Text="{x:Bind Content.Title, Mode=OneWay}"/>
                                             <TextBlock Style="{StaticResource ReadingText}"
-                                                       Text="{Binding Content.AuthorContent}"
+                                                       Text="{x:Bind Content.AuthorContent, Mode=OneWay}"
                                                        FontFamily="Consolas"/>
                                             <TextBlock Style="{StaticResource ReadingText}"
-                                                       Text="{Binding Content.ContentSummary}"
+                                                       Text="{x:Bind Content.ContentSummary, Mode=OneWay}"
                                                        TextWrapping="Wrap"/>
                                         </StackPanel>
                                     </Border>
                                 </DataTemplate>
                             </ListView.ItemTemplate>
                         </ListView>
-                    </SemanticZoom.ZoomedInView>
-                    <SemanticZoom.ZoomedOutView>
-                        <ListView ItemsSource="{Binding Source={StaticResource ReadingPageListViewCollection}, Path=CollectionGroups}">
-                            <ListView.ItemTemplate>
-                                <DataTemplate>
-                                    <!--<uct:GeneralListViewItem Title="{Binding Group.MaketTime}" />-->
-                                    <Border Background="{ThemeResource ListHeader}">
-                                        <TextBlock Text="{Binding Group.MaketTime}"
-                                                    Margin="8"
-                                                    FontSize="16"/>
-                                    </Border>
-                                </DataTemplate>
-                            </ListView.ItemTemplate>
-                        </ListView>
-                    </SemanticZoom.ZoomedOutView>
-                </SemanticZoom>
-            </Grid>
-        </Grid>
+                    </Grid>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView> 
     </Grid>
 </Page>

@@ -1,14 +1,5 @@
 ﻿using Many.ThirdParty.Core.Commons;
-using Many.ThirdParty.Core.Tools;
-using Newtonsoft.Json;
-using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Windows.ApplicationModel;
-using Windows.UI.Popups;
 
 namespace Many.ThirdParty.Core.Models.ReadingModels
 {
@@ -16,12 +7,9 @@ namespace Many.ThirdParty.Core.Models.ReadingModels
     {
         public ReadingModel()
         {
-            ContentModelCollection = new ObservableCollection<ReadingModelBase>();
-
-            //NavigateToDetailCommand = new CommandBase(GetTest);
+            _contentModelCollection = new ObservableCollection<ReadingModelBase>();
         }
-
-
+         
         string _maketTime;
         public string MaketTime
         {

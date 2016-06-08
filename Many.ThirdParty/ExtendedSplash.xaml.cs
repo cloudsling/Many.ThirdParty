@@ -27,10 +27,10 @@ namespace Many.ThirdParty
                 Windows.UI.Xaml.Application.Current.Exit();
             }
             HomePage.TodaysListId = await CommonDataLoader.GetHomeList(HomePage.CumulateListIndex.ToString());
+            HomePage.CumulateListIndex += 1;
 
             //TODO: load resource from internet
             Frame.Navigate(typeof(PreLoadPage), await CommonDataLoader.LoadHomeModelAsync(HomePage.TodaysListId[0]));
         }
     }
-
 }

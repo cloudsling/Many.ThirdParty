@@ -3,6 +3,8 @@ using Many.ThirdParty.Core.Data;
 using Many.ThirdParty.Core.Models.HomeModels;
 using System.Collections.ObjectModel;
 using System.Threading.Tasks;
+using System.Collections.Generic;
+using Many.ThirdParty.Core.Commands;
 
 namespace Many.ThirdParty.Core.ViewModels
 {
@@ -11,6 +13,13 @@ namespace Many.ThirdParty.Core.ViewModels
         public HomePageViewModel()
         {
             HomeModelCollection = new ObservableCollection<HomeModel>();
+            SavePicCommand = new AsyncCommand(SavePic);
+        }
+
+       internal static async Task SavePic(object obj)
+        {
+            var model = obj as HomeModel;
+            await Saver.SavePic(model.Hpcontent_Id, model.Hp_Img_Url);
         }
 
         ObservableCollection<HomeModel> _homeModelCollection;
@@ -27,6 +36,15 @@ namespace Many.ThirdParty.Core.ViewModels
         {
             _homeModelCollection.Add(model);
         }
+
+        public async Task AddHomeModels(List<string> listId)
+        {
+            for (int index = 1; index < listId.Count; index++)
+            {
+                await AddHomeModel(listId[index]);
+            }
+        }
+
         public async Task AddHomeModel(string contentId)
         {
             _homeModelCollection.Add(await CommonDataLoader.LoadHomeModelAsync(contentId));
@@ -36,5 +54,7 @@ namespace Many.ThirdParty.Core.ViewModels
         {
             _homeModelCollection.Insert(0, model);
         }
+
+        public CommandBase SavePicCommand { get; set; }
     }
 }

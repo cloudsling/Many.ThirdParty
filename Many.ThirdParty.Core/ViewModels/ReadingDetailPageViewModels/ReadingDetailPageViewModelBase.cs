@@ -15,6 +15,7 @@ namespace Many.ThirdParty.Core.ViewModels.ReadingDetailPageViewModels
         {
             HotComments = new ObservableCollection<CommentModel>();
             NormalComments = new ObservableCollection<CommentModel>();
+            ContentModelCollection = new ObservableCollection<ReadingModelBase>();
         }
 
         public string Charge_Edt { get; set; }
@@ -59,8 +60,7 @@ namespace Many.ThirdParty.Core.ViewModels.ReadingDetailPageViewModels
                 Debug.WriteLine(tem.User.Web_Url);
 #endif
             }
-        }
-
+        } 
         public ObservableCollection<CommentModel> HotComments { get; set; }
 
         public ObservableCollection<CommentModel> NormalComments { get; set; }

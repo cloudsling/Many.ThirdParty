@@ -96,9 +96,8 @@
                 <TextBlock Text="{x:Bind ViewModel.Hp_Content}" 
                            Margin="20 5"
                            Style="{ThemeResource ReadingContent}"/> 
-                <uct:GeneralListViewItem  Title="评论列表"/>
-
                 <uct:CommentsList  x:Name="HotComment"
+                                   ContentModelCollection="{x:Bind ViewModel.ContentModelCollection}"
                                    HotComments="{x:Bind ViewModel.HotComments}"
                                    NormalComments="{x:Bind ViewModel.NormalComments}"/> 
             </StackPanel>
