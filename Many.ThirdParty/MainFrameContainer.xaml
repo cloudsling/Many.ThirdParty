@@ -43,96 +43,100 @@
                 </DoubleAnimation.EasingFunction>
             </DoubleAnimation>
         </Storyboard>
+        <Storyboard x:Name="NotifyUserAnimation">
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetName="NotifyGrid"
+                                           Storyboard.TargetProperty="Opacity" 
+                                           BeginTime="0:0:0"
+                                           Duration="0:0:1.8"
+                                           EnableDependentAnimation="True"  
+                                           SpeedRatio="1">
+                <EasingDoubleKeyFrame KeyTime="0:0:.9" Value="1">
+                    <EasingDoubleKeyFrame.EasingFunction>
+                        <CircleEase EasingMode="EaseOut"/>
+                    </EasingDoubleKeyFrame.EasingFunction>
+                </EasingDoubleKeyFrame>
+                <EasingDoubleKeyFrame KeyTime="0:0:1.8" Value="0">
+                    <EasingDoubleKeyFrame.EasingFunction>
+                        <CircleEase EasingMode="EaseOut"/>
+                    </EasingDoubleKeyFrame.EasingFunction>
+                </EasingDoubleKeyFrame>
+            </DoubleAnimationUsingKeyFrames>
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetName="NotifyGrid"
+                                           Storyboard.TargetProperty="Height" 
+                                           BeginTime="0:0:0"
+                                           Duration="0:0:1.8"
+                                           EnableDependentAnimation="True"  
+                                           SpeedRatio="1">
+                <EasingDoubleKeyFrame KeyTime="0:0:.7" Value="45">
+                    <EasingDoubleKeyFrame.EasingFunction>
+                        <CircleEase EasingMode="EaseOut"/>
+                    </EasingDoubleKeyFrame.EasingFunction>
+                </EasingDoubleKeyFrame>
+                <EasingDoubleKeyFrame KeyTime="0:0:1.8" Value="0">
+                    <EasingDoubleKeyFrame.EasingFunction>
+                        <CircleEase EasingMode="EaseIn"/>
+                    </EasingDoubleKeyFrame.EasingFunction>
+                </EasingDoubleKeyFrame>
+            </DoubleAnimationUsingKeyFrames>
+        </Storyboard>
     </Page.Resources>
 
-    <Grid Background="{ThemeResource TitleBar}">
-        <Grid.RowDefinitions>
-            <RowDefinition Height="*"/>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="Auto"/>
-        </Grid.RowDefinitions>
-        <Grid>
+    <Grid>
+        <Grid Background="{ThemeResource TitleBar}">
             <Grid.RowDefinitions>
-                <RowDefinition Height="Auto"/>
-                <RowDefinition Height="Auto"/>
                 <RowDefinition Height="*"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
             </Grid.RowDefinitions>
-            <Grid Height="50"
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+                <Grid Height="50"
                   VerticalAlignment="Top">
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="2*"/>
-                    <ColumnDefinition Width="13*"/>
-                    <ColumnDefinition Width="2*"/>
-                </Grid.ColumnDefinitions>
-                <Grid HorizontalAlignment="Left">
-                    <ctm:BlankButton x:Name="SearchButton" 
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="2*"/>
+                        <ColumnDefinition Width="13*"/>
+                        <ColumnDefinition Width="2*"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid HorizontalAlignment="Left">
+                        <ctm:BlankButton x:Name="SearchButton" 
                                      Click="SearchButton_Click">
-                        <Image Source="ms-appx:///Resources/BgImages/search.png"/>
-                    </ctm:BlankButton>
-                </Grid>
-                <Grid Grid.Column="1"
+                            <Image Source="ms-appx:///Resources/BgImages/search.png"/>
+                        </ctm:BlankButton>
+                    </Grid>
+                    <Grid Grid.Column="1"
                       HorizontalAlignment="Center">
-                    <TextBlock Text="{x:Bind MainFrameContainerViewModel.PageTitle, Mode=OneWay}" 
+                        <TextBlock Text="{x:Bind MainFrameContainerViewModel.PageTitle, Mode=OneWay}" 
                                VerticalAlignment="Center"
                                Foreground="#4E5C6C"
                                FontSize="19"
                                FontWeight="Medium"/>
-                </Grid>
-                <Grid Grid.Column="2"
+                    </Grid>
+                    <Grid Grid.Column="2"
                       HorizontalAlignment="Right"
                       Visibility="{x:Bind MainFrameContainerViewModel.BottomNavBtnAndProfileVisibility, Mode=OneWay}">
-                    <ctm:BlankButton x:Name="UserButton"
+                        <ctm:BlankButton x:Name="UserButton"
                                      HorizontalAlignment="Right"
                                      Click="UserButton_Click"
                                      Margin="4">
-                        <ctm:BlankButton.Content>
-                            <Image Source="ms-appx:///Resources/BgImages/individual_center.png"/>
-                        </ctm:BlankButton.Content>
-                    </ctm:BlankButton>
+                            <ctm:BlankButton.Content>
+                                <Image Source="ms-appx:///Resources/BgImages/individual_center.png"/>
+                            </ctm:BlankButton.Content>
+                        </ctm:BlankButton>
+                    </Grid>
                 </Grid>
-            </Grid>
-            <Rectangle Grid.Row="1" 
+                <Rectangle Grid.Row="1" 
                        Fill="{ThemeResource TopLine}"
                        Height="1"/>
 
-            <Grid Grid.Row="2" Background="{ThemeResource MainBackground}">
+                <Grid Grid.Row="2" Background="{ThemeResource MainBackground}">
 
-                <!--<VisualStateManager.VisualStateGroups>
-                    <VisualStateGroup x:Name="SlideState">
-                        <VisualState x:Name="Appear">
-                            <Storyboard>
-                                <DoubleAnimation Storyboard.TargetName="QuickActionGrid"
-                                                 Storyboard.TargetProperty="Width"
-                                                 To="150"
-                                                 BeginTime="0:0:0"
-                                                 Duration="0:0:0.4"
-                                                 EnableDependentAnimation="True"  
-                                                 SpeedRatio="1.3" >
-                                    <DoubleAnimation.EasingFunction>
-                                        <CircleEase EasingMode="EaseInOut"/>
-                                    </DoubleAnimation.EasingFunction>
-                                </DoubleAnimation>
-                            </Storyboard>
-                        </VisualState>
-                        <VisualState x:Name="Disappear">
-                            <Storyboard>
-                                <DoubleAnimation Storyboard.TargetName="QuickActionGrid"
-                                                 Storyboard.TargetProperty="(Margin.Right)"
-                                                 To="-150"
-                                                 Duration="0:0:0.5"
-                                                 EnableDependentAnimation="True"  
-                                                 SpeedRatio="1.3" >
-                                    <DoubleAnimation.EasingFunction>
-                                        <CircleEase EasingMode="EaseInOut"/>
-                                    </DoubleAnimation.EasingFunction>
-                                </DoubleAnimation>
-                            </Storyboard>
-                        </VisualState>
-                    </VisualStateGroup>
-                </VisualStateManager.VisualStateGroups>-->
-                <Frame x:Name="mainFrameContainer" 
+                    <Frame x:Name="mainFrameContainer" 
                        Navigated="MainFrameContainer_Navigated"/>
-                <Rectangle x:Name="SlideGrid"
+                    <Rectangle x:Name="SlideGrid"
                       Width="18"  
                       Opacity=".01"
                       Fill="#FFFFFFFF"
@@ -140,77 +144,92 @@
                       ManipulationMode="All"
                       ManipulationDelta="SlideGrid_ManipulationDelta"
                       ManipulationCompleted="SlideGrid_ManipulationCompleted">
-                    <Rectangle.Transitions>
-                        <TransitionCollection>
-                            <NavigationThemeTransition/>
-                        </TransitionCollection>
-                    </Rectangle.Transitions>
-                </Rectangle>
-                <Grid x:Name="QuickActionGrid"
+                        <Rectangle.Transitions>
+                            <TransitionCollection>
+                                <NavigationThemeTransition/>
+                            </TransitionCollection>
+                        </Rectangle.Transitions>
+                    </Rectangle>
+                    <Grid x:Name="QuickActionGrid"
                       HorizontalAlignment="Right"
                       Width="0" 
                       Height="350"
                       Opacity=".65"
                       LostFocus="QuickActionGrid_LostFocus"
                       >
-                    <ScrollViewer>
-                        <StackPanel Padding="10">
-                            <uct:GeneralListViewItem Title="夜间模式" 
+                        <ScrollViewer>
+                            <StackPanel Padding="10">
+                                <uct:GeneralListViewItem Title="夜间模式" 
                                                      Height="35"/>
-                            <ToggleSwitch x:Name="NightModeSwitch"
+                                <ToggleSwitch x:Name="NightModeSwitch"
                                           Height="30" 
                                           PointerReleased="NightModeSwitch_PointerReleased"
                                           IsOn="{x:Bind MainFrameContainerViewModel.AppSettings.NightModeEnable, Mode=TwoWay}"/>
-                        </StackPanel>
-                    </ScrollViewer>
-                    <Grid.Background>
-                        <ImageBrush ImageSource="ms-appx:///Resources/Test/blur2.jpg"/>
-                    </Grid.Background>
+                            </StackPanel>
+                        </ScrollViewer>
+                        <Grid.Background>
+                            <ImageBrush ImageSource="ms-appx:///Resources/Test/blur2.jpg"/>
+                        </Grid.Background>
+                    </Grid>
                 </Grid>
             </Grid>
-        </Grid>
-        <Rectangle Grid.Row="1"
+            <Rectangle Grid.Row="1"
                    Fill="{ThemeResource BottomLine}"
                    Height="1"/>
-        <Grid x:Name="navBtnBottom"
+            <Grid x:Name="navBtnBottom"
               Grid.Row="2"
-              Height="60"
+              Height="57"
               VerticalAlignment="Bottom"
               Visibility="{x:Bind MainFrameContainerViewModel.BottomNavBtnAndProfileVisibility, Mode=OneWay}">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition/>
-                <ColumnDefinition/>
-                <ColumnDefinition/>
-                <ColumnDefinition/>
-            </Grid.ColumnDefinitions>
-            <ctm:HomeButton x:Name="homeButton" 
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <ctm:HomeButton x:Name="homeButton" 
                             Grid.Column="0"
                             Tag="0"
                             Click="ChangeBackgroundAndNavigate">
-                <Image x:Name="homeButtonBkImg" 
+                    <Image x:Name="homeButtonBkImg" 
                        Source="ms-appx:///Resources/MFCImages/home.png"/>
-            </ctm:HomeButton>
-            <ctm:HomeButton x:Name="readButton"  
+                </ctm:HomeButton>
+                <ctm:HomeButton x:Name="readButton"  
                             Grid.Column="1"
                             Tag="1"
                             Click="ChangeBackgroundAndNavigate">
-                <Image x:Name="readButtonBkImg" 
+                    <Image x:Name="readButtonBkImg" 
                        Source="ms-appx:///Resources/MFCImages/Reading.png"/>
-            </ctm:HomeButton>
-            <ctm:HomeButton x:Name="musicButton" 
+                </ctm:HomeButton>
+                <ctm:HomeButton x:Name="musicButton" 
                             Grid.Column="2"
                             Tag="2"
                             Click="ChangeBackgroundAndNavigate">
-                <Image x:Name="musicButtonBkImg" 
+                    <Image x:Name="musicButtonBkImg" 
                        Source="ms-appx:///Resources/MFCImages/Music.png"/>
-            </ctm:HomeButton>
-            <ctm:HomeButton x:Name="movieButton" 
+                </ctm:HomeButton>
+                <ctm:HomeButton x:Name="movieButton" 
                             Grid.Column="3"
                             Tag="3"
                             Click="ChangeBackgroundAndNavigate">
-                <Image x:Name="movieButtonBkImg" 
+                    <Image x:Name="movieButtonBkImg" 
                        Source="ms-appx:///Resources/MFCImages/Movie.png"/>
-            </ctm:HomeButton>
+                </ctm:HomeButton>
+            </Grid>
         </Grid>
+
+        <Border x:Name="NotifyGrid" 
+                Height="0"
+                BorderThickness="1"
+                BorderBrush="#FF00BCF2"
+                Opacity="0"  
+                VerticalAlignment="Bottom"
+                Margin="0 57">
+            <TextBlock x:Name="NotifyUserMessage" 
+                       VerticalAlignment="Center" 
+                       HorizontalAlignment="Center"
+                       Margin="3"
+                       Style="{StaticResource SmallText}"/>
+        </Border>
     </Grid>
 </Page>

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Threading.Tasks;
 using Many.ThirdParty.Core.Tools;
+using Many.ThirdParty.Core.ViewModels;
 using Windows.Storage;
 using Windows.UI.Popups;
 
@@ -23,9 +24,9 @@ namespace Many.ThirdParty.Core.Data
             }
         }
 
-        internal static async Task SavePic(string name, string uri)
+        internal static async Task<bool> SavePic(string name, string uri)
         {
-            if (string.IsNullOrEmpty(uri)) return;
+            if (string.IsNullOrEmpty(uri)) return false;
             try
             {
                 if (SystemPicturesLibrary == null)
@@ -34,14 +35,17 @@ namespace Many.ThirdParty.Core.Data
                 await FileIO.WriteBufferAsync(
                     await SystemPicturesLibrary.CreateFileAsync(name, CreationCollisionOption.OpenIfExists),
                     await HttpHelper.GetBufferAsync(uri));
+
+                return true;
             }
             catch (UnauthorizedAccessException)
             {
-                return;
+                return false;
             }
             catch (Exception)
             {
                 await new MessageDialog("未知错误！！").ShowAsync();
+                return false;
             }
         }
     }

@@ -30,7 +30,7 @@
                   CompositeMode="Inherit" 
                   SelectionChanged="MainFlipView_SelectionChanged"
                   Background="{ThemeResource MainBackground}"  
-                  ItemsSource="{x:Bind ViewModel.HomeModelCollection, Mode=OneWay}"> 
+                  ItemsSource="{x:Bind ViewModel.HomeModelCollection, Mode=OneWay}">
             <FlipView.ItemTemplate>
                 <DataTemplate x:DataType="home:HomeModel">
                     <ScrollViewer>
@@ -44,69 +44,66 @@
                                     <RowDefinition Height="Auto"/>
                                     <RowDefinition Height="*"/>
                                 </Grid.RowDefinitions>
-                                <ctm:BlankButton Background="{ThemeResource ReadingBorder}">
-                                    <ctm:BlankButton.Flyout>
-                                        <MenuFlyout x:Name="aaaaaa">
-                                            <MenuFlyoutItem Text="保存图片" Command="{x:Bind SavePicCommand}" CommandParameter="{Binding}"/>
-                                            <MenuFlyoutItem Text="复制文字" Command="{x:Bind CopyCommand}" CommandParameter="{x:Bind Hp_Title}"/> 
-                                        </MenuFlyout>
-                                    </ctm:BlankButton.Flyout>
-                                    <Grid x:Name="ImageGrid" Padding="8 8 8 0"
-                                          Margin="8 8 8 4"
-                                          Background="{ThemeResource ReadingBorder}">
-                                        <FlyoutBase.AttachedFlyout>
+                                <Grid Padding="8 8 8 0"
+                                      Margin="8 8 8 4"
+                                      Background="{ThemeResource ReadingBorder}">
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="Auto"/>
+                                        <RowDefinition Height="Auto"/>
+                                        <RowDefinition Height="Auto"/>
+                                        <RowDefinition Height="Auto"/>
+                                    </Grid.RowDefinitions>
+                                    <ctm:BlankButton>
+                                        <ctm:BlankButton.Flyout>
                                             <MenuFlyout>
-                                                <MenuFlyoutItem Text="Open"/>
-                                                <MenuFlyoutSubItem Text="Send to">
-                                                    <MenuFlyoutItem Text="Bluetooth" />
-                                                    <MenuFlyoutItem Text="Desktop (shortcut)" />
-                                                    <MenuFlyoutSubItem Text="Compressed file">
-                                                        <MenuFlyoutItem Text="Compress and email" />
-                                                        <MenuFlyoutItem Text="Compress to .7z" />
-                                                        <MenuFlyoutItem Text="Compress to .zip" />
-                                                    </MenuFlyoutSubItem>
-                                                </MenuFlyoutSubItem>
+                                                <MenuFlyoutItem x:Name="SavePic"
+                                                                Text="保存图片" 
+                                                                Click="SavePic_Click"
+                                                                Command="{x:Bind SavePicCommand}" 
+                                                                CommandParameter="{Binding}"/>
                                             </MenuFlyout>
-                                        </FlyoutBase.AttachedFlyout>
-                                        <Grid.RowDefinitions>
-                                            <RowDefinition Height="Auto"/>
-                                            <RowDefinition Height="Auto"/>
-                                            <RowDefinition Height="Auto"/>
-                                            <RowDefinition Height="Auto"/>
-                                        </Grid.RowDefinitions>
-                                        <ctm:BlankButton Click="BlankButton_Click">
-                                            <Image Stretch="UniformToFill" 
+                                        </ctm:BlankButton.Flyout>
+                                        <Image Stretch="UniformToFill" 
                                            Source="{x:Bind Hp_Img_Url, Mode=OneWay}"/>
-                                        </ctm:BlankButton>
-                                        <Grid Grid.Row="1"
+                                    </ctm:BlankButton>
+                                    <Grid Grid.Row="1"
                                       Margin="0 7 0 15">
-                                            <TextBlock HorizontalAlignment="Left"
+                                        <TextBlock HorizontalAlignment="Left"
                                                Text="{x:Bind Hp_Title, Mode=OneWay}"
                                                Style="{StaticResource SmallText}"/>
-                                            <TextBlock HorizontalAlignment="Right"
+                                        <TextBlock HorizontalAlignment="Right"
                                                Text="{x:Bind Hp_Author, Mode=OneWay}"
                                                Style="{StaticResource SmallText}"/>
-                                        </Grid>
-                                        <Grid x:Name="MainContent" 
-                                          Grid.Row="2" 
-                                          Margin="0 12 0 30">
-                                            <TextBlock TextWrapping="Wrap" 
-                               Text="{x:Bind Hp_Content, Mode=OneWay}"
-                               Style="{StaticResource NormalText}"/>
-                                        </Grid>
-                                        <Grid Grid.Row="3"
-                      Margin="0 7">
-                                            <TextBlock HorizontalAlignment="Right"
-                               Style="{StaticResource SmallDeepText}"
-                               Text="{x:Bind Hp_MaketTime, Mode=OneWay}"/>
-                                        </Grid>
                                     </Grid>
-                                </ctm:BlankButton>
+                                    <Grid x:Name="MainContent" 
+                                          Grid.Row="2"
+                                          Holding="MainContent_Holding"
+                                          RightTapped="MainContent_RightTapped"
+                                              Margin="0 12 0 30">
+                                        <FlyoutBase.AttachedFlyout>
+                                            <MenuFlyout>
+                                                <MenuFlyoutItem x:Name="CopyContent" Text="复制文字" 
+                                                                Command="{x:Bind CopyCommand}" 
+                                                                CommandParameter="{x:Bind Hp_Title}"
+                                                                Click="CopyContent_Click"/>
+                                            </MenuFlyout>
+                                        </FlyoutBase.AttachedFlyout>
+                                        <TextBlock TextWrapping="Wrap" 
+                                                   Text="{x:Bind Hp_Content, Mode=OneWay}"
+                                                   Style="{StaticResource NormalText}"/>
+                                    </Grid>
+                                    <Grid Grid.Row="3"
+                                          Margin="0 7">
+                                        <TextBlock HorizontalAlignment="Right"
+                                                   Style="{StaticResource SmallDeepText}"
+                                                   Text="{x:Bind Hp_MaketTime, Mode=OneWay}"/>
+                                    </Grid>
+                                </Grid>
                                 <Grid Grid.Row="1">
                                     <Grid Height="50"
-                      Margin="12 0"
-                      Padding="5" 
-                      VerticalAlignment="Top">
+                                          Margin="12 0"
+                                          Padding="5" 
+                                          VerticalAlignment="Top">
                                         <Grid.ColumnDefinitions>
                                             <ColumnDefinition Width="8*"/>
                                             <ColumnDefinition Width="3*"/>

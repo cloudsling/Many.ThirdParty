@@ -4,7 +4,6 @@ using Many.ThirdParty.Core.Models.HomeModels;
 using System.Collections.ObjectModel;
 using System.Threading.Tasks;
 using System.Collections.Generic;
-using Many.ThirdParty.Core.Commands;
 
 namespace Many.ThirdParty.Core.ViewModels
 {
@@ -13,13 +12,13 @@ namespace Many.ThirdParty.Core.ViewModels
         public HomePageViewModel()
         {
             HomeModelCollection = new ObservableCollection<HomeModel>();
-            SavePicCommand = new AsyncCommand(SavePic);
         }
 
-       internal static async Task SavePic(object obj)
+        internal static async Task SavePic(object obj)
         {
             var model = obj as HomeModel;
-            await Saver.SavePic(model.Hpcontent_Id, model.Hp_Img_Url);
+            if (await Saver.SavePic(model.Hp_Title + ".png", model.Hp_Img_Url))
+                HomeModel.EndOfMenuFlyoutCommand?.Invoke();
         }
 
         ObservableCollection<HomeModel> _homeModelCollection;
@@ -54,7 +53,5 @@ namespace Many.ThirdParty.Core.ViewModels
         {
             _homeModelCollection.Insert(0, model);
         }
-
-        public CommandBase SavePicCommand { get; set; }
     }
 }

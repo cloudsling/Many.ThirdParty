@@ -7,8 +7,7 @@ using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Navigation;
 using Windows.Web.Http;
-using Many.ThirdParty.Core.Data;
-using Windows.Storage;
+using Windows.UI.Xaml.Controls.Primitives;
 
 namespace Many.ThirdParty.SubPages
 {
@@ -23,12 +22,43 @@ namespace Many.ThirdParty.SubPages
 
         public HomePageViewModel ViewModel { get; set; }
 
-        private void BlankButton_Click(object sender, RoutedEventArgs e)
+        private void MainFlipView_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
         }
 
-        private void MainFlipView_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        private void MainContent_Holding(object sender, Windows.UI.Xaml.Input.HoldingRoutedEventArgs e)
         {
+            ShowFlyOut(sender as FrameworkElement);
+        }
+
+        private void MainContent_RightTapped(object sender, Windows.UI.Xaml.Input.RightTappedRoutedEventArgs e)
+        {
+            ShowFlyOut(sender as FrameworkElement);
+        }
+
+        void ShowFlyOut(FrameworkElement element)
+        {
+            if (element != null)
+            {
+                FlyoutBase.ShowAttachedFlyout(element);
+            }
+        }
+
+        public delegate void EndOfMenuFlyoutCommand();
+
+        void SavePicSuccessed()
+        {
+            MainFrameContainer.NotifyUser("成功保存到 Pictueres/一个 目录下");
+        }
+
+        private void CopyContent_Click(object sender, RoutedEventArgs e)
+        {
+            MainFrameContainer.NotifyUser("已复制到剪贴板");
+        }
+
+        private void SavePic_Click(object sender, RoutedEventArgs e)
+        {
+            HomeModel.EndOfMenuFlyoutCommand = SavePicSuccessed;
         }
     }
 

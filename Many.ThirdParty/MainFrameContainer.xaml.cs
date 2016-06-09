@@ -10,8 +10,6 @@ using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Navigation;
 using Many.ThirdParty.Core.Tasks;
-using Windows.UI.Xaml.Media;
-using Many.ThirdParty.Core.Commons;
 
 namespace Many.ThirdParty
 {
@@ -76,7 +74,7 @@ namespace Many.ThirdParty
         private void SlideGrid_ManipulationDelta(object sender, Windows.UI.Xaml.Input.ManipulationDeltaRoutedEventArgs e)
         {
         }
- 
+
 
         private void QuickActionGrid_LostFocus(object sender, RoutedEventArgs e)
         {
@@ -84,7 +82,7 @@ namespace Many.ThirdParty
         }
 
         private void NightModeSwitch_PointerReleased(object sender, Windows.UI.Xaml.Input.PointerRoutedEventArgs e)
-        { 
+        {
             if (this.RequestedTheme == ElementTheme.Dark || this.RequestedTheme == ElementTheme.Default)
             {
                 this.RequestedTheme = ElementTheme.Light;
@@ -94,7 +92,7 @@ namespace Many.ThirdParty
                 this.RequestedTheme = ElementTheme.Dark;
             }
 
-            HomePage.CurrentHomePage.RequestedTheme = this.RequestedTheme;  
+            HomePage.CurrentHomePage.RequestedTheme = this.RequestedTheme;
         }
     }
 
@@ -206,7 +204,6 @@ namespace Many.ThirdParty
             FootButtonBackgroundImage[CurrentBottomImageIndex].Source = DelegationManager.FootButtonActivedSource[CurrentBottomImageIndex];
         }
 
-
         public void ModifyStatusBar()
         {
             switch (RequestedTheme)
@@ -220,6 +217,17 @@ namespace Many.ThirdParty
                 default:
                     break;
             }
+        }
+
+        public void ChangeNotifyUserMessage(string message)
+        {
+            NotifyUserMessage.Text = message;
+        }
+
+        public static void NotifyUser(string message)
+        {
+            CurrentMainFrameContainer.ChangeNotifyUserMessage(message);
+            CurrentMainFrameContainer.NotifyUserAnimation.Begin();
         }
     }
 }

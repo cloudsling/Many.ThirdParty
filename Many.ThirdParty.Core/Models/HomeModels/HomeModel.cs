@@ -15,6 +15,8 @@ namespace Many.ThirdParty.Core.Models.HomeModels
 
         public CommandBase SavePicCommand { get { return StaticSavePicCommand; } }
 
+        public static Action EndOfMenuFlyoutCommand;
+
         public string Hpcontent_Id { get; set; }
 
         public string Hp_Title { get; set; }
