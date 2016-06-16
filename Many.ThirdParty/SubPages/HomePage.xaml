@@ -84,7 +84,7 @@
                                             <MenuFlyout>
                                                 <MenuFlyoutItem x:Name="CopyContent" Text="复制文字" 
                                                                 Command="{x:Bind CopyCommand}" 
-                                                                CommandParameter="{x:Bind Hp_Title}"
+                                                                CommandParameter="{x:Bind Hp_Content}"
                                                                 Click="CopyContent_Click"/>
                                             </MenuFlyout>
                                         </FlyoutBase.AttachedFlyout>
