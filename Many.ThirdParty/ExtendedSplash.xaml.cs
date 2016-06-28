@@ -29,7 +29,7 @@ namespace Many.ThirdParty
                 await new MessageDialog("请连接互联网后重试！").ShowAsync();
                 Windows.UI.Xaml.Application.Current.Exit();
             }
-            HomePage.TodaysListId = await CommonDataLoader.GetHomeList(HomePage.CumulateListIndex.ToString());
+            HomePage.TodaysListId = await CommonDataLoader.GetGeneralList(HomePage.CumulateListIndex.ToString(), ListType.HomeList);
             HomePage.CumulateListIndex += 1;
             Progress.Text = "加载资源成功!正在初始化";
 

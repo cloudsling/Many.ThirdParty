@@ -68,34 +68,6 @@ namespace Many.ThirdParty
             NavigationManager.GeneralNavigate(typeof(UserPage));
         }
 
-        //private void SlideGrid_ManipulationCompleted(object sender, Windows.UI.Xaml.Input.ManipulationCompletedRoutedEventArgs e)
-        //{
-        //    Appear.Begin();
-        //}
-
-        //private void SlideGrid_ManipulationDelta(object sender, Windows.UI.Xaml.Input.ManipulationDeltaRoutedEventArgs e)
-        //{
-        //}
-
-
-        //private void QuickActionGrid_LostFocus(object sender, RoutedEventArgs e)
-        //{
-        //    Disappear.Begin();
-        //}
-
-        //private void NightModeSwitch_PointerReleased(object sender, Windows.UI.Xaml.Input.PointerRoutedEventArgs e)
-        //{
-        //    if (this.RequestedTheme == ElementTheme.Dark || this.RequestedTheme == ElementTheme.Default)
-        //    {
-        //        this.RequestedTheme = ElementTheme.Light;
-        //    }
-        //    else
-        //    {
-        //        this.RequestedTheme = ElementTheme.Dark;
-        //    }
-
-        //    HomePage.CurrentHomePage.RequestedTheme = this.RequestedTheme;
-        //}
     }
 
     /// <summary>

@@ -18,7 +18,7 @@ namespace Many.ThirdParty.Core.Tasks
         {
             try
             {
-                var response = (await CommonDataLoader.GetHomeList("0")).Take(5);
+                var response = (await CommonDataLoader.GetGeneralList("0", ListType.HomeList)).Take(5);
 
                 if (response != null)
                 {

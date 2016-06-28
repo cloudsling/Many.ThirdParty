@@ -1,9 +1,9 @@
 ﻿using Many.ThirdParty.Core.Commons;
 using Many.ThirdParty.Core.Data;
+using Many.ThirdParty.Core.Interface;
 using Many.ThirdParty.Core.Models.ReadingModels;
 using System.Collections.ObjectModel;
 using System.Threading.Tasks;
-using Many.ThirdParty.Core.Interface;
 
 namespace Many.ThirdParty.Core.ViewModels
 {
@@ -23,7 +23,7 @@ namespace Many.ThirdParty.Core.ViewModels
 
         public async Task RefreshCollection()
         {
-            foreach (var item in await CommonDataLoader.GetCarouselModel<CarouselModel>(""))
+            foreach (var item in await CommonDataLoader.GetGeneralModelsCollectionAsync<CarouselModel>(""))
             {
                 AddToCollection(item);
             }

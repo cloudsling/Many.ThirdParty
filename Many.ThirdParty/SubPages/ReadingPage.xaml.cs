@@ -48,12 +48,12 @@ namespace Many.ThirdParty.SubPages
                 await ReadingViewModelFactory.CreateReadingDetailPageViewModel(modelBase));
         }
 
-        private async void BlankButton_Click(object sender, Windows.UI.Xaml.RoutedEventArgs e)
+        private async void BlankButton_Click(object sender, RoutedEventArgs e)
         {
             NavigationManager.GeneralNavigate(typeof(CarouselDetailPage),
                await CarouselDetailPageViewModelFactory.CreateViewModel(ViewModel.CarouselModelCollection[GetIndexFromFlipView()]));
         }
-        
+
     }
 
     /// <summary>
@@ -62,7 +62,7 @@ namespace Many.ThirdParty.SubPages
     public sealed partial class ReadingPage
     {
         public ReadingPageViewModel ViewModel { get; set; }
-        
+
         private static ReadingPage _currentReadingPage;
 
         private static readonly List<SolidColorBrush> EllipseBackgroundColorCollection = new List<SolidColorBrush> {
@@ -74,7 +74,7 @@ namespace Many.ThirdParty.SubPages
     /// <summary>
     /// entry and methods
     /// </summary>
-    public sealed partial class ReadingPage :Page
+    public sealed partial class ReadingPage : Page
     {
         public ReadingPage()
         {
@@ -83,7 +83,7 @@ namespace Many.ThirdParty.SubPages
             InitializeComponent();
             _currentReadingPage = this;
 
-            this.NavigationCacheMode = NavigationCacheMode.Required;
+            NavigationCacheMode = NavigationCacheMode.Required;
         }
 
         protected override async void OnNavigatedTo(NavigationEventArgs e)
@@ -91,9 +91,8 @@ namespace Many.ThirdParty.SubPages
             if (ViewModel.CarouselModelCollection.Count <= 0)
             {
                 await ViewModel.RefreshCollection();
-                // await ViewModel.RefreshListView();
             }
-            //MainListView.ItemsSource = ViewModel.ReadingModelCollection;
+
             RegisterTimer(_timer);
 
             _timer.Start();
@@ -113,9 +112,6 @@ namespace Many.ThirdParty.SubPages
                     fv.SelectedIndex = 0;
                 else
                     fv.SelectedIndex += 1;
-#if DEBUG
-                Debug.WriteLine(fv.SelectedIndex);
-#endif
             };
         }
 
