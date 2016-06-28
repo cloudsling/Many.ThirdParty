@@ -12,6 +12,7 @@
             <SolidColorBrush x:Key="SmallLightFontColor" Color="#FF9C9C9C"></SolidColorBrush>
             <SolidColorBrush x:Key="MainBackground" Color="#FFFFFFFF"></SolidColorBrush>
             <ImageBrush x:Key="ReadingBorder" ImageSource="ms-appx:///Resources/BgImages/reading_board.png"></ImageBrush>
+            <ImageBrush x:Key="MusicBorder" ImageSource="ms-appx:///Resources/BgImages/music_board.png"></ImageBrush>
             <SolidColorBrush x:Key="TitleBar" Color="#FFFFFFFF"></SolidColorBrush>
             <SolidColorBrush x:Key="ListHeader" Color="#FFF8F8F8"></SolidColorBrush>
             <SolidColorBrush x:Key="BottomLine" Color="#FFC8C9CB"></SolidColorBrush>
@@ -25,6 +26,7 @@
             <SolidColorBrush x:Key="SmallLightFontColor" Color="#FF9C9C9C"></SolidColorBrush>
             <SolidColorBrush x:Key="MainBackground" Color="#FF3C3C3D"></SolidColorBrush>
             <SolidColorBrush x:Key="ReadingBorder" Color="#FF4A4A4A"></SolidColorBrush>
+            <ImageBrush x:Key="MusicBorder" ImageSource="ms-appx:///Resources/BgImages/music_board_night.png"></ImageBrush>
             <SolidColorBrush x:Key="TitleBar" Color="#FF363638"></SolidColorBrush>
             <SolidColorBrush x:Key="ListHeader" Color="#FF2C2C2D"></SolidColorBrush>
             <SolidColorBrush x:Key="TopLine" Color="#FF262627"></SolidColorBrush>

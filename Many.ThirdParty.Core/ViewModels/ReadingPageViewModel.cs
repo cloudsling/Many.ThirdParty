@@ -3,6 +3,7 @@ using Many.ThirdParty.Core.Data;
 using Many.ThirdParty.Core.Models.ReadingModels;
 using System.Collections.ObjectModel;
 using System.Threading.Tasks;
+using Many.ThirdParty.Core.Interface;
 
 namespace Many.ThirdParty.Core.ViewModels
 {

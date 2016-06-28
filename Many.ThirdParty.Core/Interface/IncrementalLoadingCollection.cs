@@ -6,46 +6,43 @@ using System.Threading.Tasks;
 using Windows.Foundation;
 using Windows.UI.Xaml.Data;
 
-namespace Many.ThirdParty.Core.Data
+namespace Many.ThirdParty.Core.Interface
 {
     public class IncrementalLoadingCollection<T> : ObservableCollection<T>, ISupportIncrementalLoading
     {
-        Func<uint, Task<ObservableCollection<T>>> _dataFetchDelegate = null;
+        private readonly Func<uint, Task<ObservableCollection<T>>> _dataFetchDelegate;
 
         public IncrementalLoadingCollection(Func<uint, Task<ObservableCollection<T>>> dataFetchDelegate)
         {
-            if (dataFetchDelegate == null) throw new ArgumentNullException("dataFetchDelegate");
+            if (dataFetchDelegate == null) throw new ArgumentNullException(nameof(dataFetchDelegate));
 
-            this._dataFetchDelegate = dataFetchDelegate;
+            _dataFetchDelegate = dataFetchDelegate;
         }
 
-        public bool HasMoreItems
-        {
-            get { return this.Count < _totalCount; }
-        }
+        public bool HasMoreItems => Count < _totalCount;
 
         public IAsyncOperation<LoadMoreItemsResult> LoadMoreItemsAsync(uint count)
         {
-            indexe += 1;
- 
-            if (_busy)
+            _indexe += 1;
+
+            if (Busy)
             {
                 throw new InvalidOperationException("Only one operation in flight at a time");
             }
 
-            _busy = true;
+            Busy = true;
 
-            return AsyncInfo.Run((c) => LoadMoreItemsAsync(c, indexe - 1));
+            return AsyncInfo.Run(c => LoadMoreItemsAsync(c, _indexe - 1));
         }
 
         protected async Task<LoadMoreItemsResult> LoadMoreItemsAsync(CancellationToken c, uint count)
         {
             try
             {
-                this.OnLoadMoreStarted?.Invoke(count);
+                OnLoadMoreStarted?.Invoke(count);
 
                 // 我们忽略了CancellationToken，因为我们暂时不需要取消，需要的可以加上
-                var result = await this._dataFetchDelegate(count);
+                var result = await _dataFetchDelegate(count);
 
                 var items = result;
 
@@ -53,18 +50,18 @@ namespace Many.ThirdParty.Core.Data
                 {
                     foreach (var item in items)
                     {
-                        this.Add(item);
+                        Add(item);
                     }
                 }
 
                 // 加载完成事件
-                this.OnLoadMoreCompleted?.Invoke(items == null ? 0 : items.Count);
+                OnLoadMoreCompleted?.Invoke(items?.Count ?? 0);
 
                 return new LoadMoreItemsResult { Count = items == null ? 0 : (uint)items.Count };
             }
             finally
             {
-                _busy = false;
+                Busy = false;
             }
         }
 
@@ -75,9 +72,9 @@ namespace Many.ThirdParty.Core.Data
         public event LoadMoreStarted OnLoadMoreStarted;
         public event LoadMoreCompleted OnLoadMoreCompleted;
 
-        private uint _totalCount = 100;
-        private uint indexe = 0;
-        protected bool _busy = false;
+        private readonly uint _totalCount = 100;
+        private uint _indexe;
+        protected bool Busy;
     }
 
 }

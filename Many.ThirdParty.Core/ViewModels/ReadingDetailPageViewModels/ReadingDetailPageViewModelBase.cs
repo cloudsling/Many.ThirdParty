@@ -4,12 +4,12 @@ using Many.ThirdParty.Core.Models.ReadingModels;
 using Many.ThirdParty.Core.Tools;
 using Newtonsoft.Json;
 using System.Collections.ObjectModel;
-using System.Diagnostics;
 using System.Threading.Tasks;
+using Many.ThirdParty.Core.Interface;
 
 namespace Many.ThirdParty.Core.ViewModels.ReadingDetailPageViewModels
 {
-    public abstract class ReadingDetailPageViewModelBase : ViewModelBase
+    public abstract class ReadingDetailPageViewModelBase : ViewModelBase, IComments 
     {
         public ReadingDetailPageViewModelBase()
         {
@@ -56,9 +56,6 @@ namespace Many.ThirdParty.Core.ViewModels.ReadingDetailPageViewModels
                 {
                     this.NormalComments.Add(tem);
                 }
-#if DEBUG
-                Debug.WriteLine(tem.User.Web_Url);
-#endif
             }
         } 
         public ObservableCollection<CommentModel> HotComments { get; set; }

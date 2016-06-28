@@ -198,7 +198,17 @@
     <Content Include="Resources\BgImages\laud.png" />
     <Content Include="Resources\BgImages\laud_pressed.png" />
     <Content Include="Resources\BgImages\laud_selected.png" />
+    <Content Include="Resources\BgImages\music_about_default.png" />
+    <Content Include="Resources\BgImages\music_about_selected.png" />
+    <Content Include="Resources\BgImages\music_board.png" />
+    <Content Include="Resources\BgImages\music_board_night.png" />
+    <Content Include="Resources\BgImages\music_lyric_default.png" />
+    <Content Include="Resources\BgImages\music_lyric_selected.png" />
+    <Content Include="Resources\BgImages\music_story_default.png" />
+    <Content Include="Resources\BgImages\music_story_selected.png" />
     <Content Include="Resources\BgImages\no_search_result.png" />
+    <Content Include="Resources\BgImages\pause.png" />
+    <Content Include="Resources\BgImages\play.png" />
     <Content Include="Resources\BgImages\question_image.png" />
     <Content Include="Resources\BgImages\reading_board.png" />
     <Content Include="Resources\BgImages\return_image.png" />
@@ -233,6 +243,8 @@
     <Content Include="Resources\MFCImages\reading_active.png" />
     <Content Include="Resources\MFCImages\search.png" />
     <Content Include="Resources\test.jpg" />
+    <Content Include="Resources\Test\1.jpg" />
+    <Content Include="Resources\Test\2.jpg" />
     <Content Include="Resources\Test\blur2.jpg" />
     <Content Include="Resources\Test\cover.jpg" />
     <Content Include="Resources\Test\test.jpg" />
