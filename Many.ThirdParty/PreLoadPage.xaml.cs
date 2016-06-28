@@ -31,8 +31,6 @@ namespace Many.ThirdParty
         {
             await Task.Delay(10);
 
-            SystemNavigationManager.GetForCurrentView().BackRequested += PreLoadPage_BackRequested;
-
             NavigationManager.GeneralFrame = this.Frame;
             this.Frame.Navigate(typeof(MainFrameContainer), CurrentHomeModel);
         }

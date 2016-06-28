@@ -69,10 +69,8 @@ namespace Many.ThirdParty.Core.Data
             {
                 JsonObject json = item.GetObject();
 
-                ReadingModel model = new ReadingModel();
-
-                model.MaketTime = json.GetNamedString("date");
-
+                ReadingModel model = new ReadingModel {MaketTime = json.GetNamedString("date")};
+                
                 JsonArray innerArray = json.GetNamedArray("items");
 
                 foreach (var innerItem in innerArray)

@@ -1,11 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Data;
-using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Media.Imaging;
 
 namespace Many.ThirdParty.Core.Converter
@@ -28,13 +23,12 @@ namespace Many.ThirdParty.Core.Converter
 
         public object Convert(object value, Type targetType, object parameter, string language)
         {
-            if ((value as string) != null)
+            var str = value as string;
+            if (str != null)
             {
-                if (ImageSource.ContainsKey(value as string))
-                    return new BitmapImage(ImageSource[value as string]);
-
-                return new BitmapImage(new Uri(value as string));
+                return ImageSource.ContainsKey(str) ? new BitmapImage(ImageSource[str]) : new BitmapImage(new Uri(str));
             }
+
             return new BitmapImage(ReadingTypeButtonImage[(int)value - 1]);
         }
 

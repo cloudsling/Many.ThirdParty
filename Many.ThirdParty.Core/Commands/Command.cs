@@ -1,27 +1,20 @@
 ﻿using Many.ThirdParty.Core.Commons;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Many.ThirdParty.Core.Commands
 {
     public class Command : CommandBase
     {
-        public Action<object> _excute;
+        public Action<object> Excute;
 
         public Command(Action<object> excute, Func<object, bool> canexcute)
         {
-            _excute = excute;
-            _canexcute = canexcute;
+            Excute = excute;
+            Canexcute = canexcute;
         }
 
         public Command(Action<object> excute) : this(excute, b => true) { }
         
-        public override void Execute(object parameter)
-        {
-            _excute(parameter);
-        }
+        public override void Execute(object parameter) => Excute(parameter);
     }
 }

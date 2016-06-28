@@ -21,6 +21,7 @@
     <AppxAutoIncrementPackageRevision>True</AppxAutoIncrementPackageRevision>
     <AppxBundle>Always</AppxBundle>
     <AppxBundlePlatforms>x86|x64|arm</AppxBundlePlatforms>
+    <HockeyAppResourceId>2f514decca45422a84708df6ca4886a5</HockeyAppResourceId>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x86'">
     <DebugSymbols>true</DebugSymbols>
@@ -118,6 +119,7 @@
     <Compile Include="ExtendedSplash.xaml.cs">
       <DependentUpon>ExtendedSplash.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Extensions\RichTextBlockExtension.cs" />
     <Compile Include="MainFrameContainer.xaml.cs">
       <DependentUpon>MainFrameContainer.xaml</DependentUpon>
     </Compile>
@@ -207,9 +209,9 @@
     <Content Include="Resources\BgImages\search_pressed.png" />
     <Content Include="Resources\BgImages\serial_image.png" />
     <Content Include="Resources\BgImages\share_image.png" />
+    <Content Include="Resources\BgImages\StartImage.png" />
     <Content Include="Resources\CommonsImages\return_image.png" />
     <Content Include="Resources\CommonsImages\return_image_pressed.png" />
-    <Content Include="Resources\BgImages\StartImage.png" />
     <Content Include="Resources\default_indi_bg.png" />
     <Content Include="Resources\Images\Search127.png" />
     <Content Include="Resources\Images\Search15.png" />
@@ -335,7 +337,9 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <WCFMetadata Include="Service References\" />
+  </ItemGroup>
   <ItemGroup>
     <SDKReference Include="Microsoft.UniversalCRT.Debug, Version=10.0.10586.0">
       <Name>Microsoft Universal CRT Debug Runtime</Name>

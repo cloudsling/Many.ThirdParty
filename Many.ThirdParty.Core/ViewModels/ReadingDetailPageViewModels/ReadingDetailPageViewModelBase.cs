@@ -18,6 +18,7 @@ namespace Many.ThirdParty.Core.ViewModels.ReadingDetailPageViewModels
             ContentModelCollection = new ObservableCollection<ReadingModelBase>();
         }
 
+        // ReSharper disable once InconsistentNaming
         public string Charge_Edt { get; set; }
 
         public string PraiseNum { get; set; }
@@ -43,10 +44,9 @@ namespace Many.ThirdParty.Core.ViewModels.ReadingDetailPageViewModels
 
         public async Task AddToCommentsCollection(string uri)
         {
-            CommentModel tem;
             foreach (var item in await DataHelper.GetCommentJsonArrayAsync(uri))
             {
-                tem = JsonConvert.DeserializeObject<CommentModel>(item.Stringify());
+                var tem = JsonConvert.DeserializeObject<CommentModel>(item.Stringify());
 
                 if (tem.Type == "0")
                 {

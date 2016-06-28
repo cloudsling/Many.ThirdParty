@@ -11,17 +11,17 @@ namespace Many.ThirdParty.Core.Commands
     {
         public AsyncCommand(Func<object, Task> excute, Func<object, bool> canexcute)
         {
-            _excute = excute;
-            _canexcute = canexcute;
+            Excute = excute;
+            Canexcute = canexcute;
         }
 
         public AsyncCommand(Func<object, Task> excute) : this(excute, b => true) { }
 
-        public Func<object, Task> _excute { get; set; }
+        public Func<object, Task> Excute { get; set; }
 
         public override async void Execute(object parameter)
         {
-            await _excute(parameter);
+            await Excute(parameter);
         }
     }
 }

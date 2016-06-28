@@ -1,4 +1,6 @@
-﻿namespace Many.ThirdParty.Core.Commons
+﻿using System.Diagnostics;
+
+namespace Many.ThirdParty.Core.Commons
 {
     using System.ComponentModel;
     using System.Runtime.CompilerServices;
@@ -13,6 +15,7 @@
             if (Equals(storage, value)) return false;
 
             storage = value;
+            // ReSharper disable once ExplicitCallerInfoArgument
             OnPropertyChanged(propName);
             return true;
         }

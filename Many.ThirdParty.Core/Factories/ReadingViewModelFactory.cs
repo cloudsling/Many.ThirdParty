@@ -1,5 +1,4 @@
-﻿using Many.ThirdParty.Core.Models.AddlModels;
-using Many.ThirdParty.Core.Models.ReadingModels;
+﻿using Many.ThirdParty.Core.Models.ReadingModels;
 using Many.ThirdParty.Core.ViewModels.ReadingDetailPageViewModels;
 using System.Threading.Tasks;
 

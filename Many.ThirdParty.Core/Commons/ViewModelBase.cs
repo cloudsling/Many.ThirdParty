@@ -6,46 +6,19 @@ namespace Many.ThirdParty.Core.Commons
 {
     public class ViewModelBase : BindableBase
     {
-        private static Settings _settings = new Settings();
-
-    
+        public static Settings CurrentSettings { get; private set; } = new Settings();
+        
         public ViewModelBase()
         {
-            if (_settings == null) _settings = new Settings();
+            if (CurrentSettings == null) CurrentSettings = new Settings();
         }
 
-        public Settings AppSettings
-        {
-            get
-            {
-                return _settings;
-            }
-            private set
-            {
-                _settings = value;
-            }
-        }
+        public Settings AppSettings => CurrentSettings;
          
+        public void ChangeThemeMode(ElementTheme theme) => CurrentSettings.NightModeEnable = theme == ElementTheme.Dark;
 
-        public void ChangeThemeMode(ElementTheme theme)
-        {
-            _settings.NightModeEnable = theme == ElementTheme.Dark;
-        }
+        public double WindowHeight { get; } = Window.Current.Bounds.Height;
 
-        public double WindowHeight
-        {
-            get
-            {
-                return Window.Current.Bounds.Height;
-            }
-        }
-
-        public double WindowWidth
-        {
-            get
-            {
-                return Window.Current.Bounds.Width;
-            }
-        }
+        public double WindowWidth { get; } = Window.Current.Bounds.Width;
     }
 }

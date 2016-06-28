@@ -1,19 +1,18 @@
 ﻿using System;
 using System.Threading;
-using System.Threading.Tasks;
 using System.Windows.Input;
 
 namespace Many.ThirdParty.Core.Commons
 {
     public abstract class CommandBase : ICommand
     {
-        public Func<object, bool> _canexcute;
+        public Func<object, bool> Canexcute;
 
         public event EventHandler CanExecuteChanged;
 
         public virtual bool CanExecute(object parameter)
         {
-            return _canexcute(parameter);
+            return Canexcute(parameter);
         }
 
         public abstract void Execute(object parameter);

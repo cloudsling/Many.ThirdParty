@@ -18,8 +18,10 @@ namespace Many.ThirdParty
     {
         public App()
         {
-            this.InitializeComponent();
-            this.Suspending += OnSuspending;
+            Microsoft.HockeyApp.HockeyClient.Current.Configure("2f514decca45422a84708df6ca4886a5");
+
+            InitializeComponent();
+            Suspending += OnSuspending;
         }
 
         private async Task RegisterBackgroundTask()
@@ -29,8 +31,8 @@ namespace Many.ThirdParty
                 "LiveTile",
                 new TimeTrigger(60 * 12, false),
                 new SystemCondition(SystemConditionType.InternetAvailable));
-              
-            task.Completed += Task_Completed; ;
+
+            task.Completed += Task_Completed;
         }
 
         private void Task_Completed(BackgroundTaskRegistration sender, BackgroundTaskCompletedEventArgs args)
@@ -38,12 +40,12 @@ namespace Many.ThirdParty
 #if DEBUG
             Debug.WriteLine($"Task_Completed............................");
 #endif 
-        } 
+        }
 
         protected override async void OnLaunched(LaunchActivatedEventArgs e)
         {
 #if DEBUG
-            this.DebugSettings.EnableFrameRateCounter |= System.Diagnostics.Debugger.IsAttached;
+            if (DebugSettings != null) DebugSettings.EnableFrameRateCounter |= Debugger.IsAttached;
 #endif
             Frame rootFrame = Window.Current.Content as Frame;
 
@@ -81,8 +83,8 @@ namespace Many.ThirdParty
 
         void RootFrame_Navigated(object sender, NavigationEventArgs e)
         {
-            SystemNavigationManager.GetForCurrentView().AppViewBackButtonVisibility = 
-                (Window.Current.Content as Frame).BackStack.Any() ? 
+            SystemNavigationManager.GetForCurrentView().AppViewBackButtonVisibility =
+                (Window.Current.Content as Frame).BackStack.Any() ?
                 AppViewBackButtonVisibility.Visible : AppViewBackButtonVisibility.Collapsed;
         }
 

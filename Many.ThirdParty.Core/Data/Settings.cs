@@ -18,13 +18,22 @@ namespace Many.ThirdParty.Core.Data
                 SaveSettings(nameof(GeneralFontSize), value);
             }
         }
-
+        //PreLoadPage
         public bool NightModeEnable
         {
             get { return ReadSettings(nameof(NightModeEnable), false); }
             set
             {
                 SaveSettings(nameof(NightModeEnable), value);
+            }
+        }
+
+        public bool SkipPreLoadPage
+        {
+            get { return ReadSettings(nameof(SkipPreLoadPage), false); }
+            set
+            {
+                SaveSettings(nameof(SkipPreLoadPage), value);
             }
         }
     }

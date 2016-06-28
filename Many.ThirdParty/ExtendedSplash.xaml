@@ -10,6 +10,7 @@
     <Grid Background="White">
         <Image Source="ms-appx:///Resources/BgImages/StartImage.png"
                VerticalAlignment="Center"
+               Height="300"
                HorizontalAlignment="Center"
                Stretch="UniformToFill"/>
         <ProgressRing IsActive="True"
@@ -19,5 +20,12 @@
                       VerticalAlignment="Bottom"
                       HorizontalAlignment="Center"
                       Margin="0 0 0 100"/>
+        <TextBlock x:Name="Progress" 
+                   FontSize="13"
+                   Text="正在加载资源"
+                   Foreground="#99EE4CF1"
+                   VerticalAlignment="Bottom"
+                   HorizontalAlignment="Center"
+                   Margin="0 0 0 70" />
     </Grid>
 </Page>

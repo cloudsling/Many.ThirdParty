@@ -10,25 +10,26 @@ using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Navigation;
 using Many.ThirdParty.Core.Tasks;
+// ReSharper disable All
 
 namespace Many.ThirdParty
 {
     /// <summary>
     /// auto event
     /// </summary>
-    public sealed partial class MainFrameContainer : Page
+    public sealed partial class MainFrameContainer
     {
         private void MainFrameContainer_Navigated(object sender, NavigationEventArgs e)
         {
-            CurrentScenario = NavigationManager.GetScenarioByName[mainFrameContainer.CurrentSourcePageType.Name];
+            CurrentScenario = NavigationManager.GetScenarioByName[MFrameainFrameContainer.CurrentSourcePageType.Name];
 
             UpdateContent(CurrentScenario.PageTitle);
-            UpdateGenericUI(CurrentScenario.Index);
+            UpdateGenericUi(CurrentScenario.Index);
         }
 
         private void MainFrameContainer_BackRequested(object sender, BackRequestedEventArgs e)
         {
-            switch (mainFrameContainer.SourcePageType.Name)
+            switch (MFrameainFrameContainer.SourcePageType.Name)
             {
                 case nameof(HomePage): return;
                 case nameof(ReadingPage): return;
@@ -36,9 +37,9 @@ namespace Many.ThirdParty
                 case nameof(MoviePage): return;
                 default:
                     {
-                        if (mainFrameContainer.CanGoBack)
+                        if (MFrameainFrameContainer.CanGoBack)
                         {
-                            mainFrameContainer.GoBack();
+                            MFrameainFrameContainer.GoBack();
                             e.Handled = true;
                         }
                         return;
@@ -48,7 +49,8 @@ namespace Many.ThirdParty
 
         private void ChangeBackgroundAndNavigate(object sender, RoutedEventArgs e)
         {
-            ThisNavigate(Convert.ToInt32((sender as Button).Tag));
+            var button = sender as Button;
+            if (button != null) ThisNavigate(Convert.ToInt32(button.Tag));
         }
 
         private void Current_SizeChanged(object sender, WindowSizeChangedEventArgs e)
@@ -66,46 +68,46 @@ namespace Many.ThirdParty
             NavigationManager.GeneralNavigate(typeof(UserPage));
         }
 
-        private void SlideGrid_ManipulationCompleted(object sender, Windows.UI.Xaml.Input.ManipulationCompletedRoutedEventArgs e)
-        {
-            Appear.Begin();
-        }
+        //private void SlideGrid_ManipulationCompleted(object sender, Windows.UI.Xaml.Input.ManipulationCompletedRoutedEventArgs e)
+        //{
+        //    Appear.Begin();
+        //}
 
-        private void SlideGrid_ManipulationDelta(object sender, Windows.UI.Xaml.Input.ManipulationDeltaRoutedEventArgs e)
-        {
-        }
+        //private void SlideGrid_ManipulationDelta(object sender, Windows.UI.Xaml.Input.ManipulationDeltaRoutedEventArgs e)
+        //{
+        //}
 
 
-        private void QuickActionGrid_LostFocus(object sender, RoutedEventArgs e)
-        {
-            Disappear.Begin();
-        }
+        //private void QuickActionGrid_LostFocus(object sender, RoutedEventArgs e)
+        //{
+        //    Disappear.Begin();
+        //}
 
-        private void NightModeSwitch_PointerReleased(object sender, Windows.UI.Xaml.Input.PointerRoutedEventArgs e)
-        {
-            if (this.RequestedTheme == ElementTheme.Dark || this.RequestedTheme == ElementTheme.Default)
-            {
-                this.RequestedTheme = ElementTheme.Light;
-            }
-            else
-            {
-                this.RequestedTheme = ElementTheme.Dark;
-            }
+        //private void NightModeSwitch_PointerReleased(object sender, Windows.UI.Xaml.Input.PointerRoutedEventArgs e)
+        //{
+        //    if (this.RequestedTheme == ElementTheme.Dark || this.RequestedTheme == ElementTheme.Default)
+        //    {
+        //        this.RequestedTheme = ElementTheme.Light;
+        //    }
+        //    else
+        //    {
+        //        this.RequestedTheme = ElementTheme.Dark;
+        //    }
 
-            HomePage.CurrentHomePage.RequestedTheme = this.RequestedTheme;
-        }
+        //    HomePage.CurrentHomePage.RequestedTheme = this.RequestedTheme;
+        //}
     }
 
     /// <summary>
     /// fields and properties
     /// </summary>
-    public sealed partial class MainFrameContainer : Page
+    public sealed partial class MainFrameContainer
     {
         public static MainFrameContainer CurrentMainFrameContainer;
 
         public MainFrameContainerViewModel MainFrameContainerViewModel { get; set; }
 
-        private static List<Image> FootButtonBackgroundImage;
+        private static List<Image> _footButtonBackgroundImage;
 
         internal Scenario CurrentScenario { get; set; }
 
@@ -125,17 +127,17 @@ namespace Many.ThirdParty
             CurrentMainFrameContainer = this;
 
             InitializeField();
-            ThisNavigate(Convert.ToInt32(homeButton.Tag));
+            ThisNavigate(Convert.ToInt32(HomeButton.Tag));
 
-            this.NavigationCacheMode = NavigationCacheMode.Required;
+            NavigationCacheMode = NavigationCacheMode.Required;
         }
 
-        protected async override void OnNavigatedTo(NavigationEventArgs e)
+        protected override async void OnNavigatedTo(NavigationEventArgs e)
         {
-            this.RequestedTheme = MainFrameContainerViewModel.AppSettings.NightModeEnable ? ElementTheme.Dark : ElementTheme.Light;
+            RequestedTheme = MainFrameContainerViewModel.AppSettings.NightModeEnable ? ElementTheme.Dark : ElementTheme.Light;
             ModifyStatusBar();
 
-            HomePage.CurrentHomePage.RequestedTheme = this.RequestedTheme;
+            HomePage.CurrentHomePage.RequestedTheme = RequestedTheme;
 
             Window.Current.SizeChanged += Current_SizeChanged;
 
@@ -151,7 +153,7 @@ namespace Many.ThirdParty
 
         private void ThisFrameNavigate(Type pageType)
         {
-            mainFrameContainer.Navigate(pageType);
+            MFrameainFrameContainer.Navigate(pageType);
         }
 
         private void InitializeViewModel()
@@ -168,12 +170,12 @@ namespace Many.ThirdParty
 
         private static void InitializeField()
         {
-            FootButtonBackgroundImage = new List<Image>
+            _footButtonBackgroundImage = new List<Image>
             {
-                CurrentMainFrameContainer.homeButtonBkImg,
-                CurrentMainFrameContainer.readButtonBkImg,
-                CurrentMainFrameContainer.musicButtonBkImg,
-                CurrentMainFrameContainer.movieButtonBkImg
+                CurrentMainFrameContainer.HomeButtonBkImg,
+                CurrentMainFrameContainer.ReadButtonBkImg,
+                CurrentMainFrameContainer.MusicButtonBkImg,
+                CurrentMainFrameContainer.MovieButtonBkImg
             };
         }
 
@@ -182,12 +184,12 @@ namespace Many.ThirdParty
             MainFrameContainerViewModel.PageTitle = title;
         }
 
-        private void UpdateGenericUI(int index)
+        private void UpdateGenericUi(int index)
         {
             if (index < 4)
             {
                 MainFrameContainerViewModel.SetBottomNavBtnAndProfileVisibe();
-                UpdateBottomButtonUI(index);
+                UpdateBottomButtonUi(index);
             }
             else
             {
@@ -195,13 +197,13 @@ namespace Many.ThirdParty
             }
         }
 
-        private void UpdateBottomButtonUI(int index)
+        private void UpdateBottomButtonUi(int index)
         {
-            FootButtonBackgroundImage[CurrentBottomImageIndex].Source = DelegationManager.FootButtonSource[CurrentBottomImageIndex];
+            _footButtonBackgroundImage[CurrentBottomImageIndex].Source = DelegationManager.FootButtonSource[CurrentBottomImageIndex];
 
             CurrentBottomImageIndex = index;
 
-            FootButtonBackgroundImage[CurrentBottomImageIndex].Source = DelegationManager.FootButtonActivedSource[CurrentBottomImageIndex];
+            _footButtonBackgroundImage[CurrentBottomImageIndex].Source = DelegationManager.FootButtonActivedSource[CurrentBottomImageIndex];
         }
 
         public void ModifyStatusBar()
@@ -214,8 +216,6 @@ namespace Many.ThirdParty
                 case ElementTheme.Dark:
                     StatusBarModifier.SetDarkStatusBar();
                     return;
-                default:
-                    break;
             }
         }
 

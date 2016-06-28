@@ -15,6 +15,7 @@ namespace Many.ThirdParty.Core.ViewModels.ReadingDetailPageViewModels
     {
         public string Id { get; set; }
 
+        // ReSharper disable once InconsistentNaming
         public string Serial_Id { get; set; }
 
         public string Number { get; set; }
@@ -45,7 +46,9 @@ namespace Many.ThirdParty.Core.ViewModels.ReadingDetailPageViewModels
         {
             if (string.IsNullOrEmpty(id)) return null;
 
-            var viewModel = JsonConvert.DeserializeObject<SerialDetailPageViewModel>((await DataHelper.GetJsonObjectAsync(GetEssayUri(id))).Stringify());
+            var viewModel = JsonConvert.DeserializeObject<SerialDetailPageViewModel>(
+                (await DataHelper.GetJsonObjectAsync(
+                    GetEssayUri(id))).Stringify());
             await viewModel.AddToCommentsCollection(GetCommentUri(id));
             return viewModel;
         }
