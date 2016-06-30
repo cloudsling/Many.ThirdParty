@@ -1,4 +1,7 @@
-﻿using Windows.UI.Xaml.Controls;
+﻿using System;
+using System.Collections.Generic;
+using Windows.UI.Xaml.Controls;
+using Windows.UI.Xaml.Media.Imaging;
 using Windows.UI.Xaml.Navigation;
 using Many.ThirdParty.Core.Data;
 using Many.ThirdParty.Core.Enum;
@@ -11,6 +14,7 @@ namespace Many.ThirdParty.SubPages
         public static MusicPage MusicCurrent { get; private set; }
 
         public MusicPageViewModel ViewModel { get; set; }
+
     }
 
     public sealed partial class MusicPage : Page
@@ -20,16 +24,19 @@ namespace Many.ThirdParty.SubPages
             ViewModel = new MusicPageViewModel();
             InitializeComponent();
 
-            MusicCurrent = this;
-            NavigationCacheMode = NavigationCacheMode.Required;
+            MusicCurrent = this;  
+            NavigationCacheMode = NavigationCacheMode.Required; 
         }
+
+         
 
         protected override async void OnNavigatedTo(NavigationEventArgs e)
         {
+
             if (ViewModel.MusicModelsCollection.Count <= 0)
             {
                 await ViewModel.RefreshMusicCollection(await CommonDataLoader.GetGeneralList("0", ListType.MusicList));
-
+                //await ViewModel.AddTo
             }
         }
     }

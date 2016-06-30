@@ -4,7 +4,6 @@ using System;
 using Windows.UI.Popups;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
-using Many.ThirdParty.Core.Models.ReadingModels;
 
 namespace Many.ThirdParty.UserControls
 {

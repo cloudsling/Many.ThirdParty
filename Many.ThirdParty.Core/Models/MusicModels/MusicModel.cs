@@ -1,19 +1,21 @@
-﻿using System.Collections.ObjectModel;
+﻿using System;
+using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Text;
+using System.Threading.Tasks;
+using Windows.UI.Xaml;
+using Windows.UI.Xaml.Media.Imaging;
+using Many.ThirdParty.Core.Commands;
+using Many.ThirdParty.Core.Commons;
 using Many.ThirdParty.Core.Interface;
 using Many.ThirdParty.Core.Models.CommonModels;
+using Many.ThirdParty.Core.Tools;
+using Newtonsoft.Json;
 
 namespace Many.ThirdParty.Core.Models.MusicModels
 {
-    public class MusicModel : IComments
+    public partial class MusicModel : ViewModelBase, IComments
     {
-        public MusicModel()
-        {
-            HotComments = new ObservableCollection<CommentModel>();
-
-            NormalComments = new ObservableCollection<CommentModel>();
-        }
-
         public string Id { get; set; }
 
         public string Cover { get; set; }
@@ -57,8 +59,213 @@ namespace Many.ThirdParty.Core.Models.MusicModels
 
         public Author Author { get; set; }
 
+
+        private string _someTitle;
+        public string SomeTitle
+        {
+            get { return _someTitle; }
+            set
+            {
+                SetProperty(ref _someTitle, value);
+            }
+        }
+
+        public Command UiCommand { get; set; }
+
         public ObservableCollection<CommentModel> HotComments { get; set; }
 
         public ObservableCollection<CommentModel> NormalComments { get; set; }
+
+        public async Task RefreshCommentsCollection(string uri)
+        {
+            foreach (var item in await DataHelper.GetCommentJsonArrayAsync(uri))
+            {
+                var tem = JsonConvert.DeserializeObject<CommentModel>(item.Stringify());
+
+                if (tem.Type == "0")
+                {
+                    HotComments.Add(tem);
+                }
+                else
+                {
+                    NormalComments.Add(tem);
+                }
+            }
+        }
+    }
+
+    enum NewType
+    {
+        OldVer,
+        NewVer,
+    }
+
+    public partial class MusicModel
+    {
+        public MusicModel()
+        {
+            UiCommand = new Command(UpdateUi);
+
+            HotComments = new ObservableCollection<CommentModel>();
+            NormalComments = new ObservableCollection<CommentModel>();
+
+            InitializeProperties();
+        }
+
+        private void UpdateUi(object obj)
+        {
+            UpdateOldUi(_index);
+
+            int oldIndex = Convert.ToInt32(obj);
+
+            _index = oldIndex;
+
+            UpdateNewUi(_index);
+
+            SomeTitle = SomeTitleContent[_index];
+        }
+
+        private void UpdateOldUi(int index)
+        {
+            ChangePanelVis(index, NewType.OldVer);
+            ChangeBtpCpl(index, NewType.OldVer);
+        }
+        private void UpdateNewUi(int index)
+        {
+            ChangePanelVis(index, NewType.NewVer);
+            ChangeBtpCpl(index, NewType.NewVer);
+        }
+
+        private void ChangeBtpCpl(int index, NewType type)
+        {
+            List<BitmapImage> list;
+            switch (type)
+            {
+                case NewType.OldVer:
+                    list = DefaultImage;
+                    break;
+                case NewType.NewVer:
+                    list = ActivedImage;
+                    break;
+                default:
+                    throw new ArgumentOutOfRangeException(nameof(type), type, null);
+            }
+            switch (index)
+            {
+                case 0:
+                    StoryImage = list[index];
+                    return;
+                case 1:
+                    LyricImage = list[index];
+                    return;
+                case 2:
+                    AboutImage = list[index];
+                    return;
+            }
+        }
+        private void ChangePanelVis(int index, NewType type)
+        {
+            Visibility vis;
+            switch (type)
+            {
+                case NewType.OldVer:
+                    vis = Visibility.Collapsed;
+                    break;
+                case NewType.NewVer:
+                    vis = Visibility.Visible;
+                    break;
+                default:
+                    throw new ArgumentOutOfRangeException(nameof(type), type, null);
+            }
+            switch (index)
+            {
+                case 0:
+                    StoryPanelVis = vis;
+                    return;
+                case 1:
+                    LyricPanelVis = vis;
+                    return;
+                case 2:
+                    AboutPanelVis = vis;
+                    return;
+            }
+        }
+
+        private void InitializeProperties()
+        {
+            StoryImage = ActivedImage[0];
+            LyricImage = DefaultImage[1];
+            AboutImage = DefaultImage[1];
+
+            StoryPanelVis = Visibility.Visible;
+            LyricPanelVis = Visibility.Collapsed;
+            AboutPanelVis = Visibility.Collapsed;
+
+            _index = 0;
+            SomeTitle = SomeTitleContent[0];
+        }
+
+        private int _index;
+
+        private static readonly List<string> SomeTitleContent = new List<string>
+        {
+            "音乐故事", "歌词", "歌曲信息"
+        };
+
+        private static readonly List<BitmapImage> ActivedImage = new List<BitmapImage>
+        {
+            new BitmapImage(new Uri("ms-appx:///Resources/BgImages/music_story_selected.png")),
+            new BitmapImage(new Uri("ms-appx:///Resources/BgImages/music_lyric_selected.png")),
+            new BitmapImage(new Uri("ms-appx:///Resources/BgImages/music_about_selected.png")),
+        };
+
+        private static readonly List<BitmapImage> DefaultImage = new List<BitmapImage>
+        {
+            new BitmapImage(new Uri("ms-appx:///Resources/BgImages/music_story_default.png")),
+            new BitmapImage(new Uri("ms-appx:///Resources/BgImages/music_lyric_default.png")),
+            new BitmapImage(new Uri("ms-appx:///Resources/BgImages/music_about_default.png")),
+        };
+
+        private BitmapImage _storyImage;
+        public BitmapImage StoryImage
+        {
+            get { return _storyImage; }
+            set { SetProperty(ref _storyImage, value); }
+        }
+
+        private BitmapImage _lyricImage;
+        public BitmapImage LyricImage
+        {
+            get { return _lyricImage; }
+            set { SetProperty(ref _lyricImage, value); }
+        }
+
+        private BitmapImage _aboutImage;
+        public BitmapImage AboutImage
+        {
+            get { return _aboutImage; }
+            set { SetProperty(ref _aboutImage, value); }
+        }
+
+        private Visibility _storyPanelVis;
+        public Visibility StoryPanelVis
+        {
+            get { return _storyPanelVis; }
+            set { SetProperty(ref _storyPanelVis, value); }
+        }
+
+        private Visibility _lyricPanelVis;
+        public Visibility LyricPanelVis
+        {
+            get { return _lyricPanelVis; }
+            set { SetProperty(ref _lyricPanelVis, value); }
+        }
+
+        private Visibility _aboutPanelVis;
+        public Visibility AboutPanelVis
+        {
+            get { return _aboutPanelVis; }
+            set { SetProperty(ref _aboutPanelVis, value); }
+        }
     }
 }

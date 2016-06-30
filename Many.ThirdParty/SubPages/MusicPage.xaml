@@ -4,17 +4,17 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:ctm="using:Many.ThirdParty.CustomControls"
-    xmlns:cvtr="using:Many.ThirdParty.Core.Converter"
     xmlns:musicModel="using:Many.ThirdParty.Core.Models.MusicModels"
     xmlns:uct="using:Many.ThirdParty.UserControls"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d">
-    
-    <Page.Resources>
-        <ResourceDictionary>
-            
-            <DataTemplate x:Key="FlipViewDataTemplate" 
-                          x:DataType="musicModel:MusicModel">
+
+    <FlipView CompositeMode="Inherit" 
+              Background="{ThemeResource MainBackground}"  
+              ItemsSource="{x:Bind ViewModel.MusicModelsCollection, Mode=OneWay}"
+            >
+        <FlipView.ItemTemplate>
+            <DataTemplate x:DataType="musicModel:MusicModel">
                 <ScrollViewer Padding="8 0">
                     <StackPanel>
                         <Grid>
@@ -48,8 +48,8 @@
                                        Foreground="#FF00AEA0"
                                        Style="{StaticResource ReadingContent}" />
                                         <TextBlock Text="{x:Bind Author.Desc}"
-                                       Margin="5 0"
-                                       Style="{StaticResource SmallText}"/>
+                                                   Margin="5 0"
+                                                   Style="{StaticResource SmallText}"/>
                                     </StackPanel>
                                 </Grid>
                             </Grid>
@@ -61,15 +61,15 @@
                             </ctm:BlankButton>
 
                             <TextBlock Text="{x:Bind Title}"
-                          VerticalAlignment="Bottom"
-                          Foreground="{ThemeResource FontColor}"
-                          Margin="10"/>
+                                      VerticalAlignment="Bottom"
+                                      Foreground="{ThemeResource FontColor}"
+                                      Margin="10"/>
                             <TextBlock Text="{x:Bind MakeTime}"
-                           FontSize="12"
-                           Foreground="{ThemeResource FontColor}"
-                           VerticalAlignment="Bottom"
-                           HorizontalAlignment="Right"
-                           Margin="10"/>
+                                       FontSize="12"
+                                       Foreground="{ThemeResource FontColor}"
+                                       VerticalAlignment="Bottom"
+                                       HorizontalAlignment="Right"
+                                       Margin="10"/>
                         </Grid>
 
                         <Grid>
@@ -81,21 +81,27 @@
                                     </Style>
                                     <Style TargetType="ctm:BlankButton">
                                         <Setter Property="HorizontalAlignment" Value="Right"></Setter>
-                                        <Setter Property="Margin" Value="15 0"></Setter>
+                                        <Setter Property="Margin" Value="12 0"></Setter>
                                     </Style>
                                 </ResourceDictionary>
                             </Grid.Resources>
-                            <TextBlock Text="音乐故事" VerticalAlignment="Center"/>
+                            <TextBlock Text="{x:Bind SomeTitle, Mode=OneWay}" 
+                                       Margin="5 0"
+                                       VerticalAlignment="Center"/>
                             <StackPanel Orientation="Horizontal"
                             HorizontalAlignment="Right">
-                                <ctm:BlankButton>
-                                    <Image Source="/Resources/BgImages/music_story_default.png"/>
+                                <ctm:BlankButton Command="{x:Bind UiCommand}"  
+                                                 CommandParameter="0">
+                                    <Image Source="{x:Bind StoryImage, Mode=OneWay}"/>
                                 </ctm:BlankButton>
-                                <ctm:BlankButton>
-                                    <Image  Source="/Resources/BgImages/music_lyric_default.png"/>
+                                <ctm:BlankButton Command="{x:Bind UiCommand}"  
+                                                 CommandParameter="1">
+                                    <Image Source="{x:Bind LyricImage, Mode=OneWay}"/>
                                 </ctm:BlankButton>
-                                <ctm:BlankButton Margin="0 0">
-                                    <Image Source="/Resources/BgImages/music_about_default.png"/>
+                                <ctm:BlankButton Margin="12 0" 
+                                                 Command="{x:Bind UiCommand}" 
+                                                 CommandParameter="2">
+                                    <Image Source="{x:Bind AboutImage, Mode=OneWay}"/>
                                 </ctm:BlankButton>
                             </StackPanel>
                         </Grid>
@@ -103,38 +109,50 @@
                                Height="1" 
                                Fill="{ThemeResource FontColor}"
                                Width="600" />
- 
-                        <StackPanel>
+
+                        <StackPanel Visibility="{x:Bind StoryPanelVis, Mode=OneWay}">
                             <TextBlock Text="{x:Bind Story_Title}" 
-                           TextWrapping="Wrap"
-                           FontSize="19"
-                           FontWeight="Black"
-                           Style="{ThemeResource ReadingText}"/>
+                                       TextWrapping="Wrap"
+                                       FontSize="19"
+                                       FontWeight="Black"
+                                       Style="{ThemeResource ReadingText}"/>
                             <TextBlock Text="{x:Bind Author.User_Name}"
-                           Margin="5 0"
-                           Foreground="#FF00AEA0"
-                           Style="{StaticResource ReadingContent}" />
+                                       Margin="5 0"
+                                       Foreground="#FF00AEA0"
+                                       Style="{StaticResource ReadingContent}" />
                             <TextBlock Text="{x:Bind Story}" 
-                           Margin="5"
-                           Style="{ThemeResource ReadingContent}"/>
+                                       Margin="5"
+                                       Style="{ThemeResource ReadingContent}"/>
                         </StackPanel>
+
+                        <StackPanel Visibility="{x:Bind LyricPanelVis, Mode=OneWay}">
+                            <TextBlock Text="{x:Bind Lyric}" 
+                                       Margin="5"
+                                       Style="{ThemeResource ReadingContent}"/>
+                        </StackPanel>
+
+                        <StackPanel Visibility="{x:Bind AboutPanelVis, Mode=OneWay}">
+                            <TextBlock Text="{x:Bind Info}" 
+                                       Margin="5"
+                                       Style="{ThemeResource ReadingContent}"/>
+                        </StackPanel>
+
+                        <Grid>
+                            <TextBlock Text="{x:Bind Charge_Edt}"
+                                                   Margin="7"
+                                                   Style="{StaticResource SmallText}"/>
+                        </Grid>
 
                         <uct:ReadingDetailPageBottomGrid Height="50"
                                              PraiseNum="{x:Bind PraiseNum, Mode=OneWay}"
                                              CommentNum="{x:Bind CommentNum, Mode=OneWay}"
                                              ShareNum="{x:Bind ShareNum, Mode=OneWay}"/>
 
-                        <!--<uct:CommentsList HotComments="{x:Bind HotComments}"
-                                          NormalComments="{x:Bind NormalComments}"/>-->
+                        <uct:CommentsList HotComments="{x:Bind HotComments}"
+                                          NormalComments="{x:Bind NormalComments}"/>
                     </StackPanel>
                 </ScrollViewer>
             </DataTemplate>
-        </ResourceDictionary>
-    </Page.Resources>
-
-    <FlipView CompositeMode="Inherit" 
-              Background="{ThemeResource MainBackground}"  
-              ItemsSource="{x:Bind ViewModel.MusicModelsCollection, Mode=OneWay}"
-              ItemTemplate="{StaticResource FlipViewDataTemplate}"> 
+        </FlipView.ItemTemplate>
     </FlipView>
 </Page>

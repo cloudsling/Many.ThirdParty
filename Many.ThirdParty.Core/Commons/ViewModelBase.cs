@@ -1,5 +1,4 @@
 ﻿using Many.ThirdParty.Core.Data;
-using System;
 using Windows.UI.Xaml;
 
 namespace Many.ThirdParty.Core.Commons

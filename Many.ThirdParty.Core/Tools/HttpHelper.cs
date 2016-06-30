@@ -6,9 +6,9 @@ using Windows.Web.Http;
 namespace Many.ThirdParty.Core.Tools
 {
     public static class HttpHelper
-    {
+    { 
+        private static readonly HttpClient Client = CreateHttpClientWithUserAgent();
 
-        private static HttpClient client = CreateHttpClientWithUserAgent();
         /// <summary>
         /// 伪装成安卓useragent的httpclient
         /// </summary>
@@ -45,7 +45,7 @@ namespace Many.ThirdParty.Core.Tools
         {
             try
             {
-                return await client.GetStringAsync(new Uri(uri));
+                return await Client.GetStringAsync(new Uri(uri));
             }
             catch (Exception)
             {
@@ -59,7 +59,7 @@ namespace Many.ThirdParty.Core.Tools
         {
             try
             {
-                return await client.GetBufferAsync(new Uri(uri));
+                return await Client.GetBufferAsync(new Uri(uri));
             }
             catch (Exception)
             {

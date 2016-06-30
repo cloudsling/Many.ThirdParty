@@ -24,7 +24,7 @@ namespace Many.ThirdParty.Core.ViewModels.ReadingDetailPageViewModels
         {
             get
             {
-                return new StringBuilder(_answer_Content).Replace("<br><br>", "\r\n").Replace("<br>", "\r\n").Replace("<strong>", "").Replace("</strong>", "").ToString();
+                return new StringBuilder(_answer_Content).Replace("<br><br>", "\r\n").Replace("<br>", "").Replace("<strong>", "").Replace("</strong>", "").ToString();
             }
             set { _answer_Content = value; }
         } 

@@ -77,21 +77,20 @@ namespace Many.ThirdParty.Core.ViewModels.ReadingDetailPageViewModels
                 RelatedCollection.Add(modelBase);
             }
         }
-
-
+         
         public static async Task<T> CreateViewModel<T>(string id) where T : ReadingDetailPageViewModelBase
         {
             if (string.IsNullOrEmpty(id)) return null;
 
             var viewModel = JsonConvert.DeserializeObject<T>((await DataHelper.GetJsonObjectAsync(GetUri<T>(id))).Stringify());
-            await viewModel.AddToCommentsCollection(GetCommentUri<T>(id));
+            await viewModel.RefreshCommentsCollection(GetCommentUri<T>(id));
             await viewModel.AddToRelatedCollection<T>(id);
 
             return viewModel;
         }
 
 
-        public async Task AddToCommentsCollection(string uri)
+        public async Task RefreshCommentsCollection(string uri)
         {
             foreach (var item in await DataHelper.GetCommentJsonArrayAsync(uri))
             {
