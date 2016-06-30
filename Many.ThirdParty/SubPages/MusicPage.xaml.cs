@@ -1,11 +1,5 @@
-﻿using Many.ThirdParty.Core.Models.MusicModels;
-using System;
-using System.Diagnostics;
-using System.Threading.Tasks;
-using Windows.Data.Json;
-using Windows.UI.Xaml.Controls;
+﻿using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Navigation;
-using Windows.Web.Http;
 using Many.ThirdParty.Core.Data;
 using Many.ThirdParty.Core.ViewModels;
 

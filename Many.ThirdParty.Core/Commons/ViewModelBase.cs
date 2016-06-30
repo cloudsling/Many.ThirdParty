@@ -17,8 +17,8 @@ namespace Many.ThirdParty.Core.Commons
          
         public void ChangeThemeMode(ElementTheme theme) => CurrentSettings.NightModeEnable = theme == ElementTheme.Dark;
 
-        public double WindowHeight { get; } = Window.Current.Bounds.Height;
+        public double WindowHeight => Window.Current.Bounds.Height;
 
-        public double WindowWidth { get; } = Window.Current.Bounds.Width;
+        public double WindowWidth => Window.Current.Bounds.Width;
     }
 }

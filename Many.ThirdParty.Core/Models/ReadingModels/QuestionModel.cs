@@ -1,7 +1,5 @@
 ﻿using Newtonsoft.Json;
-using System;
 using Windows.Data.Json;
-using Many.ThirdParty.Core.Commands;
 
 namespace Many.ThirdParty.Core.Models.ReadingModels
 {
@@ -31,7 +29,7 @@ namespace Many.ThirdParty.Core.Models.ReadingModels
             }
         }
 
-        public override void CreateContent(JsonObject json)
+        public sealed override void CreateContent(JsonObject json)
         {
             Content = JsonConvert.DeserializeObject<QuestionContent>(json.Stringify());
         }

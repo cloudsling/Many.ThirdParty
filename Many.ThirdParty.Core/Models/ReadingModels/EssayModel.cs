@@ -34,10 +34,9 @@ namespace Many.ThirdParty.Core.Models.ReadingModels
         }
 
 
-        public override void CreateContent(JsonObject json)
+        public sealed override void CreateContent(JsonObject json)
         {
             Content = JsonConvert.DeserializeObject<EssayContent>(json.Stringify());
-
         }
     }
 

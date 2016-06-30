@@ -2,11 +2,9 @@
     x:Class="Many.ThirdParty.SubPages.ReadingPage"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-    xmlns:local="using:Many.ThirdParty.SubPages"
     xmlns:dvm="using:Many.ThirdParty.Core.ViewModels"
     xmlns:cvm="using:Many.ThirdParty.Core.Models.ReadingModels"
     xmlns:ctm="using:Many.ThirdParty.CustomControls"
-    xmlns:uct="using:Many.ThirdParty.UserControls"
     xmlns:cvt="using:Many.ThirdParty.Core.Converter"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
@@ -89,7 +87,7 @@
                                                            Margin="15"
                                                            FontSize="14"/>
                         </Border>
-                        <!--<uct:ReadingListView Grid.Row="1" ContentModelCollection="{x:Bind ContentModelCollection, Mode=OneWay}"/>-->
+                       
                         <ListView x:Name="MainListView"
                                   Grid.Row="1"
                                   IsSwipeEnabled="False"
