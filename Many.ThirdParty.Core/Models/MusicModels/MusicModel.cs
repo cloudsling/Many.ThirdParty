@@ -3,8 +3,13 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Text;
 using System.Threading.Tasks;
+using Windows.Storage.Streams;
+using Windows.UI.Popups;
 using Windows.UI.Xaml;
+using Windows.UI.Xaml.Controls;
+using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Media.Imaging;
+using Windows.Web.Http;
 using Many.ThirdParty.Core.Commands;
 using Many.ThirdParty.Core.Commons;
 using Many.ThirdParty.Core.Interface;
@@ -70,6 +75,8 @@ namespace Many.ThirdParty.Core.Models.MusicModels
             }
         }
 
+        public AsyncCommand AudioCommand { get; set; }
+
         public Command UiCommand { get; set; }
 
         public ObservableCollection<CommentModel> HotComments { get; set; }
@@ -94,7 +101,7 @@ namespace Many.ThirdParty.Core.Models.MusicModels
         }
     }
 
-    enum NewType
+    internal enum NewType
     {
         OldVer,
         NewVer,
@@ -105,11 +112,43 @@ namespace Many.ThirdParty.Core.Models.MusicModels
         public MusicModel()
         {
             UiCommand = new Command(UpdateUi);
+            AudioCommand = new AsyncCommand(AudioPlayStart);
 
             HotComments = new ObservableCollection<CommentModel>();
             NormalComments = new ObservableCollection<CommentModel>();
 
             InitializeProperties();
+        }
+
+        // private readonly MediaElement _ele = new MediaElement();
+
+        private async Task AudioPlayStart(object obj)
+        {
+            PlayImage = !PlayImage;
+
+            await new MessageDialog("播放功能正在施工中。。。。。").ShowAsync();
+            //if (_ele.CurrentState == MediaElementState.Playing)
+            //{
+            //    if (_ele.CanPause)
+            //        _ele.Stop();
+            //    return;
+            //}
+
+            //string audioUri = obj as string;
+
+            //using (InMemoryRandomAccessStream memoryStream = new InMemoryRandomAccessStream())
+            //{
+            //    using (HttpClient client = new HttpClient())
+            //    {
+            //        var buff = await client.GetBufferAsync(new Uri(audioUri));
+
+            //        await memoryStream.ReadAsync(buff, buff.Length, InputStreamOptions.None);
+
+            //        _ele.SetSource(memoryStream, string.Empty);
+            //        _ele.Play();
+
+            //    }
+            //}
         }
 
         private void UpdateUi(object obj)
@@ -193,6 +232,8 @@ namespace Many.ThirdParty.Core.Models.MusicModels
 
         private void InitializeProperties()
         {
+            PlayImage = true;
+
             StoryImage = ActivedImage[0];
             LyricImage = DefaultImage[1];
             AboutImage = DefaultImage[1];
@@ -226,6 +267,8 @@ namespace Many.ThirdParty.Core.Models.MusicModels
             new BitmapImage(new Uri("ms-appx:///Resources/BgImages/music_about_default.png")),
         };
 
+
+
         private BitmapImage _storyImage;
         public BitmapImage StoryImage
         {
@@ -245,6 +288,16 @@ namespace Many.ThirdParty.Core.Models.MusicModels
         {
             get { return _aboutImage; }
             set { SetProperty(ref _aboutImage, value); }
+        }
+
+        private bool _playImage;
+        public bool PlayImage
+        {
+            get { return _playImage; }
+            set
+            {
+                SetProperty(ref _playImage, value);
+            }
         }
 
         private Visibility _storyPanelVis;

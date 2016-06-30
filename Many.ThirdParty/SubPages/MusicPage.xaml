@@ -5,9 +5,16 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:ctm="using:Many.ThirdParty.CustomControls"
     xmlns:musicModel="using:Many.ThirdParty.Core.Models.MusicModels"
+    xmlns:cvrt="using:Many.ThirdParty.Core.Converter"
     xmlns:uct="using:Many.ThirdParty.UserControls"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d">
+    
+    <Page.Resources>
+        <ResourceDictionary>
+            <cvrt:BolleanToPlayConverter x:Key="BolleanToPlayConverter"></cvrt:BolleanToPlayConverter>
+        </ResourceDictionary>
+    </Page.Resources>
 
     <FlipView CompositeMode="Inherit" 
               Background="{ThemeResource MainBackground}"  
@@ -55,9 +62,11 @@
                             </Grid>
 
                             <ctm:BlankButton Height="50" Width="50"
-                                Margin="15"
-                                HorizontalAlignment="Right">
-                                <Image Source="/Resources/BgImages/play.png"/>
+                                             Command="{x:Bind AudioCommand}"
+                                             CommandParameter="{x:Bind Music_Id}"
+                                             Margin="15"
+                                             HorizontalAlignment="Right">
+                                <Image Source="{x:Bind PlayImage, Mode=OneWay, Converter={StaticResource BolleanToPlayConverter}}"/>
                             </ctm:BlankButton>
 
                             <TextBlock Text="{x:Bind Title}"

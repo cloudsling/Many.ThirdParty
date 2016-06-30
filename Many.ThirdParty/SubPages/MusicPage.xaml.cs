@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using Windows.UI.Xaml.Controls;
-using Windows.UI.Xaml.Media.Imaging;
+﻿using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Navigation;
 using Many.ThirdParty.Core.Data;
 using Many.ThirdParty.Core.Enum;
@@ -27,7 +24,6 @@ namespace Many.ThirdParty.SubPages
             MusicCurrent = this;  
             NavigationCacheMode = NavigationCacheMode.Required; 
         }
-
          
 
         protected override async void OnNavigatedTo(NavigationEventArgs e)

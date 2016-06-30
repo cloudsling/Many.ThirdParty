@@ -108,6 +108,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Commons\ViewModelBase.cs" />
+    <Compile Include="Converter\BolleanToPlayConverter.cs" />
     <Compile Include="Converter\BooleanToVisibilityConverter.cs" />
     <Compile Include="Converter\ReadingTypeBtnImageConverter.cs" />
     <Compile Include="Converter\StringToBitmapImageConverter.cs" />

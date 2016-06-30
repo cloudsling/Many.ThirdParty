@@ -1,2 +1,2 @@
-MainPackage=C:\Users\Hao Ling\Documents\Source\Repos\Many.ThirdParty\Many.ThirdParty\bin\x64\Release\Many.ThirdParty_2.0.16.0_x64.appx
-SymbolPackage=C:\Users\Hao Ling\Documents\Source\Repos\Many.ThirdParty\Many.ThirdParty\AppPackages\Many.ThirdParty_2.0.16.0_Test\Many.ThirdParty_2.0.16.0_x64.appxsym
+MainPackage=C:\Users\Hao Ling\Documents\Source\Repos\Many.ThirdParty\Many.ThirdParty\bin\x64\Release\Many.ThirdParty_2.0.19.0_x64.appx
+SymbolPackage=C:\Users\Hao Ling\Documents\Source\Repos\Many.ThirdParty\Many.ThirdParty\AppPackages\Many.ThirdParty_2.0.19.0_Test\Many.ThirdParty_2.0.19.0_x64.appxsym
