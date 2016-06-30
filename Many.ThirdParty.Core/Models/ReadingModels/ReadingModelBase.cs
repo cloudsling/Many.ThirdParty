@@ -13,8 +13,6 @@ namespace Many.ThirdParty.Core.Models.ReadingModels
 
         public virtual IReadingContent Content { get; set; }
 
-        public abstract void CreateContent(JsonObject json);
-
-        public abstract Command NavigateToDetailCommand { get; set; }
+        public abstract void CreateContent(JsonObject json); 
     }
 }

@@ -1,6 +1,4 @@
-﻿using System;
-using Many.ThirdParty.Core.Commands;
-using Many.ThirdParty.Core.Models.CommonModels;
+﻿using Many.ThirdParty.Core.Models.CommonModels;
 using Windows.Data.Json;
 using Newtonsoft.Json;
 
@@ -16,12 +14,6 @@ namespace Many.ThirdParty.Core.Models.ReadingModels
         {
             Type = type;
             CreateContent(json);
-            NavigateToDetailCommand = new Command(Test);
-        }
-
-        private void Test(object obj)
-        {
-
         }
 
         public override string Id
@@ -30,17 +22,12 @@ namespace Many.ThirdParty.Core.Models.ReadingModels
             {
                 return Content.Id;
             }
-
-            set
-            {
-            }
+            set { }
         }
 
         public override IReadingContent Content { get; set; }
 
-        public override Command NavigateToDetailCommand { get; set; }
-
-        public override void CreateContent(JsonObject json)
+        public sealed override void CreateContent(JsonObject json)
         {
             Content = JsonConvert.DeserializeObject<SerialContent>(json.Stringify());
         }
@@ -48,6 +35,7 @@ namespace Many.ThirdParty.Core.Models.ReadingModels
 
     public class SerialContent : IReadingContent
     {
+       // [JsonProperty("Serial_Id")]
         public string Serial_Id { get; set; }
 
         public string Number { get; set; }

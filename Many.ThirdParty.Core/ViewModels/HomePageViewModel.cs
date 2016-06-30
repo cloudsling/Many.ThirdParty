@@ -46,7 +46,7 @@ namespace Many.ThirdParty.Core.ViewModels
 
         public async Task AddHomeModel(string contentId)
         {
-            _homeModelCollection.Add(await CommonDataLoader.LoadHomeModelAsync(contentId));
+            _homeModelCollection.Add(await CommonDataLoader.GetGeneralModelAsync<HomeModel>(contentId));
         }
 
         public void InsertHomeModel(HomeModel model)

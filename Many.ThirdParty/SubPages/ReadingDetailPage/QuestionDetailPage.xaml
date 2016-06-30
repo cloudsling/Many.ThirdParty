@@ -89,10 +89,10 @@
                 </Grid>
                 <TextBlock Text="{x:Bind ViewModel.Answer_Content}" 
                            Style="{StaticResource ReadingContent}"/>
-                <uct:CommentsList  x:Name="HotComment"
-                                   ContentModelCollection="{x:Bind ViewModel.ContentModelCollection}"
-                                   HotComments="{x:Bind ViewModel.HotComments}"
-                                   NormalComments="{x:Bind ViewModel.NormalComments}"/>
+                <uct:ReadingCommentsList  x:Name="HotComment"
+                                           ContentModelCollection="{x:Bind ViewModel.ContentModelCollection}"
+                                           HotComments="{x:Bind ViewModel.HotComments}"
+                                           NormalComments="{x:Bind ViewModel.NormalComments}"/>
             </StackPanel>
         </ScrollViewer>
 

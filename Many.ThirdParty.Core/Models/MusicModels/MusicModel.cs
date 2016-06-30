@@ -1,4 +1,5 @@
 ﻿using System.Collections.ObjectModel;
+using System.Text;
 using Many.ThirdParty.Core.Interface;
 using Many.ThirdParty.Core.Models.CommonModels;
 
@@ -23,14 +24,19 @@ namespace Many.ThirdParty.Core.Models.MusicModels
 
         public string Story_Title { get; set; }
 
-        public string Story { get; set; }
+        private string _story;
+        public string Story
+        {
+            get { return _story; }
+            set { _story = new StringBuilder(value).Replace("<br>", "").ToString(); }
+        }
 
         public string Lyric { get; set; }
 
         public string Info { get; set; }
 
         public string IsFirst { get; set; }
-        
+
         public string Music_Id { get; set; }
 
         public string Charge_Edt { get; set; }
@@ -43,14 +49,14 @@ namespace Many.ThirdParty.Core.Models.MusicModels
 
         public string CommentNum { get; set; }
 
-        public string MakeTile { get; set; }
+        public string MakeTime { get; set; }
 
         public string Read_Num { get; set; }
 
         public Author Story_Author { get; set; }
-         
+
         public Author Author { get; set; }
-         
+
         public ObservableCollection<CommentModel> HotComments { get; set; }
 
         public ObservableCollection<CommentModel> NormalComments { get; set; }

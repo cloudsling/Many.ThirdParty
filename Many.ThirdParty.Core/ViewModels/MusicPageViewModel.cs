@@ -18,7 +18,10 @@ namespace Many.ThirdParty.Core.ViewModels
         {
             foreach (var id in idCol)
             {
-                MusicModelsCollection.Add(await CommonDataLoader.GetGeneralModelAsync<MusicModel>(id));
+                var model = await CommonDataLoader.GetGeneralModelAsync<MusicModel>(id);
+
+
+                MusicModelsCollection.Add(model);
             }
         }
          

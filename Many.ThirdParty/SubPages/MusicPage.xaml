@@ -5,17 +5,17 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:ctm="using:Many.ThirdParty.CustomControls"
     xmlns:cvtr="using:Many.ThirdParty.Core.Converter"
-    xmlns:MusicModel="using:Many.ThirdParty.Core.Models.MusicModels"
+    xmlns:musicModel="using:Many.ThirdParty.Core.Models.MusicModels"
     xmlns:uct="using:Many.ThirdParty.UserControls"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d">
-
-    <FlipView CompositeMode="Inherit" 
-              Background="{ThemeResource MainBackground}"  
-              ItemsSource="{x:Bind ViewModel.MusicModelsCollection, Mode=OneWay}">
-        <FlipView.ItemTemplate> 
-            <DataTemplate x:DataType="MusicModel:MusicModel">
-                <ScrollViewer>
+    
+    <Page.Resources>
+        <ResourceDictionary>
+            
+            <DataTemplate x:Key="FlipViewDataTemplate" 
+                          x:DataType="musicModel:MusicModel">
+                <ScrollViewer Padding="8 0">
                     <StackPanel>
                         <Grid>
                             <Image Height="360" 
@@ -32,10 +32,10 @@
                                     <ColumnDefinition Width="*"/>
                                 </Grid.ColumnDefinitions>
                                 <Ellipse Height="50"
-                            Width="50"
-                            Margin="0 9 5 0"
-                            VerticalAlignment="Top"
-                            HorizontalAlignment="Center">
+                                        Width="50"
+                                        Margin="0 9 5 0"
+                                        VerticalAlignment="Top"
+                                        HorizontalAlignment="Center">
                                     <Ellipse.Fill>
                                         <ImageBrush ImageSource="{x:Bind Author.Web_Url}"/>
                                     </Ellipse.Fill>
@@ -43,11 +43,11 @@
                                 <Grid Grid.Column="1">
                                     <StackPanel HorizontalAlignment="Left"
                                     Margin="0 10">
-                                        <TextBlock Text="金池"
+                                        <TextBlock Text="{x:Bind Author.User_Name}"
                                        Margin="5 0"
                                        Foreground="#FF00AEA0"
                                        Style="{StaticResource ReadingContent}" />
-                                        <TextBlock Text="歌手"
+                                        <TextBlock Text="{x:Bind Author.Desc}"
                                        Margin="5 0"
                                        Style="{StaticResource SmallText}"/>
                                     </StackPanel>
@@ -60,11 +60,11 @@
                                 <Image Source="/Resources/BgImages/play.png"/>
                             </ctm:BlankButton>
 
-                            <TextBlock Text="反省"
+                            <TextBlock Text="{x:Bind Title}"
                           VerticalAlignment="Bottom"
                           Foreground="{ThemeResource FontColor}"
                           Margin="10"/>
-                            <TextBlock Text="jun 27.2016"
+                            <TextBlock Text="{x:Bind MakeTime}"
                            FontSize="12"
                            Foreground="{ThemeResource FontColor}"
                            VerticalAlignment="Bottom"
@@ -103,10 +103,9 @@
                                Height="1" 
                                Fill="{ThemeResource FontColor}"
                                Width="600" />
-
-
+ 
                         <StackPanel>
-                            <TextBlock Text="{x:Bind Title}" 
+                            <TextBlock Text="{x:Bind Story_Title}" 
                            TextWrapping="Wrap"
                            FontSize="19"
                            FontWeight="Black"
@@ -130,6 +129,12 @@
                     </StackPanel>
                 </ScrollViewer>
             </DataTemplate>
-        </FlipView.ItemTemplate>
+        </ResourceDictionary>
+    </Page.Resources>
+
+    <FlipView CompositeMode="Inherit" 
+              Background="{ThemeResource MainBackground}"  
+              ItemsSource="{x:Bind ViewModel.MusicModelsCollection, Mode=OneWay}"
+              ItemTemplate="{StaticResource FlipViewDataTemplate}"> 
     </FlipView>
 </Page>

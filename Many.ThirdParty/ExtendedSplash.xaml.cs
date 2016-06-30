@@ -8,6 +8,7 @@ using Windows.UI.Xaml.Navigation;
 using Many.ThirdParty.Core.Commons;
 using Windows.UI.Core;
 using Many.ThirdParty.Config;
+using Many.ThirdParty.Core.Models.HomeModels;
 
 namespace Many.ThirdParty
 {
@@ -20,34 +21,32 @@ namespace Many.ThirdParty
 
         protected override async void OnNavigatedTo(NavigationEventArgs e)
         {
-#if DEBUG
-            //await Task.Delay(1000);
-#endif
             if (!await HttpHelper.CheckInternet())
             {
                 Progress.Text = "加载资源失败";
                 await new MessageDialog("请连接互联网后重试！").ShowAsync();
                 Windows.UI.Xaml.Application.Current.Exit();
             }
+
             HomePage.TodaysListId = await CommonDataLoader.GetGeneralList(HomePage.CumulateListIndex.ToString(), ListType.HomeList);
             HomePage.CumulateListIndex += 1;
             Progress.Text = "加载资源成功!正在初始化";
 
-            NavigationManager.GeneralFrame = this.Frame;
+            NavigationManager.GeneralFrame = Frame;
             Frame.Navigate(
                 ViewModelBase.CurrentSettings.SkipPreLoadPage ? typeof(MainFrameContainer) : typeof(PreLoadPage),
-                HomePage.CurrentHomeModle = await CommonDataLoader.LoadHomeModelAsync(HomePage.TodaysListId[0]));
+                HomePage.CurrentHomeModle = await CommonDataLoader.GetGeneralModelAsync<HomeModel>(HomePage.TodaysListId[0]));
 
             SystemNavigationManager.GetForCurrentView().BackRequested += PreLoadPage_BackRequested;
         }
 
         private void PreLoadPage_BackRequested(object sender, BackRequestedEventArgs e)
         {
-            if (this.Frame.SourcePageType == typeof(MainFrameContainer)) return;
+            if (Frame.SourcePageType == typeof(MainFrameContainer)) return;
 
-            if (this.Frame.CanGoBack)
+            if (Frame.CanGoBack)
             {
-                this.Frame.GoBack();
+                Frame.GoBack();
                 e.Handled = true;
             }
         }

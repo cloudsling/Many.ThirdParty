@@ -163,6 +163,9 @@
     <Compile Include="UserControls\GeneralListViewItem.xaml.cs">
       <DependentUpon>GeneralListViewItem.xaml</DependentUpon>
     </Compile>
+    <Compile Include="UserControls\ReadingCommentsList.xaml.cs">
+      <DependentUpon>ReadingCommentsList.xaml</DependentUpon>
+    </Compile>
     <Compile Include="UserControls\ReadingDetailPageBottomGrid.xaml.cs">
       <DependentUpon>ReadingDetailPageBottomGrid.xaml</DependentUpon>
     </Compile>
@@ -337,6 +340,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="UserControls\GeneralListViewItem.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControls\ReadingCommentsList.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

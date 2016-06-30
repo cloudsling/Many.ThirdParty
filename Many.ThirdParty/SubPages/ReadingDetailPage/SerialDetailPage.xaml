@@ -2,11 +2,9 @@
     x:Class="Many.ThirdParty.SubPages.ReadingDetailPage.SerialDetailPage"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-    xmlns:local="using:Many.ThirdParty.SubPages.ReadingDetailPage" 
     xmlns:ctm="using:Many.ThirdParty.CustomControls"
     xmlns:cvtr="using:Many.ThirdParty.Core.Converter"
     xmlns:uct="using:Many.ThirdParty.UserControls"
-    xmlns:cvm="using:Many.ThirdParty.Core.Models.CommonModels"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d"> 
@@ -95,10 +93,9 @@
                            Style="{StaticResource ReadingText}"/>
                 <TextBlock Text="{x:Bind ViewModel.Content}" 
                            Style="{StaticResource ReadingContent}"/>
-                <uct:CommentsList  x:Name="HotComment"
-                                   ContentModelCollection="{x:Bind ViewModel.ContentModelCollection}"
-                                   HotComments="{x:Bind ViewModel.HotComments}"
-                                   NormalComments="{x:Bind ViewModel.NormalComments}"/>
+                <uct:ReadingCommentsList ContentModelCollection="{x:Bind ViewModel.ContentModelCollection}"
+                                         HotComments="{x:Bind ViewModel.HotComments}"
+                                         NormalComments="{x:Bind ViewModel.NormalComments}"/>
             </StackPanel>
         </ScrollViewer>
 

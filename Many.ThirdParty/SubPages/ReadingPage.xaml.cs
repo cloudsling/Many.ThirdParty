@@ -10,7 +10,6 @@ using Windows.UI.Xaml.Shapes;
 using Windows.UI;
 using Windows.UI.Xaml.Navigation;
 using Windows.UI.Xaml;
-using System.Diagnostics;
 
 namespace Many.ThirdParty.SubPages
 {
@@ -23,23 +22,22 @@ namespace Many.ThirdParty.SubPages
         {
             if (GetIndexFromFlipView(sender) >= 0 && GetIndexFromFlipView(sender) <= 8)
             {
-                ChangeAllEllipseColor(GetIndexFromFlipView(sender), ManyEllipse.Children);
+                ChangeAllEllipseColor(
+                    GetIndexFromFlipView(sender),
+                    ManyEllipse.Children);
             }
         }
 
-        private int GetIndexFromFlipView(object sender)
+        private static int GetIndexFromFlipView(object sender)
         {
-            var flipView = sender as FlipView;
-            if (flipView != null) return flipView.SelectedIndex;
-
-            return 0;
+            return (sender as FlipView)?.SelectedIndex ?? 0;
         }
 
         private int GetIndexFromFlipView() => fv.SelectedIndex;
 
         private async void MainListView_ItemClick(object sender, ItemClickEventArgs e)
         {
-            ReadingModelBase modelBase = e.ClickedItem as ReadingModelBase;
+            var modelBase = e.ClickedItem as ReadingModelBase;
 
             if (modelBase == null) return;
 
@@ -93,7 +91,7 @@ namespace Many.ThirdParty.SubPages
                 await ViewModel.RefreshCollection();
             }
 
-            RegisterTimer(_timer);
+            RegisterTimer(_timer, ViewModel.CarouselModelCollection.Count - 1);
 
             _timer.Start();
         }
@@ -102,13 +100,16 @@ namespace Many.ThirdParty.SubPages
 
         private readonly DispatcherTimer _timer = new DispatcherTimer();
 
-        private void RegisterTimer(DispatcherTimer timer)
+        private void RegisterTimer(DispatcherTimer timer, int count)
         {
+            if (timer == null)
+                throw new ArgumentNullException(nameof(timer));
+
             timer.Interval = TimeSpan.FromMilliseconds(1000 / Fps);
 
             timer.Tick += (p1, p2) =>
             {
-                if (GetIndexFromFlipView() == 8)
+                if (GetIndexFromFlipView() == count)
                     fv.SelectedIndex = 0;
                 else
                     fv.SelectedIndex += 1;
@@ -120,7 +121,7 @@ namespace Many.ThirdParty.SubPages
         /// </summary>
         /// <param name="currentIndex"></param>
         /// <param name="collection"></param>
-        private void ChangeAllEllipseColor(int currentIndex, UIElementCollection collection)
+        private static void ChangeAllEllipseColor(int currentIndex, UIElementCollection collection)
         {
             for (int index = 0; index < collection.Count; index++)
             {

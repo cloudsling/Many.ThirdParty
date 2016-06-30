@@ -15,18 +15,9 @@ namespace Many.ThirdParty.Core.Models.ReadingModels
         {
             Type = type;
             CreateContent(json);
-            NavigateToDetailCommand = new Command(Test);
-        }
-
-
-        private void Test(object obj)
-        {
-
         }
 
         public override IReadingContent Content { get; set; }
-
-        public override Command NavigateToDetailCommand { get; set; }
 
         public override string Id
         {
@@ -36,7 +27,7 @@ namespace Many.ThirdParty.Core.Models.ReadingModels
             }
 
             set
-            { 
+            {
             }
         }
 

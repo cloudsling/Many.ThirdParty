@@ -95,8 +95,8 @@
                            Style="{ThemeResource ReadingText}"/>
                 <TextBlock Text="{x:Bind ViewModel.Hp_Content}" 
                            Margin="20 5"
-                           Style="{ThemeResource ReadingContent}"/> 
-                <uct:CommentsList  x:Name="HotComment"
+                           Style="{ThemeResource ReadingContent}"/>
+                <uct:ReadingCommentsList  x:Name="HotComment"
                                    ContentModelCollection="{x:Bind ViewModel.ContentModelCollection}"
                                    HotComments="{x:Bind ViewModel.HotComments}"
                                    NormalComments="{x:Bind ViewModel.NormalComments}"/> 

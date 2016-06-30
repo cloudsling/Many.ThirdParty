@@ -37,10 +37,12 @@ namespace Many.ThirdParty.Core.Data
             return home;
         }
 
-        public static async Task<HomeModel> LoadHomeModelAsync(string contentId)
-        {
-            return GetTFormString<HomeModel>(await GetMainContentGeneric(string.Format(ServicesUrl.MainContent, contentId)));
-        }
+        //public static async Task<HomeModel> LoadHomeModelAsync(string contentId)
+        //{
+        //    return GetTFormString<HomeModel>(
+        //        await GetMainContentGeneric(
+        //            string.Format(ServicesUrl.MainContent, contentId)));
+        //}
 
         #region private method
         private static async Task<string> GetMainListGeneric(string uri)
@@ -73,6 +75,8 @@ namespace Many.ThirdParty.Core.Data
                     return string.Format(ServicesUrl.MusicContent, id);
                 case nameof(HomeModel):
                     return string.Format(ServicesUrl.MainContent, id);
+                case nameof(CarouselDetailModel):
+                    return string.Format(ServicesUrl.ReadingCarousel, id); 
                 default:
                     return string.Empty;
             }
@@ -93,12 +97,16 @@ namespace Many.ThirdParty.Core.Data
 
         public static async Task<ObservableCollection<T>> GetGeneralModelsCollectionAsync<T>(string id)
         {
-            return GetTFormString<ObservableCollection<T>>(await GetMainListGeneric(GetUriByModelType(typeof(T), id)));
+            return GetTFormString<ObservableCollection<T>>(
+                await GetMainListGeneric(
+                    GetUriByModelType(typeof(T), id)));
         }
 
         public static async Task<T> GetGeneralModelAsync<T>(string id) where T : class
         {
-            return GetTFormString<T>(await GetMainContentGeneric(GetUriByModelType(typeof(T), id)));
+            return GetTFormString<T>(
+                await GetMainContentGeneric(
+                    GetUriByModelType(typeof(T), id)));
         }
 
         public static async Task<ObservableCollection<ReadingModel>> GetReadingModel(string listId)

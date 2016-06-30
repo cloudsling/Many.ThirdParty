@@ -11,25 +11,16 @@ namespace Many.ThirdParty.Core.Models.ReadingModels
         public EssayModel(int type, JsonObject json)
         {
             Type = type;
-            CreateContent(json);
-            NavigateToDetailCommand = new Command(Test);
+            CreateContent(json); 
         }
 
         public EssayModel()
         {
 
         }
-
-        private void Test(object obj)
-        {
-
-        }
-
-
+          
         public override IReadingContent Content { get; set; }
-
-        public override Command NavigateToDetailCommand { get; set; }
-
+ 
 
         public override string Id
         {
