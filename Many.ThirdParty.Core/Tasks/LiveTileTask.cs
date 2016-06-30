@@ -9,6 +9,7 @@ using Windows.Data.Xml.Dom;
 using Windows.Foundation;
 using Windows.Storage;
 using Windows.UI.Notifications;
+using Many.ThirdParty.Core.Enum;
 
 namespace Many.ThirdParty.Core.Tasks
 {

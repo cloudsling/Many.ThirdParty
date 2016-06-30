@@ -1,13 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.Linq;
+﻿using System.Collections.Generic;
 using System.Text;
-using System.Threading.Tasks;
 using Many.ThirdParty.Core.Models.CommonModels;
-using Many.ThirdParty.Core.Service;
-using Many.ThirdParty.Core.Tools;
-using Newtonsoft.Json;
 
 namespace Many.ThirdParty.Core.ViewModels.ReadingDetailPageViewModels
 {
@@ -37,25 +30,6 @@ namespace Many.ThirdParty.Core.ViewModels.ReadingDetailPageViewModels
                 return new StringBuilder(_hp_Content).Replace("<br>", "").ToString();
             }
             set { _hp_Content = value; }
-        }
-
-        public static async Task<ReadingDetailPageViewModelBase> CreateViewModel(string id)
-        {
-            if (string.IsNullOrEmpty(id)) return null;
-
-            var viewModel = JsonConvert.DeserializeObject<EssayDetailPageViewModel>((await DataHelper.GetJsonObjectAsync(GetEssayUri(id))).Stringify());
-            await viewModel.AddToCommentsCollection(GetCommentUri(id));
-            return viewModel;
-        }
-
-        private static string GetEssayUri(string id)
-        {
-            return string.Format(ServicesUrl.EssayUpdate, id, "0");
-        }
-
-        private static string GetCommentUri(string id)
-        {
-            return string.Format(ServicesUrl.EssayComment, id, "0");
-        }
+        } 
     }
 }

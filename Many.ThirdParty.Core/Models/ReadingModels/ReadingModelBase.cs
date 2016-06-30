@@ -1,5 +1,4 @@
-﻿using Many.ThirdParty.Core.Commands;
-using Windows.Data.Json;
+﻿using Windows.Data.Json;
 
 namespace Many.ThirdParty.Core.Models.ReadingModels
 {
@@ -11,8 +10,8 @@ namespace Many.ThirdParty.Core.Models.ReadingModels
 
         public abstract string Id { get; set; }
 
-        public virtual IReadingContent Content { get; set; }
+        public abstract void CreateContent(JsonObject json);
 
-        public abstract void CreateContent(JsonObject json); 
+        public virtual ReadingContent Content { get; set; }
     }
 }

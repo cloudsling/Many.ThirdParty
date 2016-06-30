@@ -9,10 +9,13 @@ namespace Many.ThirdParty.Core.Models.ReadingModels
         public SerialModel()
         {
         }
-
-        public SerialModel(int type, JsonObject json)
+        public SerialModel(int type)
         {
             Type = type;
+        }
+
+        public SerialModel(int type, JsonObject json) : this(type)
+        {
             CreateContent(json);
         }
 
@@ -25,7 +28,7 @@ namespace Many.ThirdParty.Core.Models.ReadingModels
             set { }
         }
 
-        public override IReadingContent Content { get; set; }
+        public override ReadingContent Content { get; set; }
 
         public sealed override void CreateContent(JsonObject json)
         {
@@ -33,9 +36,9 @@ namespace Many.ThirdParty.Core.Models.ReadingModels
         }
     }
 
-    public class SerialContent : IReadingContent
+    public class SerialContent : ReadingContent
     {
-       // [JsonProperty("Serial_Id")]
+        // [JsonProperty("Serial_Id")]
         public string Serial_Id { get; set; }
 
         public string Number { get; set; }

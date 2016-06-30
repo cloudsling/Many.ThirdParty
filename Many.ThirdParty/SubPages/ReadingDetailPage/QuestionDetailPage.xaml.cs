@@ -21,7 +21,7 @@ namespace Many.ThirdParty.SubPages.ReadingDetailPage
             this.RequestedTheme = ViewModel.AppSettings.NightModeEnable ? ElementTheme.Dark : ElementTheme.Light;
         }
 
-        private void BackButton_Click(object sender, Windows.UI.Xaml.RoutedEventArgs e)
+        private void BackButton_Click(object sender, RoutedEventArgs e)
         {
             NavigationManager.GoBack(this.Frame);
         }

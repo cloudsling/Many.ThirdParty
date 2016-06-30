@@ -10,15 +10,10 @@ using Many.ThirdParty.Core.Models.ReadingModels;
 using System.Collections.ObjectModel;
 using Many.ThirdParty.Core.Factories;
 using Many.ThirdParty.Core.Models.MusicModels;
+using Many.ThirdParty.Core.Enum;
 
 namespace Many.ThirdParty.Core.Data
 {
-    public enum ListType
-    {
-        HomeList,
-        MusicList,
-    }
-
     public static class CommonDataLoader
     {
         public static async Task<List<string>> GetGeneralList(string listId, ListType type)
@@ -76,11 +71,12 @@ namespace Many.ThirdParty.Core.Data
                 case nameof(HomeModel):
                     return string.Format(ServicesUrl.MainContent, id);
                 case nameof(CarouselDetailModel):
-                    return string.Format(ServicesUrl.ReadingCarousel, id); 
+                    return string.Format(ServicesUrl.ReadingCarousel, id);
                 default:
                     return string.Empty;
             }
         }
+
         private static string GetUriByModelType(ListType type, string id)
         {
             switch (type)
@@ -100,6 +96,12 @@ namespace Many.ThirdParty.Core.Data
             return GetTFormString<ObservableCollection<T>>(
                 await GetMainListGeneric(
                     GetUriByModelType(typeof(T), id)));
+        }
+
+        public static async Task<ObservableCollection<T>> GetGeneralModelsCollectionAsync<T>(string id, string uri)
+        {
+            return GetTFormString<ObservableCollection<T>>(
+                await GetMainListGeneric(uri));
         }
 
         public static async Task<T> GetGeneralModelAsync<T>(string id) where T : class

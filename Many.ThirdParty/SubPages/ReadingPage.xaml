@@ -28,7 +28,7 @@
             <RowDefinition Height="5*"/>
         </Grid.RowDefinitions> 
             <Grid Height="225">
-                <FlipView x:Name="fv"  
+                <FlipView x:Name="Fv"  
                               ItemsSource="{x:Bind ViewModel.CarouselModelCollection}" 
                               SelectionChanged="fv_SelectionChanged">
                     <FlipView.ItemTemplate>

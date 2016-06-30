@@ -33,7 +33,7 @@ namespace Many.ThirdParty.SubPages
             return (sender as FlipView)?.SelectedIndex ?? 0;
         }
 
-        private int GetIndexFromFlipView() => fv.SelectedIndex;
+        private int GetIndexFromFlipView() => Fv.SelectedIndex;
 
         private async void MainListView_ItemClick(object sender, ItemClickEventArgs e)
         {
@@ -110,9 +110,9 @@ namespace Many.ThirdParty.SubPages
             timer.Tick += (p1, p2) =>
             {
                 if (GetIndexFromFlipView() == count)
-                    fv.SelectedIndex = 0;
+                    Fv.SelectedIndex = 0;
                 else
-                    fv.SelectedIndex += 1;
+                    Fv.SelectedIndex += 1;
             };
         }
 

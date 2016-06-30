@@ -93,7 +93,7 @@
                            Style="{StaticResource ReadingText}"/>
                 <TextBlock Text="{x:Bind ViewModel.Content}" 
                            Style="{StaticResource ReadingContent}"/>
-                <uct:ReadingCommentsList ContentModelCollection="{x:Bind ViewModel.ContentModelCollection}"
+                <uct:ReadingCommentsList ContentModelCollection="{x:Bind ViewModel.RelatedCollection}"
                                          HotComments="{x:Bind ViewModel.HotComments}"
                                          NormalComments="{x:Bind ViewModel.NormalComments}"/>
             </StackPanel>

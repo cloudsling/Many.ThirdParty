@@ -1,6 +1,6 @@
 ﻿namespace Many.ThirdParty.Core.Models.ReadingModels
 {
-    public abstract class IReadingContent
+    public abstract class ReadingContent
     {
         public abstract string Title { get; set; }
 

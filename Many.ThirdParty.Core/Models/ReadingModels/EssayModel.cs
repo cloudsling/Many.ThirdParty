@@ -8,19 +8,22 @@ namespace Many.ThirdParty.Core.Models.ReadingModels
 {
     public class EssayModel : ReadingModelBase
     {
-        public EssayModel(int type, JsonObject json)
+        public EssayModel(int type, JsonObject json) : this(type)
+        {
+            CreateContent(json);
+        }
+
+        public EssayModel(int type)
         {
             Type = type;
-            CreateContent(json); 
         }
 
         public EssayModel()
         {
-
         }
-          
-        public override IReadingContent Content { get; set; }
- 
+
+        public override ReadingContent Content { get; set; }
+
 
         public override string Id
         {
@@ -40,7 +43,7 @@ namespace Many.ThirdParty.Core.Models.ReadingModels
         }
     }
 
-    public class EssayContent : IReadingContent
+    public class EssayContent : ReadingContent
     {
         public string Content_Id { get; set; }
 

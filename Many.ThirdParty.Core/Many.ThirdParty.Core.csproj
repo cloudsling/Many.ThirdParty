@@ -114,6 +114,8 @@
     <Compile Include="Converter\SwitchVisibilityConverter.cs" />
     <Compile Include="Data\Comments.cs" />
     <Compile Include="Data\CommonDataLoader.cs" />
+    <Compile Include="Enum\ListType.cs" />
+    <Compile Include="Enum\RelatedContentOption.cs" />
     <Compile Include="Interface\IncrementalLoadingCollection.cs" />
     <Compile Include="Data\Replicators.cs" />
     <Compile Include="Data\Saver.cs" />
@@ -131,7 +133,7 @@
     <Compile Include="Models\MovieModels\MovieListModel.cs" />
     <Compile Include="Models\MusicModels\MusicModel.cs" />
     <Compile Include="Models\ReadingModels\EssayModel.cs" />
-    <Compile Include="Models\ReadingModels\IReadingContent.cs" />
+    <Compile Include="Models\ReadingModels\ReadingContent.cs" />
     <Compile Include="Models\ReadingModels\ReadingModelBase.cs" />
     <Compile Include="Models\ReadingModels\QuestionModel.cs" />
     <Compile Include="Models\ReadingModels\CarouselModel.cs" />
@@ -148,6 +150,7 @@
     <Compile Include="Tools\HttpHelper.cs" />
     <Compile Include="Tools\JsonHelper.cs" />
     <Compile Include="Tools\StatusBarModifier.cs" />
+    <Compile Include="Tools\UriHelper.cs" />
     <Compile Include="ViewModels\AddlPageViewModels\SearchPageViewModel.cs" />
     <Compile Include="ViewModels\CarouselDetailPageViewModel.cs" />
     <Compile Include="ViewModels\HomePageViewModel.cs" />

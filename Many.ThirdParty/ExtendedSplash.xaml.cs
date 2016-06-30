@@ -8,6 +8,7 @@ using Windows.UI.Xaml.Navigation;
 using Many.ThirdParty.Core.Commons;
 using Windows.UI.Core;
 using Many.ThirdParty.Config;
+using Many.ThirdParty.Core.Enum;
 using Many.ThirdParty.Core.Models.HomeModels;
 
 namespace Many.ThirdParty

@@ -1,6 +1,7 @@
 ﻿using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Navigation;
 using Many.ThirdParty.Core.Data;
+using Many.ThirdParty.Core.Enum;
 using Many.ThirdParty.Core.ViewModels;
 
 namespace Many.ThirdParty.SubPages

@@ -9,13 +9,17 @@ namespace Many.ThirdParty.Core.Models.ReadingModels
         {
         }
 
-        public QuestionModel(int type, JsonObject json)
+        public QuestionModel(int type)
         {
             Type = type;
+        }
+
+        public QuestionModel(int type, JsonObject json) : this(type)
+        {
             CreateContent(json);
         }
 
-        public override IReadingContent Content { get; set; }
+        public override ReadingContent Content { get; set; }
 
         public override string Id
         {
@@ -35,7 +39,7 @@ namespace Many.ThirdParty.Core.Models.ReadingModels
         }
     }
 
-    public class QuestionContent : IReadingContent
+    public class QuestionContent : ReadingContent
     {
         public string Question_Id { get; set; }
 

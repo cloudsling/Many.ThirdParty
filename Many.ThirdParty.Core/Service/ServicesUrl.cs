@@ -1,4 +1,7 @@
-﻿namespace Many.ThirdParty.Core.Service
+﻿using System;
+using Many.ThirdParty.Core.Enum;
+
+namespace Many.ThirdParty.Core.Service
 {
     internal static class ServicesUrl
     {
@@ -19,13 +22,9 @@
         public static string UnknowReading => Baseuri + "reading/carousel/pv/68?";
 
         public static string MusicContent => Baseuri + "music/detail/{0}?";
-
-        public static string MusicRelatedContent => Baseuri + "related/music/{0}";
-
+         
         public static string MusicComment => Baseuri + "comment/praiseandtime/music/{0}/0?";
-
-        public static string Unknow => Baseuri + "reading/carousel/pv/67?";
-
+         
         public static string MovieList => Baseuri + "movie/list/0?";
 
         public static string SearchMain => Baseuri + "search/hp/{0}?";
@@ -37,8 +36,6 @@
         public static string SearchMusic => Baseuri + "search/music/{0}?";
 
         public static string QuestionContent => Baseuri + "question/update/{0}/{1}?";
-
-        public static string QuestionRelatedContent => Baseuri + "related/question/{0}?";
 
         public static string QuestionComment => Baseuri + "comment/praiseandtime/question/{0}/{1}?";
 
@@ -55,5 +52,24 @@
         public static string EssayComment => Baseuri + "comment/praiseandtime/essay/{0}/{1}?";
 
         public static string SearchReading => Baseuri + "search/reading/{0}?";
+
+        public static string GetRelatedContent(RelatedContentOption option)
+        {
+            switch (option)
+            {
+                case RelatedContentOption.Question:
+                    return Baseuri + "related/question/{0}?";
+                case RelatedContentOption.Essay:
+                    return Baseuri + "related/essay/{0}?";
+                case RelatedContentOption.Serial:
+                    return Baseuri + "related/serial/{0}?";
+                case RelatedContentOption.Music:
+                    return Baseuri + "related/music/{0}?";
+                case RelatedContentOption.Movie:
+                    return Baseuri + "related/movie/{0}?";
+                default:
+                    throw new ArgumentOutOfRangeException(nameof(option), option, null);
+            }
+        }
     }
 }

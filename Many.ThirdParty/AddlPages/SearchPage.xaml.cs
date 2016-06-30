@@ -21,13 +21,13 @@ namespace Many.ThirdParty.AddlPages
     {
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            UpdateSearchButtonsUI(sender as Button);
-            UpdateListViewVisibility(MappingToListView[sender as Button]);
+            UpdateSearchButtonsUi(sender as Button);
+            UpdateListViewVisibility(_mappingToListView[sender as Button]);
         }
 
         private void GoBackButton_Click(object sender, RoutedEventArgs e)
         {
-            NavigationManager.GoBack(this.Frame);
+            NavigationManager.GoBack(Frame);
         }
 
         private void HpList_ItemClick(object sender, ItemClickEventArgs e)
@@ -38,21 +38,28 @@ namespace Many.ThirdParty.AddlPages
         private async void ReadingList_ItemClick(object sender, ItemClickEventArgs e)
         {
             var model = e.ClickedItem as SearchReadingModel;
-            
-            switch (model.Type)
-            {
-                case "essay":
-                    NavigationManager.GeneralNavigate(typeof(EssayDetailPage), await EssayDetailPageViewModel.CreateViewModel(model.Id));
-                    return;
-                case "question":
-                    NavigationManager.GeneralNavigate(typeof(QuestionDetailPage), await QuestionDetailPageViewModel.CreateViewModel(model.Id));
-                    return;
-                case "serialcontent":
-                    NavigationManager.GeneralNavigate(typeof(SerialDetailPage), await SerialDetailPageViewModel.CreateViewModel(model.Id));
-                    return;
-                default:
-                    return;
-            }
+
+            if (model != null)
+                switch (model.Type)
+                {
+                    case "essay":
+                        NavigationManager.GeneralNavigate(
+                            typeof(EssayDetailPage),
+                            await ReadingDetailPageViewModelBase.CreateViewModel<EssayDetailPageViewModel>(model.Id));
+                        return;
+                    case "question":
+                        NavigationManager.GeneralNavigate(
+                            typeof(QuestionDetailPage),
+                            await ReadingDetailPageViewModelBase.CreateViewModel<QuestionDetailPageViewModel>(model.Id));
+                        return;
+                    case "serialcontent":
+                        NavigationManager.GeneralNavigate(
+                            typeof(SerialDetailPage),
+                            await ReadingDetailPageViewModelBase.CreateViewModel<SerialDetailPageViewModel>(model.Id));
+                        return;
+                    default:
+                        return;
+                }
         }
 
         private void MusicList_ItemClick(object sender, ItemClickEventArgs e)
@@ -69,7 +76,7 @@ namespace Many.ThirdParty.AddlPages
         {
 
         }
-        
+
         private void SearchContent_KeyUp(object sender, Windows.UI.Xaml.Input.KeyRoutedEventArgs e)
         {
             if (e.Key == Windows.System.VirtualKey.Enter)
@@ -85,7 +92,7 @@ namespace Many.ThirdParty.AddlPages
         public SearchPage()
         {
             ViewModel = new SearchPageViewModel();
-            this.InitializeComponent();
+            InitializeComponent();
             InitializeFields();
 
             NavigationCacheMode = NavigationCacheMode.Enabled;
@@ -93,10 +100,10 @@ namespace Many.ThirdParty.AddlPages
 
         void InitializeFields()
         {
-            CurrentButton = Hp;
-            CurrentListView = HpList;
+            _currentButton = Hp;
+            _currentListView = HpList;
 
-            MappingToListView = new Dictionary<Button, ListView>
+            _mappingToListView = new Dictionary<Button, ListView>
             {
                 { Hp, HpList },
                 { Reading, ReadingList },
@@ -108,43 +115,43 @@ namespace Many.ThirdParty.AddlPages
 
         private void UpdateListViewVisibility(ListView sender)
         {
-            CurrentListView.Visibility = Visibility.Collapsed;
+            _currentListView.Visibility = Visibility.Collapsed;
 
-            CurrentListView = sender;
+            _currentListView = sender;
 
-            CurrentListView.Visibility = Visibility.Visible;
+            _currentListView.Visibility = Visibility.Visible;
         }
 
-        private void UpdateSearchButtonsUI(Button sender)
+        private void UpdateSearchButtonsUi(Button sender)
         {
-            CurrentButton.Foreground = unselectColorBrush;
+            _currentButton.Foreground = UnselectColorBrush;
 
-            CurrentButton = sender;
+            _currentButton = sender;
 
-            CurrentButton.Foreground = selectedColorBrush;
+            _currentButton.Foreground = SelectedColorBrush;
         }
 
-        protected async override void OnNavigatedTo(NavigationEventArgs e)
+        protected override async void OnNavigatedTo(NavigationEventArgs e)
         {
-            this.RequestedTheme = ViewModel.AppSettings.NightModeEnable ? ElementTheme.Dark : ElementTheme.Light;
-            
+            RequestedTheme = ViewModel.AppSettings.NightModeEnable ? ElementTheme.Dark : ElementTheme.Light;
+
             StartAnimation.Begin();
             await Task.Delay(400);
             SearchContent.Focus(FocusState.Pointer);
-        } 
+        }
     }
 
     public sealed partial class SearchPage : Page
     {
         private SearchPageViewModel ViewModel { get; set; }
 
-        private static SolidColorBrush selectedColorBrush = new SolidColorBrush(Color.FromArgb(0xFF, 142, 182, 230));
-        private static SolidColorBrush unselectColorBrush = new SolidColorBrush(Color.FromArgb(0xFF, 51, 51, 51));
+        private static readonly SolidColorBrush SelectedColorBrush = new SolidColorBrush(Color.FromArgb(0xFF, 142, 182, 230));
+        private static readonly SolidColorBrush UnselectColorBrush = new SolidColorBrush(Color.FromArgb(0xFF, 51, 51, 51));
 
-        private Button CurrentButton;
+        private Button _currentButton;
 
-        private ListView CurrentListView;
+        private ListView _currentListView;
 
-        private Dictionary<Button, ListView> MappingToListView;
+        private Dictionary<Button, ListView> _mappingToListView;
     }
 }

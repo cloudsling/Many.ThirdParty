@@ -97,7 +97,7 @@
                            Margin="20 5"
                            Style="{ThemeResource ReadingContent}"/>
                 <uct:ReadingCommentsList  x:Name="HotComment"
-                                   ContentModelCollection="{x:Bind ViewModel.ContentModelCollection}"
+                                   ContentModelCollection="{x:Bind ViewModel.RelatedCollection}"
                                    HotComments="{x:Bind ViewModel.HotComments}"
                                    NormalComments="{x:Bind ViewModel.NormalComments}"/> 
             </StackPanel>
