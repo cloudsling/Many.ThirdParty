@@ -21,7 +21,6 @@ namespace Many.ThirdParty.Core.ViewModels.ReadingDetailPageViewModels
             RelatedCollection = new ObservableCollection<ReadingModelBase>();
         }
 
-        // ReSharper disable once InconsistentNaming
         public string Charge_Edt { get; set; }
 
         public string PraiseNum { get; set; }
@@ -52,32 +51,32 @@ namespace Many.ThirdParty.Core.ViewModels.ReadingDetailPageViewModels
             switch (typeof(T).Name)
             {
                 case nameof(QuestionDetailPageViewModel):
-                    AddToRelatedCollection(
-                        await CommonDataLoader.GetGeneralModelsCollectionAsync<QuestionContent>(id, uri),
-                        new QuestionModel(3));
+                    AddToRelatedCollection<QuestionContent, QuestionModel>(
+                        await CommonDataLoader.GetGeneralModelsCollectionAsync<QuestionContent>(id, uri));
                     return;
                 case nameof(EssayDetailPageViewModel):
-                    AddToRelatedCollection(
-                        await CommonDataLoader.GetGeneralModelsCollectionAsync<EssayContent>(id, uri),
-                        new EssayModel(1));
+                    AddToRelatedCollection<EssayContent, EssayModel>(
+                        await CommonDataLoader.GetGeneralModelsCollectionAsync<EssayContent>(id, uri));
                     return;
                 case nameof(SerialDetailPageViewModel):
-                    AddToRelatedCollection(
-                        await CommonDataLoader.GetGeneralModelsCollectionAsync<SerialContent>(id, uri),
-                        new SerialModel(2));
+                    AddToRelatedCollection<SerialContent, SerialModel>(
+                        await CommonDataLoader.GetGeneralModelsCollectionAsync<SerialContent>(id, uri)
+                        );
                     return;
             }
         }
 
-        private void AddToRelatedCollection<T>(IEnumerable<T> col, ReadingModelBase modelBase) where T : ReadingContent
+        private void AddToRelatedCollection<T, TM>(IEnumerable<T> col) where T : ReadingContent where TM : ReadingModelBase, new()
         {
             foreach (var content in col)
             {
-                modelBase.Content = content;
-                RelatedCollection.Add(modelBase);
+                ReadingModelBase temp = new TM();
+                temp.Content = content;
+                RelatedCollection.Add(temp);
             }
         }
-         
+
+
         public static async Task<T> CreateViewModel<T>(string id) where T : ReadingDetailPageViewModelBase
         {
             if (string.IsNullOrEmpty(id)) return null;

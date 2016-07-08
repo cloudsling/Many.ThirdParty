@@ -20,6 +20,7 @@ namespace Many.ThirdParty.Core.Models.ReadingModels
 
         public EssayModel()
         {
+            Type = 1;
         }
 
         public override ReadingContent Content { get; set; }

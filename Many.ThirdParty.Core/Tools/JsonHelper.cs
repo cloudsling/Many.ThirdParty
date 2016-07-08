@@ -1,23 +1,20 @@
 ﻿using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
-using Windows.Data.Json;
+using System.Linq;
+using Windows.Data.Json; 
 
 namespace Many.ThirdParty.Core.Tools
 {
     internal static class JsonHelper
     {
-        private static readonly string DATANAME = "data";
+        private const string Dataname = "data";
 
         internal static JsonObject GetObjectFormString(string content)
         {
             JsonObject jsonObject;
 
-            if (JsonObject.TryParse(content, out jsonObject))
-            {
-                return jsonObject;
-            }
-            return null;
+            return JsonObject.TryParse(content, out jsonObject) ? jsonObject : null;
         }
 
         internal static JsonArray GetArrayFromObject(JsonObject json, string name)
@@ -43,7 +40,13 @@ namespace Many.ThirdParty.Core.Tools
                 return null;
             }
         }
-        
+
+        internal static IEnumerable<T> Select<T>(JsonArray arr)
+        {
+            return arr.Select(
+                item => JsonConvert.DeserializeObject<T>(item.Stringify()));
+        }
+
         internal static JsonObject GetObjectFromString(string content)
         {
             return GetObjectFormString(content);
@@ -51,12 +54,12 @@ namespace Many.ThirdParty.Core.Tools
 
         internal static JsonObject GetObjectFromObject(JsonObject json)
         {
-            return GetObjectFromObject(json, DATANAME);
+            return GetObjectFromObject(json, Dataname);
         }
 
         internal static JsonArray GetArrayFromObject(JsonObject json)
         {
-            return GetArrayFromObject(json, DATANAME);
+            return GetArrayFromObject(json, Dataname);
         }
 
         internal static T GetTFormString<T>(string content) where T : class
@@ -66,8 +69,7 @@ namespace Many.ThirdParty.Core.Tools
 
         internal static IEnumerable<T> GetTFormArray<T>(JsonArray array) where T : class
         {
-            foreach (var item in array) 
-                yield return JsonConvert.DeserializeObject<T>(item.Stringify()); 
+            return array.Select(item => JsonConvert.DeserializeObject<T>(item.Stringify()));
         }
     }
 }

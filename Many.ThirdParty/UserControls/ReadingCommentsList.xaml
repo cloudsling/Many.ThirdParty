@@ -5,7 +5,7 @@
     xmlns:local="using:Many.ThirdParty.UserControls"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    mc:Ignorable="d" >
+    mc:Ignorable="d">
 
     <ScrollViewer VerticalScrollMode="Enabled" >
         <StackPanel>
@@ -13,19 +13,7 @@
             <local:ReadingListView ContentModelCollection="{x:Bind ContentModelCollection, Mode=OneWay}"/>
 
             <local:CommentsList HotComments="{x:Bind HotComments, Mode=OneWay}"
-                                NormalComments="{x:Bind NormalComments, Mode=OneWay}"/>
-            <!--<local:GeneralListViewItem  Title="评论列表"/>
-            <local:CommentList CommentModelCollection="{x:Bind HotComments, Mode=OneWay}"/>
-            <Grid Margin="0 -15 0 0">
-                <Grid Padding="25 0"
-                      Background="{ThemeResource MainBackground}"
-                      HorizontalAlignment="Center" 
-                      VerticalAlignment="Center">
-                    <TextBlock Text="以上是热门评论"
-                               Style="{StaticResource SmallDeepText}"/>
-                </Grid>
-            </Grid>
-            <local:CommentList CommentModelCollection="{x:Bind NormalComments, Mode=OneWay}"/>-->
+                                NormalComments="{x:Bind NormalComments, Mode=OneWay}"/> 
         </StackPanel>
     </ScrollViewer>
 </UserControl>

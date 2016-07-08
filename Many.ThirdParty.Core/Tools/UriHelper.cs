@@ -9,17 +9,31 @@ namespace Many.ThirdParty.Core.Tools
     {
         internal static string GetRelatedUri<T>(string id)
         {
+            RelatedContentOption action;
             switch (typeof(T).Name)
             {
                 case nameof(QuestionDetailPageViewModel):
-                    return string.Format(ServicesUrl.GetRelatedContent(RelatedContentOption.Question), id);
+                    {
+                        action = RelatedContentOption.Question;
+                        break;
+                    }
                 case nameof(EssayDetailPageViewModel):
-                    return string.Format(ServicesUrl.GetRelatedContent(RelatedContentOption.Essay), id);
+                    {
+                        action = RelatedContentOption.Essay;
+                        break;
+                    }
                 case nameof(SerialDetailPageViewModel):
-                    return string.Format(ServicesUrl.GetRelatedContent(RelatedContentOption.Serial), id);
+                    {
+                        action = RelatedContentOption.Serial;
+                        break;
+                    }
                 default:
-                    return string.Empty;
+                    {
+                        action = RelatedContentOption.Question;
+                        break;
+                    }
             }
+            return string.Format(ServicesUrl.GetRelatedContent(action), id);
         }
 
         internal static string GetUri<T>(string id) where T : ReadingDetailPageViewModelBase
@@ -39,17 +53,31 @@ namespace Many.ThirdParty.Core.Tools
 
         internal static string GetCommentUri<T>(string id)
         {
+            string uri;
             switch (typeof(T).Name)
             {
                 case nameof(QuestionDetailPageViewModel):
-                    return string.Format(ServicesUrl.QuestionComment, id, "0");
+                    {
+                        uri = ServicesUrl.QuestionComment;
+                        break;
+                    }
                 case nameof(EssayDetailPageViewModel):
-                    return string.Format(ServicesUrl.EssayComment, id, "0");
+                    {
+                        uri = ServicesUrl.EssayComment;
+                        break;
+                    }
                 case nameof(SerialDetailPageViewModel):
-                    return string.Format(ServicesUrl.SerialComment, id, "0");
+                    {
+                        uri = ServicesUrl.SerialComment;
+                        break;
+                    }
                 default:
-                    return string.Empty;
+                    {
+                        uri = ServicesUrl.SerialComment;
+                        break;
+                    }
             }
+            return string.Format(uri, id, "0");
         }
     }
 }

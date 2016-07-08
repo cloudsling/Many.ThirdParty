@@ -1,4 +1,4 @@
-MainPackage=C:\Users\Hao Ling\Documents\Source\Repos\Many.ThirdParty\Many.ThirdParty\bin\ARM\Release\Upload\Many.ThirdParty_2.0.19.0_ARM.appx
+MainPackage=C:\Users\Hao Ling\Documents\Source\Repos\Many.ThirdParty\Many.ThirdParty\bin\ARM\Release\Upload\Many.ThirdParty_2.0.20.0_ARM.appx
 ResourcePack=C:\Users\Hao Ling\Documents\Source\Repos\Many.ThirdParty\Many.ThirdParty\_scale-100.appx
 ResourcePack=C:\Users\Hao Ling\Documents\Source\Repos\Many.ThirdParty\Many.ThirdParty\_scale-125.appx
 ResourcePack=C:\Users\Hao Ling\Documents\Source\Repos\Many.ThirdParty\Many.ThirdParty\_scale-400.appx

@@ -9,7 +9,7 @@
     xmlns:uct="using:Many.ThirdParty.UserControls"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d">
-    
+
     <Page.Resources>
         <ResourceDictionary>
             <cvrt:BolleanToPlayConverter x:Key="BolleanToPlayConverter"></cvrt:BolleanToPlayConverter>
@@ -26,8 +26,9 @@
                     <StackPanel>
                         <Grid>
                             <Image Height="360" 
-                                      Stretch="UniformToFill"
-                                      Source="{x:Bind Cover}"/>
+                                   Margin="-10 0"
+                                   Stretch="UniformToFill"
+                                   Source="{x:Bind Cover}"/>
                         </Grid>
                         <Grid Background="{ThemeResource MusicBorder}"
                               Height="130"
@@ -125,7 +126,7 @@
                                        FontSize="19"
                                        FontWeight="Black"
                                        Style="{ThemeResource ReadingText}"/>
-                            <TextBlock Text="{x:Bind Author.User_Name}"
+                            <TextBlock Text="{x:Bind Story_Author.User_Name}"
                                        Margin="5 0"
                                        Foreground="#FF00AEA0"
                                        Style="{StaticResource ReadingContent}" />

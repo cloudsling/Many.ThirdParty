@@ -7,10 +7,12 @@ namespace Many.ThirdParty.Core.Converter
 {
     public class ReadingTypeBtnImageConverter : IValueConverter
     {
+        private const string BaseUri = "ms-appx:///Resources/BgImages/";
+
         private static readonly IList<Uri> ReadingTypeButtonImage = new List<Uri> {
-            new Uri("ms-appx:///Resources/BgImages/essay_image.png"),
-            new Uri("ms-appx:///Resources/BgImages/serial_image.png"),
-            new Uri("ms-appx:///Resources/BgImages/question_image.png")
+            new Uri(BaseUri + "essay_image.png"),
+            new Uri(BaseUri + "serial_image.png"),
+            new Uri(BaseUri + "question_image.png")
         };
 
         private static readonly Dictionary<string, Uri> ImageSource = new Dictionary<string, Uri>

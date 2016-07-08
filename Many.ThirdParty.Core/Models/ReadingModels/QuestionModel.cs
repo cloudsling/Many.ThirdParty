@@ -7,6 +7,7 @@ namespace Many.ThirdParty.Core.Models.ReadingModels
     {
         public QuestionModel()
         {
+            Type = 3;
         }
 
         public QuestionModel(int type)

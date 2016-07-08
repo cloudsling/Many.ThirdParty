@@ -8,6 +8,7 @@ namespace Many.ThirdParty.Core.Models.ReadingModels
     {
         public SerialModel()
         {
+            Type = 2;
         }
         public SerialModel(int type)
         {
