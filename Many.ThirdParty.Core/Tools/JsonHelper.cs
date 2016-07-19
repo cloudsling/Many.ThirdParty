@@ -57,7 +57,7 @@ namespace Many.ThirdParty.Core.Tools
             return GetObjectFromObject(json, Dataname);
         }
 
-        internal static JsonArray GetArrayFromObject(JsonObject json)
+        internal static JsonArray GetJsonArrayFromObject(JsonObject json)
         {
             return GetArrayFromObject(json, Dataname);
         }

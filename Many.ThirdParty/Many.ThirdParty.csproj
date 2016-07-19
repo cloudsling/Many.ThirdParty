@@ -119,7 +119,6 @@
     <Compile Include="ExtendedSplash.xaml.cs">
       <DependentUpon>ExtendedSplash.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Extensions\RichTextBlockExtension.cs" />
     <Compile Include="MainFrameContainer.xaml.cs">
       <DependentUpon>MainFrameContainer.xaml</DependentUpon>
     </Compile>

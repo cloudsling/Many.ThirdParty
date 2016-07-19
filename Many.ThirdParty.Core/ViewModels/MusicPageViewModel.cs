@@ -19,11 +19,20 @@ namespace Many.ThirdParty.Core.ViewModels
         {
             foreach (var id in idCol)
             {
-                var model = await CommonDataLoader.GetGeneralModelAsync<MusicModel>(id);
-                await model.RefreshCommentsCollection(string.Format(ServicesUrl.MusicComment, id));
+                await RefreshAMusicCollection(id);
+                //var model = await CommonDataLoader.GetGeneralModelAsync<MusicModel>(id);
+                //await model.RefreshCommentsCollection(string.Format(ServicesUrl.MusicComment, id));
 
-                MusicModelsCollection.Add(model);
+                //MusicModelsCollection.Add(model);
             }
+        }
+
+        public async Task RefreshAMusicCollection(string id)
+        {
+            var model = await CommonDataLoader.GetGeneralModelAsync<MusicModel>(id);
+            await model.RefreshCommentsCollection(string.Format(ServicesUrl.MusicComment, id));
+
+            MusicModelsCollection.Add(model);
         }
 
         private ObservableCollection<MusicModel> _musicModelsCollection;

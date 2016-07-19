@@ -1,13 +1,11 @@
 ﻿using Many.ThirdParty.Core.Commons;
 using Many.ThirdParty.Core.Tools;
 using System;
-using System.Threading.Tasks;
 using Windows.ApplicationModel.DataTransfer;
 using Windows.UI.Popups;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Navigation;
-using Windows.Storage;
 
 namespace Many.ThirdParty.AddlPages
 {
@@ -19,7 +17,7 @@ namespace Many.ThirdParty.AddlPages
         {
             ViewModel = new ViewModelBase();
 
-            this.InitializeComponent();
+            InitializeComponent();
         }
 
         protected override void OnNavigatedTo(NavigationEventArgs e)
@@ -27,7 +25,7 @@ namespace Many.ThirdParty.AddlPages
             StatusBarModifier.Clear();
             TopImage.SetValue(MarginProperty, new Thickness(0, -StatusBarModifier.StatusBarHeight, 0, 0));
 
-            this.RequestedTheme = ViewModel.AppSettings.NightModeEnable ? ElementTheme.Dark : ElementTheme.Light;
+            RequestedTheme = ViewModel.AppSettings.NightModeEnable ? ElementTheme.Dark : ElementTheme.Light;
         }
 
         protected override void OnNavigatingFrom(NavigatingCancelEventArgs e)
@@ -37,7 +35,7 @@ namespace Many.ThirdParty.AddlPages
 
         private async void Button_Click(object sender, RoutedEventArgs e)
         {
-            DataPackage dataPackage = new DataPackage();
+            var dataPackage = new DataPackage();
 
             dataPackage.SetText("208664459");
             Clipboard.SetContent(dataPackage);
@@ -47,20 +45,20 @@ namespace Many.ThirdParty.AddlPages
 
         private void NightMode_ItemClick(object sender, ItemClickEventArgs e)
         {
-            if (this.RequestedTheme == ElementTheme.Dark || this.RequestedTheme == ElementTheme.Default)
+            if (RequestedTheme == ElementTheme.Dark || RequestedTheme == ElementTheme.Default)
             {
-                this.RequestedTheme = ElementTheme.Light;
+                RequestedTheme = ElementTheme.Light;
             }
             else
             {
-                this.RequestedTheme = ElementTheme.Dark;
+                RequestedTheme = ElementTheme.Dark;
             }
-            ViewModel.ChangeThemeMode(this.RequestedTheme);
+            ViewModel.ChangeThemeMode(RequestedTheme);
         }
 
         public void ModifyStatusBar()
         {
-            switch (this.RequestedTheme)
+            switch (RequestedTheme)
             {
                 case ElementTheme.Light:
                     StatusBarModifier.SetLightStatusBar();
@@ -68,9 +66,12 @@ namespace Many.ThirdParty.AddlPages
                 case ElementTheme.Dark:
                     StatusBarModifier.SetDarkStatusBar();
                     return;
-                default:
-                    break;
             }
+        }
+
+        private void ListViewBase_OnItemClick(object sender, ItemClickEventArgs e)
+        {
+            ViewModel.AppSettings.SkipPreLoadPage = !ViewModel.AppSettings.SkipPreLoadPage;
         }
     }
 }

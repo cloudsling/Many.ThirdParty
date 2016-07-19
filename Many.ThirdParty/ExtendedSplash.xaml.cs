@@ -7,6 +7,7 @@ using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Navigation;
 using Many.ThirdParty.Core.Commons;
 using Windows.UI.Core;
+using Windows.UI.Xaml.Media.Animation;
 using Many.ThirdParty.Config;
 using Many.ThirdParty.Core.Enum;
 using Many.ThirdParty.Core.Models.HomeModels;
@@ -33,10 +34,13 @@ namespace Many.ThirdParty
             HomePage.CumulateListIndex += 1;
             Progress.Text = "加载资源成功!正在初始化";
 
+            Frame.ContentTransitions = new TransitionCollection {new NavigationThemeTransition()};
+
             NavigationManager.GeneralFrame = Frame;
             Frame.Navigate(
                 ViewModelBase.CurrentSettings.SkipPreLoadPage ? typeof(MainFrameContainer) : typeof(PreLoadPage),
-                HomePage.CurrentHomeModle = await CommonDataLoader.GetGeneralModelAsync<HomeModel>(HomePage.TodaysListId[0]));
+                HomePage.CurrentHomeModle = await CommonDataLoader.GetGeneralModelAsync<HomeModel>(HomePage.TodaysListId[0]), 
+                new DrillInNavigationTransitionInfo());
 
             SystemNavigationManager.GetForCurrentView().BackRequested += PreLoadPage_BackRequested;
         }

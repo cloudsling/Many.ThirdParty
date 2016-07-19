@@ -9,7 +9,7 @@
 
     <ScrollViewer VerticalScrollMode="Enabled" >
         <StackPanel>
-            <local:GeneralListViewItem  Title="相关推荐"/>
+            <local:GeneralListViewItem  Title="相关推荐" Visibility="{x:Bind Vis}"/>
             <local:ReadingListView ContentModelCollection="{x:Bind ContentModelCollection, Mode=OneWay}"/>
 
             <local:CommentsList HotComments="{x:Bind HotComments, Mode=OneWay}"

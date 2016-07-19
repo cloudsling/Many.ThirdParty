@@ -3,21 +3,10 @@ using Many.ThirdParty.Core.Models.MovieModels;
 using Many.ThirdParty.Core.Tools;
 using Many.ThirdParty.Core.ViewModels;
 using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.IO;
-using System.Linq;
-using System.Runtime.InteropServices.WindowsRuntime;
 using System.Threading.Tasks;
 using Windows.Data.Json;
-using Windows.Foundation;
-using Windows.Foundation.Collections;
-using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
-using Windows.UI.Xaml.Controls.Primitives;
-using Windows.UI.Xaml.Data;
-using Windows.UI.Xaml.Input;
-using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
 
 namespace Many.ThirdParty.SubPages
@@ -25,7 +14,7 @@ namespace Many.ThirdParty.SubPages
     public sealed partial class MoviePage : Page
     {
         public static MoviePage CurrentMoviePage;
-        public static readonly string movieListUri = "http://v3.wufazhuce.com:8000/api/movie/list/0?";
+        private const string MovieListUri = "http://v3.wufazhuce.com:8000/api/movie/list/0?";
 
         public MoviePageViewModel MoviePageViewModel { get; set; }
     }
@@ -36,29 +25,30 @@ namespace Many.ThirdParty.SubPages
         {
             MoviePageViewModel = new MoviePageViewModel();
 
-            this.InitializeComponent();
+            InitializeComponent();
             CurrentMoviePage = this;
         }
 
         private void movieList_ItemClick(object sender, ItemClickEventArgs e)
         {
-            if ((e.ClickedItem as MovieListModel) != null)
+            var item = e.ClickedItem as MovieListModel;
+            if (item != null)
             {
                 //TODO:
-                Frame.Navigate(typeof(MovieDetailPage), $"http://m.wufazhuce.com/movie/{(e.ClickedItem as MovieListModel).Id}");
+                NavigationManager.GeneralNavigate(typeof(MovieDetailPage), $"http://m.wufazhuce.com/movie/{item.Id}");
             }
         }
 
-        protected async override void OnNavigatedTo(NavigationEventArgs e)
+        protected override void OnNavigatedTo(NavigationEventArgs e)
         {
-            CurrentMoviePage.MoviePageViewModel.MovieListCollection = await GetList();
+           // CurrentMoviePage.MoviePageViewModel.MovieListCollection = await GetList();
         }
 
         private static async Task<ObservableCollection<MovieListModel>> GetList()
         {
             using (var client = HttpHelper.CreateHttpClientWithUserAgent())
             {
-                string response = await client.GetStringAsync(new Uri(movieListUri));
+                string response = await client.GetStringAsync(new Uri(MovieListUri));
                 JsonObject json;
                 var movieList = new ObservableCollection<MovieListModel>();
                 if (JsonObject.TryParse(response, out json))
@@ -69,9 +59,9 @@ namespace Many.ThirdParty.SubPages
                         //TryGetStringFromJsonObject(obj, "score");
                         movieList.Add(new MovieListModel
                         {
-                            Cover = obj.GetNamedString("cover") ?? "无",
-                            Id = obj.GetNamedString("id") ?? "无",
-                            Title = obj.GetNamedString("title") ?? "无",
+                            Cover = obj.GetNamedString("cover"),
+                            Id = obj.GetNamedString("id"),
+                            Title = obj.GetNamedString("title"),
                             Score = TryGetStringFromJsonObject(obj, "score")
                         });
                     }
@@ -80,35 +70,10 @@ namespace Many.ThirdParty.SubPages
             }
         }
 
-        static string TryGetStringFromJsonObject(JsonObject obj, string valueName)
+        private static string TryGetStringFromJsonObject(JsonObject obj, string valueName)
         {
-            JsonValue value = JsonValue.CreateNullValue();
-            try
-            {
-                value = obj.GetNamedValue(valueName);
-            }
-            catch (Exception)
-            {
-
-                throw;
-            }
-            switch (value.ValueType)
-            {
-                case JsonValueType.String:
-                    return value.GetString();
-                case JsonValueType.Null:
-                    return string.Empty;
-                case JsonValueType.Boolean:
-                    return string.Empty;
-                case JsonValueType.Number:
-                    return string.Empty;
-                case JsonValueType.Array:
-                    return string.Empty;
-                case JsonValueType.Object:
-                    return string.Empty;
-                default:
-                    return string.Empty;
-            }
+            var value = obj.GetNamedValue(valueName);
+            return value.ValueType == JsonValueType.String ? value.GetString() : string.Empty;
         }
     }
 }

@@ -52,15 +52,15 @@ namespace Many.ThirdParty.Core.ViewModels.ReadingDetailPageViewModels
             {
                 case nameof(QuestionDetailPageViewModel):
                     AddToRelatedCollection<QuestionContent, QuestionModel>(
-                        await CommonDataLoader.GetGeneralModelsCollectionAsync<QuestionContent>(id, uri));
+                        await CommonDataLoader.GetGeneralModelsCollectionByUriAsync<QuestionContent>(uri));
                     return;
                 case nameof(EssayDetailPageViewModel):
                     AddToRelatedCollection<EssayContent, EssayModel>(
-                        await CommonDataLoader.GetGeneralModelsCollectionAsync<EssayContent>(id, uri));
+                        await CommonDataLoader.GetGeneralModelsCollectionByUriAsync<EssayContent>(uri));
                     return;
                 case nameof(SerialDetailPageViewModel):
                     AddToRelatedCollection<SerialContent, SerialModel>(
-                        await CommonDataLoader.GetGeneralModelsCollectionAsync<SerialContent>(id, uri)
+                        await CommonDataLoader.GetGeneralModelsCollectionByUriAsync<SerialContent>(uri)
                         );
                     return;
             }

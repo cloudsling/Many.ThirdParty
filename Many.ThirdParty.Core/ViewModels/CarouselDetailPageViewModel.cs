@@ -21,7 +21,7 @@ namespace Many.ThirdParty.Core.ViewModels
 
         public async Task RefreshCollection(string id)
         {
-            foreach (var item in await CommonDataLoader.GetGeneralModelsCollectionAsync<CarouselDetailModel>(id))
+            foreach (var item in await CommonDataLoader.GetGeneralModelsCollectionByIdAsync<CarouselDetailModel>(id))
             {
                 CarouselDetailModelCollection.Add(item);
             }

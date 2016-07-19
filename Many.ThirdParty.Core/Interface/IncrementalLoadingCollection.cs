@@ -19,7 +19,7 @@ namespace Many.ThirdParty.Core.Interface
             _dataFetchDelegate = dataFetchDelegate;
         }
 
-        public bool HasMoreItems => Count < _totalCount;
+        public bool HasMoreItems => Count < TotalCount;
 
         public IAsyncOperation<LoadMoreItemsResult> LoadMoreItemsAsync(uint count)
         {
@@ -65,14 +65,13 @@ namespace Many.ThirdParty.Core.Interface
             }
         }
 
-
         public delegate void LoadMoreStarted(uint count);
         public delegate void LoadMoreCompleted(int count);
 
         public event LoadMoreStarted OnLoadMoreStarted;
         public event LoadMoreCompleted OnLoadMoreCompleted;
 
-        private readonly uint _totalCount = 100;
+        private const uint TotalCount = 100;
         private uint _indexe;
         protected bool Busy;
     }

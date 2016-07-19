@@ -38,7 +38,7 @@ namespace Many.ThirdParty.Core.Data
         public static async Task<IEnumerable<T>> Search(string searchContent)
         {
             return GetTFormString<IEnumerable<T>>(
-                  (await CommonDataLoader.GetMainArrayGeneric(
+                  (await CommonDataLoader.GetMainJsonArrayGeneric(
                       GetSearchUri(searchContent))
                   ).Stringify());
         }
@@ -46,7 +46,7 @@ namespace Many.ThirdParty.Core.Data
         public static async Task<IEnumerable<T>> SearchWithLargeContent(string searchContent)
         {
             return GetTFormArray<T>((
-                await CommonDataLoader.GetMainArrayGeneric(
+                await CommonDataLoader.GetMainJsonArrayGeneric(
                       GetSearchUri(searchContent))));
         }
     }

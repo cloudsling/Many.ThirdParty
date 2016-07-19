@@ -25,7 +25,7 @@ namespace Many.ThirdParty.Core.Service
          
         public static string MusicComment => Baseuri + "comment/praiseandtime/music/{0}/0?";
          
-        public static string MovieList => Baseuri + "movie/list/0?";
+        public static string MovieList => Baseuri + "movie/list/{0}?";
 
         public static string SearchMain => Baseuri + "search/hp/{0}?";
 

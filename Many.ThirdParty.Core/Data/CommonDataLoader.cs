@@ -2,7 +2,6 @@
 using Many.ThirdParty.Core.Models.HomeModels;
 using Many.ThirdParty.Core.Service;
 using Many.ThirdParty.Core.Tools;
-using static Many.ThirdParty.Core.Tools.JsonHelper;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using Windows.Data.Json;
@@ -11,6 +10,9 @@ using System.Collections.ObjectModel;
 using Many.ThirdParty.Core.Factories;
 using Many.ThirdParty.Core.Models.MusicModels;
 using Many.ThirdParty.Core.Enum;
+using Many.ThirdParty.Core.Models.MovieModels;
+using static Many.ThirdParty.Core.Tools.JsonHelper;
+using System.Collections;
 
 namespace Many.ThirdParty.Core.Data
 {
@@ -42,12 +44,12 @@ namespace Many.ThirdParty.Core.Data
         #region private method
         private static async Task<string> GetMainListGeneric(string uri)
         {
-            return GetArrayFromObject(await GetMainJsonObjectAsync(uri)).Stringify();
+            return GetJsonArrayFromObject(await GetMainJsonObjectAsync(uri)).Stringify();
         }
 
-        internal static async Task<JsonArray> GetMainArrayGeneric(string uri)
+        internal static async Task<JsonArray> GetMainJsonArrayGeneric(string uri)
         {
-            return GetArrayFromObject(await GetMainJsonObjectAsync(uri));
+            return GetJsonArrayFromObject(await GetMainJsonObjectAsync(uri));
         }
 
         private static async Task<string> GetMainContentGeneric(string uri)
@@ -91,14 +93,14 @@ namespace Many.ThirdParty.Core.Data
         }
         #endregion
 
-        public static async Task<ObservableCollection<T>> GetGeneralModelsCollectionAsync<T>(string id)
+        public static async Task<ObservableCollection<T>> GetGeneralModelsCollectionByIdAsync<T>(string id)
         {
             return GetTFormString<ObservableCollection<T>>(
                 await GetMainListGeneric(
                     GetUriByModelType(typeof(T), id)));
         }
 
-        public static async Task<ObservableCollection<T>> GetGeneralModelsCollectionAsync<T>(string id, string uri)
+        public static async Task<ObservableCollection<T>> GetGeneralModelsCollectionByUriAsync<T>(string uri)
         {
             return GetTFormString<ObservableCollection<T>>(
                 await GetMainListGeneric(uri));
@@ -111,26 +113,41 @@ namespace Many.ThirdParty.Core.Data
                     GetUriByModelType(typeof(T), id)));
         }
 
+        private static List<string> MoviePair { get; set; } = new List<string> { "0" };
+
+        public static async Task<ObservableCollection<MovieListModel>> GetMovieListModel(int key)
+        {
+            if (key == 0) return null;
+
+            ++key;
+
+            var arr = await GetGeneralModelsCollectionByUriAsync<MovieListModel>(string.Format(ServicesUrl.MovieList, MoviePair[key - 1]));
+
+            MoviePair.Add(arr[arr.Count - 1].Id);
+
+            return arr;
+        }
+
         public static async Task<ObservableCollection<ReadingModel>> GetReadingModel(string listId)
         {
-            JsonArray array = await GetMainArrayGeneric(string.Format(ServicesUrl.ReadingContent, listId));
+            var array = await GetMainJsonArrayGeneric(string.Format(ServicesUrl.ReadingContent, listId));
 
-            ObservableCollection<ReadingModel> collection = new ObservableCollection<ReadingModel>();
+            var collection = new ObservableCollection<ReadingModel>();
+
             foreach (var item in array)
             {
-                JsonObject json = item.GetObject();
+                var json = item.GetObject();
+                var model = new ReadingModel { MaketTime = json.GetNamedString("date") };
 
-                ReadingModel model = new ReadingModel { MaketTime = json.GetNamedString("date") };
-
-                JsonArray innerArray = json.GetNamedArray("items");
+                var innerArray = json.GetNamedArray("items");
 
                 foreach (var innerItem in innerArray)
                 {
-                    JsonObject obj = innerItem.GetObject();
+                    var obj = innerItem.GetObject();
 
-                    int type = (int)obj.GetNamedNumber("type");
+                    var type = (int)obj.GetNamedNumber("type");
 
-                    ReadingModelBase itemModel = ReadingModelFactory.CreateReadingModel(type, obj.GetNamedObject("content"));
+                    var itemModel = ReadingModelFactory.CreateReadingModel(type, obj.GetNamedObject("content"));
 
                     itemModel.Time = obj.GetNamedString("time");
 

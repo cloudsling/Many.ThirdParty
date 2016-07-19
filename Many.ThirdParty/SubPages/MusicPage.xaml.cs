@@ -2,6 +2,7 @@
 using Windows.UI.Xaml.Navigation;
 using Many.ThirdParty.Core.Data;
 using Many.ThirdParty.Core.Enum;
+using Many.ThirdParty.Core.Models.MusicModels;
 using Many.ThirdParty.Core.ViewModels;
 
 namespace Many.ThirdParty.SubPages
@@ -21,18 +22,20 @@ namespace Many.ThirdParty.SubPages
             ViewModel = new MusicPageViewModel();
             InitializeComponent();
 
-            MusicCurrent = this;  
-            NavigationCacheMode = NavigationCacheMode.Required; 
+            MusicCurrent = this;
+            NavigationCacheMode = NavigationCacheMode.Required;
         }
-         
 
         protected override async void OnNavigatedTo(NavigationEventArgs e)
         {
-
-            if (ViewModel.MusicModelsCollection.Count <= 0)
+            if (e.Parameter == null)
             {
                 await ViewModel.RefreshMusicCollection(await CommonDataLoader.GetGeneralList("0", ListType.MusicList));
-                //await ViewModel.AddTo
+                //await ViewModel.AddTo 
+            }
+            else if(e.Parameter is MusicModel)
+            {
+                await ViewModel.RefreshAMusicCollection(((MusicModel)e.Parameter).Id);
             }
         }
     }

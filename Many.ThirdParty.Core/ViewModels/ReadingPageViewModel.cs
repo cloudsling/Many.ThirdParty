@@ -23,7 +23,7 @@ namespace Many.ThirdParty.Core.ViewModels
 
         public async Task RefreshCollection()
         {
-            foreach (var item in await CommonDataLoader.GetGeneralModelsCollectionAsync<CarouselModel>(""))
+            foreach (var item in await CommonDataLoader.GetGeneralModelsCollectionByIdAsync<CarouselModel>(""))
             {
                 AddToCollection(item);
             }

@@ -1,40 +1,33 @@
-﻿using Many.ThirdParty.AddlPages;
-using Many.ThirdParty.SubPages;
+﻿using Many.ThirdParty.SubPages;
 using Many.ThirdParty.SubPages.ReadingDetailPage;
 using System;
 using System.Collections.Generic;
-using Windows.UI.Core;
 using Windows.UI.Xaml.Controls;
+using Windows.UI.Xaml.Media.Animation;
 
 namespace Many.ThirdParty.Config
 {
     internal class NavigationManager
     {
-        private static Frame _generalFrame;
+        internal static Frame GeneralFrame { get; set; }
 
-        internal static Frame GeneralFrame
+        internal static void GeneralNavigate(Type pageType, object parameter = null)
         {
-            get { return _generalFrame; }
-            set { _generalFrame = value; }
+            GeneralFrame?.Navigate(pageType, parameter, new DrillInNavigationTransitionInfo());
         }
 
-        internal static void GeneralNavigate(Type pageType, object parameter)
-        {
-            _generalFrame?.Navigate(pageType, parameter);
-        }
-
-        internal static void GeneralNavigate(Type pageType)
-        {
-            _generalFrame?.Navigate(pageType);
-        }
+        //internal static void GeneralNavigate(Type pageType)
+        //{
+        //    GeneralFrame?.Navigate(pageType, new DrillInNavigationTransitionInfo());
+        //}
 
         internal static void GoBack(Frame frame)
         {
             if (frame.CanGoBack)
-                frame.GoBack();
+                frame.GoBack(new DrillInNavigationTransitionInfo());
         }
 
-        internal static readonly List<Scenario> MainScenarios = new List<Scenario>
+        internal static readonly IList<Scenario> MainScenarios = new List<Scenario>
         {
             new Scenario { PageTitle="ONE", PageType=typeof(HomePage), Index = 0},
             new Scenario { PageTitle="阅读", PageType=typeof(ReadingPage), Index = 1},

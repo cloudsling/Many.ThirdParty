@@ -63,7 +63,7 @@ namespace Many.ThirdParty.SubPages
 
         private static ReadingPage _currentReadingPage;
 
-        private static readonly List<SolidColorBrush> EllipseBackgroundColorCollection = new List<SolidColorBrush> {
+        private static readonly IList<SolidColorBrush> EllipseBackgroundColorCollection = new List<SolidColorBrush> {
             new SolidColorBrush(Colors.SkyBlue),
             new SolidColorBrush(Colors.White)
         };

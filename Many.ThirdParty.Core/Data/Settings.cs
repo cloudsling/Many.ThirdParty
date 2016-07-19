@@ -18,7 +18,7 @@ namespace Many.ThirdParty.Core.Data
                 SaveSettings(nameof(GeneralFontSize), value);
             }
         }
-        //PreLoadPage
+
         public bool NightModeEnable
         {
             get { return ReadSettings(nameof(NightModeEnable), false); }
@@ -40,12 +40,12 @@ namespace Many.ThirdParty.Core.Data
     
     public partial class Settings : INotifyPropertyChanged
     {
-        private static ApplicationDataContainer LocalSettings { get; set; } = ApplicationData.Current.LocalSettings;
+        private static ApplicationDataContainer LocalSettings { get; } = ApplicationData.Current.LocalSettings;
 
         public void SaveSettings(string key, object value, [CallerMemberName]string propertyName = null)
         {
             LocalSettings.Values[key] = value;
-            OnPropertyChanged(propertyName);
+            if (propertyName != null) OnPropertyChanged(propertyName);
         }
 
         T ReadSettings<T>(string key, T defaultValue)
@@ -62,7 +62,7 @@ namespace Many.ThirdParty.Core.Data
         }
         public event PropertyChangedEventHandler PropertyChanged;
 
-        void OnPropertyChanged([CallerMemberName]string propertyName = null)
+        private void OnPropertyChanged([CallerMemberName]string propertyName = null)
         {
             Volatile.Read(ref PropertyChanged)?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }

@@ -3,12 +3,8 @@ using Many.ThirdParty.Core.Models.HomeModels;
 using Many.ThirdParty.Core.Models.MovieModels;
 using Many.ThirdParty.Core.Models.MusicModels;
 using Many.ThirdParty.Core.Commands;
-using Many.ThirdParty.Core.Tools;
-using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 using Windows.UI.Xaml;
 using Many.ThirdParty.Core.Data;
@@ -21,10 +17,9 @@ namespace Many.ThirdParty.Core.ViewModels.AddlPageViewModels
     {
         public SearchPageViewModel()
         {
-            UpdateUI(Visibility.Visible, false);
+            UpdateUi(Visibility.Visible, false);
 
             NoSearchResult = Visibility.Collapsed;
-            //SearchCommand = new AsyncCommand(Search);
             SearchCommand = new Command(Search);
 
             HomeModelCollection = new ObservableCollection<HomeModel>();
@@ -36,7 +31,7 @@ namespace Many.ThirdParty.Core.ViewModels.AddlPageViewModels
 
         public async void Search(object obj)
         {
-            UpdateUI(Visibility.Collapsed, true);
+            UpdateUi(Visibility.Collapsed, true);
 
             await AddToCollection(HomeModelCollection, obj as string);
 
@@ -45,7 +40,7 @@ namespace Many.ThirdParty.Core.ViewModels.AddlPageViewModels
             IsActive = false;
         }
 
-        async Task SearchOther(string searchContent)
+        private async Task SearchOther(string searchContent)
         {
             await AddToCollection(SearchReadingModelCollection, searchContent);
             await AddToCollection(MusicModelCollection, searchContent);
@@ -53,7 +48,7 @@ namespace Many.ThirdParty.Core.ViewModels.AddlPageViewModels
             await AddToCollection(AuthorCollection, searchContent);
         }
 
-        async Task AddToCollection<T>(ObservableCollection<T> collection, string searchContent) where T : class, new()
+        private static async Task AddToCollection<T>(ICollection<T> collection, string searchContent) where T : class, new()
         {
             foreach (var item in await Searcher<T>.Search(searchContent))
             {
@@ -62,12 +57,11 @@ namespace Many.ThirdParty.Core.ViewModels.AddlPageViewModels
             }
         }
 
-        void UpdateUI(Visibility vis, bool isActive)
+        private void UpdateUi(Visibility vis, bool isActive)
         {
             Visable = vis;
             IsActive = isActive;
         }
-
     }
 
     /// <summary>

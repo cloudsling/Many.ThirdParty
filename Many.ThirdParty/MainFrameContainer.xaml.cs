@@ -116,8 +116,7 @@ namespace Many.ThirdParty
             SystemNavigationManager.GetForCurrentView().BackRequested += MainFrameContainer_BackRequested;
             await LiveTileTask.RequestUpdate();
         }
-
-
+        
         private void ThisNavigate(int index)
         {
             ThisFrameNavigate(NavigationManager.MainScenarios[index].PageType);
