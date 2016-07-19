@@ -17,11 +17,20 @@ namespace Many.ThirdParty.SubPages
 
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
-            var model = e.Parameter as MovieDetailPageViewModel;
-            if (model != null)
+            if (e.Parameter != null)
             {
-                ViewModel = model;
+                var model = e.Parameter as MovieDetailPageViewModel;
+                if (model != null)
+                {
+                    Wv.Navigate(new System.Uri("http://m.wufazhuce.com/movie/" + model.Id));
+                    // ViewModel = model;
+                }
+
+
             }
+
+
+
         }
     }
 }

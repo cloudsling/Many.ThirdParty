@@ -17,7 +17,7 @@
             <ListViewItem Margin="0 -15 0 0"
                           HorizontalContentAlignment="Stretch"
                           Visibility="{x:Bind Vis,Mode=OneWay}"
-                          Background="{ThemeResource MainBackground}"
+                          Background="{ThemeResource TopLine}"
                       >
                 <TextBlock Text="以上是热门评论"
                            HorizontalAlignment="Center" 

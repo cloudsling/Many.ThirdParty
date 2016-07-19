@@ -1,11 +1,6 @@
 ﻿using Many.ThirdParty.Config;
 using Many.ThirdParty.Core.Models.MovieModels;
-using Many.ThirdParty.Core.Tools;
 using Many.ThirdParty.Core.ViewModels;
-using System;
-using System.Collections.ObjectModel;
-using System.Threading.Tasks;
-using Windows.Data.Json;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Navigation;
 using Many.ThirdParty.Core.Data;
@@ -38,7 +33,7 @@ namespace Many.ThirdParty.SubPages
                 //TODO:
                 NavigationManager.GeneralNavigate(
                     typeof(MovieDetailPage), 
-                    await CommonDataLoader.GetGeneralModelByIdAsync<MovieModel>(string.Format(ServicesUrl.MovieDetail, item.Id)));
+                    await CommonDataLoader.GetGeneralModelByUriAsync<MovieDetailPageViewModel>(string.Format(ServicesUrl.MovieDetail, item.Id)));
             }
         }
 

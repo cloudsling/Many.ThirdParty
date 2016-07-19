@@ -14,7 +14,9 @@
             <converter:BolleanToPlayConverter x:Key="BolleanToPlayConverter"></converter:BolleanToPlayConverter>
         </ResourceDictionary>
     </Page.Resources>-->
-    <ScrollViewer Padding="0" >
+    
+    <WebView x:Name="Wv" />
+    <!--<ScrollViewer Padding="0" >
         <StackPanel>
             <Grid>
                 <Image Height="360" 
@@ -38,10 +40,10 @@
         
  
             
-            <userControls:CommentsList HotComments="{x:Bind ViewModel.HotComments}"
-                                          NormalComments="{x:Bind ViewModel.NormalComments}"/>
+            --><!--<userControls:CommentsList HotComments="{x:Bind ViewModel.HotComments}"
+                                       NormalComments="{x:Bind ViewModel.NormalComments}"/>--><!--
         </StackPanel>
-    </ScrollViewer>
+    </ScrollViewer>-->
 </Page>
 
 
