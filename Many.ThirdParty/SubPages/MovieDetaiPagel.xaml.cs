@@ -1,17 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Runtime.InteropServices.WindowsRuntime;
-using Windows.Foundation;
-using Windows.Foundation.Collections;
-using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
-using Windows.UI.Xaml.Controls.Primitives;
-using Windows.UI.Xaml.Data;
-using Windows.UI.Xaml.Input;
-using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
+using Many.ThirdParty.Core.Models.MovieModels;
 
 namespace Many.ThirdParty.SubPages
 {
@@ -19,15 +9,15 @@ namespace Many.ThirdParty.SubPages
     {
         public MovieDetailPage()
         {
-            this.InitializeComponent();
+            InitializeComponent();
         }
 
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
-            string temp = e.Parameter as string;
+            var temp = e.Parameter as MovieListModel;
             if (temp != null)
             {
-                webview.Navigate(new Uri(temp));
+
             }
         }
     }

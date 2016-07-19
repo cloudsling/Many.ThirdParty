@@ -12,10 +12,9 @@ using Many.ThirdParty.Core.Models.MusicModels;
 using Many.ThirdParty.Core.Enum;
 using Many.ThirdParty.Core.Models.MovieModels;
 using static Many.ThirdParty.Core.Tools.JsonHelper;
-using System.Collections;
 
 namespace Many.ThirdParty.Core.Data
-{
+{ 
     public static class CommonDataLoader
     {
         public static async Task<List<string>> GetGeneralList(string listId, ListType type)
@@ -29,17 +28,9 @@ namespace Many.ThirdParty.Core.Data
             foreach (var item in homeList)
             {
                 home.Add(await GetGeneralModelAsync<HomeModel>(item));
-                //home.Add(await LoadHomeModelAsync(item));
             }
             return home;
         }
-
-        //public static async Task<HomeModel> LoadHomeModelAsync(string contentId)
-        //{
-        //    return GetTFormString<HomeModel>(
-        //        await GetMainContentGeneric(
-        //            string.Format(ServicesUrl.MainContent, contentId)));
-        //}
 
         #region private method
         private static async Task<string> GetMainListGeneric(string uri)
@@ -113,24 +104,24 @@ namespace Many.ThirdParty.Core.Data
                     GetUriByModelType(typeof(T), id)));
         }
 
-        private static List<string> MoviePair { get; set; } = new List<string> { "0" };
+        private static Dictionary<uint, string> MoviePair { get; } = new Dictionary<uint, string> { { 0, "0" } };
 
-        public static async Task<ObservableCollection<MovieListModel>> GetMovieListModel(int key)
+        public static async Task<ObservableCollection<MovieListModel>> GetMovieListModel(uint key)
         {
-            if (key == 0) return null;
+            if (!MoviePair.ContainsKey(key)) return null;
 
-            ++key;
+            var arr = await GetGeneralModelsCollectionByUriAsync<MovieListModel>(string.Format(ServicesUrl.MovieList, MoviePair[key]));
 
-            var arr = await GetGeneralModelsCollectionByUriAsync<MovieListModel>(string.Format(ServicesUrl.MovieList, MoviePair[key - 1]));
+            if (arr == null || arr.Count < 1) return null;
 
-            MoviePair.Add(arr[arr.Count - 1].Id);
-
+            if (!MoviePair.ContainsKey(key + 1))
+                MoviePair.Add(key + 1, arr[arr.Count - 1].Id);
             return arr;
         }
 
-        public static async Task<ObservableCollection<ReadingModel>> GetReadingModel(string listId)
+        public static async Task<ObservableCollection<ReadingModel>> GetReadingModel(uint listId)
         {
-            var array = await GetMainJsonArrayGeneric(string.Format(ServicesUrl.ReadingContent, listId));
+            var array = await GetMainJsonArrayGeneric(string.Format(ServicesUrl.ReadingContent, listId - 1));
 
             var collection = new ObservableCollection<ReadingModel>();
 

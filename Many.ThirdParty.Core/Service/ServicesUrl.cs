@@ -3,7 +3,7 @@ using Many.ThirdParty.Core.Enum;
 
 namespace Many.ThirdParty.Core.Service
 {
-    internal static class ServicesUrl
+    public static class ServicesUrl
     {
         private const string Baseuri = "http://v3.wufazhuce.com:8000/api/";
 
@@ -22,10 +22,12 @@ namespace Many.ThirdParty.Core.Service
         public static string UnknowReading => Baseuri + "reading/carousel/pv/68?";
 
         public static string MusicContent => Baseuri + "music/detail/{0}?";
-         
+
         public static string MusicComment => Baseuri + "comment/praiseandtime/music/{0}/0?";
-         
+
         public static string MovieList => Baseuri + "movie/list/{0}?";
+
+        public static string MovieDetail => Baseuri + "movie/detail/{0}?";
 
         public static string SearchMain => Baseuri + "search/hp/{0}?";
 
@@ -55,21 +57,28 @@ namespace Many.ThirdParty.Core.Service
 
         public static string GetRelatedContent(RelatedContentOption option)
         {
+            string keyWord;
             switch (option)
             {
                 case RelatedContentOption.Question:
-                    return Baseuri + "related/question/{0}?";
+                    keyWord = "question";
+                    break;
                 case RelatedContentOption.Essay:
-                    return Baseuri + "related/essay/{0}?";
+                    keyWord = "essay";
+                    break;
                 case RelatedContentOption.Serial:
-                    return Baseuri + "related/serial/{0}?";
+                    keyWord = "serial";
+                    break;
                 case RelatedContentOption.Music:
-                    return Baseuri + "related/music/{0}?";
+                    keyWord = "music";
+                    break;
                 case RelatedContentOption.Movie:
-                    return Baseuri + "related/movie/{0}?";
+                    keyWord = "movie";
+                    break;
                 default:
                     throw new ArgumentOutOfRangeException(nameof(option), option, null);
             }
+            return $" { Baseuri } related/ { keyWord } /{0}?";
         }
     }
 }

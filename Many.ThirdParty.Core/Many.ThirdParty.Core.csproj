@@ -132,6 +132,7 @@
     <Compile Include="Models\CommonModels\User.cs" />
     <Compile Include="Models\HomeModels\HomeModel.cs" />
     <Compile Include="Models\MovieModels\MovieListModel.cs" />
+    <Compile Include="Models\MovieModels\MovieModel.cs" />
     <Compile Include="Models\MusicModels\MusicModel.cs" />
     <Compile Include="Models\ReadingModels\EssayModel.cs" />
     <Compile Include="Models\ReadingModels\ReadingContent.cs" />
@@ -156,6 +157,7 @@
     <Compile Include="ViewModels\CarouselDetailPageViewModel.cs" />
     <Compile Include="ViewModels\HomePageViewModel.cs" />
     <Compile Include="ViewModels\MainFrameContainerViewModel.cs" />
+    <Compile Include="ViewModels\MovieDetailPageViewModel.cs" />
     <Compile Include="ViewModels\MoviePageViewModel.cs" />
     <Compile Include="ViewModels\MusicPageViewModel.cs" />
     <Compile Include="ViewModels\ReadingDetailPageViewModels\EssayDetailPageViewModel.cs" />
@@ -165,9 +167,7 @@
     <Compile Include="ViewModels\ReadingPageViewModel.cs" />
     <EmbeddedResource Include="Properties\Many.ThirdParty.Core.rd.xml" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Models\ReadingDetailModels\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <SDKReference Include="WindowsMobile, Version=10.0.10586.0">
       <Name>Windows Mobile Extensions for the UWP</Name>

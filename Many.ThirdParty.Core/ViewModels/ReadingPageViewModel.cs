@@ -13,7 +13,7 @@ namespace Many.ThirdParty.Core.ViewModels
         {
             CarouselModelCollection = new ObservableCollection<CarouselModel>();
 
-            ReadingModelCollection = new IncrementalLoadingCollection<ReadingModel>(index => CommonDataLoader.GetReadingModel(index.ToString()));
+            ReadingModelCollection = new IncrementalLoadingCollection<ReadingModel>(CommonDataLoader.GetReadingModel);
         }
 
         public void AddToCollection(CarouselModel model)
@@ -33,7 +33,7 @@ namespace Many.ThirdParty.Core.ViewModels
 
         public async Task RefreshListView()
         {
-            foreach (var item in await CommonDataLoader.GetReadingModel("0"))
+            foreach (var item in await CommonDataLoader.GetReadingModel(0))
             {
                 ReadingModelCollection.Add(item);
             }

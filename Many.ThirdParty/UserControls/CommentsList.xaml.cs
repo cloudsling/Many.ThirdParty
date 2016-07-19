@@ -13,7 +13,9 @@ namespace Many.ThirdParty.UserControls
         {
             this.InitializeComponent();
         }
-         
+
+        private Visibility Vis
+            => HotComments == null || HotComments.Count < 1 ? Visibility.Collapsed : Visibility.Visible;
 
         public ObservableCollection<CommentModel> HotComments
         {

@@ -213,6 +213,7 @@
     <Content Include="Resources\BgImages\play.png" />
     <Content Include="Resources\BgImages\question_image.png" />
     <Content Include="Resources\BgImages\reading_board.png" />
+    <Content Include="Resources\BgImages\report_gross_bg.9.png" />
     <Content Include="Resources\BgImages\return_image.png" />
     <Content Include="Resources\BgImages\return_image_pressed.png" />
     <Content Include="Resources\BgImages\search.png" />
