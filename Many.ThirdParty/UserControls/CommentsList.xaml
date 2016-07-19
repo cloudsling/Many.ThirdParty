@@ -14,15 +14,16 @@
             <local:GeneralListViewItem  Title="评论列表"/>
             <local:CommentList CommentModelCollection="{x:Bind HotComments, Mode=OneWay}"/>
 
-            <Grid Margin="0 -15 0 0" Padding="25 0"
-                  Visibility="{x:Bind Vis,Mode=OneWay}"
-                  Background="{ThemeResource MainBackground}"
+            <ListViewItem Margin="0 -15 0 0"
+                          HorizontalContentAlignment="Stretch"
+                          Visibility="{x:Bind Vis,Mode=OneWay}"
+                          Background="{ThemeResource MainBackground}"
                       >
                 <TextBlock Text="以上是热门评论"
                            HorizontalAlignment="Center" 
                            VerticalAlignment="Center"
-                           Style="{StaticResource SmallDeepText}"/> 
-            </Grid>
+                           Style="{StaticResource SmallDeepText}"/>
+            </ListViewItem>
             <local:CommentList CommentModelCollection="{x:Bind NormalComments, Mode=OneWay}"/>
         </StackPanel>
     </ScrollViewer>

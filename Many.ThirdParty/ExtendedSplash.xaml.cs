@@ -39,7 +39,7 @@ namespace Many.ThirdParty
             NavigationManager.GeneralFrame = Frame;
             Frame.Navigate(
                 ViewModelBase.CurrentSettings.SkipPreLoadPage ? typeof(MainFrameContainer) : typeof(PreLoadPage),
-                HomePage.CurrentHomeModle = await CommonDataLoader.GetGeneralModelAsync<HomeModel>(HomePage.TodaysListId[0]), 
+                HomePage.CurrentHomeModle = await CommonDataLoader.GetGeneralModelByIdAsync<HomeModel>(HomePage.TodaysListId[0]), 
                 new DrillInNavigationTransitionInfo());
 
             SystemNavigationManager.GetForCurrentView().BackRequested += PreLoadPage_BackRequested;

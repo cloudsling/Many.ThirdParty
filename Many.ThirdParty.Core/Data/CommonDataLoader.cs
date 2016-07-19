@@ -27,7 +27,7 @@ namespace Many.ThirdParty.Core.Data
             IList<HomeModel> home = new List<HomeModel>();
             foreach (var item in homeList)
             {
-                home.Add(await GetGeneralModelAsync<HomeModel>(item));
+                home.Add(await GetGeneralModelByIdAsync<HomeModel>(item));
             }
             return home;
         }
@@ -38,7 +38,7 @@ namespace Many.ThirdParty.Core.Data
             return GetJsonArrayFromObject(await GetMainJsonObjectAsync(uri)).Stringify();
         }
 
-        internal static async Task<JsonArray> GetMainJsonArrayGeneric(string uri)
+        public static async Task<JsonArray> GetMainJsonArrayGeneric(string uri)
         {
             return GetJsonArrayFromObject(await GetMainJsonObjectAsync(uri));
         }
@@ -65,6 +65,8 @@ namespace Many.ThirdParty.Core.Data
                     return string.Format(ServicesUrl.MainContent, id);
                 case nameof(CarouselDetailModel):
                     return string.Format(ServicesUrl.ReadingCarousel, id);
+                case nameof(MovieModel):
+                    return string.Format(ServicesUrl.MovieDetail, id);
                 default:
                     return string.Empty;
             }
@@ -97,12 +99,23 @@ namespace Many.ThirdParty.Core.Data
                 await GetMainListGeneric(uri));
         }
 
-        public static async Task<T> GetGeneralModelAsync<T>(string id) where T : class
+        public static async Task<T> GetGeneralModelByIdAsync<T>(string id) where T : class
         {
             return GetTFormString<T>(
                 await GetMainContentGeneric(
                     GetUriByModelType(typeof(T), id)));
         }
+
+
+        public static async Task<T> GetGeneralModelByUriAsync<T>(string uri) where T : class
+        {
+            return GetTFormString<T>(await GetMainContentGeneric(uri));
+        }
+
+
+
+
+
 
         private static Dictionary<uint, string> MoviePair { get; } = new Dictionary<uint, string> { { 0, "0" } };
 

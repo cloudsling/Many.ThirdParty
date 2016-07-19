@@ -8,8 +8,8 @@ namespace Many.ThirdParty.Core.Data
     internal static class Comments
     {
         internal static async Task<IEnumerable<CommentModel>> GetComment(string uri)
-        {
-            return JsonHelper.Select<CommentModel>(await DataHelper.GetJsonArrayAsync(uri));
+        { 
+            return JsonHelper.Select<CommentModel>(await CommonDataLoader.GetMainJsonArrayGeneric(uri));
         }
     }
 }

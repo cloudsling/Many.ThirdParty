@@ -29,6 +29,10 @@ namespace Many.ThirdParty.Core.Service
 
         public static string MovieDetail => Baseuri + "movie/detail/{0}?";
 
+        public static string MovieStory => Baseuri + "movie/{0}/story/{1}/0?";
+
+        public static string MovieComment => Baseuri + "comment/praiseandtime/movie/{0}/0?";
+
         public static string SearchMain => Baseuri + "search/hp/{0}?";
 
         public static string SearchAuthor => Baseuri + "search/author/{0}?";
@@ -78,7 +82,7 @@ namespace Many.ThirdParty.Core.Service
                 default:
                     throw new ArgumentOutOfRangeException(nameof(option), option, null);
             }
-            return $" { Baseuri } related/ { keyWord } /{0}?";
+            return Baseuri + "related/" + keyWord + "/{0}?";
         }
     }
 }

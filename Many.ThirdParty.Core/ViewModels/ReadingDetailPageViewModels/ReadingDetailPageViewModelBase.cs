@@ -82,6 +82,7 @@ namespace Many.ThirdParty.Core.ViewModels.ReadingDetailPageViewModels
             if (string.IsNullOrEmpty(id)) return null;
 
             var viewModel = JsonConvert.DeserializeObject<T>((await DataHelper.GetJsonObjectAsync(GetUri<T>(id))).Stringify());
+            // await CommonDataLoader.GetGeneralModelByUriAsync<T>(GetUri<T>(id));
             await viewModel.RefreshCommentsCollection(GetCommentUri<T>(id));
             await viewModel.AddToRelatedCollection<T>(id);
 
@@ -90,18 +91,18 @@ namespace Many.ThirdParty.Core.ViewModels.ReadingDetailPageViewModels
 
 
         public async Task RefreshCommentsCollection(string uri)
-        {
+        { 
             foreach (var item in await DataHelper.GetCommentJsonArrayAsync(uri))
             {
-                var tem = JsonConvert.DeserializeObject<CommentModel>(item.Stringify());
+                var model = JsonConvert.DeserializeObject<CommentModel>(item.Stringify());
 
-                if (tem.Type == "0")
+                if (model.Type == "0")
                 {
-                    HotComments.Add(tem);
+                    HotComments.Add(model);
                 }
                 else
                 {
-                    NormalComments.Add(tem);
+                    NormalComments.Add(model);
                 }
             }
         }

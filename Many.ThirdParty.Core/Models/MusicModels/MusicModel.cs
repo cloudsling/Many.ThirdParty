@@ -8,6 +8,7 @@ using Windows.UI.Xaml;
 using Windows.UI.Xaml.Media.Imaging;
 using Many.ThirdParty.Core.Commands;
 using Many.ThirdParty.Core.Commons;
+using Many.ThirdParty.Core.Data;
 using Many.ThirdParty.Core.Interface;
 using Many.ThirdParty.Core.Models.CommonModels;
 using Many.ThirdParty.Core.Tools;
@@ -84,7 +85,6 @@ namespace Many.ThirdParty.Core.Models.MusicModels
             foreach (var item in await DataHelper.GetCommentJsonArrayAsync(uri))
             {
                 var tem = JsonConvert.DeserializeObject<CommentModel>(item.Stringify());
-
                 if (tem.Type == "0")
                 {
                     HotComments.Add(tem);
@@ -115,13 +115,13 @@ namespace Many.ThirdParty.Core.Models.MusicModels
 
             InitializeProperties();
         }
-         
+
         private async Task AudioPlayStart(object obj)
         {
             PlayImage = !PlayImage;
 
             await new MessageDialog("播放功能正在施工中。。。。。").ShowAsync();
-            
+
         }
 
         private void UpdateUi(object obj)

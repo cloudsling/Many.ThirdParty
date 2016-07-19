@@ -8,6 +8,8 @@ using System.Threading.Tasks;
 using Windows.Data.Json;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Navigation;
+using Many.ThirdParty.Core.Data;
+using Many.ThirdParty.Core.Service;
 
 namespace Many.ThirdParty.SubPages
 {
@@ -28,13 +30,15 @@ namespace Many.ThirdParty.SubPages
             CurrentMoviePage = this;
         }
 
-        private void movieList_ItemClick(object sender, ItemClickEventArgs e)
+        private async void movieList_ItemClick(object sender, ItemClickEventArgs e)
         {
             var item = e.ClickedItem as MovieListModel;
             if (item != null)
             {
                 //TODO:
-                NavigationManager.GeneralNavigate(typeof(MovieDetailPage), item);
+                NavigationManager.GeneralNavigate(
+                    typeof(MovieDetailPage), 
+                    await CommonDataLoader.GetGeneralModelByIdAsync<MovieModel>(string.Format(ServicesUrl.MovieDetail, item.Id)));
             }
         }
 

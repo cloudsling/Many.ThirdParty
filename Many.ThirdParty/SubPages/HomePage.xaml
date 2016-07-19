@@ -111,7 +111,7 @@
                                                 <Border>
                                                     <StackPanel Orientation="Horizontal">
                                                         <Image Source="ms-appx:///Resources/BgImages/diary.png"/>
-                                                        <TextBlock Text="小计"
+                                                        <TextBlock Text="小记"
                                                VerticalAlignment="Center"
                                                Style="{StaticResource SmallText}"/>
                                                     </StackPanel>
