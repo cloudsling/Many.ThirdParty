@@ -2,7 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using Windows.Data.Json; 
+using Windows.Data.Json;
 
 namespace Many.ThirdParty.Core.Tools
 {
@@ -10,7 +10,13 @@ namespace Many.ThirdParty.Core.Tools
     {
         private const string Dataname = "data";
 
-        internal static JsonObject GetObjectFormString(string content)
+        //internal static JsonObject GetObjectFormString(string content)
+        //{
+        //    JsonObject jsonObject;
+
+        //    return JsonObject.TryParse(content, out jsonObject) ? jsonObject : null;
+        //}
+        internal static JsonObject GetObjectFromString(string content)
         {
             JsonObject jsonObject;
 
@@ -25,7 +31,9 @@ namespace Many.ThirdParty.Core.Tools
             }
             catch (Exception)
             {
-                return null;
+                var subJson = json.GetNamedObject(name);
+
+                return subJson.GetNamedArray(name);
             }
         }
 
@@ -47,10 +55,7 @@ namespace Many.ThirdParty.Core.Tools
                 item => JsonConvert.DeserializeObject<T>(item.Stringify()));
         }
 
-        internal static JsonObject GetObjectFromString(string content)
-        {
-            return GetObjectFormString(content);
-        }
+        
 
         internal static JsonObject GetObjectFromObject(JsonObject json)
         {

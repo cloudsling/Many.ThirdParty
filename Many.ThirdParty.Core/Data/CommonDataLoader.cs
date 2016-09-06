@@ -43,7 +43,7 @@ namespace Many.ThirdParty.Core.Data
             return GetJsonArrayFromObject(await GetMainJsonObjectAsync(uri));
         }
 
-        private static async Task<string> GetMainContentGeneric(string uri)
+        public static async Task<string> GetMainContentGeneric(string uri)
         {
             return GetObjectFromObject(await GetMainJsonObjectAsync(uri)).Stringify();
         }
@@ -93,6 +93,7 @@ namespace Many.ThirdParty.Core.Data
                     GetUriByModelType(typeof(T), id)));
         }
 
+        //返回从请求到的Json数据中的data下的JsonArray集合
         public static async Task<ObservableCollection<T>> GetGeneralModelsCollectionByUriAsync<T>(string uri)
         {
             return GetTFormString<ObservableCollection<T>>(
@@ -111,12 +112,7 @@ namespace Many.ThirdParty.Core.Data
         {
             return GetTFormString<T>(await GetMainContentGeneric(uri));
         }
-
-
-
-
-
-
+        
         private static Dictionary<uint, string> MoviePair { get; } = new Dictionary<uint, string> { { 0, "0" } };
 
         public static async Task<ObservableCollection<MovieListModel>> GetMovieListModel(uint key)

@@ -10,27 +10,20 @@ namespace Many.ThirdParty.SubPages
 
         public MovieDetailPage()
         {
-            ViewModel = new MovieDetailPageViewModel();
+           // ViewModel = new MovieDetailPageViewModel();
 
             InitializeComponent();
         }
 
-        protected override void OnNavigatedTo(NavigationEventArgs e)
+        protected override   void OnNavigatedTo(NavigationEventArgs e)
         {
-            if (e.Parameter != null)
-            {
-                var model = e.Parameter as MovieDetailPageViewModel;
-                if (model != null)
-                {
-                    Wv.Navigate(new System.Uri("http://m.wufazhuce.com/movie/" + model.Id));
-                    // ViewModel = model;
-                }
-
-
-            }
-
-
-
+            ViewModel = e.Parameter as MovieDetailPageViewModel;
+            //if (model != null)
+            //{
+            //    await model.LoadMovieStory();
+            //    await model.RefreshCommentsCollection(model.Id);
+            //}
+            //ViewModel = model;
         }
     }
 }

@@ -1,11 +1,13 @@
 ﻿using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System;
+using System.Reflection.Metadata;
 using System.Threading.Tasks;
 using Many.ThirdParty.Core.Commons;
 using Many.ThirdParty.Core.Data;
 using Many.ThirdParty.Core.Interface;
 using Many.ThirdParty.Core.Models.CommonModels;
+using Many.ThirdParty.Core.Models.MovieModels;
 using Many.ThirdParty.Core.Service;
 
 namespace Many.ThirdParty.Core.ViewModels
@@ -14,8 +16,8 @@ namespace Many.ThirdParty.Core.ViewModels
     {
         public MovieDetailPageViewModel()
         {
+            _movieStory = new MovieStoryModel();
             HotComments = new ObservableCollection<CommentModel>();
-
             NormalComments = new ObservableCollection<CommentModel>();
         }
 
@@ -58,13 +60,30 @@ namespace Many.ThirdParty.Core.ViewModels
         public string CommentNum { get; set; }
 
         public string ServerTime { get; set; }
+         
+        private MovieStoryModel _movieStory;
+        public MovieStoryModel MovieStory
+        {
+            get { return _movieStory; }
+            set { SetProperty(ref _movieStory, value); }
+        }
 
         public ObservableCollection<CommentModel> HotComments { get; set; }
 
         public ObservableCollection<CommentModel> NormalComments { get; set; }
 
+        public async Task LoadMovieStory()
+        {
+            //var te =  await CommonDataLoader.GetGeneralModelByUriAsync<MovieStoryModel>(string.Format(
+            //  ServicesUrl.MovieStory, Id, 0));
+
+            MovieStory = await MovieStoryData.LoadModel(string.Format(ServicesUrl.MovieStory, Id, 0));
+        }
+
         public async Task RefreshCommentsCollection(string id)
         {
+            if (string.IsNullOrEmpty(Id)) return;
+
             foreach (var model in await CommonDataLoader.GetGeneralModelsCollectionByUriAsync<CommentModel>(string.Format(ServicesUrl.MovieComment, Id)))
             {
                 if (model.Type == "0")

@@ -100,15 +100,15 @@
                                   IsOn="{x:Bind ViewModel.AppSettings.SkipPreLoadPage, Mode=TwoWay}"/>-->
                 </Grid>
             </ListViewItem>
-            
+
         </ListView>
         <uct:GeneralListViewItem Title="关于"/>
         <ListView>
             <ListViewItem>
-                <TextBlock Text="欢迎加入一个 uwp的反馈交流群： 208664459" 
+                <TextBlock Text="应用进入维护期，感谢支持" 
                        Style="{StaticResource SmallDeepText}"/>
             </ListViewItem>
-            <Button x:Name="Copy" Content="点击复制群号" Click="Button_Click"/>
+            <Button x:Name="Copy" Content="点我 不要停&lt;_ &lt;" Click="Button_Click"/>
         </ListView>
     </StackPanel>
 </Page>

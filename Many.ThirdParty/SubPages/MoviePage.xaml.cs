@@ -30,10 +30,13 @@ namespace Many.ThirdParty.SubPages
             var item = e.ClickedItem as MovieListModel;
             if (item != null)
             {
-                //TODO:
+                //TODO://MovieStoryData
                 NavigationManager.GeneralNavigate(
-                    typeof(MovieDetailPage), 
-                    await CommonDataLoader.GetGeneralModelByUriAsync<MovieDetailPageViewModel>(string.Format(ServicesUrl.MovieDetail, item.Id)));
+                    typeof(MovieDetailPage),
+                    await MovieStoryData.CreateViewModel(string.Format(ServicesUrl.MovieDetail, item.Id)));
+                //NavigationManager.GeneralNavigate(
+                //    typeof(MovieDetailPage),
+                //    await CommonDataLoader.GetGeneralModelByUriAsync<MovieDetailPageViewModel>(string.Format(ServicesUrl.MovieDetail, item.Id)));
             }
         }
 

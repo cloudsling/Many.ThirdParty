@@ -8,12 +8,12 @@ namespace Many.ThirdParty.Core.Tools
     {
         internal static async Task<JsonArray> GetJsonArrayAsync(string uri)
         {
-            return GetJsonArrayFromObject(GetObjectFormString(await HttpHelper.GetStringAsync(uri)));
+            return GetJsonArrayFromObject(GetObjectFromString(await HttpHelper.GetStringAsync(uri)));
         }
 
         internal static async Task<JsonObject> GetJsonObjectAsync(string uri)
         {
-            return GetObjectFromObject(GetObjectFormString(await HttpHelper.GetStringAsync(uri)));
+            return GetObjectFromObject(GetObjectFromString(await HttpHelper.GetStringAsync(uri)));
         }
 
         internal static async Task<JsonArray> GetCommentJsonArrayAsync(string uri)

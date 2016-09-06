@@ -14,15 +14,21 @@
             <converter:BolleanToPlayConverter x:Key="BolleanToPlayConverter"></converter:BolleanToPlayConverter>
         </ResourceDictionary>
     </Page.Resources>-->
-    
-    <WebView x:Name="Wv" />
-    <!--<ScrollViewer Padding="0" >
+    <Page.Resources>
+        <converter:StringToBitmapImageConverter x:Name="StringToBitmapImage" />
+        <Style TargetType="ListView">
+            <Setter Property="SelectionMode" Value="None"/>
+        </Style>
+    </Page.Resources>
+
+    <!--<WebView x:Name="Wv" />-->
+    <ScrollViewer Padding="0" >
         <StackPanel>
             <Grid>
                 <Image Height="360" 
                         Margin="-10 0"
                         Stretch="UniformToFill"
-                        Source="{x:Bind ViewModel.DetailCover}"/>
+                        Source="{x:Bind ViewModel.DetailCover, Mode=OneWay, Converter={StaticResource StringToBitmapImage}}"/>
             </Grid>
 
             <StackPanel>
@@ -30,21 +36,176 @@
                     <TextBlock Text="电影故事"
                                Foreground="{ThemeResource SmallLightFontColor}"/>
                 </ListViewItem>
-              
+                <!-- 音乐故事 -->
+                <Grid Padding="8">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid>
+                        <Ellipse Height="30"
+                                 Width="30"
+                                 Margin="0 8"
+                                 VerticalAlignment="Top"
+                                 HorizontalAlignment="Center">
+                            <Ellipse.Fill>
+                                <ImageBrush ImageSource="{x:Bind ViewModel.MovieStory.User.Web_Url, Mode=OneWay, Converter={StaticResource StringToBitmapImage}}" />
+                            </Ellipse.Fill>
+                        </Ellipse>
+                    </Grid>
+                    <Grid Grid.Column="1">
+                        <Grid.RowDefinitions>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                        </Grid.RowDefinitions>
+                        <Grid>
+                            <StackPanel HorizontalAlignment="Left">
+                                <TextBlock Text="{x:Bind ViewModel.MovieStory.User.User_Name, Mode=OneWay}"
+                                           Margin="8 0"
+                                           Style="{StaticResource ReadingContent}" />
+                                <TextBlock Text="{x:Bind ViewModel.MovieStory.Input_Date}"
+                                           Margin="8 0"
+                                           FontSize="12"
+                                           Style="{StaticResource SmallDeepText}"/>
+                            </StackPanel>
+                            <Grid Height="30" 
+                                  HorizontalAlignment="Right"
+                                  VerticalAlignment="Center">
+                                <customControls:BlankButton>
+                                    <customControls:BlankButton.Content>
+                                        <Border>
+                                            <StackPanel Orientation="Horizontal"
+                                                        HorizontalAlignment="Center">
+                                                <Image Source="ms-appx:///Resources/BgImages/laud.png"/>
+                                                <TextBlock Text="{x:Bind ViewModel.MovieStory.PraiseNum, Mode=OneWay}"
+                                                           VerticalAlignment="Center"
+                                                           Style="{StaticResource SmallDeepText}"/>
+                                            </StackPanel>
+                                        </Border>
+                                    </customControls:BlankButton.Content>
+                                </customControls:BlankButton>
+                            </Grid>
+                        </Grid>
+                        <TextBlock Grid.Row="1" 
+                                   Text="{x:Bind ViewModel.MovieStory.Content, Mode=OneWay}"
+                                   Style="{StaticResource ReadingContent}"/>
+                    </Grid>
+                    <Rectangle Grid.Column="0" 
+                               Grid.ColumnSpan="2" 
+                               VerticalAlignment="Bottom" 
+                               Margin="-50 0"
+                               Height="6" 
+                               Fill="{ThemeResource TopLine}"
+                               Width="600" />
+                </Grid>
+
             </StackPanel>
             <Rectangle Margin="5"
                                Height="1" 
                                Fill="{ThemeResource FontColor}"
                                Width="600" />
 
-        
- 
-            
-            --><!--<userControls:CommentsList HotComments="{x:Bind ViewModel.HotComments}"
-                                       NormalComments="{x:Bind ViewModel.NormalComments}"/>--><!--
+            <userControls:CommentsList HotComments="{x:Bind ViewModel.HotComments, Mode=OneWay}"
+                                       NormalComments="{x:Bind ViewModel.NormalComments, Mode=OneWay}"/>
         </StackPanel>
-    </ScrollViewer>-->
+    </ScrollViewer>
 </Page>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

@@ -115,6 +115,7 @@
     <Compile Include="Converter\SwitchVisibilityConverter.cs" />
     <Compile Include="Data\Comments.cs" />
     <Compile Include="Data\CommonDataLoader.cs" />
+    <Compile Include="Data\MovieStoryData.cs" />
     <Compile Include="Enum\ListType.cs" />
     <Compile Include="Enum\RelatedContentOption.cs" />
     <Compile Include="Interface\IncrementalLoadingCollection.cs" />
@@ -133,6 +134,7 @@
     <Compile Include="Models\HomeModels\HomeModel.cs" />
     <Compile Include="Models\MovieModels\MovieListModel.cs" />
     <Compile Include="Models\MovieModels\MovieModel.cs" />
+    <Compile Include="Models\MovieModels\MovieStoryModel.cs" />
     <Compile Include="Models\MusicModels\MusicModel.cs" />
     <Compile Include="Models\ReadingModels\EssayModel.cs" />
     <Compile Include="Models\ReadingModels\ReadingContent.cs" />
