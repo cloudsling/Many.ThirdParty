@@ -1,5 +1,5 @@
-MainPackage=C:\Users\Hao Ling\Documents\Source\Repos\Many.ThirdParty\Many.ThirdParty\bin\ARM\Release\Many.ThirdParty_2.0.20.0_ARM.appx
-SymbolPackage=C:\Users\Hao Ling\Documents\Source\Repos\Many.ThirdParty\Many.ThirdParty\AppPackages\Many.ThirdParty_2.0.20.0_Test\Many.ThirdParty_2.0.20.0_ARM.appxsym
-ResourcePack=C:\Users\Hao Ling\Documents\Source\Repos\Many.ThirdParty\Many.ThirdParty\bin\ARM\Release\Many.ThirdParty_2.0.20.0_scale-100.appx
-ResourcePack=C:\Users\Hao Ling\Documents\Source\Repos\Many.ThirdParty\Many.ThirdParty\bin\ARM\Release\Many.ThirdParty_2.0.20.0_scale-125.appx
-ResourcePack=C:\Users\Hao Ling\Documents\Source\Repos\Many.ThirdParty\Many.ThirdParty\bin\ARM\Release\Many.ThirdParty_2.0.20.0_scale-400.appx
+MainPackage=D:\Schrodinger\Documents\Source\Repos\Many.ThirdParty\Many.ThirdParty\bin\ARM\Release\Many.ThirdParty_2.0.25.0_ARM.appx
+SymbolPackage=D:\Schrodinger\Documents\Source\Repos\Many.ThirdParty\Many.ThirdParty\AppPackages\Many.ThirdParty_2.0.25.0_Test\Many.ThirdParty_2.0.25.0_ARM.appxsym
+ResourcePack=D:\Schrodinger\Documents\Source\Repos\Many.ThirdParty\Many.ThirdParty\bin\ARM\Release\Many.ThirdParty_2.0.25.0_scale-100.appx
+ResourcePack=D:\Schrodinger\Documents\Source\Repos\Many.ThirdParty\Many.ThirdParty\bin\ARM\Release\Many.ThirdParty_2.0.25.0_scale-125.appx
+ResourcePack=D:\Schrodinger\Documents\Source\Repos\Many.ThirdParty\Many.ThirdParty\bin\ARM\Release\Many.ThirdParty_2.0.25.0_scale-400.appx

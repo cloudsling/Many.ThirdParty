@@ -17,16 +17,9 @@ namespace Many.ThirdParty.Background
             deferral.Complete();
         }
 
-        private IAsyncOperation<string> GetLastHomeList()
+        private static IAsyncOperation<string> GetLastHomeList()
         {
-            try
-            {
-                return AsyncInfo.Run(token => Core.Tasks.LiveTileTask.RequestUpdate());
-            }
-            catch (Exception)
-            {
-                throw;
-            }
+            return AsyncInfo.Run(token => Core.Tasks.LiveTileTask.RequestUpdate());
         }
     }
 }

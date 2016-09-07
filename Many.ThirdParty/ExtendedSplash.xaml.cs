@@ -40,7 +40,7 @@ namespace Many.ThirdParty
             Frame.Navigate(
                 ViewModelBase.CurrentSettings.SkipPreLoadPage ? typeof(MainFrameContainer) : typeof(PreLoadPage),
                 HomePage.CurrentHomeModle = await CommonDataLoader.GetGeneralModelByIdAsync<HomeModel>(HomePage.TodaysListId[0]), 
-                new DrillInNavigationTransitionInfo());
+                new EntranceNavigationTransitionInfo());
 
             SystemNavigationManager.GetForCurrentView().BackRequested += PreLoadPage_BackRequested;
         }
@@ -49,11 +49,9 @@ namespace Many.ThirdParty
         {
             if (Frame.SourcePageType == typeof(MainFrameContainer)) return;
 
-            if (Frame.CanGoBack)
-            {
-                Frame.GoBack();
-                e.Handled = true;
-            }
+            if (!Frame.CanGoBack) return;
+            Frame.GoBack();
+            e.Handled = true;
         }
     }
 }

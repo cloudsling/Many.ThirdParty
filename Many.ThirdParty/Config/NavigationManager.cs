@@ -13,18 +13,16 @@ namespace Many.ThirdParty.Config
 
         internal static void GeneralNavigate(Type pageType, object parameter = null)
         {
-            GeneralFrame?.Navigate(pageType, parameter, new DrillInNavigationTransitionInfo());
+            //GeneralFrame?.Navigate(pageType, parameter, new DrillInNavigationTransitionInfo());
+            GeneralFrame?.Navigate(pageType, parameter, new EntranceNavigationTransitionInfo());
         }
-
-        //internal static void GeneralNavigate(Type pageType)
-        //{
-        //    GeneralFrame?.Navigate(pageType, new DrillInNavigationTransitionInfo());
-        //}
 
         internal static void GoBack(Frame frame)
         {
             if (frame.CanGoBack)
-                frame.GoBack(new DrillInNavigationTransitionInfo());
+                frame.GoBack(new EntranceNavigationTransitionInfo());
+
+           // frame.GoBack(new DrillInNavigationTransitionInfo());
         }
 
         internal static readonly IList<Scenario> MainScenarios = new List<Scenario>

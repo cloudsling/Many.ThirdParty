@@ -1,1 +1,2 @@
-MainPackage=C:\Users\Hao Ling\Documents\Source\Repos\Many.ThirdParty\Many.ThirdParty\bin\x64\Release\Upload\Many.ThirdParty_2.0.20.0_x64.appx
+MainPackage=D:\Schrodinger\Documents\Source\Repos\Many.ThirdParty\Many.ThirdParty\bin\x64\Release\Upload\Many.ThirdParty_2.0.25.0_x64.appx
+SymbolPackage=D:\Schrodinger\Documents\Source\Repos\Many.ThirdParty\Many.ThirdParty\AppPackages\Many.ThirdParty_2.0.25.0\Many.ThirdParty_2.0.25.0_x64.appxsym

@@ -6,7 +6,6 @@ using System.Threading.Tasks;
 using Many.ThirdParty.Core.Data;
 using Many.ThirdParty.Core.Models.HomeModels;
 using Windows.Data.Xml.Dom;
-using Windows.Foundation;
 using Windows.Storage;
 using Windows.UI.Notifications;
 using Many.ThirdParty.Core.Enum;
@@ -17,24 +16,17 @@ namespace Many.ThirdParty.Core.Tasks
     {
         public static async Task<string> RequestUpdate()
         {
-            try
-            {
-                var response = (await CommonDataLoader.GetGeneralList("0", ListType.HomeList)).Take(5);
+            var response = (await CommonDataLoader.GetGeneralList("0", ListType.HomeList)).Take(5);
 
-                if (response != null)
-                {
-                    await UpdatePrimaryTile((await CommonDataLoader.LoadHomeModelsAsync(response)).ToList());
-                }
-            }
-            catch (Exception)
+            if (response != null)
             {
-                throw;
+                await UpdatePrimaryTile((await CommonDataLoader.LoadHomeModelsAsync(response)).ToList());
             }
 
             return null;
         }
 
-        private static async Task UpdatePrimaryTile(List<HomeModel> list)
+        private static async Task UpdatePrimaryTile(IReadOnlyList<HomeModel> list)
         {
             try
             {
@@ -73,10 +65,13 @@ namespace Many.ThirdParty.Core.Tasks
                     updater.Update(new TileNotification(doc));
                 }
             }
-            catch (Exception) { }
+            catch (Exception)
+            {
+                // ignored
+            }
         }
 
-        private static Func<Task<string>> TileTemplete = async () =>
+        private static readonly Func<Task<string>> TileTemplete = async () =>
           await FileIO.ReadTextAsync(await StorageFile.GetFileFromApplicationUriAsync(new Uri("ms-appx:///Many.ThirdParty.Core/TempleteFiles/LiveTileTemplete.xml")));
 
     }

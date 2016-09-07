@@ -8,14 +8,14 @@ using Many.ThirdParty.Core.Service;
 
 namespace Many.ThirdParty.SubPages
 {
-    public sealed partial class MoviePage : Page
+    public sealed partial class MoviePage
     {
         public static MoviePage CurrentMoviePage;
 
         public MoviePageViewModel MoviePageViewModel { get; set; }
     }
 
-    public sealed partial class MoviePage : Page
+    public sealed partial class MoviePage
     {
         public MoviePage()
         {
