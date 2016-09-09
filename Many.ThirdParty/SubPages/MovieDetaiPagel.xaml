@@ -8,12 +8,7 @@
     xmlns:userControls="using:Many.ThirdParty.UserControls"
     xmlns:converter="using:Many.ThirdParty.Core.Converter"
     mc:Ignorable="d">
-
-    <!--<Page.Resources>
-        <ResourceDictionary>
-            <converter:BolleanToPlayConverter x:Key="BolleanToPlayConverter"></converter:BolleanToPlayConverter>
-        </ResourceDictionary>
-    </Page.Resources>-->
+    
     <Page.Resources>
         <converter:StringToBitmapImageConverter x:Name="StringToBitmapImage" />
         <Style TargetType="ListView">
@@ -21,15 +16,27 @@
         </Style>
     </Page.Resources>
 
-    <!--<WebView x:Name="Wv" />-->
-    <ScrollViewer Padding="0" >
+    <ScrollViewer Padding="0"
+                  Background="{ThemeResource MainBackground}">
         <StackPanel>
-            <Grid>
-                <Image Height="360" 
+            <Grid Height="40">
+                <Grid HorizontalAlignment="Left">
+                    <customControls:BlankButton x:Name="BackButton" Click="BackButton_Click">
+                        <Image Source="ms-appx:///Resources/BgImages/return_image.png"/>
+                    </customControls:BlankButton>
+                </Grid>
+                <Grid HorizontalAlignment="Center">
+                    <TextBlock Text="短篇" 
+                           VerticalAlignment="Center"
+                           Foreground="#4E5C6C"
+                           FontSize="19"
+                           FontWeight="Medium"/>
+                </Grid>
+            </Grid>
+            <Image Height="360" 
                         Margin="-10 0"
                         Stretch="UniformToFill"
                         Source="{x:Bind ViewModel.DetailCover, Mode=OneWay, Converter={StaticResource StringToBitmapImage}}"/>
-            </Grid>
 
             <StackPanel>
                 <ListViewItem Background="{ThemeResource ListHeader}">
@@ -110,6 +117,134 @@
         </StackPanel>
     </ScrollViewer>
 </Page>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

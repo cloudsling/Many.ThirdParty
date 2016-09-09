@@ -1,5 +1,5 @@
-MainPackage=D:\Schrodinger\Documents\Source\Repos\Many.ThirdParty\Many.ThirdParty\bin\ARM\Release\Upload\Many.ThirdParty_2.0.25.0_ARM.appx
-SymbolPackage=D:\Schrodinger\Documents\Source\Repos\Many.ThirdParty\Many.ThirdParty\AppPackages\Many.ThirdParty_2.0.25.0\Many.ThirdParty_2.0.25.0_ARM.appxsym
+MainPackage=D:\Schrodinger\Documents\Source\Repos\Many.ThirdParty\Many.ThirdParty\bin\ARM\Release\Upload\Many.ThirdParty_2.0.26.0_ARM.appx
+SymbolPackage=D:\Schrodinger\Documents\Source\Repos\Many.ThirdParty\Many.ThirdParty\AppPackages\Many.ThirdParty_2.0.26.0\Many.ThirdParty_2.0.26.0_ARM.appxsym
 ResourcePack=D:\Schrodinger\Documents\Source\Repos\Many.ThirdParty\Many.ThirdParty\_scale-100.appx
 ResourcePack=D:\Schrodinger\Documents\Source\Repos\Many.ThirdParty\Many.ThirdParty\_scale-125.appx
 ResourcePack=D:\Schrodinger\Documents\Source\Repos\Many.ThirdParty\Many.ThirdParty\_scale-400.appx

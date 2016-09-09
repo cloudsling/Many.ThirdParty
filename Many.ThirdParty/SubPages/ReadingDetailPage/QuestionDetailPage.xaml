@@ -67,8 +67,7 @@
                            FontWeight="Black"
                            Margin="5 9 5 4"
                            Style="{StaticResource ReadingText}"/>
-                <TextBlock Text="{x:Bind ViewModel.Question_Content}"
-                           TextWrapping="Wrap"
+                <TextBlock Text="{x:Bind ViewModel.Question_Content}" 
                            Style="{StaticResource ReadingContent}"/>
                 <Line HorizontalAlignment="Center" 
                       Stroke="Gray"

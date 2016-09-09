@@ -1,5 +1,7 @@
-﻿using Windows.UI.Xaml.Controls;
+﻿using Windows.UI.Xaml;
+using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Navigation;
+using Many.ThirdParty.Config;
 using Many.ThirdParty.Core.ViewModels;
 
 namespace Many.ThirdParty.SubPages
@@ -10,20 +12,19 @@ namespace Many.ThirdParty.SubPages
 
         public MovieDetailPage()
         {
-           // ViewModel = new MovieDetailPageViewModel();
-
             InitializeComponent();
         }
 
-        protected override   void OnNavigatedTo(NavigationEventArgs e)
+        protected override void OnNavigatedTo(NavigationEventArgs e)
         {
-            ViewModel = e.Parameter as MovieDetailPageViewModel;
-            //if (model != null)
-            //{
-            //    await model.LoadMovieStory();
-            //    await model.RefreshCommentsCollection(model.Id);
-            //}
-            //ViewModel = model;
+            ViewModel = e.Parameter as MovieDetailPageViewModel ?? new MovieDetailPageViewModel();
+
+            RequestedTheme = ViewModel.AppSettings.NightModeEnable ? ElementTheme.Dark : ElementTheme.Light;
+        }
+
+        private void BackButton_Click(object sender, Windows.UI.Xaml.RoutedEventArgs e)
+        {
+            NavigationManager.GoBack(Frame);
         }
     }
 }
