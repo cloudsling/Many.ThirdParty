@@ -8,12 +8,12 @@ namespace Many.ThirdParty.Core.Models.HomeModels
 {
     public class HomeModel : BindableBase
     {
-        private static CommandBase StaticSavePicCommand = new AsyncCommand(HomePageViewModel.SavePic);
-        private static CommandBase StaticCopyCommand = new Command(Replicators.CopyString);
+        private static readonly CommandBase StaticSavePicCommand = new AsyncCommand(HomePageViewModel.SavePic);
+        private static readonly CommandBase StaticCopyCommand = new Command(Replicators.CopyString);
 
-        public CommandBase CopyCommand { get { return StaticCopyCommand; } }
+        public CommandBase CopyCommand => StaticCopyCommand;
 
-        public CommandBase SavePicCommand { get { return StaticSavePicCommand; } }
+        public CommandBase SavePicCommand => StaticSavePicCommand;
 
         public static Action EndOfMenuFlyoutCommand;
 
@@ -36,9 +36,9 @@ namespace Many.ThirdParty.Core.Models.HomeModels
             set { _hp_MaketTime = value.Split(' ')[0]; }
         }
 
-        public string Day { get { return DateTime.Now.Day.ToString(); } }
+        public string Day => DateTime.Now.Day.ToString();
 
-        public string Month { get { return $"{ DateTime.Now.Year}-{DateTime.Now.Month }"; } }
+        public string Month => $"{ DateTime.Now.Year}-{DateTime.Now.Month }";
 
         public string PraiseNum { get; set; }
 

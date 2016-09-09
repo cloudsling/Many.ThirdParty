@@ -36,7 +36,7 @@ namespace Many.ThirdParty.SubPages
             ShowFlyOut(sender as FrameworkElement);
         }
 
-        void ShowFlyOut(FrameworkElement element)
+        private static void ShowFlyOut(FrameworkElement element)
         {
             if (element != null)
             {
@@ -46,7 +46,7 @@ namespace Many.ThirdParty.SubPages
 
         public delegate void EndOfMenuFlyoutCommand();
 
-        void SavePicSuccessed()
+        private static void SavePicSuccessed()
         {
             MainFrameContainer.NotifyUser("成功保存到 Pictueres/一个 目录下");
         }
@@ -67,7 +67,7 @@ namespace Many.ThirdParty.SubPages
         public HomePage()
         {
             ViewModel = new HomePageViewModel();
-            this.InitializeComponent();
+            InitializeComponent();
             CurrentHomePage = this;
         }
 
@@ -84,32 +84,32 @@ namespace Many.ThirdParty.SubPages
             await ViewModel.AddHomeModels(TodaysListId);
         }
 
-        Dictionary<string, bool> isClickDic = new Dictionary<string, bool>();
+        private readonly Dictionary<string, bool> _isClickDic = new Dictionary<string, bool>();
 
         /// <summary>
         /// expired code
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        async void Love_Click(object sender, RoutedEventArgs e)
+        private async void Love_Click(object sender, RoutedEventArgs e)
         {
-            if (isClickDic.ContainsKey(CurrentHomeModle.Hpcontent_Id))
+            if (_isClickDic.ContainsKey(CurrentHomeModle.Hpcontent_Id))
             {
                 int result;
                 if (int.TryParse(CurrentHomeModle.PraiseNum, out result))
                 {
-                    CurrentHomeModle.PraiseNum = (result -= 1).ToString();
+                    CurrentHomeModle.PraiseNum = (result - 1).ToString();
                     await new MessageDialog("取消喜欢!!").ShowAsync();
                 }
-                isClickDic.Remove(CurrentHomeModle.Hpcontent_Id);
+                _isClickDic.Remove(CurrentHomeModle.Hpcontent_Id);
                 return;
             }
 
-            using (HttpClient client = new HttpClient())
+            using (var client = new HttpClient())
             {
                 client.DefaultRequestHeaders.Add("UserAgent", "android-async-http/2.0 (http://loopj.com/android-async-http)");
                 client.DefaultRequestHeaders.Add("ContentType", "application/x-www-form-urlencoded");
-                Dictionary<string, string> dic = new Dictionary<string, string>
+                var dic = new Dictionary<string, string>
                 {
                     {"itemid", CurrentHomeModle.Hpcontent_Id},
                     {"type","hpcontent" },
@@ -121,16 +121,14 @@ namespace Many.ThirdParty.SubPages
                 response.EnsureSuccessStatusCode();
                 if (response.IsSuccessStatusCode)
                 {
-                    isClickDic.Add(CurrentHomeModle.Hpcontent_Id, true);
+                    _isClickDic.Add(CurrentHomeModle.Hpcontent_Id, true);
                     //Main.NotifyUserMethod("喜欢成功", 150);
                     int result;
-                    if (int.TryParse(CurrentHomeModle.PraiseNum, out result))
-                    {
-                        CurrentHomeModle.PraiseNum = (result += 1).ToString();
-#if DEBUG
-                        await new MessageDialog("Success!").ShowAsync();
-#endif
-                    }
+                    if (!int.TryParse(CurrentHomeModle.PraiseNum, out result)) return;
+                    CurrentHomeModle.PraiseNum = (result + 1).ToString();
+
+                    await new MessageDialog("Success!").ShowAsync();
+
                 }
             }
         }

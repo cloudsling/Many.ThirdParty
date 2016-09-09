@@ -121,4 +121,7 @@
     <value>ONE</value>
     <comment>App Name</comment>
   </data>
+  <data name="SavedFolderName" xml:space="preserve">
+    <value>ONE</value>
+  </data>
 </root>

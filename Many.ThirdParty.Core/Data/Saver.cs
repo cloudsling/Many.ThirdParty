@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Threading.Tasks;
+using Windows.ApplicationModel.Resources;
 using Many.ThirdParty.Core.Tools;
 using Windows.Storage;
 using Windows.UI.Popups;
@@ -8,18 +9,25 @@ namespace Many.ThirdParty.Core.Data
 {
     public static class Saver
     {
-        private static StorageFolder _systemPicturesLibrary;
+        private static readonly string SavedFolderName = new ResourceLoader().GetString($"SavedFolderName");
 
-        public static async Task TryGetPicturesLibrary()
+        private static StorageFolder SavedFolder { get; set; }
+
+        public static async Task SetSavedFolder()
         {
             try
             {
-                _systemPicturesLibrary = await KnownFolders.PicturesLibrary.CreateFolderAsync("一个", CreationCollisionOption.OpenIfExists);
+                SavedFolder = await KnownFolders.PicturesLibrary.CreateFolderAsync(SavedFolderName,
+                            CreationCollisionOption.OpenIfExists);
             }
             catch (UnauthorizedAccessException)
             {
                 await new MessageDialog("访问图片库被拒绝！！！！！").ShowAsync();
-                throw;
+                // ignored
+            }
+            catch (Exception)
+            {
+                // ignored
             }
         }
 
@@ -28,12 +36,12 @@ namespace Many.ThirdParty.Core.Data
             if (string.IsNullOrEmpty(uri)) return false;
             try
             {
-                if (_systemPicturesLibrary == null)
-                    await TryGetPicturesLibrary();
+                if (SavedFolder == null)
+                    await SetSavedFolder();
 
                 await FileIO.WriteBufferAsync(
                     // ReSharper disable once PossibleNullReferenceException
-                    await _systemPicturesLibrary.CreateFileAsync(name, CreationCollisionOption.OpenIfExists),
+                    await SavedFolder.CreateFileAsync(name, CreationCollisionOption.OpenIfExists),
                     await HttpHelper.GetBufferAsync(uri));
 
                 return true;

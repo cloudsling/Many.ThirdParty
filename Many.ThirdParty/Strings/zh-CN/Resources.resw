@@ -121,4 +121,7 @@
     <value>一个</value>
     <comment>应用名称</comment>
   </data>
+  <data name="SavedFolderName" xml:space="preserve">
+    <value>一个</value>
+  </data>
 </root>

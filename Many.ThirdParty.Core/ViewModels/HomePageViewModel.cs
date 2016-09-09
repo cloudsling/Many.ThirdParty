@@ -17,11 +17,11 @@ namespace Many.ThirdParty.Core.ViewModels
         internal static async Task SavePic(object obj)
         {
             var model = obj as HomeModel;
-            if (await Saver.SavePic(model.Hp_Title + ".png", model.Hp_Img_Url))
+            if (model != null && await Saver.SavePic(model.Hp_Title + ".png", model.Hp_Img_Url))
                 HomeModel.EndOfMenuFlyoutCommand?.Invoke();
         }
 
-        ObservableCollection<HomeModel> _homeModelCollection;
+        private ObservableCollection<HomeModel> _homeModelCollection;
         public ObservableCollection<HomeModel> HomeModelCollection
         {
             get { return _homeModelCollection; }
@@ -38,7 +38,7 @@ namespace Many.ThirdParty.Core.ViewModels
 
         public async Task AddHomeModels(List<string> listId)
         {
-            for (int index = 1; index < listId.Count; index++)
+            for (var index = 1; index < listId.Count; index++)
             {
                 await AddHomeModel(listId[index]);
             }
