@@ -139,7 +139,7 @@
                         <TextBlock HorizontalAlignment="Center"
                                    VerticalAlignment="Center"  
                                    TextWrapping="Wrap" 
-                                   Text="向上滑动进入一个" 
+                                   Text="向上滑动进入两个" 
                                    Foreground="#FF01AEF0"
                                    FontFamily="Consolas"  
                                    FontSize="19">

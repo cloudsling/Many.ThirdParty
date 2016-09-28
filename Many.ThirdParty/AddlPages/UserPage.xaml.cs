@@ -87,5 +87,10 @@ namespace Many.ThirdParty.AddlPages
         {
             ViewModel.AppSettings.SkipPreLoadPage = !ViewModel.AppSettings.SkipPreLoadPage;
         }
+
+        private void ButtonBase_OnClick(object sender, RoutedEventArgs e)
+        {
+            Addition.Visibility = Visibility.Visible;
+        }
     }
 }

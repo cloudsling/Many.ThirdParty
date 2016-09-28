@@ -361,6 +361,7 @@
     <MainPackageIdentityName>64853FutureLabs.UWP</MainPackageIdentityName>
     <ReservedNames>
       <ReservedName>一个 UWP</ReservedName>
+      <ReservedName>TWO-两个 PRO</ReservedName>
     </ReservedNames>
   </ProductReservedInfo>
   <AccountPackageIdentityNames>

@@ -18,9 +18,10 @@ namespace Many.ThirdParty.SubPages
     /// </summary>
     public sealed partial class ReadingPage
     {
+        private const int CarouselCount = 6;
         private void fv_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            if (GetIndexFromFlipView(sender) >= 0 && GetIndexFromFlipView(sender) <= 8)
+            if (GetIndexFromFlipView(sender) >= 0 && GetIndexFromFlipView(sender) <= CarouselCount)
             {
                 ChangeAllEllipseColor(
                     GetIndexFromFlipView(sender),
@@ -51,7 +52,6 @@ namespace Many.ThirdParty.SubPages
             NavigationManager.GeneralNavigate(typeof(CarouselDetailPage),
                await CarouselDetailPageViewModelFactory.CreateViewModel(ViewModel.CarouselModelCollection[GetIndexFromFlipView()]));
         }
-
     }
 
     /// <summary>

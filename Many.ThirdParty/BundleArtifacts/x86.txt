@@ -1,2 +1,2 @@
-MainPackage=D:\Schrodinger\Documents\Source\Repos\Many.ThirdParty\Many.ThirdParty\bin\x86\Release\Many.ThirdParty_2.0.26.0_x86.appx
-SymbolPackage=D:\Schrodinger\Documents\Source\Repos\Many.ThirdParty\Many.ThirdParty\AppPackages\Many.ThirdParty_2.0.26.0_Test\Many.ThirdParty_2.0.26.0_x86.appxsym
+MainPackage=D:\Schrodinger\Documents\Source\Repos\Many.ThirdParty\Many.ThirdParty\bin\x86\Release\Many.ThirdParty_3.0.4.0_x86.appx
+SymbolPackage=D:\Schrodinger\Documents\Source\Repos\Many.ThirdParty\Many.ThirdParty\AppPackages\Many.ThirdParty_3.0.4.0_Test\Many.ThirdParty_3.0.4.0_x86.appxsym

@@ -100,7 +100,6 @@
                                   IsOn="{x:Bind ViewModel.AppSettings.SkipPreLoadPage, Mode=TwoWay}"/>-->
                 </Grid>
             </ListViewItem>
-
         </ListView>
         <uct:GeneralListViewItem Title="关于"/>
         <ListView>
@@ -108,7 +107,16 @@
                 <TextBlock Text="应用进入维护期，感谢支持" 
                        Style="{StaticResource SmallDeepText}"/>
             </ListViewItem>
-            <Button x:Name="Copy" Content="点我 不要停&lt;_ &lt;" Click="Button_Click"/>
+            <Button x:Name="Copy" Content="点我 不要停&lt;_&lt;" Click="Button_Click"/>
+            <Button Content="显示更多" Click="ButtonBase_OnClick"/>
+            <RichTextBlock x:Name="Addition"
+                           Visibility="Collapsed"
+                           Padding="4">
+                <Paragraph>不要问我为什么改了很山寨的名字&lt;_&lt;</Paragraph>
+                <Paragraph>因为原来那么正儿八经的名字(一个 UWP)和logo，微软爸爸下架了我的应用&lt;_&lt;</Paragraph>
+                <Paragraph>对此我表示官方的严重抗议，不过并没有什么卵用</Paragraph>
+                <Paragraph>“某软，去你大爷的&lt;_&lt; 洗内”</Paragraph>
+            </RichTextBlock>
         </ListView>
     </StackPanel>
 </Page>

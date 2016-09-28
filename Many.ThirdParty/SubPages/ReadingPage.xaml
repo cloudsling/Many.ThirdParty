@@ -24,43 +24,43 @@
     </Page.Resources>
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="1.8*"/>
+            <RowDefinition Height="2*"/>
             <RowDefinition Height="5*"/>
-        </Grid.RowDefinitions> 
-            <Grid Height="225">
-                <FlipView x:Name="Fv"  
-                              ItemsSource="{x:Bind ViewModel.CarouselModelCollection}" 
-                              SelectionChanged="fv_SelectionChanged">
-                    <FlipView.ItemTemplate>
+        </Grid.RowDefinitions>
+        <Grid>
+            <FlipView x:Name="Fv"
+                          Padding="0"
+                          Margin="0"
+                        ItemsSource="{x:Bind ViewModel.CarouselModelCollection}" 
+                        SelectionChanged="fv_SelectionChanged">
+                <FlipView.ItemTemplate>
                     <DataTemplate x:DataType="cvm:CarouselModel">
-                            <Grid>
-                                <ctm:BlankButton Click="BlankButton_Click">
-                                    <Image x:Name="bkimg"
-                                           Stretch="UniformToFill" 
+                        <Grid>
+                            <ctm:BlankButton Click="BlankButton_Click">
+                                <Image x:Name="bkimg"
+                                           Stretch="Uniform" 
                                            Source="{x:Bind Cover}"/>
-                                </ctm:BlankButton>
-                            </Grid>
-                        </DataTemplate>
-                    </FlipView.ItemTemplate>
-                </FlipView>
-                <StackPanel x:Name="ManyEllipse"
+                            </ctm:BlankButton>
+                        </Grid>
+                    </DataTemplate>
+                </FlipView.ItemTemplate>
+            </FlipView>
+            <StackPanel x:Name="ManyEllipse"
                         Height="6" 
                         Width="100"
                         Margin="0 5"
                         VerticalAlignment="Bottom"
                         Orientation="Horizontal">
-                    <Ellipse Margin="3 0 3 0" Width="5" Height="5"/>
-                    <Ellipse Margin="3 0 3 0" Width="5" Height="5" />
-                    <Ellipse Margin="3 0 3 0" Width="5" Height="5" />
-                    <Ellipse Margin="3 0 3 0" Width="5" Height="5" />
-                    <Ellipse Margin="3 0 3 0" Width="5" Height="5" />
-                    <Ellipse Margin="3 0 3 0" Width="5" Height="5" />
-                    <Ellipse Margin="3 0 3 0" Width="5" Height="5" />
-                    <Ellipse Margin="3 0 3 0" Width="5" Height="5" />
-                    <Ellipse Margin="3 0 3 0" Width="5" Height="5" />
-                </StackPanel>
-            </Grid>
-            <ListView SelectionMode="None" 
+                <Ellipse Margin="3 0 3 0" Width="5" Height="5"/>
+                <Ellipse Margin="3 0 3 0" Width="5" Height="5" />
+                <Ellipse Margin="3 0 3 0" Width="5" Height="5" />
+                <Ellipse Margin="3 0 3 0" Width="5" Height="5" />
+                <Ellipse Margin="3 0 3 0" Width="5" Height="5" />
+                <Ellipse Margin="3 0 3 0" Width="5" Height="5" />
+                <Ellipse Margin="3 0 3 0" Width="5" Height="5" />
+            </StackPanel>
+        </Grid>
+        <ListView SelectionMode="None" 
                       IsSwipeEnabled="False"
                       Margin="0 4"
                       Grid.Row="1"
@@ -71,23 +71,23 @@
                       DataFetchSize="1.0" 
                       IncrementalLoadingThreshold="1"
                       ItemsSource="{x:Bind ViewModel.ReadingModelCollection}">
-                <ListView.ItemTemplate>
+            <ListView.ItemTemplate>
                 <DataTemplate x:DataType="cvm:ReadingModel">
-                        <Grid>
-                            <Grid.RowDefinitions>
-                                <RowDefinition Height="Auto"/>
-                                <RowDefinition Height="*"/>
-                            </Grid.RowDefinitions>
-                            <Border Background="{ThemeResource ListHeader}"
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="*"/>
+                        </Grid.RowDefinitions>
+                        <Border Background="{ThemeResource ListHeader}"
                                                     Margin="-15 -7 -500 -7">
-                                <TextBlock Text="{x:Bind MaketTime}"
+                            <TextBlock Text="{x:Bind MaketTime}"
                                                            Foreground="{ThemeResource SmallLightFontColor}"
                                                            VerticalAlignment="Center"
                                                            HorizontalAlignment="Left"
                                                            Margin="15"
                                                            FontSize="14"/>
                         </Border>
-                       
+
                         <ListView x:Name="MainListView"
                                   Grid.Row="1"
                                   IsSwipeEnabled="False"
@@ -123,8 +123,8 @@
                             </ListView.ItemTemplate>
                         </ListView>
                     </Grid>
-                    </DataTemplate>
-                </ListView.ItemTemplate>
-            </ListView> 
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
     </Grid>
 </Page>

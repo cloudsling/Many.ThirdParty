@@ -17,7 +17,7 @@
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{A5A43C5B-DE2A-4C0C-9213-0A381AF9435A};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <PackageCertificateKeyFile>Many.ThirdParty_StoreKey.pfx</PackageCertificateKeyFile>
-    <PackageCertificateThumbprint>E94370E64738F0DC4021CF3C043BAAD593891BFF</PackageCertificateThumbprint>
+    <PackageCertificateThumbprint>78E2739C923B307733880C86384D00F360057409</PackageCertificateThumbprint>
     <AppxAutoIncrementPackageRevision>True</AppxAutoIncrementPackageRevision>
     <AppxBundle>Always</AppxBundle>
     <AppxBundlePlatforms>x86|x64|arm</AppxBundlePlatforms>
@@ -98,8 +98,6 @@
     <None Include="Many.ThirdParty_StoreKey.pfx" />
     <None Include="Many.ThirdParty_TemporaryKey.pfx" />
     <None Include="project.json" />
-    <PRIResource Include="Strings\en-US\Resources.resw" />
-    <PRIResource Include="Strings\zh-CN\Resources.resw" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AddlPages\SearchPage.xaml.cs">
@@ -181,12 +179,12 @@
     <Content Include="Assets\BadgeLogo.scale-200.png" />
     <Content Include="Assets\BadgeLogo.scale-400.png" />
     <Content Include="Assets\SplashScreen.scale-100.png" />
-    <None Include="Package.StoreAssociation.xml" />
     <Content Include="Assets\Square310x310Logo.scale-200.png" />
     <Content Include="Assets\Square71x71Logo.scale-100.png" />
     <Content Include="Assets\Square71x71Logo.scale-125.png" />
     <Content Include="Assets\Square71x71Logo.scale-200.png" />
     <Content Include="Assets\Wide310x150Logo.scale-200.png" />
+    <None Include="Package.StoreAssociation.xml" />
     <Content Include="Resources\BgImages\attention_sportq_bg.png" />
     <Content Include="Resources\BgImages\center_night_mode.png" />
     <Content Include="Resources\BgImages\checkbox_click.png" />

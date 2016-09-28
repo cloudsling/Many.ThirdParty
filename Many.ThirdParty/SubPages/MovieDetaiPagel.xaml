@@ -26,7 +26,7 @@
                     </customControls:BlankButton>
                 </Grid>
                 <Grid HorizontalAlignment="Center">
-                    <TextBlock Text="短篇" 
+                    <TextBlock Text="{x:Bind ViewModel.Title,Mode=OneWay}" 
                            VerticalAlignment="Center"
                            Foreground="#4E5C6C"
                            FontSize="19"

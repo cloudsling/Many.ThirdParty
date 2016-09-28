@@ -1,9 +1,9 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Package xmlns="http://schemas.microsoft.com/appx/manifest/foundation/windows10" xmlns:mp="http://schemas.microsoft.com/appx/2014/phone/manifest" xmlns:uap="http://schemas.microsoft.com/appx/manifest/uap/windows10" IgnorableNamespaces="uap mp">
-  <Identity Name="64853FutureLabs.UWP" Publisher="CN=719F3C23-0383-4AD8-96B2-6754FF308155" Version="2.0.26.0" />
+  <Identity Name="64853FutureLabs.UWP" Publisher="CN=719F3C23-0383-4AD8-96B2-6754FF308155" Version="3.0.4.0" />
   <mp:PhoneIdentity PhoneProductId="489b17e0-36fe-4afe-a3b6-4480bed1f31a" PhonePublisherId="00000000-0000-0000-0000-000000000000" />
   <Properties>
-    <DisplayName>一个 UWP</DisplayName>
+    <DisplayName>TWO-两个 PRO</DisplayName>
     <PublisherDisplayName>Future Labs</PublisherDisplayName>
     <Logo>Assets\StoreLogo.png</Logo>
   </Properties>
@@ -15,7 +15,7 @@
   </Resources>
   <Applications>
     <Application Id="App" Executable="$targetnametoken$.exe" EntryPoint="Many.ThirdParty.App">
-      <uap:VisualElements DisplayName="ms-resource:AppName" Square150x150Logo="Assets\Square150x150Logo.png" Square44x44Logo="Assets\Square44x44Logo.png" Description="Many.ThirdParty" BackgroundColor="transparent">
+      <uap:VisualElements DisplayName="TWO-两个 PRO" Square150x150Logo="Assets\Square150x150Logo.png" Square44x44Logo="Assets\Square44x44Logo.png" Description="Many.ThirdParty" BackgroundColor="transparent">
         <uap:DefaultTile Square71x71Logo="Assets\Square71x71Logo.png" Wide310x150Logo="Assets\Wide310x150Logo.png" Square310x310Logo="Assets\Square310x310Logo.png">
           <uap:ShowNameOnTiles>
             <uap:ShowOn Tile="wide310x150Logo" />
