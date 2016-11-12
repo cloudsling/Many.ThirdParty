@@ -21,7 +21,7 @@ namespace Many.ThirdParty
     {
         private void MainFrameContainer_Navigated(object sender, NavigationEventArgs e)
         {
-            CurrentScenario = NavigationManager.GetScenarioByName[MFrameainFrameContainer.CurrentSourcePageType.Name];
+            CurrentScenario = NavigationManager.GetScenarioByName[MainFrameFrameContainer.CurrentSourcePageType.Name];
 
             UpdateContent(CurrentScenario.PageTitle);
             UpdateGenericUi(CurrentScenario.Index);
@@ -29,7 +29,7 @@ namespace Many.ThirdParty
 
         private void MainFrameContainer_BackRequested(object sender, BackRequestedEventArgs e)
         {
-            switch (MFrameainFrameContainer.SourcePageType.Name)
+            switch (MainFrameFrameContainer.SourcePageType.Name)
             {
                 case nameof(HomePage): return;
                 case nameof(ReadingPage): return;
@@ -37,9 +37,9 @@ namespace Many.ThirdParty
                 case nameof(MoviePage): return;
                 default:
                     {
-                        if (MFrameainFrameContainer.CanGoBack)
+                        if (MainFrameFrameContainer.CanGoBack)
                         {
-                            MFrameainFrameContainer.GoBack();
+                            MainFrameFrameContainer.GoBack();
                             e.Handled = true;
                         }
                         return;
@@ -124,7 +124,7 @@ namespace Many.ThirdParty
 
         private void ThisFrameNavigate(Type pageType)
         {
-            MFrameainFrameContainer.Navigate(pageType);
+            MainFrameFrameContainer.Navigate(pageType);
         }
 
         private void InitializeViewModel()

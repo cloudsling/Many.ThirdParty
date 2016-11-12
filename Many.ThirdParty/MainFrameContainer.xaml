@@ -98,7 +98,7 @@
 
                 <Grid Grid.Row="2" Background="{ThemeResource MainBackground}">
 
-                    <Frame x:Name="MFrameainFrameContainer" 
+                    <Frame x:Name="MainFrameFrameContainer" 
                        Navigated="MainFrameContainer_Navigated"/>
 
                 </Grid>

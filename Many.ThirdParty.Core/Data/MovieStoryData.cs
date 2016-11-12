@@ -27,7 +27,7 @@ namespace Many.ThirdParty.Core.Data
         {
             var tem = await CommonDataLoader.GetMainContentGeneric(uri);
 
-            JsonArray obj = GetArrayFromObject(GetObjectFromString(tem),"data");
+            var obj = GetArrayFromObject(GetObjectFromString(tem),"data");
            
             return obj == null ? null : GetTFormString<MovieStoryModel>(obj[0].Stringify());
             ;
