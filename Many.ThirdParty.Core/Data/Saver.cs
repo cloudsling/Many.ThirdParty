@@ -36,11 +36,10 @@ namespace Many.ThirdParty.Core.Data
             if (string.IsNullOrEmpty(uri)) return false;
             try
             {
-                if (SavedFolder == null)
-                    await SetSavedFolder();
+                await SetSavedFolder();
 
                 await FileIO.WriteBufferAsync(
-                    // ReSharper disable once PossibleNullReferenceException
+
                     await SavedFolder.CreateFileAsync(name, CreationCollisionOption.OpenIfExists),
                     await HttpHelper.GetBufferAsync(uri));
 
