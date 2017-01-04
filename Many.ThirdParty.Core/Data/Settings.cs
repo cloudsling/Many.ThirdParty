@@ -36,6 +36,14 @@ namespace Many.ThirdParty.Core.Data
                 SaveSettings(nameof(SkipPreLoadPage), value);
             }
         }
+        public bool LiveTileWithImage
+        {
+            get { return ReadSettings(nameof(LiveTileWithImage), false); }
+            set
+            {
+                SaveSettings(nameof(LiveTileWithImage), value);
+            }
+        }
     }
     
     public partial class Settings : INotifyPropertyChanged

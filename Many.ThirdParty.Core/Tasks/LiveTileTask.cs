@@ -8,6 +8,7 @@ using Many.ThirdParty.Core.Models.HomeModels;
 using Windows.Data.Xml.Dom;
 using Windows.Storage;
 using Windows.UI.Notifications;
+using Many.ThirdParty.Core.Commons;
 using Many.ThirdParty.Core.Enum;
 
 namespace Many.ThirdParty.Core.Tasks
@@ -37,24 +38,17 @@ namespace Many.ThirdParty.Core.Tasks
                 updater.EnableNotificationQueue(true);
                 updater.Clear();
 
+                TempleteCreator creator = new TempleteCreator(ViewModelBase.CurrentSettings.LiveTileWithImage ? LiveTileType.WithImage : LiveTileType.Normal);
+
                 for (int i = 0; i < list.Count; i++)
                 {
-                    var xml = new StringBuilder(await TileTemplete());
-
                     var index = i + 1 <= list.Count - 1 ? i + 1 : 0;
 
-                    xml.Replace("{Hp_TitleT}", list[index].Hp_Title)
-                       .Replace("{Hp_MaketTimeT}", list[index].Hp_MaketTime)
-                       .Replace("{Day}", list[index].Day)
-                       .Replace("{Hp_ContentT}", list[index].Hp_Content);
-
-                    xml.Replace("{Hp_Title}", list[i].Hp_Title)
-                       .Replace("{Hp_MaketTime}", list[i].Hp_MaketTime)
-                       .Replace("{Hp_Content}", list[i].Hp_Content);
+                    string xml = await creator.CreatorTemplete(list[i], list[index]);
 
                     var doc = new XmlDocument();
 
-                    doc.LoadXml(xml.ToString(), new XmlLoadSettings
+                    doc.LoadXml(xml, new XmlLoadSettings
                     {
                         ProhibitDtd = false,
                         ValidateOnParse = false,
@@ -64,6 +58,8 @@ namespace Many.ThirdParty.Core.Tasks
 
                     updater.Update(new TileNotification(doc));
                 }
+
+                creator.Close();
             }
             catch (Exception)
             {

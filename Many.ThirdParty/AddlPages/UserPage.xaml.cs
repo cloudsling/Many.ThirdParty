@@ -51,7 +51,7 @@ namespace Many.ThirdParty.AddlPages
             //dataPackage.SetText("208664459");
             //Clipboard.SetContent(dataPackage);
             foreach (var str in _boom)
-            { 
+            {
                 await new MessageDialog("BOOM!!!!!!!!!!\t" + str).ShowAsync();
             }
             await Windows.System.Launcher.LaunchUriAsync(new Uri("ms-windows-store://pdp/?ProductId=9nblggh4p3bt"));
@@ -86,6 +86,17 @@ namespace Many.ThirdParty.AddlPages
         private void ListViewBase_OnItemClick(object sender, ItemClickEventArgs e)
         {
             ViewModel.AppSettings.SkipPreLoadPage = !ViewModel.AppSettings.SkipPreLoadPage;
+        }
+
+        private async void LiveTileShowImage_OnItemClick(object sender, ItemClickEventArgs e)
+        {
+            ViewModel.AppSettings.LiveTileWithImage = !ViewModel.AppSettings.LiveTileWithImage;
+            await Core.Tasks.LiveTileTask.RequestUpdate();
+        }
+
+        private async void LoginButton_OnClick(object sender, RoutedEventArgs e)
+        {
+            await new MessageDialog("未得到授权，暂时无法登陆:)").ShowAsync();
         }
     }
 }

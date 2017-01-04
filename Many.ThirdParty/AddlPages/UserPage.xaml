@@ -14,7 +14,7 @@
             <ResourceDictionary.MergedDictionaries>
                 <ResourceDictionary Source="ms-appx:///Themes/TextBlockResourceDictionary.xaml"/>
             </ResourceDictionary.MergedDictionaries>
- 
+
             <cvt:BooleanToVisibilityConverter x:Name="BoolToVis" />
 
             <Style TargetType="ListViewItem">
@@ -28,26 +28,38 @@
     </Page.Resources>
 
     <StackPanel Background="{ThemeResource MainBackground}">
+
         <Grid>
             <Image x:Name="TopImage" 
                    Source="ms-appx:///Resources/default_indi_bg.png"
                    VerticalAlignment="Top"
                    Height="230"
                    Stretch="Fill"/>
+
             <StackPanel Width="60"
                         Height="90">
-                <Grid  Width="60"
-                       Height="60">
-                    <Grid.Background>
-                        <ImageBrush ImageSource="ms-appx:///Resources/BgImages/head.png" />
-                    </Grid.Background>
-                </Grid>
+                <Button Click="LoginButton_OnClick"
+                        HorizontalAlignment="Center"
+                        VerticalAlignment="Center">
+                    <Button.Template>
+                        <ControlTemplate>
+                            <Grid  Width="60" Height="60">
+                                <Grid.Background>
+                                    <ImageBrush ImageSource="ms-appx:///Resources/BgImages/head.png" />
+                                </Grid.Background>
+                            </Grid>
+                        </ControlTemplate>
+                    </Button.Template>
+
+                </Button>
                 <TextBlock Text="未登录"
                            Margin="3"
                            HorizontalAlignment="Center"
                            Foreground="White"/>
             </StackPanel>
         </Grid>
+
+
         <uct:GeneralListViewItem Title="设置"/>
         <ListView x:Name="NightMode"
                   ItemClick="NightMode_ItemClick">
@@ -94,6 +106,33 @@
                     <Image Grid.Column="2"
                            Width="30"
                            Visibility="{x:Bind ViewModel.AppSettings.SkipPreLoadPage, Converter={StaticResource BoolToVis}, Mode=OneWay}"
+                           Source="ms-appx:///Resources/BgImages/checkbox_click.png"/>
+                    <!--<ToggleSwitch HorizontalAlignment="Right"
+                                  Margin="0 0 -70 0"
+                                  IsOn="{x:Bind ViewModel.AppSettings.SkipPreLoadPage, Mode=TwoWay}"/>-->
+                </Grid>
+            </ListViewItem>
+        </ListView>
+        <ListView ItemClick="LiveTileShowImage_OnItemClick">
+            <ListViewItem>
+                <Grid Margin="5">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="35"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="35"/>
+                    </Grid.ColumnDefinitions>
+                    <!--<Image Source="ms-appx:///Resources/BgImages/center_night_mode.png"
+                           Margin="3"/>-->
+                    <TextBlock Grid.Column="1"
+                               Foreground="{ThemeResource FontColor}"
+                               VerticalAlignment="Center"
+                               Text="动态磁贴显示图片"
+                               Margin="5 0"/>
+                    <Image Grid.Column="2"
+                           Source="ms-appx:///Resources/BgImages/attention_sportq_bg.png"/>
+                    <Image Grid.Column="2"
+                           Width="30"
+                           Visibility="{x:Bind ViewModel.AppSettings.LiveTileWithImage, Converter={StaticResource BoolToVis}, Mode=OneWay}"
                            Source="ms-appx:///Resources/BgImages/checkbox_click.png"/>
                     <!--<ToggleSwitch HorizontalAlignment="Right"
                                   Margin="0 0 -70 0"

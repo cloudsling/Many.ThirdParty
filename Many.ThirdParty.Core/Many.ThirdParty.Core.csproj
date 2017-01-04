@@ -116,7 +116,9 @@
     <Compile Include="Data\Comments.cs" />
     <Compile Include="Data\CommonDataLoader.cs" />
     <Compile Include="Data\MovieStoryData.cs" />
+    <Compile Include="Data\TempleteCreator.cs" />
     <Compile Include="Enum\ListType.cs" />
+    <Compile Include="Enum\LiveTileType.cs" />
     <Compile Include="Enum\RelatedContentOption.cs" />
     <Compile Include="Interface\IncrementalLoadingCollection.cs" />
     <Compile Include="Data\Replicators.cs" />
@@ -176,7 +178,12 @@
     </SDKReference>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="TempleteFiles\LiveTileTemplete.xml" />
+    <Content Include="TempleteFiles\LiveTileTempleteWithImage.xml">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="TempleteFiles\LiveTileTemplete.xml">
+      <SubType>Designer</SubType>
+    </Content>
   </ItemGroup>
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '14.0' ">
     <VisualStudioVersion>14.0</VisualStudioVersion>
