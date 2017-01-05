@@ -9,7 +9,7 @@ namespace Many.ThirdParty.Core.Data
 {
     public static class Saver
     {
-        private static readonly string SavedFolderName = new ResourceLoader().GetString($"SavedFolderName");
+        private const string SavedFolderName = "ONE-一个";
 
         private static StorageFolder SavedFolder { get; set; }
 
