@@ -35,7 +35,8 @@ namespace Many.ThirdParty.Core.Data
         #region private method
         private static async Task<string> GetMainListGeneric(string uri)
         {
-            return GetJsonArrayFromObject(await GetMainJsonObjectAsync(uri))
+            JsonObject response = await GetMainJsonObjectAsync(uri);
+            return GetJsonArrayFromObject(response)
                 .Stringify();
         }
 
@@ -52,7 +53,8 @@ namespace Many.ThirdParty.Core.Data
 
         private static async Task<JsonObject> GetMainJsonObjectAsync(string uri)
         {
-            return GetObjectFromString(await HttpHelper.GetStringAsync(uri));
+            var response = await HttpHelper.GetStringAsync(uri);
+            return GetObjectFromString(response);
         }
 
         private static string GetUriByModelType(Type type, string id)

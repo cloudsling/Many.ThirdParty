@@ -143,10 +143,11 @@
         <uct:GeneralListViewItem Title="关于"/>
         <ListView>
             <ListViewItem>
-                <TextBlock Text="应用进入维护期，感谢支持" 
+                <TextBlock Text="应用已结束其生命周期，请点击下面的按钮差评" 
                        Style="{StaticResource SmallDeepText}"/>
             </ListViewItem>
-            <Button x:Name="Copy" Content="点我 不要停&lt;_&lt;" Click="Button_Click"/>
+            <Button x:Name="Copy" Content="垃圾应用，一键差评&lt;_&lt;" Click="Button_Click"/>
+            <Button x:Name="log" Content="查看更新日志" Click="Log_OnClick"/>
         </ListView>
     </StackPanel>
 </Page>

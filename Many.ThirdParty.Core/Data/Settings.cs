@@ -19,6 +19,15 @@ namespace Many.ThirdParty.Core.Data
             }
         }
 
+        public bool FirstTimeOpen
+        {
+            get { return ReadSettings(nameof(FirstTimeOpen), true); }
+            set
+            {
+                SaveSettings(nameof(FirstTimeOpen), value);
+            }
+        }
+
         public bool NightModeEnable
         {
             get { return ReadSettings(nameof(NightModeEnable), false); }

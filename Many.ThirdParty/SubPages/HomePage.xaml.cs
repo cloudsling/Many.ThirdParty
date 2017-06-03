@@ -1,6 +1,4 @@
-﻿using Many.ThirdParty.Core.Models.HomeModels;
-using Many.ThirdParty.Core.ViewModels;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using Windows.UI.Popups;
 using Windows.UI.Xaml;
@@ -8,6 +6,9 @@ using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Navigation;
 using Windows.Web.Http;
 using Windows.UI.Xaml.Controls.Primitives;
+using Many.ThirdParty.Core.Models.HomeModels;
+using Many.ThirdParty.Core.ViewModels;
+using Many.ThirdParty.Config;
 
 namespace Many.ThirdParty.SubPages
 {
@@ -71,6 +72,7 @@ namespace Many.ThirdParty.SubPages
             CurrentHomePage = this;
         }
 
+      
         protected override async void OnNavigatedTo(NavigationEventArgs e)
         {
             if (e.Parameter != null)
@@ -82,6 +84,12 @@ namespace Many.ThirdParty.SubPages
                 ViewModel.AddHomeModel(CurrentHomeModle ?? new HomeModel());
             }
             await ViewModel.AddHomeModels(TodaysListId);
+
+            if (ViewModel.AppSettings.FirstTimeOpen)
+            {
+                ViewModel.AppSettings.FirstTimeOpen = false;
+                await new MessageDialog(Message.lastUpdate).ShowAsync();
+            }
         }
 
         private readonly Dictionary<string, bool> _isClickDic = new Dictionary<string, bool>();

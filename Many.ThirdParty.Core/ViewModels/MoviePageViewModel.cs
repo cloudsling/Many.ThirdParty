@@ -40,11 +40,8 @@ namespace Many.ThirdParty.Core.ViewModels
         IncrementalLoadingCollection<MovieListModel> _movieListCollection;
         public IncrementalLoadingCollection<MovieListModel> MovieListCollection
         {
-            get { return _movieListCollection; }
-            set
-            {
-                SetProperty(ref _movieListCollection, value);
-            }
+            get => _movieListCollection;
+            set => SetProperty(ref _movieListCollection, value);
         }
     }
 }

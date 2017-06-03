@@ -8,6 +8,7 @@ using Windows.UI.Popups;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Navigation;
+using Many.ThirdParty.Config;
 
 namespace Many.ThirdParty.AddlPages
 {
@@ -38,11 +39,12 @@ namespace Many.ThirdParty.AddlPages
 
         private readonly IList<string> _boom = new List<string>
         {
-            "  苟以国家生死以 岂因祸福避趋之<_<",
-            "  一起蛤啤<_<",
-            "  不要总想搞个大新闻<_<",
-            "我可是见得多了<_<",
-            "这么无聊不如给个好评吧<_<"
+            "  苟以国家生死以 岂因祸福避趋之",
+            "  一起蛤啤",
+            "  不要总想搞个大新闻",
+            "我可是见得多了",
+            "垃圾应用，我要插评<_<",
+            "mmp，我要插评<_<"
         };
         private async void Button_Click(object sender, RoutedEventArgs e)
         {
@@ -97,6 +99,10 @@ namespace Many.ThirdParty.AddlPages
         private async void LoginButton_OnClick(object sender, RoutedEventArgs e)
         {
             await new MessageDialog("未得到授权，暂时无法登陆:)").ShowAsync();
+        } 
+        private async void Log_OnClick(object sender, RoutedEventArgs e)
+        { 
+            await new MessageDialog(Message.lastUpdate).ShowAsync();
         }
     }
 }
